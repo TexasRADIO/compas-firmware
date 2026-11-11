@@ -1,0 +1,112 @@
+{
+  "title": "La Cucaracha - Songbag left hand",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Piano arrangement credited A. G. W. (Alfred George Wathall).",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed p. 290, PDF page 318 (one-based), lower piano staff",
+  "scope": "One printed verse and chorus at written pitches and nominal lengths. Preview tempo is editorial.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "Four systems read from the scanned 1927 print.",
+    "audit": "la-cucaracha-songbag-review.md"
+  },
+  "system_bars": [
+    [
+      1,
+      4
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      9,
+      12
+    ],
+    [
+      13,
+      17
+    ]
+  ],
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 112,
+  "form": [
+    {
+      "name": "VERSE",
+      "bar": 1
+    },
+    {
+      "name": "CHORUS",
+      "bar": 9
+    },
+    {
+      "name": "ENDING",
+      "bar": 17
+    }
+  ],
+  "parts": [
+    {
+      "title": "Piano bass",
+      "program": 0,
+      "bars": [
+        "C3:24 R:24 G2:24",
+        "C3:24 R:24 G2:24",
+        "C3:24 R:24 G2:24",
+        "B2:24 R:24 G2:24",
+        "B2:24 R:24 G2:24",
+        "B2:24 R:24 G2:24",
+        "B2:24 R:24 G2:24",
+        {
+          "notes": "C3:36",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "C3:24 R:24 G2:24",
+        "E3:24 R:24 G2:24",
+        "C3:12 B2:12 C3:12 B2:12 C3:12 C#3:12",
+        "D3:24 R:24 G2:24",
+        "D3:24 R:24 G2:24",
+        "F3:24 R:24 G2:24",
+        "B2:24 R:24 G2:24",
+        "C2+C3:48 R:24"
+      ]
+    },
+    {
+      "title": "Piano bass staff upper voice",
+      "program": 0,
+      "bars": [
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:24 C4+E4+G4:24 R:24"
+      ]
+    }
+  ],
+  "realization": "Pitched slurs retain separate attacks. The same-pitch verse ending C3 spans the printed quarter and eighth."
+}

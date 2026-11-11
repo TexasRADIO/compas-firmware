@@ -1,0 +1,68 @@
+{
+  "title": "La Mora - opening bass staff",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University John Arpin collection JAC009399, printed and PDF p. 2, systems 1–2.",
+  "scope": "Lower piano staff for the one-bar introduction and repeated first strain, with both numbered endings. Cut before the next strain.",
+  "editorial": [
+    "The introduction occupies one full 2/4 bar. The seven common bars are played twice, with the first and second endings taken in order. The alternate second ending on p. 3 is outside this excerpt.",
+    "System 2, common bar 6: the lower staff has five beamed attacks. The last two are realized as sixteenths, following the upper-staff alignment, which is clearer at the return on p. 4, system 2.",
+    "Second ending: the lower staff retains the nominal two eighth-note attacks, eighth rest and last eighth, even though the third octave is engraved under the first of the upper staff’s closing sixteenths.",
+    "Preview quarter-note tempo 96 and fixed velocity are editorial. Staccato and accent are not realized separately."
+  ],
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 96,
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "FIRST STRAIN",
+      "bar": 2
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 9
+    },
+    {
+      "name": "STRAIN REPEAT",
+      "bar": 10
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 17
+    }
+  ],
+  "parts": [
+    {
+      "title": "Printed lower piano staff",
+      "program": 0,
+      "bars": [
+        "R:24 R:12 F#3+C#4+D4:12",
+        "G3+E4:12 Bb3:6 C4:6 C3:12 G3+Bb3+C4:12",
+        "F2+F3:12 A3+C4:12 D2+D3:12 F#3+A3+C4+D4:12",
+        "G2+G3:12 G3+Bb3+D4:12 E2+E3:12 G#3+Bb3+D4+E4:12",
+        "A2+A3:12 A3+C#4+E4:12 A3+C#4+E4:12 R:12",
+        "G2+G3:12 Bb3+C4+E4:12 C2+C3:12 Bb3+C4+E4:12",
+        "F2+F3:12 F2+A3+C4+F4:12 A3+C4+F4:12 C3+A3+C4+F4:6 Ab3+C4+F4:6",
+        "C2+C3:12 G3+E4:12 G2+G3:12 G3+B3+D4+F4:12",
+        "C2+C3:12 F3:6 A3:6 C4:12 F#3+C#4+D4:12",
+        "G3+E4:12 Bb3:6 C4:6 C3:12 G3+Bb3+C4:12",
+        "F2+F3:12 A3+C4:12 D2+D3:12 F#3+A3+C4+D4:12",
+        "G2+G3:12 G3+Bb3+D4:12 E2+E3:12 G#3+Bb3+D4+E4:12",
+        "A2+A3:12 A3+C#4+E4:12 A3+C#4+E4:12 R:12",
+        "G2+G3:12 Bb3+C4+E4:12 C2+C3:12 Bb3+C4+E4:12",
+        "F2+F3:12 F2+A3+C4+F4:12 A3+C4+F4:12 C3+A3+C4+F4:6 Ab3+C4+F4:6",
+        "C2+C3:12 G3+E4:12 G2+G3:12 G3+B3+D4+F4:12",
+        "C2+C3:12 C2+C3:12 R:12 C2+C3:12"
+      ]
+    }
+  ]
+}

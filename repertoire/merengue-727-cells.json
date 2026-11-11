@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "Merengue 2",
+    "authorCredit": "CongaMan",
+    "publisher": "CongaPlace",
+    "url": "https://www.mycongaplace.com/instrument/congas/rhythms/merengue2.php",
+    "notationUrl": "https://www.mycongaplace.com/instrument/congas/rhythms/merengue2.gif",
+    "notationSHA256": "6765a2caaf48834d9030f5121c9e98cf2f648b09a1c127698f8783345c7653fe",
+    "keyUrl": "https://www.mycongaplace.com/instrument/congas/notation/logo.gif",
+    "keySHA256": "1078f427301bac5e8791bb984d4be3379dd07155aefcec58f9855bad3fd67a7d",
+    "accessed": "2026-11-06",
+    "scope": "Author's retrospective observation from Santo Domingo, published with a 2003 time reference. Describes conga accompaniment when tambora is present, expressly uncertain whether it is traditional. No named performance, player or merengue subtype is identified.",
+    "verification": "Complete two-row notation and linked stroke key visually inspected. One reader; independent player audit pending."
+  },
+  "rights": "Basic rhythmic cells studied from the publicly supplied author's lesson. No notation image, prose, recording or sample is embedded in the machine. Release 727 adaptation; no endorsement is asserted.",
+  "grid": {"meter": "4/4", "bars": 2, "steps": 32, "index": "zero-based sixteenths"},
+  "adaptation": {
+    "high:S": [2, true],
+    "high:B": [2, false],
+    "high:O": [3, true],
+    "low:O": [4, true],
+    "note": "S=slap, B=bass stroke on the conga, O=open. Preserve onsets and the lower drum on beat four of bar one. The 727 has no conga bass stroke: map it to unaccented mute high conga, with accented mute high conga for slap. Accents are Compas choices, not printed dynamics. This is a conga part to accompany tambora, not a whole merengue ensemble or a bass-guitar line."
+  },
+  "patterns": [
+    {
+      "id": "merengue-conga",
+      "title": "MERENGUE CONGA",
+      "sourceRow": "Basic Rhythm",
+      "events": [[0,"high","S"],[6,"high","B"],[8,"high","S"],[12,"low","O"],[16,"high","O"],[18,"high","O"],[22,"high","B"],[24,"high","S"],[28,"high","O"]]
+    },
+    {
+      "id": "merengue-conga-var",
+      "title": "MERENGUE CONG VAR",
+      "sourceRow": "Variation",
+      "events": [[0,"high","S"],[6,"high","B"],[8,"high","S"],[12,"low","O"],[16,"high","O"],[18,"high","O"],[20,"high","O"],[22,"high","B"],[24,"high","S"],[28,"high","O"]]
+    }
+  ]
+}

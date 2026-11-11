@@ -1,0 +1,7 @@
+Hanan Cumbia factory firmware from Oficina de Sonido
+Site: https://hanancumbia.oficinadesonido.org/
+Embedded image: https://hanancumbia.oficinadesonido.org/firmware_studio.js?v=17
+Factory flasher: https://hanancumbia.oficinadesonido.org/studio.js?v=27
+Embedded build: hanan26Taller, 2026-07-21
+SHA-256 (Hanan-Cumbia-factory-2026-07-21.hex): 0d6a7e0cc5604536554825d2026249a1affa9f846a5ae8ec3e8539fbf596be31
+Verified 1894 Intel HEX record checksums. Address span: 30272 bytes.

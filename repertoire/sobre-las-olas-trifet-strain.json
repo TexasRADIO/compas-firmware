@@ -1,0 +1,232 @@
+{
+  "title": "Sobre las olas - Trifet 1895 first strain with both endings",
+  "edition": "F. Trifet, Boston, 9 October 1895, plate 1030, Ball State SM-2-196",
+  "source": "https://dmr.bsu.edu/digital/iiif/ShtMus/242/full/full/0/default.jpg",
+  "source_sha256": "2a2bd710d66cb690eae46e6b3a9a3de72cbc4b03ba111f4ebed5afe0f9728dca",
+  "scope": "Waltz No. 1, printed 1 through Fine on digitized Page-3, 30 common bars and both two-bar endings.",
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 132,
+  "form": [
+    {
+      "name": "FIRST THEME",
+      "bar": 1
+    },
+    {
+      "name": "ANSWERING PHRASE",
+      "bar": 9
+    },
+    {
+      "name": "THEME RETURN",
+      "bar": 17
+    },
+    {
+      "name": "OCTAVE RISE",
+      "bar": 25
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 31
+    },
+    {
+      "name": "REPEAT FROM WALTZ ONE",
+      "bar": 33
+    },
+    {
+      "name": "OCTAVE RISE REPEAT",
+      "bar": 57
+    },
+    {
+      "name": "SECOND ENDING AND FINE",
+      "bar": 63
+    }
+  ],
+  "editorial": [
+    "The right hand returns to E above an A-minor accompaniment at bars 23–24. This is distinct from bars 7–8.",
+    "The first ending repeat returns to the printed 1. The 30 common bars are played twice, using the first ending on pass one and the second ending on pass two.",
+    "Both numbered endings have identical notes. The second adds Fine and a fermata, held here for its nominal printed duration.",
+    "Velocity 46 and 112 represent the shared pp and ff marks. Quarter = 132 is an editorial rehearsal tempo.",
+    "The Larghetto, Tempo di Valse introduction, second strain, printed D.C. from the second strain and Waltz No. 2 are outside this excerpt."
+  ],
+  "parts": [
+    {
+      "title": "Piano left hand",
+      "program": 0,
+      "velocity_marks": [
+        [
+          0,
+          46
+        ],
+        [
+          1728,
+          112
+        ],
+        [
+          2304,
+          46
+        ],
+        [
+          4032,
+          112
+        ]
+      ],
+      "bars": [
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "C3:24 E3+A3:24 E3+A3:24",
+        "C3:24 E3+A3:24 E3+A3:24",
+        "C2+C3:24 E3+A3+C4:24 E3+A3+C4:24",
+        "C2+C3:24 E3+A3+C4:24 E3+A3+C4:24",
+        "D2+D3:24 G3+B3+D4:24 G3+B3+D4:24",
+        "D2+D3:24 G3+B3+D4:24 G3+B3+D4:24",
+        "D2+D3:24 F#3+A3+C4:24 F#3+A3+C4:24",
+        "F#2+F#3:24 F#3+A3+C4:24 F#3+A3+C4:24",
+        "G2+G3:24 D2+D3:24 B1+B2:24",
+        "G1+G2:24 R:24 R:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "C3:24 E3+A3:24 E3+A3:24",
+        "C3:24 E3+A3:24 E3+A3:24",
+        "C2+C3:24 E3+A3+C4:24 E3+A3+C4:24",
+        "C2+C3:24 E3+A3+C4:24 E3+A3+C4:24",
+        "D2+D3:24 G3+B3+D4:24 G3+B3+D4:24",
+        "D2+D3:24 G3+B3+D4:24 G3+B3+D4:24",
+        "D2+D3:24 F#3+A3+C4:24 F#3+A3+C4:24",
+        "F#2+F#3:24 F#3+A3+C4:24 F#3+A3+C4:24",
+        "G2+G3:24 D2+D3:24 B1+B2:24",
+        "G1+G2:24 R:24 R:24"
+      ]
+    },
+    {
+      "title": "Piano right hand",
+      "program": 0,
+      "velocity_marks": [
+        [
+          0,
+          46
+        ],
+        [
+          1728,
+          112
+        ],
+        [
+          2304,
+          46
+        ],
+        [
+          4032,
+          112
+        ]
+      ],
+      "bars": [
+        "B3:72",
+        "A#3:24 B3:24 D4:24",
+        "G4:72~",
+        "G4:24 F#4:24 G4:24",
+        "A4:24 G4:24 F#4:24",
+        "F#4:24 B3:24 D4:24",
+        "F#4:72~",
+        "F#4:24 R:24 R:24",
+        "C4:72",
+        "B3:24 C4:24 D4:24",
+        "F#4:72~",
+        "F#4:24 E#4:24 F#4:24",
+        "G4:24 F#4:24 E#4:24",
+        "F#4:24 C4:24 F#4:24",
+        "B3:72~",
+        "B3:24 R:24 R:24",
+        "B3:72",
+        "A#3:24 B3:24 D4:24",
+        "G4:72~",
+        "G4:24 F#4:24 G4:24",
+        "A4:24 G4:24 F#4:24",
+        "F#4:24 B3:24 D4:24",
+        "E4:72~",
+        "E4:24 R:24 R:24",
+        "E4+E5:72",
+        "A4+A5:24 C5+C6:24 E5+E6:24",
+        "D5+D6:72~",
+        "D5+D6:24 C5+C6:24 B4+B5:24",
+        "A4+A5:24 G4+G5:24 F#4+F#5:24",
+        "E4+E5:24 F#4+F#5:24 A4+A5:24",
+        "G4+G5:72~",
+        "G4+G5:24 R:24 R:24",
+        "B3:72",
+        "A#3:24 B3:24 D4:24",
+        "G4:72~",
+        "G4:24 F#4:24 G4:24",
+        "A4:24 G4:24 F#4:24",
+        "F#4:24 B3:24 D4:24",
+        "F#4:72~",
+        "F#4:24 R:24 R:24",
+        "C4:72",
+        "B3:24 C4:24 D4:24",
+        "F#4:72~",
+        "F#4:24 E#4:24 F#4:24",
+        "G4:24 F#4:24 E#4:24",
+        "F#4:24 C4:24 F#4:24",
+        "B3:72~",
+        "B3:24 R:24 R:24",
+        "B3:72",
+        "A#3:24 B3:24 D4:24",
+        "G4:72~",
+        "G4:24 F#4:24 G4:24",
+        "A4:24 G4:24 F#4:24",
+        "F#4:24 B3:24 D4:24",
+        "E4:72~",
+        "E4:24 R:24 R:24",
+        "E4+E5:72",
+        "A4+A5:24 C5+C6:24 E5+E6:24",
+        "D5+D6:72~",
+        "D5+D6:24 C5+C6:24 B4+B5:24",
+        "A4+A5:24 G4+G5:24 F#4+F#5:24",
+        "E4+E5:24 F#4+F#5:24 A4+A5:24",
+        "G4+G5:72~",
+        "G4+G5:24 R:24 R:24"
+      ]
+    }
+  ]
+}

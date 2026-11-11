@@ -1,0 +1,178 @@
+{
+  "title": "La Mora - return strain with alternate ending",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 96,
+  "source_location": "York University John Arpin collection JAC009399, printed and PDF p. 4, systems 1–2 and the first bar of system 3.",
+  "scope": "Seven repeated instrumental bars, the first ending and OTRA 2ª. Stops at the double bar before the interlude.",
+  "play_order": [
+    "COMMON",
+    "FIRST",
+    "COMMON",
+    "SECOND"
+  ],
+  "form": [
+    {
+      "name": "RETURN STRAIN",
+      "bar": 1
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 8
+    },
+    {
+      "name": "REPEAT",
+      "bar": 9
+    },
+    {
+      "name": "ALTERNATE SECOND ENDING",
+      "bar": 16
+    }
+  ],
+  "editorial": [
+    "The common bars and first ending follow the opening ledger after comparison with the return on page 4.",
+    "The written upper ties, sixteenth triplet, grace and three rolls retain the opening excerpt’s playback realization.",
+    "The alternate ending engraves a dot by the first attack and a sixteenth rest before the next attack in both staves. The rest is read within the dotted-eighth span as eighth sound and sixteenth rest. The next written sixteenth completes the first beat.",
+    "The three dots over the slashed final upper chord are realized as three synchronized sixteenth attacks in both staves, followed by the printed sixteenth rest. This is an editorial reading of the engraving.",
+    "Quarter-note tempo 96 and fixed velocity are rehearsal settings."
+  ],
+  "parts": [
+    {
+      "title": "Printed lower piano staff",
+      "program": 0,
+      "patterns": {
+        "a1": "G3+E4:12 Bb3:6 C4:6 C3:12 G3+Bb3+C4:12",
+        "a2": "F2+F3:12 A3+C4:12 D2+D3:12 F#3+A3+C4+D4:12",
+        "a3": "G2+G3:12 G3+Bb3+D4:12 E2+E3:12 G#3+Bb3+D4+E4:12",
+        "a4": "A2+A3:12 A3+C#4+E4:12 A3+C#4+E4:12 R:12",
+        "a5": "G2+G3:12 Bb3+C4+E4:12 C2+C3:12 Bb3+C4+E4:12",
+        "a6": "F2+F3:12 F2+A3+C4+F4:12 A3+C4+F4:12 C3+A3+C4+F4:6 Ab3+C4+F4:6",
+        "a7": "C2+C3:12 G3+E4:12 G2+G3:12 G3+B3+D4+F4:12",
+        "first": "C2+C3:12 F3:6 A3:6 C4:12 F#3+C#4+D4:12",
+        "second": "C2+C3:12 R:6 C2+C3:6 C2+C3:6 C2+C3:6 C2+C3:6 R:6"
+      },
+      "sections": {
+        "COMMON": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST": {
+          "bars": "first"
+        },
+        "SECOND": {
+          "bars": "second"
+        }
+      }
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "patterns": {
+        "a1": "D5+Bb5:6 C5+A5:6 Bb4+G5:6 A4+F5:6 C5+E5:12 Bb4+G5:12",
+        "a2": "A4+F5:12 C5+E5:6 Bb4+D5:6 A4+C5:12 F#4+D5:6 A4+C5:6",
+        "a3": "G4+Bb4:4 A4+C5:4 G4+Bb4:4 F#4+A4:6 G4+Bb4:6 G#4+F5:12 G#4+E5:6 Bb4+D5:6",
+        "a4": "E5:6 C#5:6 A4:12 A4:12 G4:6 A4:6",
+        "a5": "Bb4:6 C5:6 D5:6 E5:6 Bb4:18 Bb4+E5+G5:6",
+        "a6": "A4+C5+G5:12 A4+C5+F5:12~ A4+C5+F5:6 C5:6 D5:6 F5:6",
+        "a7": "G4:6 C5:6 G4:6 E5:5 E5:1 F4:6 C#5:6 D5:6 G5:6",
+        "first": "D4+A4+C5:12 A4:6 C5:6 F5:6 A5:6 C6:6 A5:6",
+        "second": "E4+G4+C5:12 R:6 C5+E5+G5+C6:6 C5+E5+G5+C6:6 C5+E5+G5+C6:6 C5+E5+G5+C6:6 R:6"
+      },
+      "sections": {
+        "COMMON": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST": {
+          "bars": "first"
+        },
+        "SECOND": {
+          "bars": "second"
+        }
+      }
+    },
+    {
+      "title": "Upper piano roll 2",
+      "program": 0,
+      "patterns": {
+        "a1": "R:48",
+        "a2": "R:48",
+        "a3": "R:48",
+        "a4": "R:48",
+        "a5": "R:25 E5:17 R:6",
+        "a6": "R:48",
+        "a7": "R:1 C5:5 R:19 G#4:5 R:18",
+        "first": "R:48",
+        "second": "R:48"
+      },
+      "sections": {
+        "COMMON": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST": {
+          "bars": "first"
+        },
+        "SECOND": {
+          "bars": "second"
+        }
+      }
+    },
+    {
+      "title": "Upper piano roll 3",
+      "program": 0,
+      "patterns": {
+        "a1": "R:48",
+        "a2": "R:48",
+        "a3": "R:48",
+        "a4": "R:48",
+        "a5": "R:26 A5:16 R:6",
+        "a6": "R:48",
+        "a7": "R:2 E5:4 R:20 Bb4:4 R:18",
+        "first": "R:48",
+        "second": "R:48"
+      },
+      "sections": {
+        "COMMON": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST": {
+          "bars": "first"
+        },
+        "SECOND": {
+          "bars": "second"
+        }
+      }
+    },
+    {
+      "title": "Upper piano roll 4",
+      "program": 0,
+      "patterns": {
+        "a1": "R:48",
+        "a2": "R:48",
+        "a3": "R:48",
+        "a4": "R:48",
+        "a5": "R:48",
+        "a6": "R:48",
+        "a7": "R:27 D5:3 R:18",
+        "first": "R:48",
+        "second": "R:48"
+      },
+      "sections": {
+        "COMMON": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST": {
+          "bars": "first"
+        },
+        "SECOND": {
+          "bars": "second"
+        }
+      }
+    }
+  ]
+}

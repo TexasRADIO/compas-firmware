@@ -1,0 +1,64 @@
+{
+  "title": "Cielito Lindo - Songbag canto",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Tune supplied by Luis Morones, harmonization by Alfred G. Wathall.",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed pp. 298-299, PDF pages 326-327 (one-based), top staff of each system",
+  "scope": "One written verse and chorus, with no lyrics, piano or additional stanzas. Editorial tempo and fixed MIDI velocity. Source is the Morones/Wathall print.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "All five vocal systems compared visually with the retained PDF, including pitch, duration, ties, pickup and final partial bar.",
+    "audit": "cielito-lindo-songbag-review.md",
+    "playability": "Rehearsal melody only; not registered as a machine backing."
+  },
+  "system_bars": [[1, 7], [8, 13], [14, 19], [20, 26], [27, 33]],
+  "ppq": 24,
+  "meter": [3, 4],
+  "preview_bpm": 108,
+  "form": [{"name": "VERSE", "bar": 1}, {"name": "CHORUS", "bar": 18}],
+  "parts": [
+    {
+      "title": "Written canto",
+      "program": 0,
+      "bars": [
+        {"notes": "G4:24", "ticks": 24},
+        "C5:24 C5:24 A4:24~",
+        "A4:24 B4:24 G4:24",
+        "C5:24 C5:24 A4:24~",
+        "A4:24 B4:24 G4:24",
+        "C5:24 C5:24 A4:24~",
+        "A4:24 B4:24 G4:24",
+
+        "F4:24 D4:48~",
+        "D4:72",
+        "B4:24 B4:24 B4:24~",
+        "B4:24 A4:24 G4:24",
+        "F4:24 E4:24 D4:24~",
+        "D4:24 E4:24 F4:24",
+
+        "G4:24 G4:24 G4:24~",
+        "G4:24 B4:24 D5:24",
+        "E5:24 C5:48~",
+        "C5:72",
+        "E5:72",
+        "D5:48 C5:24",
+
+        "A4:72~",
+        "A4:72",
+        "D5:72",
+        "D5:48 C5:24",
+        "E5:24 C5:48~",
+        "C5:48 G4:24",
+        "A4:24 A4:24 G4:24~",
+
+        "G4:24 A4:24 G4:24",
+        "F5:24 F5:24 D5:24~",
+        "D5:24 B4:24 G4:24",
+        "A4:24 A4:24 G4:24~",
+        "G4:24 B4:24 D5:24",
+        "E5:24 C5:48~",
+        {"notes": "C5:48", "ticks": 48}
+      ]
+    }
+  ]
+}

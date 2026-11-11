@@ -1,0 +1,213 @@
+{
+  "title": "Júrame · Schirmer song with the D.C. return",
+  "edition": "María Grever, G. Schirmer, New York, 1926, plate 37700, all three digitized pages",
+  "source": "https://petruccimusiclibrary.ca/files/imglnks/caimg/d/db/IMSLP675258-PMLP1083489-Grever.pdf",
+  "source_sha256": "459e84c5e25cf752e3743ad9a5c8ed2aaaf754327b7c86e3b4cc130e6cc00ca1",
+  "scope": "Intro, verse and refrain through the printed D.C., with one return from the beginning for the second stanza.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 72,
+  "play_order": [
+    "INTRO",
+    "VERSE",
+    "REFRAIN",
+    "INTRO",
+    "VERSE TWO",
+    "REFRAIN"
+  ],
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "VERSE ONE",
+      "bar": 6
+    },
+    {
+      "name": "REFRAIN ONE",
+      "bar": 23
+    },
+    {
+      "name": "D.C. RETURN",
+      "bar": 46
+    },
+    {
+      "name": "VERSE TWO",
+      "bar": 51
+    },
+    {
+      "name": "REFRAIN TWO",
+      "bar": 68
+    },
+    {
+      "name": "FINAL CADENCE",
+      "bar": 85
+    }
+  ],
+  "editorial": [
+    "The 45 printed bars are played twice, following the D.C. once. The score has a second stanza and no printed Fine. Compás stops after the second pass as a rehearsal choice.",
+    "In the second stanza the starred bracket over C5, C5 and Bb4 in written measure 20 is realized as an 18-tick vocal rest. The accompaniment continues through that space.",
+    "The MIDI keeps paired notes on the vocal staff. The board guide plays the upper note at these attacks.",
+    "The piano cue uses selected bass attacks and the upper piano line in the five-bar introduction. The rest of the printed piano texture is left to the player.",
+    "Quarter note = 72 is editorial. Printed rolls, flexible tempi and fermatas use the fixed rehearsal clock."
+  ],
+  "parts": [
+    {
+      "title": "Selected piano bass",
+      "program": 0,
+      "patterns": {
+        "rest": "R:48",
+        "i01": "C2+G2:18 R:30",
+        "i03": "G1+G2:18 R:18 G2:12",
+        "i04": "G1:12 F3:6 Eb3:6 D3:12 G2:12",
+        "i05": "C2:36 G1:12",
+        "v01": "C2:18 C3:6 C3:24",
+        "v02": "C2:18 G2:6 Eb3:12 G2:12",
+        "v03": "Eb2:18 C3:6 Eb3:12 C3:12",
+        "v04": "G2:18 Eb3:6 Ab2:12 F2:12",
+        "v05": "G2:18 D2:6 G1+G2:24",
+        "v06": "Ab3:18 G3:6 F3:12 Ab3:12",
+        "v07": "R:24 G2:24",
+        "v08": "G2:48",
+        "v09": "C3:24 C2:12 R:12",
+        "v10": "C2:18 G2:6 Eb3:12 G2:12",
+        "v11": "Eb2:18 C3:6 Eb3:12 G2:12",
+        "v12": "C2:18 G2:6 C3:12 E3:12",
+        "v13": "F2:18 C3:6 Ab3:24",
+        "v14": "Ab1+Ab2:18 Ab2:6 Eb3:12 Ab2:12",
+        "v15": "G1+G2:12 Eb3:6 G3:6 R:24",
+        "v16": "G2:48",
+        "v17": "C2:18 G2:6 C3:12 D3:12",
+        "r01": "C2+G2:18 R:24 E2:2 F2:2 F#2:2",
+        "r02": "G2:48",
+        "r03": "C2+G2:48",
+        "r04": "C3:18 G3:6 C#3:12 G3:12",
+        "r05": "D3:18 G3:6 R:24",
+        "r06": "D2+G2:18 R:24 D2:2 E2:2 F2:2",
+        "r07": "G1+G2:48",
+        "r08": "R:12 G2:36",
+        "r09": "F3:24 F3:24",
+        "r10": "C3:18 E3:6 G3:12 G2:12",
+        "r11": "C2:18 R:30",
+        "r12": "C2:48",
+        "r13": "F2+C3:48~",
+        "r14": "F2+C3:24 R:24",
+        "r15": "D3:12 G2:12 R:24",
+        "r16": "E2:18 R:18 E2:12",
+        "r17": "D2:18 R:18 A1:12",
+        "r18": "G1+C2+G2:12 C3:12 R:24",
+        "r19": "A1+A2:12 R:12 A2:24",
+        "r20": "D2:18 A2:6 F3:12 A2:12",
+        "r21": "G1:18 G2:6 R:12 G2:12",
+        "r22": "C2+G2:18 G2:6 E3:12 G2:12",
+        "r23": "C1+C2:48"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 rest i03 i04 i05"
+        },
+        "VERSE": {
+          "bars": "v01 v02 v03 v04 v05 v06 v07 v08 v09 v10 v11 v12 v13 v14 v15 v16 v17"
+        },
+        "VERSE TWO": {
+          "bars": "v01 v02 v03 v04 v05 v06 v07 v08 v09 v10 v11 v12 v13 v14 v15 v16 v17"
+        },
+        "REFRAIN": {
+          "bars": "r01 r02 r03 r04 r05 r06 r07 r08 r09 r10 r11 r12 r13 r14 r15 r16 r17 r18 r19 r20 r21 r22 r23"
+        }
+      }
+    },
+    {
+      "title": "Upper piano intro cue",
+      "program": 0,
+      "patterns": {
+        "rest": "R:48",
+        "i01": "C6:6 B5:6 D6:36",
+        "i02": "R:12 C6:6 B5:6 D6:6 C6:6 B5:6 C6:6",
+        "i03": "A5:12 G5:36",
+        "i04": "R:12 D4:6 Eb4:6 F4:6 E4:6 F4:6 D4:6",
+        "i05": "C4:18 G4:6 G4:24"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i03 i04 i05"
+        },
+        "VERSE": {
+          "bars": "rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest"
+        },
+        "VERSE TWO": {
+          "bars": "rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest"
+        },
+        "REFRAIN": {
+          "bars": "rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest rest"
+        }
+      }
+    },
+    {
+      "title": "Printed canto",
+      "program": 0,
+      "patterns": {
+        "rest": "R:48",
+        "v01": "R:36 G4:6 G4:6",
+        "v02": "Ab4:6 G4:6 F#4:6 G4:6 F4:6 Eb4:6 D4:6 B3+Eb4:6",
+        "v03": "D4:12 C4:24 C4:6 D4:6",
+        "v04": "Eb4:6 F4:6 F#4:6 G4:6 C5:6 B4:6 C5:6 D5:6",
+        "v05": "B4:12 G4:24 G4:6 G4:6",
+        "v06": "D5:6 D5:6 D5:6 D5:6 D5:6 C5:6 C5:6 D5:6",
+        "v07": "C5:12 B4:24 F4:6 G4:6",
+        "v08": "Ab4:12 G4:6 F#4:6 G4:6 F4:6 Eb4:6 D4:6",
+        "v09": "Eb4:12 C4:24 G4:6 G4:6",
+        "v10": "Ab4:6 G4:6 F#4:6 G4:6 F4:6 Eb4:6 D4:6 B3+Eb4:6",
+        "v11": "D4:12 C4:24 C4:6 C4:6",
+        "v12": "D5:6 D5:6 D5:6 D5:6 D5:6 C5:6 Ab4:6 G4:6",
+        "v13": "Bb4:12 Ab4:24 C5:6 D5:6",
+        "v14": "F5:12 Eb5:6 D5:6 D5:6 C5:6 B4:6 C5:6",
+        "v15": "Eb5:6 D5:12 C5:6 C5:6 Bb4:6 Bb4:6 Ab4:6",
+        "v16": "Ab4:6 G4:12 D4:6 C#4:6 D4:6 G4:6 F4:6",
+        "v17": "Eb4:12 C4:36",
+        "v20-second": "Eb5:6 D5:12 R:18 Bb4:6 Ab4:6",
+        "r01": "C5:12 B4:12 D5:24~",
+        "r02": "D5:12 B4:6 C5:6 D5:6 C5:6 B4:6 A4:6",
+        "r03": "B4:6 B4:6 A4:6 B4:6 C5:6 B4:6 A4:6 G4:6",
+        "r04": "A4:6 A4:6 E4:6 F4:6 G4:6 G4:6 F4:6 E4:6",
+        "r05": "G4:48",
+        "r06": "B4:6 A4:6 C5:36~",
+        "r07": "C5:12 A4:6 B4:6 C5:6 B4:6 A4:6 G4:6",
+        "r08": "A4:6 A4:6 D4:6 E4:6 F4:6 G4:6 A4:6 G4:6",
+        "r09": "B4:6 B4:6 G4:6 A4:6 B4:6 D5:6 B4:6 G4:6",
+        "r10": "A4:48",
+        "r11": "D5:18 C5:6 E5:24~",
+        "r12": "E5:12 C5:6 D5:6 E5:6 E5+G5:6 E5:6 C5:6",
+        "r13": "E5:6 D5:6 E5:6 D5:6 E5:6 D5:6 E5:6 D5:6",
+        "r14": "E5:6 D5:6 C5:6 B4:6 D5:6 C5:6 B4:6 A4:6",
+        "r15": "B4:48",
+        "r16": "C5:6 B4:6 D5:36~",
+        "r17": "D5:12 C5:6 B4:6 D5:6 C5:6 B4:6 C5:6",
+        "r18": "E5+G5:24 E5+G5:24~",
+        "r19": "E5+G5:12 E4:6 F4:6 G4:6 F#4:6 G4:6 G#4:6",
+        "r20": "A4:12 F4:24 A4:12",
+        "r21": "C5:12 B4:6 A4:6 B4:12 G4:12",
+        "r22": "C5:48~",
+        "r23": "C5:12 R:36"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "rest rest rest rest rest"
+        },
+        "VERSE": {
+          "bars": "v01 v02 v03 v04 v05 v06 v07 v08 v09 v10 v11 v12 v13 v14 v15 v16 v17"
+        },
+        "VERSE TWO": {
+          "bars": "v01 v02 v03 v04 v05 v06 v07 v08 v09 v10 v11 v12 v13 v14 v20-second v16 v17"
+        },
+        "REFRAIN": {
+          "bars": "r01 r02 r03 r04 r05 r06 r07 r08 r09 r10 r11 r12 r13 r14 r15 r16 r17 r18 r19 r20 r21 r22 r23"
+        }
+      }
+    }
+  ]
+}

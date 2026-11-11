@@ -1,0 +1,56 @@
+{
+  "title": "La Ma Teodora - Cuba Musical 1929",
+  "edition": "Cuba musical, Havana, Imprenta de Molina y Compañía, 1929, printed p. 25",
+  "source": "https://s9.imslp.org/files/imglnks/usimg/6/68/IMSLP1061279-PMLP1647556-gines_la_ma_teodora.pdf",
+  "source_sha256": "5744a7834f76920d914b5d56beb66f25ff9353baaccb2fac80abca3cb22356f4",
+  "scope": "All five systems, including the four written echoes and final rest.",
+  "ppq": 24,
+  "meter": [6, 8],
+  "preview_bpm": 108,
+  "form": [
+    {"name": "PICKUP", "bar": 1},
+    {"name": "FIRST CALL", "bar": 2},
+    {"name": "FIRST RESPONSE", "bar": 4},
+    {"name": "SECOND CALL", "bar": 6},
+    {"name": "THIRD CALL", "bar": 9},
+    {"name": "ECHOES", "bar": 13},
+    {"name": "FINAL RESTS", "bar": 21}
+  ],
+  "editorial": [
+    "One flat in the key signature (B-flat). Encode the initial quarter plus eighth as a 36-tick pickup in 6/8.",
+    "Read each bracketed three-quarter figure as a complete 6/8 bar with three equal 24-tick attacks against two dotted-quarter beats.",
+    "Hold the fermata in bar 9 for its nominal quarter length. Preview tempo is editorial: dotted quarter = 72, equivalent to MIDI quarter = 108.",
+    "Use the four responses already written across systems 4–5. No extra repeat is added for the text below the notation.",
+    "MIDI dynamics are editorial velocity equivalents. The p, pp and two ppp signs take effect on the late chord in bars 13, 15, 17 and 19."
+  ],
+  "parts": [
+    {
+      "title": "Written calls and chordal responses",
+      "program": 0,
+      "velocity_marks": [[888, 62], [1032, 46], [1176, 32], [1320, 32]],
+      "bars": [
+        {"notes": "F5:24 E5:12", "ticks": 36},
+        "F5:24 E5:12 D5:24 C5:12",
+        "Bb4:24 E4:24 E4+G4+C5:24",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 F4:24 G4:24",
+        "A4:12 Bb4:24 C5:12 D5:24",
+        "C5:24 E4:24 E4+G4+C5:24",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 A5:24 G5:12",
+        "F5:12 E5:24 D5:12 C5:24",
+        "Bb4:24 E4:24 E4+G4+C5:24",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 R:24 E4+G4+C5:12",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 R:24 E4+G4+C5:12",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 R:24 E4+G4+C5:12",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 R:24 E4+G4+C5:12",
+        "E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+C5:12 E4+G4+Bb4:24",
+        "F4+A4:24 R:12 R:24 R:12"
+      ]
+    }
+  ]
+}

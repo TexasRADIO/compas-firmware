@@ -1,0 +1,150 @@
+{
+  "title": "Cielito Lindo - Songbag left hand",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Tune supplied by Luis Morones, harmonization by Alfred G. Wathall.",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed pp. 298-299, PDF pages 326-327 (one-based), bottom bass-clef piano staff of each system",
+  "scope": "Complete printed piano bass staff, in two independent voices. No right hand, lyrics, percussion or additional stanzas. Nominal written durations; preview tempo and grace timing are editorial.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "All five bass-staff systems inspected in enlarged crops of the retained PDF; pitches, bar spans and rests compared with the ledger.",
+    "audit": "cielito-lindo-songbag-review.md",
+    "playability": "Piano left hand for separate or full-piano rehearsal; machine integration pending."
+  },
+  "system_bars": [
+    [
+      1,
+      7
+    ],
+    [
+      8,
+      13
+    ],
+    [
+      14,
+      19
+    ],
+    [
+      20,
+      26
+    ],
+    [
+      27,
+      33
+    ]
+  ],
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 108,
+  "form": [
+    {
+      "name": "VERSE",
+      "bar": 1
+    },
+    {
+      "name": "CHORUS",
+      "bar": 18
+    }
+  ],
+  "parts": [
+    {
+      "title": "Piano bass lower voice",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "C3:72",
+        "D3:72",
+        "C3:72",
+        "D3:72",
+        "C3:72",
+        "G2:72",
+        "D3:72",
+        "G2:72",
+        "D3:72",
+        "G2:72",
+        "B2:72",
+        "G2:72",
+        "B2:72",
+        "G2:72",
+        "C3:72",
+        "E2:48 G2:24",
+        "C2:72",
+        "C3:72",
+        "F2:72",
+        "Eb2:72",
+        "D2:72",
+        "G2:72",
+        "C2:72~",
+        "C2:48 R:24",
+        "C2:24 R:48",
+        "C#2:24 R:48",
+        "B1:24 R:48",
+        "B1:24 R:48",
+        "R:72",
+        "R:72",
+        "R:48 G2:24",
+        {
+          "notes": "C2:24 R:24",
+          "ticks": 48
+        }
+      ]
+    },
+    {
+      "title": "Piano bass upper voice",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70~",
+        "G3:72",
+        "F#3:2 G3:70",
+        "E3:48 G3:24",
+        "C3:72",
+        "C4:72",
+        "F3:72",
+        "Eb3:72",
+        "D3:72",
+        "G3:72",
+        "C3:72~",
+        "C3:48 G2:24",
+        "C3:24 R:24 G2:24",
+        "C#3:24 R:24 G2:24",
+        "D3:24 R:24 G2:24",
+        "D3:24 R:24 G2:24",
+        "D3:24 A3:24 G3:24~",
+        "G3:24 F3:12 E3:12 D3:24",
+        "C3:24 R:24 G3:24",
+        {
+          "notes": "C3:24 R:24",
+          "ticks": 48
+        }
+      ]
+    }
+  ],
+  "editorial": [
+    "Each unmeasured F-sharp3 grace at bars 2, 4, 6, 8, 10, 12, 14 and 16 takes two 24-PPQ ticks from the following G3 at the bar start. This is a repeatable preview realization, not a printed duration.",
+    "The upper G3 continues across each same-pitch two-bar connection. The next printed F-sharp grace interrupts it before the next G3. Curves between different bass pitches are treated as expressive slurs, not ties.",
+    "The C2/C3 chord at bar 24 ties into the first two beats of bar 25. The G3 at the end of bar 30 ties into bar 31.",
+    "Accent, staccato, legato and dynamic shaping are not synthesized. MIDI uses nominal note durations and uniform velocity 82; this is a pitch-and-time transcription, not an expressive piano performance."
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "title": "La Mora - opening treble staff",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University John Arpin collection JAC009399, printed and PDF p. 2, systems 1–2.",
+  "scope": "Upper piano staff for the one-bar introduction and repeated first strain, with both numbered endings. Cut before the next strain.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 96,
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "FIRST STRAIN",
+      "bar": 2
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 9
+    },
+    {
+      "name": "STRAIN REPEAT",
+      "bar": 10
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 17
+    }
+  ],
+  "editorial": [
+    "Both endings follow the lower-staff excerpt’s unfolded bar order.",
+    "Three rolls start with the lowest note on the beat. Higher notes enter one tick apart, and all notes release together at the end of the written chord.",
+    "The unmeasured E5 grace note before the second roll in common bar 7 is placed in the last tick of the preceding E5. The main chord remains at the written onset.",
+    "The three-note tie in common bar 6 is retained. The slurs in common bars 1–2 are phrasing marks, and the attacks inside them remain distinct.",
+    "Quarter-note tempo 96 and fixed velocity are editorial. The MIDI preserves written note lengths outside the roll and grace realizations."
+  ],
+  "parts": [
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "bars": [
+        "R:12 A4:6 C5:6 F5:6 A5:6 C6:6 A5:6",
+        "D5+Bb5:6 C5+A5:6 Bb4+G5:6 A4+F5:6 C5+E5:12 Bb4+G5:12",
+        "A4+F5:12 C5+E5:6 Bb4+D5:6 A4+C5:12 F#4+D5:6 A4+C5:6",
+        "G4+Bb4:4 A4+C5:4 G4+Bb4:4 F#4+A4:6 G4+Bb4:6 G#4+F5:12 G#4+E5:6 Bb4+D5:6",
+        "E5:6 C#5:6 A4:12 A4:12 G4:6 A4:6",
+        "Bb4:6 C5:6 D5:6 E5:6 Bb4:18 Bb4+E5+G5:6",
+        "A4+C5+G5:12 A4+C5+F5:12~ A4+C5+F5:6 C5:6 D5:6 F5:6",
+        "G4:6 C5:6 G4:6 E5:5 E5:1 F4:6 C#5:6 D5:6 G5:6",
+        "D4+A4+C5:12 A4:6 C5:6 F5:6 A5:6 C6:6 A5:6",
+        "D5+Bb5:6 C5+A5:6 Bb4+G5:6 A4+F5:6 C5+E5:12 Bb4+G5:12",
+        "A4+F5:12 C5+E5:6 Bb4+D5:6 A4+C5:12 F#4+D5:6 A4+C5:6",
+        "G4+Bb4:4 A4+C5:4 G4+Bb4:4 F#4+A4:6 G4+Bb4:6 G#4+F5:12 G#4+E5:6 Bb4+D5:6",
+        "E5:6 C#5:6 A4:12 A4:12 G4:6 A4:6",
+        "Bb4:6 C5:6 D5:6 E5:6 Bb4:18 Bb4+E5+G5:6",
+        "A4+C5+G5:12 A4+C5+F5:12~ A4+C5+F5:6 C5:6 D5:6 F5:6",
+        "G4:6 C5:6 G4:6 E5:5 E5:1 F4:6 C#5:6 D5:6 G5:6",
+        "D4+G4+C5:12 C5+E5+G5+C6:12 R:6 C5:6 B4+D5:6 Bb4+E5:6"
+      ]
+    },
+    {
+      "title": "Upper piano roll 2",
+      "program": 0,
+      "bars": [
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:25 E5:17 R:6",
+        "R:48",
+        "R:1 C5:5 R:19 G#4:5 R:18",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:25 E5:17 R:6",
+        "R:48",
+        "R:1 C5:5 R:19 G#4:5 R:18",
+        "R:48"
+      ]
+    },
+    {
+      "title": "Upper piano roll 3",
+      "program": 0,
+      "bars": [
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:26 A5:16 R:6",
+        "R:48",
+        "R:2 E5:4 R:20 Bb4:4 R:18",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:26 A5:16 R:6",
+        "R:48",
+        "R:2 E5:4 R:20 Bb4:4 R:18",
+        "R:48"
+      ]
+    },
+    {
+      "title": "Upper piano roll 4",
+      "program": 0,
+      "bars": [
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:27 D5:3 R:18",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:27 D5:3 R:18",
+        "R:48"
+      ]
+    }
+  ]
+}

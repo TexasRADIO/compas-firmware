@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "Roland CR-8000 Owner's Manual, July 1983",
+    "url": "https://cdn.roland.com/assets/media/pdf/CR-8000_OM.pdf",
+    "sha256": "3c36bb32351a304a394d51391fba978f5d25aa5f169dc0f78865871b57aae8ac",
+    "corpusSha256": "60c2447f660239ef4d44493ba617e1d6277473f32eb64553745ee255007c2e97",
+    "verification": "Conga rows and accent positions visually compared with retained manual pages 13-16 (PDF 15-18); source voice HC means high conga in these entries."
+  },
+  "adaptation": {
+    "label": "CR-8000 conga excerpts on 727",
+    "mapping": {
+      "HC": 2,
+      "MC": 3,
+      "LC": 4
+    },
+    "mappingNote": "HC -> mute high conga, MC -> open high conga, LC -> low conga. Pitch/articulation translation, not CR-8000 timbre.",
+    "repeat": "Repeat the printed one-bar cell twice without adding hits.",
+    "accents": "Apply the printed global accent only to conga hits on the same step. 727 strength is a target choice.",
+    "scope": "Conga parts only. No kick, hats, cowbell, claves or handclap substitution. Factory labels are not claims to represent a whole genre.",
+    "rights": "Source-derived release adaptation. Roland manual attribution is retained; no source scan, prose or audio is included and no Roland endorsement is asserted."
+  },
+  "patterns": [
+    {
+      "id": "CR8000-CONGA",
+      "title": "CR CONGA",
+      "pdfPage": 18,
+      "printedPage": 16,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [
+          5,
+          11
+        ],
+        "MC": [
+          1
+        ],
+        "LC": [
+          13,
+          15
+        ]
+      },
+      "sourceAccent": [],
+      "omittedVoices": []
+    },
+    {
+      "id": "CR8000-SAMBA-1",
+      "title": "CR SAMBA 1",
+      "pdfPage": 15,
+      "printedPage": 13,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [
+          5,
+          13
+        ],
+        "MC": [
+          1,
+          4,
+          8,
+          10,
+          12
+        ],
+        "LC": [
+          7,
+          15
+        ]
+      },
+      "sourceAccent": [
+        1,
+        4,
+        5,
+        8,
+        9,
+        12,
+        13,
+        16
+      ],
+      "omittedVoices": [
+        "BD",
+        "CB",
+        "HH"
+      ]
+    },
+    {
+      "id": "CR8000-SAMBA-2",
+      "title": "CR SAMBA 2",
+      "pdfPage": 16,
+      "printedPage": 14,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [
+          5,
+          13
+        ],
+        "MC": [
+          1,
+          4,
+          9,
+          10,
+          12
+        ],
+        "LC": [
+          7,
+          8,
+          15,
+          16
+        ]
+      },
+      "sourceAccent": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "omittedVoices": [
+        "BD",
+        "CB",
+        "HH",
+        "SD"
+      ]
+    },
+    {
+      "id": "CR8000-MAMBO-A",
+      "title": "CR MAMBO",
+      "pdfPage": 16,
+      "printedPage": 14,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [
+          9
+        ],
+        "MC": [
+          1,
+          7
+        ],
+        "LC": [
+          13,
+          15
+        ]
+      },
+      "sourceAccent": [
+        1,
+        7,
+        13
+      ],
+      "omittedVoices": [
+        "BD",
+        "CB",
+        "HH"
+      ]
+    },
+    {
+      "id": "CR8000-CHA-CHA",
+      "title": "CR CHA CHA",
+      "pdfPage": 16,
+      "printedPage": 14,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [],
+        "MC": [],
+        "LC": [
+          13,
+          15
+        ]
+      },
+      "sourceAccent": [
+        1,
+        7,
+        9,
+        15
+      ],
+      "omittedVoices": [
+        "BD",
+        "CB",
+        "HH"
+      ]
+    },
+    {
+      "id": "CR8000-RHUMBA-A",
+      "title": "CR RHUMBA A",
+      "pdfPage": 17,
+      "printedPage": 15,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [],
+        "MC": [
+          11,
+          15
+        ],
+        "LC": [
+          1,
+          7,
+          13
+        ]
+      },
+      "sourceAccent": [
+        1,
+        9,
+        13
+      ],
+      "omittedVoices": [
+        "BD",
+        "C",
+        "HH"
+      ]
+    },
+    {
+      "id": "CR8000-RHUMBA-B",
+      "title": "CR RHUMBA B",
+      "pdfPage": 17,
+      "printedPage": 15,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [],
+        "MC": [
+          11,
+          15
+        ],
+        "LC": [
+          1,
+          13
+        ]
+      },
+      "sourceAccent": [
+        1,
+        9,
+        13
+      ],
+      "omittedVoices": [
+        "BD",
+        "C",
+        "HH"
+      ]
+    },
+    {
+      "id": "CR8000-BEGUINE-A",
+      "title": "CR BEGUINE",
+      "pdfPage": 17,
+      "printedPage": 15,
+      "sourceSteps": 16,
+      "meter": "4/4",
+      "sourceVoices": {
+        "HC": [],
+        "MC": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "LC": [
+          1,
+          13
+        ]
+      },
+      "sourceAccent": [
+        3
+      ],
+      "omittedVoices": [
+        "BD",
+        "C",
+        "HH"
+      ]
+    }
+  ]
+}

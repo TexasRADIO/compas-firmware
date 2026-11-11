@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "Etudes for Latin Percussion Ensemble",
+    "author": "Victor Rendón",
+    "publisher": "Wizdom Media / Hudson Music",
+    "url": "https://hudsonmusic.com/wp-content/uploads/etudesforlatinpercussionensemble-sample.pdf",
+    "catalogUrl": "https://hudsonmusic.com/product/etudes-for-latin-percussion/",
+    "sha256": "6f448fade7bc17e676b3fe5dbff0f5286fe7fc361750de038f66df5aa7eac0d6",
+    "accessed": "2026-11-06",
+    "verification": "Notation key p.4 and basic patterns pp.16–17 visually inspected from the publisher preview. One reader; independent musician audit pending."
+  },
+  "rights": "Traditional/basic rhythmic cells studied from the publicly supplied publisher preview. No etude, artist recording or instructional prose is reproduced. Release adaptation; no publisher endorsement is asserted.",
+  "grid": {
+    "meter": "4/4",
+    "bars": 2,
+    "steps": 32,
+    "index": "zero-based sixteenths"
+  },
+  "adaptation": {
+    "conga": {
+      "high:P": [
+        2,
+        false
+      ],
+      "high:T": [
+        2,
+        false
+      ],
+      "high:S": [
+        2,
+        true
+      ],
+      "high:O": [
+        3,
+        true
+      ],
+      "low:O": [
+        4,
+        true
+      ]
+    },
+    "bongo": {
+      "high:T": [
+        0,
+        false
+      ],
+      "high:TH": [
+        0,
+        false
+      ],
+      "low:O": [
+        1,
+        true
+      ]
+    },
+    "note": "727 articulations are reduced: palm, tips and slap share mute high conga; tips and thumb share high bongo. Accenting slaps/open tones is a Compás choice, not a printed dynamic. Keep the source onset and drum register. No substitute for the hand-bell part, clave or güiro."
+  },
+  "cells": {
+    "tumbao-one": {
+      "printedPage": 16,
+      "pdfPage": 7,
+      "family": "conga",
+      "events": [
+        [
+          0,
+          "high",
+          "P"
+        ],
+        [
+          2,
+          "high",
+          "T"
+        ],
+        [
+          4,
+          "high",
+          "S"
+        ],
+        [
+          6,
+          "high",
+          "T"
+        ],
+        [
+          8,
+          "high",
+          "P"
+        ],
+        [
+          10,
+          "high",
+          "T"
+        ],
+        [
+          12,
+          "high",
+          "O"
+        ],
+        [
+          14,
+          "high",
+          "O"
+        ],
+        [
+          16,
+          "high",
+          "P"
+        ],
+        [
+          18,
+          "high",
+          "T"
+        ],
+        [
+          20,
+          "high",
+          "S"
+        ],
+        [
+          22,
+          "high",
+          "T"
+        ],
+        [
+          24,
+          "high",
+          "P"
+        ],
+        [
+          26,
+          "high",
+          "T"
+        ],
+        [
+          28,
+          "high",
+          "O"
+        ],
+        [
+          30,
+          "high",
+          "O"
+        ]
+      ]
+    },
+    "tumbao-two-23": {
+      "printedPage": 16,
+      "pdfPage": 7,
+      "family": "conga",
+      "events": [
+        [
+          0,
+          "high",
+          "P"
+        ],
+        [
+          2,
+          "high",
+          "T"
+        ],
+        [
+          4,
+          "high",
+          "S"
+        ],
+        [
+          6,
+          "high",
+          "T"
+        ],
+        [
+          8,
+          "high",
+          "P"
+        ],
+        [
+          10,
+          "high",
+          "T"
+        ],
+        [
+          12,
+          "high",
+          "O"
+        ],
+        [
+          14,
+          "high",
+          "O"
+        ],
+        [
+          16,
+          "high",
+          "P"
+        ],
+        [
+          18,
+          "high",
+          "T"
+        ],
+        [
+          20,
+          "high",
+          "S"
+        ],
+        [
+          22,
+          "low",
+          "O"
+        ],
+        [
+          24,
+          "low",
+          "O"
+        ],
+        [
+          26,
+          "high",
+          "T"
+        ],
+        [
+          28,
+          "high",
+          "O"
+        ],
+        [
+          30,
+          "high",
+          "O"
+        ]
+      ]
+    },
+    "martillo": {
+      "printedPage": 17,
+      "pdfPage": 8,
+      "family": "bongo",
+      "events": [
+        [
+          0,
+          "high",
+          "T"
+        ],
+        [
+          2,
+          "high",
+          "T"
+        ],
+        [
+          4,
+          "high",
+          "T"
+        ],
+        [
+          6,
+          "high",
+          "TH"
+        ],
+        [
+          8,
+          "high",
+          "T"
+        ],
+        [
+          10,
+          "high",
+          "T"
+        ],
+        [
+          12,
+          "low",
+          "O"
+        ],
+        [
+          14,
+          "high",
+          "TH"
+        ],
+        [
+          16,
+          "high",
+          "T"
+        ],
+        [
+          18,
+          "high",
+          "T"
+        ],
+        [
+          20,
+          "high",
+          "T"
+        ],
+        [
+          22,
+          "high",
+          "TH"
+        ],
+        [
+          24,
+          "high",
+          "T"
+        ],
+        [
+          26,
+          "high",
+          "T"
+        ],
+        [
+          28,
+          "low",
+          "O"
+        ],
+        [
+          30,
+          "high",
+          "TH"
+        ]
+      ]
+    }
+  },
+  "presets": [
+    {
+      "id": "tumbao-one",
+      "title": "TUMBAO ONE",
+      "cells": [
+        "tumbao-one"
+      ],
+      "rotateSteps": 0,
+      "scope": "Source onsets with 727 articulation adaptation."
+    },
+    {
+      "id": "tumbao-two-23",
+      "title": "TUMBAO TWO 23",
+      "cells": [
+        "tumbao-two-23"
+      ],
+      "rotateSteps": 0,
+      "scope": "Source onsets with 727 articulation adaptation."
+    },
+    {
+      "id": "tumbao-two-32",
+      "title": "TUMBAO TWO 32",
+      "cells": [
+        "tumbao-two-23"
+      ],
+      "rotateSteps": 16,
+      "scope": "Compás half-cycle rotation of the source 2-3 cell; not a separately printed transcription."
+    },
+    {
+      "id": "martillo",
+      "title": "MARTILLO",
+      "cells": [
+        "martillo"
+      ],
+      "rotateSteps": 0,
+      "scope": "Source onsets with 727 articulation adaptation."
+    },
+    {
+      "id": "son-perc-23",
+      "title": "SON PERC 23",
+      "cells": [
+        "tumbao-two-23",
+        "martillo"
+      ],
+      "rotateSteps": 0,
+      "scope": "Original combination of the two basic parts; not a complete son ensemble."
+    },
+    {
+      "id": "son-perc-32",
+      "title": "SON PERC 32",
+      "cells": [
+        "tumbao-two-23",
+        "martillo"
+      ],
+      "rotateSteps": 16,
+      "scope": "Original combination of the two basic parts; not a complete son ensemble."
+    }
+  ]
+}

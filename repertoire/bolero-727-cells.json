@@ -1,0 +1,242 @@
+{
+  "schema": 1,
+  "source": {
+    "title": "10 Conga Patterns Every Percussionist Should Know, section 2: Bolero",
+    "authorCredit": "Kevin Zahner",
+    "publisher": "Rhythm Notes",
+    "url": "https://rhythmnotes.net/conga-patterns/",
+    "accessed": "2026-11-06",
+    "images": [
+      {
+        "id": "basic",
+        "url": "https://rhythmnotes.net/wp-content/uploads/2020/06/10_Conga_Patterns-Bolero-NEWEST-1024x123.png",
+        "sha256": "a86b0a7c65005114864966036549adcfd3f7370bc9e820a6a64d7dd081df9ce0"
+      },
+      {
+        "id": "space",
+        "url": "https://rhythmnotes.net/wp-content/uploads/2019/03/10_Conga_Patterns-bolero-1024x73.png",
+        "sha256": "28a3ad7b2c382b0ce4a45d9886cd9d0bb27fe38f3e0bf9388282441b7c3de60c"
+      },
+      {
+        "id": "key",
+        "url": "https://rhythmnotes.net/wp-content/uploads/2019/03/10_Conga_Patterns-Key-1024x97.png",
+        "sha256": "76232d664b6f99ed1c5eee5f5eb6ec515ee674eef7063fb10b28923c6091bae1"
+      }
+    ],
+    "verification": "Both notation images and the linked key visually inspected. Current first image is a single bar despite surrounding copy describing an extended phrase; the second image is the two-bar variation. Read the images themselves. One reader; independent musician audit pending."
+  },
+  "rights": "Basic rhythmic vocabulary from an author-published lesson, translated to the 727. No prose, notation image or artist audio is embedded in the instrument. Release research adaptation; no endorsement is asserted.",
+  "grid": {
+    "meter": "4/4",
+    "bars": 2,
+    "steps": 32,
+    "index": "zero-based sixteenths"
+  },
+  "adaptation": {
+    "high:H": [
+      2,
+      false
+    ],
+    "high:T": [
+      2,
+      false
+    ],
+    "high:HT": [
+      2,
+      false
+    ],
+    "high:S": [
+      2,
+      true
+    ],
+    "high:O": [
+      3,
+      true
+    ],
+    "low:O": [
+      4,
+      true
+    ],
+    "note": "H=heel, T=toe, S=slap, O=open. HT preserves an unlabelled slash notehead in the two-bar image without inventing a heel/toe distinction. The 727 collapses heel/toe/mute into mute high conga; its accented slap and open-tone strengths are Compas choices, not printed dynamics. Preserve the low-high-low open-tone register order."
+  },
+  "patterns": [
+    {
+      "id": "bolero-conga",
+      "title": "BOLERO CONGA",
+      "sourceImage": "basic",
+      "sourceBars": 1,
+      "expansion": "Repeat the printed one-bar cell twice; no added events.",
+      "events": [
+        [
+          0,
+          "high",
+          "H"
+        ],
+        [
+          2,
+          "high",
+          "T"
+        ],
+        [
+          4,
+          "high",
+          "S"
+        ],
+        [
+          6,
+          "high",
+          "T"
+        ],
+        [
+          8,
+          "high",
+          "H"
+        ],
+        [
+          10,
+          "low",
+          "O"
+        ],
+        [
+          12,
+          "high",
+          "O"
+        ],
+        [
+          14,
+          "low",
+          "O"
+        ],
+        [
+          16,
+          "high",
+          "H"
+        ],
+        [
+          18,
+          "high",
+          "T"
+        ],
+        [
+          20,
+          "high",
+          "S"
+        ],
+        [
+          22,
+          "high",
+          "T"
+        ],
+        [
+          24,
+          "high",
+          "H"
+        ],
+        [
+          26,
+          "low",
+          "O"
+        ],
+        [
+          28,
+          "high",
+          "O"
+        ],
+        [
+          30,
+          "low",
+          "O"
+        ]
+      ]
+    },
+    {
+      "id": "bolero-space",
+      "title": "BOLERO SPACE",
+      "sourceImage": "space",
+      "sourceBars": 2,
+      "expansion": "Both printed bars in order; no rotation.",
+      "events": [
+        [
+          0,
+          "high",
+          "HT"
+        ],
+        [
+          2,
+          "high",
+          "HT"
+        ],
+        [
+          4,
+          "high",
+          "S"
+        ],
+        [
+          6,
+          "high",
+          "HT"
+        ],
+        [
+          8,
+          "high",
+          "HT"
+        ],
+        [
+          10,
+          "high",
+          "HT"
+        ],
+        [
+          12,
+          "high",
+          "O"
+        ],
+        [
+          14,
+          "high",
+          "O"
+        ],
+        [
+          16,
+          "high",
+          "HT"
+        ],
+        [
+          18,
+          "high",
+          "HT"
+        ],
+        [
+          20,
+          "high",
+          "S"
+        ],
+        [
+          22,
+          "high",
+          "HT"
+        ],
+        [
+          24,
+          "high",
+          "HT"
+        ],
+        [
+          26,
+          "low",
+          "O"
+        ],
+        [
+          28,
+          "high",
+          "O"
+        ],
+        [
+          30,
+          "low",
+          "O"
+        ]
+      ]
+    }
+  ]
+}

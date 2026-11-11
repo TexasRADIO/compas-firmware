@@ -1,0 +1,162 @@
+{
+  "title": "Zacatecas March - introduction and first strain",
+  "composer": "Genaro Codina",
+  "edition": "Armstrong & Bacon, San Francisco, third edition, 1895",
+  "source": "https://levysheetmusic.mse.jhu.edu/sites/default/files/collection-pdfs/levy-059-160.pdf",
+  "source_sha256": "48cb07fae24c2c7bd871a79a23958d3434c3ed9b520ae06bfc0def0d44b7a3c9",
+  "source_location": "Johns Hopkins University Levy Collection, box 059, item 160. PDF p. 3 and p. 4 system 1, through its second ending.",
+  "scope": "Six introductory bars, the one-bar march lead-in, and the 31-bar first strain played twice with the two written endings. Stops before the key changes to one sharp.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 112,
+  "play_order": [
+    "INTRO",
+    "STRAIN",
+    "FIRST",
+    "STRAIN",
+    "SECOND"
+  ],
+  "form": [
+    {
+      "name": "INTRODUCTION",
+      "bar": 1
+    },
+    {
+      "name": "MARCH LEAD-IN",
+      "bar": 7
+    },
+    {
+      "name": "FIRST STRAIN",
+      "bar": 8
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 39
+    },
+    {
+      "name": "STRAIN REPEAT",
+      "bar": 40
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 71
+    }
+  ],
+  "editorial": [
+    "Both piano staves are transcribed. The separate fanfare track holds the simultaneous upper-staff voice above sustained notes.",
+    "The two initial G4 ties and the three-note tie at the approach to both endings are held. Curved phrasing marks over different pitches keep separate attacks.",
+    "Tempo and velocity are rehearsal choices. Printed dynamics, staccato, accents and the later D.C. navigation are outside this MIDI realization."
+  ],
+  "parts": [
+    {
+      "title": "Lower piano staff",
+      "program": 0,
+      "patterns": {
+        "b1": "C3+E3+G3+C4:24 R:24",
+        "b2": "C3+E3+G3+C4:12 R:12 C3+E3+G3+C4:12 R:12",
+        "b3": "G2+G3:12 G2+G3:6 G2+G3:6 G2+G3:12 G2+G3:12",
+        "b4": "G2+G3:12 G#2+G#3:12 A2+A3:12 B2+B3:12",
+        "b5": "C3+C4:12 E3+G3+C4:12 G2:12 E3+G3+C4:12",
+        "b6": "C3:12 E3+G3+C4:12 G2:12 E3+G3+C4:12",
+        "b7": "D3:12 F3+G3+B3:12 G2:12 F3+G3+B3:12",
+        "b8": "C#3:12 E3+G3+A3:12 A2:12 E3+G3+A3:12",
+        "b9": "D3:12 F3+A3:12 A2:12 F3+A3:12",
+        "b10": "D3:12 R:36",
+        "b11": "F3:12 A3+D4+F4:12 A3:12 D4+F4:12",
+        "b12": "C3+C4:24 G2+G3:18 E2+E3:6",
+        "b13": "C2+C3:12 R:36"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "b1 b1 b2 b3 b4 b5 b6"
+        },
+        "STRAIN": {
+          "bars": "b6 b6 b6 b6 b6 b6 b7 b7 b7 b7 b7 b7 b7 b7 b6 b6 b6 b6 b6 b6 b6 b8 b9 b10 b11 b11 b6 b6 b7 b7 b12"
+        },
+        "FIRST": {
+          "bars": "b13"
+        },
+        "SECOND": {
+          "bars": "b13"
+        }
+      }
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "patterns": {
+        "b1": "G4:24~ G4:6 E4:6 G4:6 C5:6",
+        "b2": "G4:6 E4:6 G4:6 C5:6 G4:6 E4:6 G4:6 C5:6",
+        "b3": "G4:12 G4:6 G4:6 G4:12 G4:12",
+        "b4": "G4:12 F#4+G4:12 F#4+A4:12 F#4+B4:12",
+        "b5": "E4+G4+C5:12 R:36",
+        "b6": "R:12 E4+G4:12 E4+A4:12 E4+B4:12",
+        "b7": "E4+C5:12 R:24 E4+B4:12",
+        "b8": "E4+A4:12 R:24 E4:12",
+        "b9": "E4+G4:48",
+        "b10": "F4:48",
+        "b11": "R:12 F4+G4:12 F4+G4:12 F#4+G4:12",
+        "b12": "F4+A4:12 R:24 F4+A#4:12",
+        "b13": "F4+B4:12 R:24 F4+Bb4:12",
+        "b14": "F4+A4:48",
+        "b15": "F4+A4:12 R:24 F4+C5:12",
+        "b16": "E4+B4:12 R:24 F4+A4:12",
+        "b17": "E4+A4:12 R:24 C#4+E4:12",
+        "b18": "D4+F4:48",
+        "b19": "R:12 B4:6 A4:6 G#4:12 A4:12",
+        "b20": "C5+A5+C6:48",
+        "b21": "B4+G5+B5:24 A4+F5+A5:24",
+        "b22": "G4+E5+G5:48",
+        "b23": "E4+G4:12 A4:6 G4:6 F#4:12 G4:12",
+        "b24": "A4+F5:48",
+        "b25": "G4+E5:24 F4+D5:24",
+        "b26": "E4+G4+C5:48~",
+        "b27": "E4+G4+C5:12 E4+G4:12 E4+A4:12 E4+B4:12"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "b1 b1 b2 b3 b4 b5 b6"
+        },
+        "STRAIN": {
+          "bars": "b7 b8 b9 b6 b7 b8 b10 b11 b12 b13 b14 b11 b15 b16 b9 b6 b7 b8 b9 b6 b7 b17 b18 b19 b20 b21 b22 b23 b24 b25 b26"
+        },
+        "FIRST": {
+          "bars": "b27"
+        },
+        "SECOND": {
+          "bars": "b5"
+        }
+      }
+    },
+    {
+      "title": "Upper piano fanfares",
+      "program": 0,
+      "patterns": {
+        "b1": "R:48",
+        "b2": "R:12 E5+G5:6 E5+G5:6 E5+G5:12 E5+G5:12",
+        "b3": "E5+G5:12 R:36",
+        "b4": "R:12 F5+G5:6 F5+G5:6 F5+G5:12 F5+G5:12",
+        "b5": "F5+G5:12 R:36",
+        "b6": "R:12 F5+A5:6 F5+A5:6 F5+A5:12 F5+A5:12",
+        "b7": "F5+A5:12 R:36"
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "b1 b1 b1 b1 b1 b1 b1"
+        },
+        "STRAIN": {
+          "bars": "b1 b1 b2 b3 b1 b1 b4 b5 b1 b1 b4 b5 b1 b1 b2 b3 b1 b1 b2 b3 b1 b1 b6 b7 b1 b1 b1 b1 b1 b1 b1"
+        },
+        "FIRST": {
+          "bars": "b1"
+        },
+        "SECOND": {
+          "bars": "b1"
+        }
+      }
+    }
+  ]
+}

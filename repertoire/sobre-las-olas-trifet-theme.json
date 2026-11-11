@@ -1,0 +1,79 @@
+{
+  "title": "Sobre las olas - Trifet 1895 first theme",
+  "edition": "F. Trifet, Boston, 9 October 1895, plate 1030, Ball State SM-2-196",
+  "source": "https://dmr.bsu.edu/digital/iiif/ShtMus/242/full/full/0/default.jpg",
+  "source_sha256": "2a2bd710d66cb690eae46e6b3a9a3de72cbc4b03ba111f4ebed5afe0f9728dca",
+  "scope": "Waltz No. 1, first two systems after the printed 1 and pp legato. 16 full bars on page 3 of the digitized issue.",
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 132,
+  "form": [
+    {
+      "name": "FIRST THEME",
+      "bar": 1
+    },
+    {
+      "name": "ANSWERING PHRASE",
+      "bar": 9
+    },
+    {
+      "name": "CLOSING TWO BARS",
+      "bar": 15
+    }
+  ],
+  "editorial": [
+    "Use the printed G-major signature, with the written A-sharp and two E-sharps.",
+    "Join the four tied right-hand notes. Preserve the two rests in each phrase ending.",
+    "Quarter = 132 is an editorial rehearsal setting. The source marks pp legato. Playback uses fixed velocity.",
+    "The preceding Larghetto and Tempo di Valse introduction and the music after these two systems are outside the excerpt."
+  ],
+  "parts": [
+    {
+      "title": "Piano left hand",
+      "program": 0,
+      "bars": [
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "A2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "D2:24 C3+D3+F#3:24 C3+D3+F#3:24",
+        "G2:24 B2+D3+G3:24 B2+D3+G3:24",
+        "D2:24 B2+D3+G3:24 B2+D3+G3:24"
+      ]
+    },
+    {
+      "title": "Piano right hand",
+      "program": 0,
+      "bars": [
+        "B3:72",
+        "A#3:24 B3:24 D4:24",
+        "G4:72~",
+        "G4:24 F#4:24 G4:24",
+        "A4:24 G4:24 F#4:24",
+        "F#4:24 B3:24 D4:24",
+        "F#4:72~",
+        "F#4:24 R:24 R:24",
+        "C4:72",
+        "B3:24 C4:24 D4:24",
+        "F#4:72~",
+        "F#4:24 E#4:24 F#4:24",
+        "G4:24 F#4:24 E#4:24",
+        "F#4:24 C4:24 F#4:24",
+        "B3:72~",
+        "B3:24 R:24 R:24"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "title": "La Mora - upper melody of the sung repeat",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University JAC009399, p. 4 systems 5–6 from the repeat sign and p. 5 system 1.",
+  "scope": "Upper note of each texted piano attack in the common bars and the two endings. Starts at the repeat sign. The pickup before it and the following continuation remain separate.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 96,
+  "editorial": [
+    "This single-line guide follows the highest pitch in the texted right-hand part. Lower chord tones and the piano counterline are outside the guide.",
+    "The first ending gives its final unflagged chord one eighth note. This fits the bar, the last bass onset and the matching three-eighth-note text pickup on page 4.",
+    "In the second ending, the first chord takes one quarter note. The four notes under the numeral 6 are treated as mixed-value sixteenth sextuplets, taking 4, 8, 4 and 8 ticks across the second beat.",
+    "The tie into the first ending is printed. The second ending reattacks its opening note where no tie is drawn.",
+    "The two small notes before the main note in common bar 5 each take one tick from that note. The vocal guide uses written pitch, an editorial quarter-note tempo of 96 and fixed velocity."
+  ],
+  "play_order": ["COMMON", "FIRST", "COMMON SECOND PASS", "SECOND"],
+  "partial_ticks": {},
+  "form": [
+    {"name": "FIRST PASS", "bar": 1},
+    {"name": "FIRST ENDING", "bar": 11},
+    {"name": "REPEAT", "bar": 12},
+    {"name": "SECOND ENDING", "bar": 22}
+  ],
+  "patterns": {
+    "a1": "G5:18 F5:18 A5:12~",
+    "a2": "A5:36 G5:6 D5:6",
+    "a3": "F5:18 E5:6~ E5:24~",
+    "a4": "E5:24 R:12 G5:12",
+    "a5": "C6:8 C6:8 C6:8 G5:1 A5:1 G5:10 E5:6 G5:6",
+    "a6": "C6:12 C6:24 E5:6 G5:6",
+    "a7": "C6:12 C6:12 E5:12 G5:12",
+    "a8": "Bb5:48~",
+    "a9": "Bb5:36 Bb5:12",
+    "a10": "A5:18 F5:6 F5:24~",
+    "a10second": "A5:18 F5:6 F5:24",
+    "e1": "F5:12 C5:12 D5:12 E5:12",
+    "e2": "F5:24 F5:4 A5:8 C6:4 A5:8"
+  },
+  "sections": {
+    "COMMON": {"bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10"},
+    "FIRST": {"bars": "e1"},
+    "COMMON SECOND PASS": {"bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10second"},
+    "SECOND": {"bars": "e2"}
+  }
+}

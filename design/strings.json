@@ -1,0 +1,4627 @@
+{
+ "version": 2,
+ "about": "Every Compás screen string with its box. tools/strings.py checks it against the source and the font. Spanish: project es-MX catalogue and sheet return, 7 Nov.",
+ "font": {
+  "1": "6 px per character",
+  "2": "11 px per character",
+  "accents": "Á É Í Ó Ú Ñ Ü are drawn; ¡ and ¿ are not"
+ },
+ "ignore": [
+  "AABB   CCDDEE   ",
+  "Ab",
+  "Bb",
+  "Db",
+  "Eb",
+  "Gb",
+  "ZXCVBNMAWSEDFTGY"
+ ],
+ "strings": [
+  {
+   "id": "hanan.kumbia",
+   "en": "KUMBIA",
+   "es": "KUMBIA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.bombo",
+   "en": "BOMBO",
+   "es": "BOMBO",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.guiro",
+   "en": "GUIRO",
+   "es": "GÜIRO",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.camp",
+   "en": "CAMP",
+   "es": "CAMP",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.fx-mode",
+   "en": "FX MODE",
+   "es": "MODO FX",
+   "max": 10,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.green",
+   "en": "GREEN",
+   "es": "VERDE",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.layer",
+   "en": "LAYER",
+   "es": "CAPA",
+   "max": 20,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.presets",
+   "en": "PRESETS",
+   "es": "PRESETS",
+   "max": 36,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.red",
+   "en": "RED",
+   "es": "ROJO",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.select-a-groove",
+   "en": "SELECT A GROOVE",
+   "es": "ELIGE UN RITMO",
+   "max": 20,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.white",
+   "en": "WHITE",
+   "es": "BLANCO",
+   "max": 7,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.yellow",
+   "en": "YELLOW",
+   "es": "AMARILLO",
+   "max": 8,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "tab.band",
+   "en": "BAND",
+   "es": "GRUPO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:316",
+    "board/panel.c:471"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "tab.bass",
+   "en": "BASS",
+   "es": "BAJO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:316",
+    "board/stage.c:483",
+    "board/stage.c:575",
+    "board/panel.c:471"
+   ],
+   "kind": "label",
+   "max": 8,
+   "boxes": [
+    5,
+    6,
+    8
+   ],
+   "note": "Drawn in boxes of 5, 6, 8 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "tab.percussion",
+   "en": "PERC",
+   "es": "PERC",
+   "scale": 1,
+   "where": [
+    "board/stage.c:316",
+    "board/stage.c:483",
+    "board/panel.c:471"
+   ],
+   "kind": "label",
+   "max": 6,
+   "boxes": [
+    5,
+    6
+   ],
+   "note": "Drawn in boxes of 5, 6 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "tab.rack",
+   "en": "727",
+   "es": "727",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 5
+  },
+  {
+   "id": "tab.mix",
+   "en": "MIX",
+   "es": "MEZCA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:471"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 5
+  },
+  {
+   "id": "tab.step",
+   "en": "STEP",
+   "es": "PASOS",
+   "scale": 1,
+   "where": [
+    "board/panel.c:471"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 5
+  },
+  {
+   "id": "tab.songs",
+   "en": "SONGS",
+   "es": "LISTA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:471"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 5
+  },
+  {
+   "id": "energy.base",
+   "en": "BASE",
+   "es": "BASE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:129",
+    "board/panel.c:7"
+   ],
+   "kind": "keep",
+   "note": "Same word in Spanish. Drawn in boxes of 5, 22 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 22,
+   "boxes": [
+    5,
+    22
+   ]
+  },
+  {
+   "id": "energy.lift",
+   "en": "LIFT",
+   "es": "SUBE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:129",
+    "board/panel.c:7"
+   ],
+   "kind": "label",
+   "max": 22,
+   "boxes": [
+    5,
+    10,
+    22
+   ],
+   "note": "Drawn in boxes of 5, 10, 22 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "energy.break",
+   "en": "BREAK",
+   "es": "CORTE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:129",
+    "board/panel.c:7",
+    "src/score.json:conductorForms.default",
+    "src/score.json:conductorForms.cumbia",
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "label",
+   "max": 22,
+   "boxes": [
+    5,
+    10,
+    22
+   ],
+   "note": "Drawn in boxes of 5, 10, 22 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "energy.change",
+   "en": "CHANGE!",
+   "es": "CAMBIO!",
+   "scale": 1,
+   "where": [
+    "board/stage.c:928"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "energy.lift_flash",
+   "en": "LIFT!",
+   "es": "SUBE!",
+   "scale": 1,
+   "where": [
+    "board/stage.c:928"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "energy.back_in",
+   "en": "BACK IN!",
+   "es": "ENTRAN!",
+   "scale": 1,
+   "where": [
+    "board/stage.c:928"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "transport.ready",
+   "en": "READY",
+   "es": "LISTO",
+   "scale": 2,
+   "where": [
+    "board/stage.c:926",
+    "board/panel.c:473"
+   ],
+   "kind": "label",
+   "max": 16,
+   "boxes": [
+    10,
+    16
+   ],
+   "note": "Drawn in boxes of 10, 16 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "transport.live",
+   "en": "LIVE",
+   "es": "VIVO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:473"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 5
+  },
+  {
+   "id": "transport.fault",
+   "en": "FAULT",
+   "es": "FALLA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:473"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 5
+  },
+  {
+   "id": "transport.count_in",
+   "en": "COUNT IN",
+   "es": "ENTRADA",
+   "scale": 2,
+   "where": [
+    "board/stage.c:920",
+    "board/panel.c:482"
+   ],
+   "kind": "label",
+   "max": 16,
+   "boxes": [
+    10,
+    16
+   ],
+   "note": "Drawn in boxes of 10, 16 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "transport.count_format",
+   "en": "COUNT {n}",
+   "es": "CUENTA {n}",
+   "kind": "template",
+   "where": [
+    "board/stage.c"
+   ],
+   "fill": {
+    "n": 1
+   },
+   "max": 8
+  },
+  {
+   "id": "transport.phrase",
+   "en": "PHRASE",
+   "es": "FRASE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:821"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "transport.bar",
+   "en": "BAR",
+   "es": "COMPÁS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:821",
+    "board/panel.c:490"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "transport.next_bar",
+   "en": "NEXT BAR",
+   "es": "SIG. C.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:821"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "transport.in_format",
+   "en": "IN {n}",
+   "es": "EN {n}",
+   "kind": "template",
+   "where": [
+    "board/stage.c"
+   ],
+   "max": 8
+  },
+  {
+   "id": "transport.beat",
+   "en": "BEAT",
+   "es": "TPO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:840"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "transport.beats",
+   "en": "BEATS",
+   "es": "TPOS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:840"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "transport.more_format",
+   "en": "{nn} MORE",
+   "es": "{nn} MÁS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:824"
+   ],
+   "kind": "template",
+   "note": "Phrases left. n is one or two digits.",
+   "max": 8,
+   "source": "00 MORE"
+  },
+  {
+   "id": "transport.last",
+   "en": "LAST",
+   "es": "ÚLTIMA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:831"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "transport.fill",
+   "en": "FILL",
+   "es": "REMATE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:821",
+    "board/stage.c:930",
+    "board/panel.c:479",
+    "board/panel.c:491"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "transport.fill_queued",
+   "en": "FILL QUEUED",
+   "es": "REMATE PEND.",
+   "scale": 1,
+   "where": [
+    "board/panel.c:479"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 13
+  },
+  {
+   "id": "transport.fill_next",
+   "en": "FILL NEXT",
+   "es": "SIG. REMATE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:491"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 11
+  },
+  {
+   "id": "transport.next_song",
+   "en": "NEXT SONG",
+   "es": "SIG. CANCIÓN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:923",
+    "board/panel.c:493"
+   ],
+   "kind": "label",
+   "max": 22,
+   "boxes": [
+    20,
+    22
+   ],
+   "note": "Drawn in boxes of 20, 22 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "transport.next_part",
+   "en": "NEXT PART",
+   "es": "SIG. PARTE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:496"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "transport.next_rhythm",
+   "en": "NEXT RHYTHM",
+   "es": "SIG. RITMO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:923"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "transport.key_change",
+   "en": "KEY CHANGE",
+   "es": "CAMBIO DE TONO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:925"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "transport.clave_change",
+   "en": "CLAVE CHANGE",
+   "es": "CAMBIO DE CLAVE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:925"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "transport.transpose",
+   "en": "TRANSPOSE",
+   "es": "TRANSPOSICIÓN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:925"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "controls.drums",
+   "en": "DRUMS",
+   "es": "PERC",
+   "scale": 1,
+   "where": [
+    "board/stage.c:420",
+    "board/stage.c:421"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "controls.score_tools",
+   "en": "SCORE TOOLS",
+   "es": "PARTITURA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:422"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "controls.layers",
+   "en": "LAYERS",
+   "es": "CAPAS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:423"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "controls.song_parts",
+   "en": "SONG PARTS",
+   "es": "PARTES",
+   "scale": 1,
+   "where": [
+    "board/stage.c:424"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "controls.pad_family_left",
+   "en": "BCT",
+   "es": "BCT",
+   "scale": 1,
+   "where": [
+    "board/stage.c:434"
+   ],
+   "kind": "keep",
+   "note": "Computer-keyboard shortcut.",
+   "max": 4
+  },
+  {
+   "id": "controls.pad_family_right",
+   "en": "ASWQ",
+   "es": "ASWQ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:435"
+   ],
+   "kind": "keep",
+   "note": "Computer-keyboard shortcut.",
+   "max": 4
+  },
+  {
+   "id": "controls.conga_short",
+   "en": "CON",
+   "es": "CON",
+   "scale": 1,
+   "where": [
+    "board/stage.c:130",
+    "board/panel.c:516"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.maraca_short",
+   "en": "MAR",
+   "es": "MAR",
+   "scale": 1,
+   "where": [
+    "board/stage.c:130",
+    "board/panel.c:517"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.timbal_short",
+   "en": "TIM",
+   "es": "TIM",
+   "scale": 1,
+   "where": [
+    "board/stage.c:130",
+    "board/panel.c:518"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.bell_short",
+   "en": "BEL",
+   "es": "CAM",
+   "scale": 1,
+   "where": [
+    "board/stage.c:130",
+    "board/panel.c:519"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.bass_short",
+   "en": "BAS",
+   "es": "BAJ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:130"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.guide_short",
+   "en": "GDE",
+   "es": "GUI",
+   "scale": 1,
+   "where": [
+    "board/stage.c:459"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "controls.hold_short",
+   "en": "HLD",
+   "es": "BCL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:459",
+    "board/stage.c:545"
+   ],
+   "kind": "label",
+   "max": 4,
+   "boxes": [
+    3,
+    4
+   ],
+   "note": "Drawn in boxes of 3, 4 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "controls.bolero_short",
+   "en": "BOL",
+   "es": "BOL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:459"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "knob.tempo",
+   "en": "TEMPO",
+   "es": "TEMPO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:483",
+    "board/stage.c:509",
+    "board/stage.c:523"
+   ],
+   "kind": "keep",
+   "note": "Same word in Spanish.",
+   "max": 6
+  },
+  {
+   "id": "knob.feel",
+   "en": "FEEL",
+   "es": "MATIZ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:483",
+    "board/panel.c:589"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.guide",
+   "en": "GUIDE",
+   "es": "GUÍA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:489"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.hold",
+   "en": "HOLD",
+   "es": "BUCLE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:489"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.shift",
+   "en": "SHIFT",
+   "es": "TONO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:489"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.tone",
+   "en": "TONE",
+   "es": "TONO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:494",
+    "board/stage.c:585",
+    "board/stage-bass.inc:103"
+   ],
+   "kind": "label",
+   "max": 6,
+   "boxes": [
+    5,
+    6
+   ],
+   "note": "Drawn in boxes of 5, 6 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "knob.bite",
+   "en": "BITE",
+   "es": "FILO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:494",
+    "board/stage.c:585",
+    "board/stage-bass.inc:104"
+   ],
+   "kind": "label",
+   "max": 6,
+   "boxes": [
+    5,
+    6
+   ],
+   "note": "Drawn in boxes of 5, 6 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "knob.level",
+   "en": "LEVEL",
+   "es": "NIVEL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:494",
+    "board/stage.c:504",
+    "board/stage.c:515"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.style",
+   "en": "STYLE",
+   "es": "ESTILO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:494"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.conga",
+   "en": "CONG",
+   "es": "CONG",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.maraca",
+   "en": "MARA",
+   "es": "MARA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 6,
+   "boxes": [
+    5,
+    6
+   ],
+   "note": "Drawn in boxes of 5, 6 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "knob.timbal",
+   "en": "TIMB",
+   "es": "TIMB",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.bell",
+   "en": "BELL",
+   "es": "CAMP.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499",
+    "board/stage.c:606",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 6,
+   "note": "Perc knob label (36 px). Its own word; the perc lanes show CAMPANA."
+  },
+  {
+   "id": "knob.sound",
+   "en": "SOUND",
+   "es": "SONIDO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:504"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.hit",
+   "en": "HIT",
+   "es": "GOLPE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:504",
+    "board/stage.c:509"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.accent",
+   "en": "ACC",
+   "es": "ACEN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:504",
+    "board/stage.c:930",
+    "board/stage-rack.inc:95",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 8,
+   "boxes": [
+    3,
+    5,
+    6,
+    8
+   ],
+   "note": "Drawn in boxes of 3, 5, 6, 8 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "knob.speed",
+   "en": "SPEED",
+   "es": "VEL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:519"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.repeat",
+   "en": "RPT",
+   "es": "REP",
+   "scale": 1,
+   "where": [
+    "board/stage.c:523"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "knob.slot",
+   "en": "SLOT",
+   "es": "LUGAR",
+   "scale": 1,
+   "where": [
+    "board/stage.c:523"
+   ],
+   "kind": "label",
+   "max": 6,
+   "note": "GLO knob 3: the save cursor."
+  },
+  {
+   "id": "knob.count",
+   "en": "COUNT",
+   "es": "CUENTA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:523"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "value.on",
+   "en": "ON",
+   "es": "SÍ",
+   "scale": 2,
+   "where": [
+    "board/stage.c:543",
+    "board/stage.c:546"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "value.off",
+   "en": "OFF",
+   "es": "NO",
+   "scale": 2,
+   "where": [
+    "board/stage.c:543",
+    "board/stage.c:546"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "value.acid",
+   "en": "ACD",
+   "es": "ACD",
+   "scale": 2,
+   "where": [
+    "board/stage.c:544"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "value.ensemble",
+   "en": "ENS",
+   "es": "GRP",
+   "scale": 2,
+   "where": [
+    "board/stage.c:544"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "value.repeat_hold",
+   "en": "HLD",
+   "es": "INF",
+   "scale": 1,
+   "where": [
+    "board/stage.c:459",
+    "board/stage.c:545"
+   ],
+   "kind": "label",
+   "max": 4,
+   "boxes": [
+    3,
+    4
+   ],
+   "note": "Drawn in boxes of 3, 4 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "bass.ensemble",
+   "en": "ENSEMBLE",
+   "es": "GRUPO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:586",
+    "board/stage-bass.inc:85"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "bass.acid_303",
+   "en": "ACID 303",
+   "es": "ÁCIDO 303",
+   "scale": 1,
+   "where": [
+    "board/stage-bass.inc:85"
+   ],
+   "kind": "label",
+   "note": "Box sizes to the word; limit is the layout space around it.",
+   "max": 16
+  },
+  {
+   "id": "bass.acid_flash",
+   "en": "ACID!",
+   "es": "ÁCIDO!",
+   "scale": 1,
+   "where": [
+    "board/stage.c:586"
+   ],
+   "kind": "label",
+   "max": 12,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "bass.wave",
+   "en": "WAVE",
+   "es": "ONDA",
+   "scale": 1,
+   "where": [
+    "board/stage-bass.inc:119"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "bass.line",
+   "en": "LINE",
+   "es": "BAJO",
+   "scale": 1,
+   "where": [
+    "board/stage-bass.inc:135"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "bass.key",
+   "en": "KEY",
+   "es": "TONO",
+   "scale": 1,
+   "where": [
+    "board/stage-bass.inc:136"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "bass.level_short",
+   "en": "LEVL",
+   "es": "NIV.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:585"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "bass.score_1",
+   "en": "SCORE PLAYS",
+   "es": "BAJO EN LA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:576"
+   ],
+   "kind": "label",
+   "max": 15
+  },
+  {
+   "id": "bass.score_2",
+   "en": "THE BASS",
+   "es": "PARTITURA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:578"
+   ],
+   "kind": "label",
+   "max": 15
+  },
+  {
+   "id": "bass.drums_only",
+   "en": "DRUMS ONLY",
+   "es": "SOLO PERC",
+   "scale": 1,
+   "where": [
+    "board/stage.c:576"
+   ],
+   "kind": "label",
+   "max": 15
+  },
+  {
+   "id": "bass.no_bass",
+   "en": "NO BASS",
+   "es": "SIN BAJO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:578"
+   ],
+   "kind": "label",
+   "max": 15
+  },
+  {
+   "id": "perc.conga",
+   "en": "CONGA",
+   "es": "CONGA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:606",
+    "board/stage-rack.inc:110",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 7,
+   "boxes": [
+    5,
+    7
+   ],
+   "note": "Drawn in boxes of 5, 7 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "perc.maraca",
+   "en": "MARACA",
+   "es": "MARACA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:606",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 7,
+   "boxes": [
+    6,
+    7
+   ],
+   "note": "Drawn in boxes of 6, 7 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "perc.timbal",
+   "en": "TIMBAL",
+   "es": "TIMBAL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:606",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 7
+  },
+  {
+   "id": "perc.bell",
+   "en": "BELL",
+   "es": "CAMPANA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499",
+    "board/stage.c:606",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 7,
+   "boxes": [
+    4,
+    6,
+    7
+   ],
+   "note": "Drawn in boxes of 4, 6, 7 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "perc.out",
+   "en": "OUT",
+   "es": "FUERA",
+   "scale": 1,
+   "where": [
+    "board/stage-percussion.inc:93"
+   ],
+   "kind": "label",
+   "max": 7,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "perc.in",
+   "en": "IN",
+   "es": "DENTRO",
+   "scale": 1,
+   "where": [
+    "board/stage-percussion.inc:100"
+   ],
+   "kind": "label",
+   "max": 7,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "perc.bolero_mute",
+   "en": "TOP 3 MUTES THE BOLERO",
+   "es": "NEGRA 3 SILENCIA EL BOLERO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:620"
+   ],
+   "kind": "label",
+   "max": 36
+  },
+  {
+   "id": "perc.bolero_unmute",
+   "en": "TOP 3 BRINGS IN THE BOLERO",
+   "es": "NEGRA 3 ACTIVA EL BOLERO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:620"
+   ],
+   "kind": "label",
+   "max": 36
+  },
+  {
+   "id": "perc.score_only",
+   "en": "SCORE ONLY / PLAY 727 PADS",
+   "es": "PARTITURA / TOCA EN EL 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:621"
+   ],
+   "kind": "label",
+   "max": 36
+  },
+  {
+   "id": "perc.clave",
+   "en": "CLAVE",
+   "es": "CLAVE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:626"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "perc.linked",
+   "en": "BAND+727",
+   "es": "GRUPO+727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:628"
+   ],
+   "kind": "label",
+   "max": 9
+  },
+  {
+   "id": "perc.unlinked",
+   "en": "BAND ONLY",
+   "es": "SOLO GRP",
+   "scale": 1,
+   "where": [
+    "board/stage.c:628"
+   ],
+   "kind": "label",
+   "max": 9
+  },
+  {
+   "id": "perc.next_23",
+   "en": "NEXT 2-3",
+   "es": "SIG. 2-3",
+   "scale": 1,
+   "where": [
+    "board/stage.c:630"
+   ],
+   "kind": "label",
+   "max": 13
+  },
+  {
+   "id": "perc.next_32",
+   "en": "NEXT 3-2",
+   "es": "SIG. 3-2",
+   "scale": 1,
+   "where": [
+    "board/stage.c:630"
+   ],
+   "kind": "label",
+   "max": 13
+  },
+  {
+   "id": "perc.clave_controls",
+   "en": "OCT- 3-2 / OCT+ 2-3",
+   "es": "OCT- 3-2 / OCT+ 2-3",
+   "scale": 1,
+   "where": [
+    "board/stage.c:631"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "rack.arp",
+   "en": "ARP",
+   "es": "ARP",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:86"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "rack.roll",
+   "en": "ROLL",
+   "es": "REP",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:95"
+   ],
+   "kind": "label",
+   "max": 4,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "rack.rec",
+   "en": "REC",
+   "es": "REC",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:95",
+    "board/stage-rack.inc:102"
+   ],
+   "kind": "label",
+   "max": 4,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "rack.accent_chip",
+   "en": "ACC",
+   "es": "ACEN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:504",
+    "board/stage.c:930",
+    "board/stage-rack.inc:95",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 8,
+   "boxes": [
+    3,
+    5,
+    6,
+    8
+   ],
+   "note": "Drawn in boxes of 3, 5, 6, 8 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.scl",
+   "en": "SCL",
+   "es": "SCL",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:103"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "rack.pad_hint",
+   "en": "PRESETS / SEQ EDIT",
+   "es": "PRESETS RITMOS / SEQ",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:93"
+   ],
+   "kind": "label",
+   "max": 24
+  },
+  {
+   "id": "rack.cut",
+   "en": "CUT",
+   "es": "CORT",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:137"
+   ],
+   "kind": "label",
+   "max": 4,
+   "note": "Box sizes to the word; limit is the layout space around it."
+  },
+  {
+   "id": "rack.loop",
+   "en": "LOOP",
+   "es": "BUCL",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:150"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "rack.source_conga",
+   "en": "CONGA EXCERPT",
+   "es": "PARTE DE CONGA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:647"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.source_manual",
+   "en": "727 MANUAL",
+   "es": "MANUAL 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:648"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.source_cumbia",
+   "en": "CUMBIA 727",
+   "es": "CUMBIA 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:649"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.source_adaptation",
+   "en": "727 ADAPTATION",
+   "es": "ADAPTACIÓN AL 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:649"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.sequencer",
+   "en": "727 SEQUENCER",
+   "es": "SECUENCIADOR 727",
+   "scale": 2,
+   "where": [
+    "board/stage.c:652"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "rack.choose_groove",
+   "en": "CHOOSE A GROOVE",
+   "es": "ELIGE UN RITMO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:656",
+    "board/panel.c:561"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "rack.presets_then_seq",
+   "en": "PRESETS / THEN SEQ",
+   "es": "PRESETS Y LUEGO SEQ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:657"
+   ],
+   "kind": "label",
+   "max": 36
+  },
+  {
+   "id": "rack.steps_a",
+   "en": "STEPS 01-16",
+   "es": "PASOS 01-16",
+   "scale": 1,
+   "where": [
+    "board/stage.c:661"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.steps_b",
+   "en": "STEPS 17-32",
+   "es": "PASOS 17-32",
+   "scale": 1,
+   "where": [
+    "board/stage.c:661"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.fx_drums_only",
+   "en": "FX DRUM ONLY",
+   "es": "FX SOLO 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:662"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "rack.fx_layer_on",
+   "en": "FX LAYER ON",
+   "es": "FX CAPA SÍ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:662",
+    "board/panel.c:563",
+    "board/panel.c:571"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "rack.fx_layer_off",
+   "en": "FX LAYER OFF",
+   "es": "FX CAPA NO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:662",
+    "board/panel.c:563",
+    "board/panel.c:571"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "rack.step_accent",
+   "en": "SCL ACCENT / SEQ PADS",
+   "es": "SCL ACENTO / SEQ PADS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:674"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.step_normal",
+   "en": "SCL NORMAL / SEQ PADS",
+   "es": "SCL NORMAL / SEQ PADS",
+   "scale": 1,
+   "where": [
+    "board/stage.c:674"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.bank_44",
+   "en": "PRESETS NEEDS 4/4 GROOVE",
+   "es": "PRESETS REQUIERE RITMO EN 4/4",
+   "scale": 1,
+   "where": [
+    "board/stage.c:680"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.bank_edit",
+   "en": "PRESETS BANK / SESSION EDIT",
+   "es": "PRESETS PATRONES / EDICIÓN TEMPORAL",
+   "scale": 1,
+   "where": [
+    "board/stage.c:680"
+   ],
+   "kind": "label",
+   "max": 38
+  },
+  {
+   "id": "rack.select_for_pads",
+   "en": "SELECT FOR 727 PADS",
+   "es": "SELECT PARA TOCAR EL 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:535"
+   ],
+   "kind": "label",
+   "max": 35
+  },
+  {
+   "id": "order.title",
+   "en": "THE SHOW",
+   "es": "LA TOCADA",
+   "scale": 2,
+   "where": [
+    "board/stage.c:717"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "order.keys",
+   "en": "KEYS 1-16",
+   "es": "TECL. 1-16",
+   "scale": 1,
+   "where": [
+    "board/stage.c:718"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "order.sourced",
+   "en": "SOURCED",
+   "es": "FUENTE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:719"
+   ],
+   "kind": "label",
+   "max": 8,
+   "note": "FUENTE, not C/FUENTE: eight letters touched STUDY on the GLO header (LCD check, 8 Nov)."
+  },
+  {
+   "id": "order.study",
+   "en": "STUDY",
+   "es": "ESTUD.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:720"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "order.empty",
+   "en": "EMPTY",
+   "es": "VACÍO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:732",
+    "board/board.c:386"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "order.score",
+   "en": "SCORE",
+   "es": "PARTIT.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:735"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "order.in_two",
+   "en": "IN 2",
+   "es": "EN 2",
+   "scale": 1,
+   "where": [
+    "board/stage.c:740"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "order.now",
+   "en": "NOW",
+   "es": "ACT.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:645",
+    "board/stage.c:744"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "order.next",
+   "en": "NEXT",
+   "es": "SIG.",
+   "scale": 1,
+   "where": [
+    "board/stage.c:650",
+    "board/stage.c:744"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "order.save",
+   "en": "SAVE",
+   "es": "DEST",
+   "scale": 1,
+   "where": [
+    "board/stage.c:744"
+   ],
+   "kind": "label",
+   "max": 4
+  },
+  {
+   "id": "order.bank",
+   "en": "BANK",
+   "es": "BANCO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:911"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "order.rhythm_preset",
+   "en": "RHYTHM PRESET",
+   "es": "RITMO DE FÁBRICA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:914"
+   ],
+   "kind": "label",
+   "max": 24
+  },
+  {
+   "id": "order.end_of_set",
+   "en": "END OF SET",
+   "es": "FIN DE LA LISTA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:914"
+   ],
+   "kind": "label",
+   "max": 24
+  },
+  {
+   "id": "order.closing",
+   "en": "THAT'S THE SHOW",
+   "es": "FIN DE LA TOCADA",
+   "scale": 2,
+   "where": [
+    "board/stage.c:885"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "notice.output_stopped",
+   "en": "OUTPUT STOPPED",
+   "es": "SALIDA DETENIDA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:971",
+    "board/panel.c:602"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.busy",
+   "en": "BUSY / RETRY",
+   "es": "OCUPADO / OTRA VEZ",
+   "scale": 1,
+   "where": [
+    "board/stage.c:971",
+    "board/panel.c:603"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.stop_to_edit",
+   "en": "STOP TO EDIT",
+   "es": "STOP PARA EDITAR",
+   "scale": 1,
+   "where": [
+    "board/stage.c:971",
+    "board/panel.c:604"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.empty_slot",
+   "en": "EMPTY SLOT",
+   "es": "CASILLA VACÍA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972",
+    "board/panel.c:605"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.set_saved",
+   "en": "SET SAVED",
+   "es": "LISTA GUARDADA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972",
+    "board/panel.c:607"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.unavailable",
+   "en": "ACTION UNAVAILABLE",
+   "es": "NO DISPONIBLE",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972",
+    "board/panel.c:608"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.master",
+   "en": "MASTER",
+   "es": "VOLUMEN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972",
+    "board/panel.c:612"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.drums_only",
+   "en": "727 DRUMS ONLY",
+   "es": "SOLO 727",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972"
+   ],
+   "kind": "label",
+   "max": 19
+  },
+  {
+   "id": "notice.rebajada",
+   "en": "REBAJADA",
+   "es": "REBAJADA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:972"
+   ],
+   "kind": "keep",
+   "note": "Already Spanish.",
+   "max": 19
+  },
+  {
+   "id": "brand.johnny",
+   "en": "JOHNNY CANALES",
+   "es": "JOHNNY CANALES",
+   "scale": 2,
+   "where": [
+    "board/stage.c:1503"
+   ],
+   "kind": "keep",
+   "note": "Name.",
+   "max": 14
+  },
+  {
+   "id": "brand.catchphrase",
+   "en": "TAKE IT AWAY",
+   "es": "TAKE IT AWAY",
+   "scale": 1,
+   "where": [
+    "board/stage.c:914"
+   ],
+   "kind": "keep",
+   "note": "Johnny Canales' own words. Drawn in boxes of 16, 24 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 24,
+   "boxes": [
+    16,
+    24
+   ]
+  },
+  {
+   "id": "brand.compas",
+   "en": "COMPAS",
+   "es": "COMPÁS",
+   "scale": 1,
+   "where": [
+    "board/panel.c:470"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 10
+  },
+  {
+   "id": "unit.bpm",
+   "en": "BPM",
+   "es": "BPM",
+   "scale": 1,
+   "where": [
+    "board/stage.c:721",
+    "board/stage.c:941",
+    "board/stage.c:961",
+    "board/panel.c:558",
+    "board/panel.c:588",
+    "board/panel.c:614"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.part.start",
+   "en": "START",
+   "es": "INICIO",
+   "scale": 2,
+   "where": [
+    "board/panel.c:23",
+    "board/panel.c:32"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.refrain",
+   "en": "REFRAIN",
+   "es": "ESTRIBILLO",
+   "scale": 2,
+   "where": [
+    "board/panel.c:23"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.answer",
+   "en": "ANSWER",
+   "es": "RESPUESTA",
+   "scale": 2,
+   "where": [
+    "board/panel.c:23"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.cadence",
+   "en": "CADENCE",
+   "es": "CADENCIA",
+   "scale": 2,
+   "where": [
+    "board/panel.c:23"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.pickup",
+   "en": "PICKUP",
+   "es": "ANACRUSA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:27",
+    "board/panel.c:31"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "score.part.call",
+   "en": "CALL",
+   "es": "LLAMADA",
+   "scale": 2,
+   "where": [
+    "board/panel.c:27"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.echoes",
+   "en": "ECHOES",
+   "es": "ECOS",
+   "scale": 2,
+   "where": [
+    "board/panel.c:27"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.close",
+   "en": "CLOSE",
+   "es": "CIERRE",
+   "scale": 2,
+   "where": [
+    "board/panel.c:27"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.intro",
+   "en": "INTRO",
+   "es": "INTRO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:32",
+    "src/score.json:conductorForms.default",
+    "src/score.json:conductorForms.salsa",
+    "src/score.json:conductorForms.cumbia",
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "score.part.verse",
+   "en": "VERSE",
+   "es": "VERSO",
+   "scale": 2,
+   "where": [
+    "board/panel.c:34"
+   ],
+   "kind": "label",
+   "max": 16
+  },
+  {
+   "id": "score.part.chorus",
+   "en": "CHORUS",
+   "es": "CORO",
+   "scale": 2,
+   "where": [
+    "board/panel.c:35",
+    "src/score.json:conductorForms.default"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "score.part.ending",
+   "en": "ENDING",
+   "es": "FINAL",
+   "scale": 1,
+   "where": [
+    "board/panel.c:36",
+    "src/score.json:conductorForms.default"
+   ],
+   "kind": "label",
+   "max": 22,
+   "boxes": [
+    16,
+    22
+   ],
+   "note": "Drawn in boxes of 16, 22 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "score.part.coda",
+   "en": "CODA",
+   "es": "CODA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:36"
+   ],
+   "kind": "label",
+   "max": 22
+  },
+  {
+   "id": "score.key.coda",
+   "en": "COD",
+   "es": "COD",
+   "scale": 1,
+   "where": [
+    "board/stage.c:443"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.verse",
+   "en": "VRS",
+   "es": "VER",
+   "scale": 1,
+   "where": [
+    "board/stage.c:443"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.pickup",
+   "en": "P/U",
+   "es": "ANA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 3
+  },
+  {
+   "id": "score.key.ending",
+   "en": "END",
+   "es": "FIN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:445",
+    "board/stage.c:452",
+    "src/score.json:conductorForms.default:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.start",
+   "en": "BEG",
+   "es": "INI",
+   "scale": 1,
+   "where": [
+    "board/stage.c:446",
+    "board/stage.c:448"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.refrain",
+   "en": "REF",
+   "es": "EST",
+   "scale": 1,
+   "where": [
+    "board/stage.c:448"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.answer",
+   "en": "ANS",
+   "es": "RSP",
+   "scale": 1,
+   "where": [
+    "board/stage.c:448"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.cadence",
+   "en": "CAD",
+   "es": "CAD",
+   "scale": 1,
+   "where": [
+    "board/stage.c:448"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.call",
+   "en": "CAL",
+   "es": "LLA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:452"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "score.key.echoes",
+   "en": "ECH",
+   "es": "ECO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:452"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.verse_a",
+   "en": "VERSE A",
+   "es": "VERSO A",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.default"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "part.verse_b",
+   "en": "VERSE B",
+   "es": "VERSO B",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.default"
+   ],
+   "kind": "label",
+   "max": 10
+  },
+  {
+   "id": "part.key.verse_a",
+   "en": "V-A",
+   "es": "V-A",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.default:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.verse_b",
+   "en": "V-B",
+   "es": "V-B",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.default:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.chorus",
+   "en": "CHO",
+   "es": "COR",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.default:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.break",
+   "en": "BRK",
+   "es": "CTE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.default:short",
+    "src/score.json:conductorForms.cumbia:short",
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.verso",
+   "en": "VERSO",
+   "es": "VERSO",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa",
+    "src/score.json:conductorForms.cumbia"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish. Drawn in boxes of 10, 16, 22 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 22,
+   "boxes": [
+    10,
+    16,
+    22
+   ]
+  },
+  {
+   "id": "part.coro",
+   "en": "CORO",
+   "es": "CORO",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.salsa",
+    "src/score.json:conductorForms.cumbia"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish.",
+   "max": 10
+  },
+  {
+   "id": "part.mambo",
+   "en": "MAMBO",
+   "es": "MAMBO",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa",
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish. Drawn in boxes of 10, 22 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 22,
+   "boxes": [
+    10,
+    22
+   ]
+  },
+  {
+   "id": "part.mona",
+   "en": "CORTE",
+   "es": "CORTE",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.salsa"
+   ],
+   "kind": "keep",
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (project audit, 7 Nov).",
+   "max": 10
+  },
+  {
+   "id": "part.cierre",
+   "en": "CIERRE",
+   "es": "CIERRE",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.salsa"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish.",
+   "max": 10
+  },
+  {
+   "id": "part.puente",
+   "en": "PUENTE",
+   "es": "PUENTE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.cumbia"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish. Drawn in boxes of 10, 22 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 22,
+   "boxes": [
+    10,
+    22
+   ]
+  },
+  {
+   "id": "part.final",
+   "en": "FINAL",
+   "es": "FINAL",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.cumbia",
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish. Drawn in boxes of 10, 22 characters; checked against the largest until this id is wired to its own draw call.",
+   "max": 22,
+   "boxes": [
+    10,
+    22
+   ]
+  },
+  {
+   "id": "part.merengue",
+   "en": "MERENGUE",
+   "es": "MERENGUE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish.",
+   "max": 24
+  },
+  {
+   "id": "part.jaleo",
+   "en": "JALEO",
+   "es": "JALEO",
+   "scale": 2,
+   "where": [
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish.",
+   "max": 10
+  },
+  {
+   "id": "part.key.intro",
+   "en": "INT",
+   "es": "INT",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.default:short",
+    "src/score.json:conductorForms.salsa:short",
+    "src/score.json:conductorForms.cumbia:short",
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.verso",
+   "en": "VER",
+   "es": "VER",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa:short",
+    "src/score.json:conductorForms.cumbia:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.coro",
+   "en": "COR",
+   "es": "COR",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa:short",
+    "src/score.json:conductorForms.cumbia:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.mambo",
+   "en": "MAM",
+   "es": "MAM",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa:short",
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.mona",
+   "en": "CTE",
+   "es": "CTE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa:short"
+   ],
+   "kind": "keep",
+   "max": 3,
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (project audit, 7 Nov)."
+  },
+  {
+   "id": "part.key.cierre",
+   "en": "CIE",
+   "es": "CIE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.salsa:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.puente",
+   "en": "PTE",
+   "es": "PTE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.cumbia:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.final",
+   "en": "FIN",
+   "es": "FIN",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.cumbia:short",
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.merengue",
+   "en": "MER",
+   "es": "MER",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "part.key.jaleo",
+   "en": "JAL",
+   "es": "JAL",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.merengue:short"
+   ],
+   "kind": "label",
+   "max": 3
+  },
+  {
+   "id": "rack.name.bongo_high",
+   "en": "HI BONGO",
+   "es": "BONGÓ MACHO",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.bongo_low",
+   "en": "LO BONGO",
+   "es": "BONGÓ HEMB.",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.conga_mute",
+   "en": "MUTE CONGA",
+   "es": "C. TAPADA",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.conga_open",
+   "en": "OPEN CONGA",
+   "es": "C. ABIERTA",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11,
+   "boxes": [
+    10,
+    11
+   ],
+   "note": "Drawn in boxes of 10, 11 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.name.conga_low",
+   "en": "LOW CONGA",
+   "es": "CONGA GRAVE",
+   "scale": 2,
+   "where": [
+    "board/panel.c:40",
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.timbal_high",
+   "en": "HI TIMBAL",
+   "es": "TIMB. AGUDO",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.timbal_low",
+   "en": "LO TIMBAL",
+   "es": "TIMB. GRAVE",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:3"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.agogo_high",
+   "en": "HI AGOGO",
+   "es": "AGOGÓ AGUDO",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "label",
+   "max": 11,
+   "boxes": [
+    8,
+    11
+   ],
+   "note": "Drawn in boxes of 8, 11 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.name.agogo_low",
+   "en": "LO AGOGO",
+   "es": "AGOGÓ GRAVE",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.cabasa",
+   "en": "CABASA",
+   "es": "CABASA",
+   "scale": 2,
+   "where": [
+    "board/panel.c:41",
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "keep",
+   "note": "Instrument name.",
+   "max": 11
+  },
+  {
+   "id": "rack.name.maracas",
+   "en": "MARACAS",
+   "es": "MARACAS",
+   "scale": 2,
+   "where": [
+    "board/panel.c:41",
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "keep",
+   "note": "Already Spanish.",
+   "max": 11
+  },
+  {
+   "id": "rack.name.whistle_short",
+   "en": "SHORT WHSTL",
+   "es": "SILB. CORTO",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.whistle_long",
+   "en": "LONG WHSTL",
+   "es": "SILB. LARGO",
+   "scale": 2,
+   "where": [
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.name.quijada",
+   "en": "QUIJADA",
+   "es": "QUIJADA",
+   "scale": 2,
+   "where": [
+    "board/panel.c:42",
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "keep",
+   "note": "Already Spanish.",
+   "max": 11
+  },
+  {
+   "id": "rack.name.star_chime",
+   "en": "STAR CHIME",
+   "es": "CAMPANILLAS",
+   "scale": 2,
+   "where": [
+    "board/panel.c:42",
+    "board/stage-rack.inc:4"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "rack.pad.high",
+   "en": "HI",
+   "es": "AGUDO",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.low",
+   "en": "LO",
+   "es": "GRAVE",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.bongo_macho",
+   "en": "HI",
+   "es": "MACHO",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.bongo_hembra",
+   "en": "LO",
+   "es": "HEMB.",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.conga_muted",
+   "en": "MUTE",
+   "es": "TAP.",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.conga_open",
+   "en": "OPEN",
+   "es": "ABR.",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.conga_low",
+   "en": "LOW",
+   "es": "GRAVE",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:108"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.cabasa_top",
+   "en": "CABA",
+   "es": "CABA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.maracas_top",
+   "en": "MARA",
+   "es": "MARA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:499",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 6,
+   "boxes": [
+    5,
+    6
+   ],
+   "note": "Drawn in boxes of 5, 6 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.pad.whistle_short",
+   "en": "SHORT",
+   "es": "CORTO",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.whistle_long",
+   "en": "LONG",
+   "es": "LARGO",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.quijada_top",
+   "en": "QUIJA",
+   "es": "QUIJA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.star_chime_top",
+   "en": "STAR",
+   "es": "CAMPA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.accent_top",
+   "en": "ACC",
+   "es": "ACEN",
+   "scale": 1,
+   "where": [
+    "board/stage.c:504",
+    "board/stage.c:930",
+    "board/stage-rack.inc:95",
+    "board/stage-rack.inc:109"
+   ],
+   "kind": "label",
+   "max": 8,
+   "boxes": [
+    3,
+    5,
+    6,
+    8
+   ],
+   "note": "Drawn in boxes of 3, 5, 6, 8 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.pad.bongo",
+   "en": "BONGO",
+   "es": "BONGÓ",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:110"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.conga",
+   "en": "CONGA",
+   "es": "CONGA",
+   "scale": 1,
+   "where": [
+    "board/stage.c:606",
+    "board/stage-rack.inc:110",
+    "board/stage-percussion.inc:77"
+   ],
+   "kind": "label",
+   "max": 7,
+   "boxes": [
+    5,
+    7
+   ],
+   "note": "Drawn in boxes of 5, 7 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.pad.timbal",
+   "en": "TIMBL",
+   "es": "TIMB.",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:110"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.agogo",
+   "en": "AGOGO",
+   "es": "AGOGÓ",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:110",
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.cabasa_bottom",
+   "en": "SA",
+   "es": "SA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.maracas_bottom",
+   "en": "CAS",
+   "es": "CAS",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.whistle",
+   "en": "WHSTL",
+   "es": "SILB.",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.quijada_bottom",
+   "en": "DA",
+   "es": "DA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.star_chime_bottom",
+   "en": "CHIME",
+   "es": "NILLA",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.pad.accent_bottom",
+   "en": "ENT",
+   "es": "TO",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:111"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "rack.detail.bongo_high",
+   "en": "HIGH BONGO",
+   "es": "BONGÓ MACHO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:40"
+   ],
+   "kind": "label",
+   "max": 36,
+   "boxes": [
+    18,
+    36
+   ],
+   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.detail.bongo_low",
+   "en": "LOW BONGO",
+   "es": "BONGÓ HEMBRA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:40"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.conga_mute",
+   "en": "MUTED HI CONGA",
+   "es": "CONGA AG. TAPADA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:40"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.conga_open",
+   "en": "OPEN HI CONGA",
+   "es": "CONGA AG. ABIERTA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:40"
+   ],
+   "kind": "label",
+   "max": 36,
+   "boxes": [
+    18,
+    36
+   ],
+   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "rack.detail.timbal_high",
+   "en": "HIGH TIMBALE",
+   "es": "TIMBAL AGUDO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:41"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.timbal_low",
+   "en": "LOW TIMBALE",
+   "es": "TIMBAL GRAVE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:41"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.agogo_high",
+   "en": "HIGH AGOGO",
+   "es": "AGOGÓ AGUDO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:41"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.agogo_low",
+   "en": "LOW AGOGO",
+   "es": "AGOGÓ GRAVE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:41"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.whistle_short",
+   "en": "SHORT WHISTLE",
+   "es": "SILBATO CORTO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:42"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "rack.detail.whistle_long",
+   "en": "LONG WHISTLE",
+   "es": "SILBATO LARGO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:42"
+   ],
+   "kind": "label",
+   "max": 18
+  },
+  {
+   "id": "panel.presets_load_song",
+   "en": "PRESETS LOAD SONG",
+   "es": "PRESETS CANCIONES",
+   "scale": 1,
+   "where": [
+    "board/panel.c:499"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.save_to",
+   "en": "SAVE TO",
+   "es": "GUARDA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:500"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "panel.select",
+   "en": "SELECT",
+   "es": "SELECT",
+   "scale": 1,
+   "where": [
+    "board/panel.c:501"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "panel.score_accompaniment",
+   "en": "SCORE ACCOMPANIMENT",
+   "es": "ACOMP. DE PARTITURA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:503"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.drum_ensemble",
+   "en": "DRUM ENSEMBLE",
+   "es": "GRUPO DE TAMBORES",
+   "scale": 1,
+   "where": [
+    "board/panel.c:503"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.bass_muted",
+   "en": "BASS MUTED / TOP 5",
+   "es": "BAJO MUDO / NEGRA 5",
+   "scale": 1,
+   "where": [
+    "board/panel.c:504"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.acid_bass",
+   "en": "4 ACID BASS",
+   "es": "4 BAJO ÁCIDO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:504"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.ensemble_bass",
+   "en": "4 ENSEMBLE BASS",
+   "es": "4 BAJO DE GRUPO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:504"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.no_separate_bass",
+   "en": "NO SEPARATE BASS",
+   "es": "SIN BAJO APARTE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:505"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.tone",
+   "en": "1 TONE",
+   "es": "1 TONO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:507"
+   ],
+   "kind": "label",
+   "max": 7
+  },
+  {
+   "id": "panel.bite",
+   "en": "2 BITE",
+   "es": "2 FILO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:508"
+   ],
+   "kind": "label",
+   "max": 9
+  },
+  {
+   "id": "panel.bolero_backing",
+   "en": "BOLERO BACKING",
+   "es": "BASE DE BOLERO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:513"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.bolero_muted",
+   "en": "BOLERO MUTED",
+   "es": "BOLERO SILENCIADO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:513"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.no_auto_rhythm",
+   "en": "NO AUTO RHYTHM",
+   "es": "SIN RITMO AUTO.",
+   "scale": 1,
+   "where": [
+    "board/panel.c:513"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.conga_maraca",
+   "en": "CONGA + MARACA",
+   "es": "CONGA + MARACA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:514"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.rack_pads",
+   "en": "727 FOR DRUM PADS",
+   "es": "727 PARA PERCUSIÓN",
+   "scale": 1,
+   "where": [
+    "board/panel.c:514",
+    "board/panel.c:544"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.jurame_a",
+   "en": "1 START  2 REFRAIN",
+   "es": "1 INICIO  2 ESTRIB.",
+   "scale": 1,
+   "where": [
+    "board/panel.c:522"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.jurame_b",
+   "en": "4 ANSWER 6 CADENCE",
+   "es": "4 RESP.  6 CADENCIA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:523"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.teodora_a",
+   "en": "1 PICKUP 2 CALL",
+   "es": "1 ANACR.  2 LLAMADA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:525"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.teodora_b",
+   "en": "4 ECHOES 6 CLOSE",
+   "es": "4 ECOS  6 CIERRE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:526"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.cielito_a",
+   "en": "1 PICKUP 2 VERSE",
+   "es": "1 ANACR.  2 VERSO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:528"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.cucaracha_a",
+   "en": "1 START  2 VERSE",
+   "es": "1 INICIO  2 VERSO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:529"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.score_form_a",
+   "en": "1 INTRO  2 VERSE",
+   "es": "1 INTRO  2 VERSO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:529"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.cielito_b",
+   "en": "4 CHORUS 6 ENDING",
+   "es": "4 CORO  6 FINAL",
+   "scale": 1,
+   "where": [
+    "board/panel.c:530"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.score_form_b",
+   "en": "4 CHORUS  6 CODA",
+   "es": "4 CORO  6 CODA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:530"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.groove_form_a",
+   "en": "1 INTRO  2 VERSE A",
+   "es": "1 INTRO  2 VERSO A",
+   "scale": 1,
+   "where": [
+    "board/panel.c:532"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.groove_form_b",
+   "en": "3 VERSE B 4 CHORUS",
+   "es": "3 VERSO B  4 CORO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:533"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.save_here",
+   "en": "EMPTY / SAVE HERE",
+   "es": "VACÍO / GUARDA AQUÍ",
+   "scale": 1,
+   "where": [
+    "board/panel.c:536"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.play_presets",
+   "en": "PLAY / PRESETS SONG",
+   "es": "PLAY / PRESETS TEMA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:537"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.change_after_fill",
+   "en": "CHANGE AFTER FILL",
+   "es": "CAMBIO TRAS REMATE",
+   "scale": 1,
+   "where": [
+    "board/panel.c:539"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.ending_playing",
+   "en": "ENDING PLAYING",
+   "es": "SONANDO FINAL",
+   "scale": 1,
+   "where": [
+    "board/panel.c:540"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.coda_playing",
+   "en": "CODA PLAYING",
+   "es": "SONANDO CODA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:540"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.hold_release",
+   "en": "HOLD / ARP RELEASE",
+   "es": "BUCLE / ARP SUELTA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:541"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.home_parts",
+   "en": "HOME FOR SONG PARTS",
+   "es": "HOME PARA PARTES",
+   "scale": 1,
+   "where": [
+    "board/panel.c:542",
+    "board/panel.c:546"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.bolero_toggle",
+   "en": "TOP 3 TOGGLE BOLERO",
+   "es": "NEGRA 3 BOLERO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:544"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.layer_keys",
+   "en": "TOP KEYS TOGGLE",
+   "es": "CAPAS EN TECLAS NEG.",
+   "scale": 1,
+   "where": [
+    "board/panel.c:544"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.octave_key",
+   "en": "OCT-/+ KEY",
+   "es": "OCT-/+ TONO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:547"
+   ],
+   "kind": "label",
+   "max": 11
+  },
+  {
+   "id": "panel.score_hold_end",
+   "en": "TOP 2 HOLD / SEQ CODA",
+   "es": "NEGRA 2 BCL/SEQ CODA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:550"
+   ],
+   "kind": "label",
+   "note": "V1 bug: 21 characters in a 20-column row, so the screen shows SEQ COD. Fix with the R7 behaviour fixes.",
+   "known_overflow": true,
+   "max": 20
+  },
+  {
+   "id": "panel.energy_end",
+   "en": "ALGO ENERGY / 6 END",
+   "es": "ALGO ENERGÍA / 6 FIN",
+   "scale": 1,
+   "where": [
+    "board/panel.c:550"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.guide_on",
+   "en": "GUIDE ON / TOP 1",
+   "es": "GUÍA SÍ / NEGRA 1",
+   "scale": 1,
+   "where": [
+    "board/panel.c:551"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.guide_off",
+   "en": "GUIDE OFF / TOP 1",
+   "es": "GUÍA NO / NEGRA 1",
+   "scale": 1,
+   "where": [
+    "board/panel.c:551"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.select_page",
+   "en": "SELECT PAGE",
+   "es": "SELECT PÁGINA",
+   "scale": 1,
+   "where": [
+    "board/panel.c:552"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.knob1_tempo",
+   "en": "KNOB1 TEMPO",
+   "es": "KNOB1 TEMPO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:552"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.clave_linked",
+   "en": "BAND+727 +/-",
+   "es": "GRUPO+727 +/-",
+   "scale": 1,
+   "where": [
+    "board/panel.c:556"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.clave_unlinked",
+   "en": "BAND ONLY +/-",
+   "es": "SOLO GRUPO +/-",
+   "scale": 1,
+   "where": [
+    "board/panel.c:556"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.fx_drums_only",
+   "en": "FX DRUMS ONLY",
+   "es": "FX SOLO 727",
+   "scale": 1,
+   "where": [
+    "board/panel.c:563"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.seq_pads_session",
+   "en": "SEQ PADS / SESSION",
+   "es": "SEQ PADS / SESIÓN",
+   "scale": 1,
+   "where": [
+    "board/panel.c:564"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.hit",
+   "en": "2 HIT",
+   "es": "2 GOLP",
+   "scale": 1,
+   "where": [
+    "board/panel.c:566"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "panel.accent",
+   "en": "3 ACC",
+   "es": "3 ACEN",
+   "scale": 1,
+   "where": [
+    "board/panel.c:567"
+   ],
+   "kind": "label",
+   "max": 6
+  },
+  {
+   "id": "panel.level",
+   "en": "4 LEVEL",
+   "es": "4 NIVEL",
+   "scale": 1,
+   "where": [
+    "board/panel.c:569"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "panel.accent_on",
+   "en": "ACC ON",
+   "es": "ACEN SÍ",
+   "scale": 1,
+   "where": [
+    "board/panel.c:570"
+   ],
+   "kind": "label",
+   "max": 7
+  },
+  {
+   "id": "panel.accent_off",
+   "en": "ACC OFF",
+   "es": "ACEN NO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:570"
+   ],
+   "kind": "label",
+   "max": 7
+  },
+  {
+   "id": "panel.seq_editor",
+   "en": "SEQ 16-STEP EDITOR",
+   "es": "SEQ EDITA 16 PASOS",
+   "scale": 1,
+   "where": [
+    "board/panel.c:571"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.fx_drum_loop",
+   "en": "FX DRUM LOOP",
+   "es": "FX BUCLE 727",
+   "scale": 1,
+   "where": [
+    "board/panel.c:571"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.lvl",
+   "en": "LVL",
+   "es": "NIV",
+   "scale": 1,
+   "where": [
+    "board/panel.c:574"
+   ],
+   "kind": "label",
+   "max": 8
+  },
+  {
+   "id": "panel.bar_two",
+   "en": "BAR 2 / OCT-",
+   "es": "COMPÁS 2 / OCT-",
+   "scale": 1,
+   "where": [
+    "board/panel.c:580"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.bar_one",
+   "en": "BAR 1 / OCT+",
+   "es": "COMPÁS 1 / OCT+",
+   "scale": 1,
+   "where": [
+    "board/panel.c:580"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.mute_solo",
+   "en": "1-6 MUTE 7-12 SOLO",
+   "es": "1-6 MUDO 7-12 SOLO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:582"
+   ],
+   "kind": "label",
+   "max": 36,
+   "boxes": [
+    20,
+    36
+   ],
+   "note": "Drawn in boxes of 20, 36 characters; checked against the largest until this id is wired to its own draw call."
+  },
+  {
+   "id": "panel.fill_mix",
+   "en": "ARP FILL / FX MIX",
+   "es": "ARP REMATE / FX MIX",
+   "scale": 1,
+   "where": [
+    "board/panel.c:587"
+   ],
+   "kind": "label",
+   "max": 20
+  },
+  {
+   "id": "panel.rebajada_units",
+   "en": "BPM  -00.0 ST",
+   "es": "BPM  -00.0 ST",
+   "scale": 1,
+   "where": [
+    "board/panel.c:596"
+   ],
+   "kind": "template",
+   "note": "Face row 6 after a three-digit tempo. ST = semitones.",
+   "max": 17,
+   "source": "BPM  -00.0 ST"
+  },
+  {
+   "id": "panel.session_save",
+   "en": "SAVED FOR SESSION",
+   "es": "GUARDADO EN SESIÓN",
+   "scale": 1,
+   "where": [
+    "board/panel.c:606"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 20
+  },
+  {
+   "id": "panel.turn_master",
+   "en": "TURN MASTER",
+   "es": "SUBE MASTER",
+   "scale": 1,
+   "where": [
+    "board/panel.c:609"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 20
+  },
+  {
+   "id": "panel.mix_silent",
+   "en": "MIX SILENT",
+   "es": "MEZCLA EN SILENCIO",
+   "scale": 1,
+   "where": [
+    "board/panel.c:610"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
+   "max": 20
+  },
+  {
+   "id": "role.tambora",
+   "en": "TAMBORA",
+   "es": "TAMBORA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.llamador",
+   "en": "LLAMADOR",
+   "es": "LLAMADOR",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.alegre",
+   "en": "ALEGRE",
+   "es": "ALEGRE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guache",
+   "en": "GUACHE",
+   "es": "GUACHE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.campana",
+   "en": "CAMPANA",
+   "es": "CAMPANA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.none",
+   "en": "NO PART",
+   "es": "SIN PARTE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.kick",
+   "en": "KICK",
+   "es": "BOMBO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guiro",
+   "en": "GÜIRO",
+   "es": "GÜIRO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.rim",
+   "en": "RIM",
+   "es": "ARO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.cascara",
+   "en": "CÁSCARA",
+   "es": "CÁSCARA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.snare",
+   "en": "SNARE",
+   "es": "TAROLA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.hat",
+   "en": "HAT",
+   "es": "HI-HAT",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.strum_cue",
+   "en": "STRUM CUE",
+   "es": "RASGUEO GUÍA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.bongo",
+   "en": "BONGO",
+   "es": "BONGÓ",
+   "scale": 1,
+   "where": [
+    "board/stage-rack.inc:110"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "role.strum",
+   "en": "STRUM",
+   "es": "RASGUEO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guira_ascii",
+   "en": "GUIRA",
+   "es": "GÜIRA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guira",
+   "en": "GÜIRA",
+   "es": "GÜIRA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.tambora_open",
+   "en": "TAMBORA OPEN",
+   "es": "TAMB. ABTA.",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.tambora_slap",
+   "en": "TAMBORA SLAP",
+   "es": "TAMB. SECA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.stick_head",
+   "en": "STICK HEAD",
+   "es": "PALO PARCHE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.stick_rim",
+   "en": "STICK RIM",
+   "es": "PALO ARO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guacharaca",
+   "en": "GUACHARACA",
+   "es": "GUACHARACA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.tom",
+   "en": "TOM",
+   "es": "TOM",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.shaker",
+   "en": "SHAKER",
+   "es": "SONAJA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.chord_cue",
+   "en": "CHORD CUE",
+   "es": "ACORDE GUÍA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.scraper",
+   "en": "SCRAPER",
+   "es": "RASPADOR",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.low_drum",
+   "en": "LOW DRUM",
+   "es": "TAMBOR GRAVE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.conga_bass",
+   "en": "CONGA BASS",
+   "es": "BAJO CONGA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.conga_slap",
+   "en": "CONGA SLAP",
+   "es": "SECO CONGA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.conga_open",
+   "en": "CONGA OPEN",
+   "es": "CONGA ABTA.",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.synth_cue",
+   "en": "SYNTH CUE",
+   "es": "SINTE GUÍA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.cut_cue",
+   "en": "CUT CUE",
+   "es": "CORTE GUÍA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.low_reply",
+   "en": "LOW REPLY",
+   "es": "RESP. GRAVE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.open_tumba",
+   "en": "OPEN TUMBA",
+   "es": "TUMBA ABTA.",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.low_tumba",
+   "en": "LOW TUMBA",
+   "es": "TUMBA GRAVE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.short_stab",
+   "en": "SHORT STAB",
+   "es": "ACORDE CORTO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.hand_head",
+   "en": "HAND HEAD",
+   "es": "MANO PARCHE",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.hand_slap",
+   "en": "HAND SLAP",
+   "es": "MANO SECA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.tambora_rim",
+   "en": "TAMBORA RIM",
+   "es": "ARO TAMBORA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.tambora_head",
+   "en": "TAMBORA HEAD",
+   "es": "PARCHE TAMB.",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.rest_1",
+   "en": "REST 1",
+   "es": "SILENCIO 1",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.rest_2",
+   "en": "REST 2",
+   "es": "SILENCIO 2",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.rest_3",
+   "en": "REST 3",
+   "es": "SILENCIO 3",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.rest_5",
+   "en": "REST 5",
+   "es": "SILENCIO 5",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.guitar_cue",
+   "en": "GUITAR CUE",
+   "es": "GUÍA GUIT.",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.club_kick",
+   "en": "CLUB KICK",
+   "es": "BOMBO CLUB",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "role.footwork_cue",
+   "en": "FOOTWORK CUE",
+   "es": "ZAPAT. GUÍA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 12
+  },
+  {
+   "id": "family.cumbia",
+   "en": "CUMBIA",
+   "es": "CUMBIA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 24
+  },
+  {
+   "id": "family.salsa",
+   "en": "SALSA",
+   "es": "SALSA",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 24
+  },
+  {
+   "id": "family.son",
+   "en": "SON",
+   "es": "SON",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "family.conjunto",
+   "en": "CONJUNTO",
+   "es": "CONJUNTO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "family.tejano",
+   "en": "TEJANO",
+   "es": "TEJANO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "family.bolero",
+   "en": "BOLERO",
+   "es": "BOLERO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "family.merengue",
+   "en": "MERENGUE",
+   "es": "MERENGUE",
+   "scale": 1,
+   "where": [
+    "src/score.json:conductorForms.merengue"
+   ],
+   "kind": "keep",
+   "note": "Song part, already Spanish.",
+   "max": 24
+  },
+  {
+   "id": "family.tribal",
+   "en": "TRIBAL",
+   "es": "TRIBAL",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "family.jarocho",
+   "en": "JAROCHO",
+   "es": "JAROCHO",
+   "kind": "label",
+   "where": [
+    "src/score.json (generated)"
+   ],
+   "max": 8
+  },
+  {
+   "id": "settings.language",
+   "en": "LANGUAGE",
+   "es": "IDIOMA",
+   "kind": "new",
+   "where": [
+    "(1.1) GLO page"
+   ],
+   "note": "New in 1.1: the language switch.",
+   "max": 8
+  },
+  {
+   "id": "settings.english",
+   "en": "ENGLISH",
+   "es": "INGLÉS",
+   "kind": "new",
+   "where": [
+    "(1.1) GLO page"
+   ],
+   "note": "New in 1.1: the language switch.",
+   "max": 8
+  },
+  {
+   "id": "settings.spanish",
+   "en": "SPANISH",
+   "es": "ESPAÑOL",
+   "kind": "new",
+   "where": [
+    "(1.1) GLO page"
+   ],
+   "note": "New in 1.1: the language switch.",
+   "max": 8
+  },
+  {
+   "id": "transport.beats_compact",
+   "en": "BEATS",
+   "es": "TPO",
+   "scale": 1,
+   "where": [
+    "board/stage.c:840"
+   ],
+   "kind": "label",
+   "max": 5
+  },
+  {
+   "id": "score.shift_now_format",
+   "en": "NOW {value}",
+   "es": "ACT. {value}",
+   "kind": "template",
+   "where": [
+    "board/stage.c"
+   ],
+   "max": 8
+  },
+  {
+   "id": "score.shift_next_format",
+   "en": "NEXT {value}",
+   "es": "SIG. {value}",
+   "kind": "template",
+   "where": [
+    "board/stage.c"
+   ],
+   "max": 8
+  },
+  {
+   "id": "brand.subtitle",
+   "en": "RHYTHM SECTION",
+   "es": "SECCIÓN RÍTMICA",
+   "kind": "graphic",
+   "where": [
+    "board/subtitle.inc"
+   ],
+   "note": "Drawn as a bitmap; needs its own Spanish artwork.",
+   "max": null
+  },
+  {
+   "id": "USER_RHYTHM",
+   "en": "USER RHYTHM",
+   "es": "RITMO PROPIO",
+   "max": 24,
+   "scale": 1,
+   "kind": "label",
+   "where": [
+    "board/board.c:289"
+   ],
+   "note": "Not in the project catalogue. Spanish from the project sheet return (22:40)."
+  },
+  {
+   "id": "RHYTHM",
+   "en": "RHYTHM",
+   "es": "RITMO",
+   "max": 24,
+   "scale": 1,
+   "kind": "label",
+   "where": [
+    "board/board.c:390"
+   ],
+   "note": "Not in the project catalogue. Spanish from the project sheet return (22:40)."
+  },
+  {
+   "id": "hanan.drive",
+   "en": "DRIVE",
+   "es": "SATURA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.decay",
+   "en": "DECAY",
+   "es": "CAÍDA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.pitch",
+   "en": "PITCH",
+   "es": "AFINA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.clock",
+   "en": "CLOCK",
+   "es": "RELOJ",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "hanan.hz",
+   "en": "HZ",
+   "es": "HZ",
+   "max": 4,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  }
+ ]
+}

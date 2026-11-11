@@ -1,0 +1,126 @@
+{
+  "source": "Big Beat Studio reviewed TR-727 selection, DMC Orig, 2026-09-19",
+  "scope": "Recorded by Joe David Walters, the Compás author, who owns them. Released with Compás under the terms in LICENSING.md.",
+  "recordings": [
+    {
+      "pad": "HC",
+      "sound": "High bongo",
+      "sampleId": "48036bb04bbaa3bd5d61",
+      "seconds": 0.23494331065759638,
+      "peak": 0.25,
+      "processedSha256": "5fdad876d1eb24624a259b9d3b1c8d925c87a3345c21166e80285b828928c6c2"
+    },
+    {
+      "pad": "LC",
+      "sound": "Low bongo",
+      "sampleId": "65cad09b6e56554fe15e",
+      "seconds": 0.18290249433106576,
+      "peak": 0.25,
+      "processedSha256": "e9e9b4f11a9a65170f427a008fc2d48ea9399da782b29d2a6c397a7ab576de10"
+    },
+    {
+      "pad": "HT",
+      "sound": "Muted high conga",
+      "sampleId": "2eff2d6bcc68c8f56bdd",
+      "seconds": 0.17383219954648527,
+      "peak": 0.25,
+      "processedSha256": "b0fc230d6ca29e76df90dc734ea1868dc5e3884edec8c29677a4ab02d71f8487"
+    },
+    {
+      "pad": "MT",
+      "sound": "Open high conga",
+      "sampleId": "fad5f548c45640af4103",
+      "seconds": 0.1756235827664399,
+      "peak": 0.25,
+      "processedSha256": "443686c725d511296de33277c8186f240a6a259812bdcc5642504d8e9d949b59"
+    },
+    {
+      "pad": "LT",
+      "sound": "Low conga",
+      "sampleId": "dca0566263f0f5b38fc6",
+      "seconds": 0.34643990929705215,
+      "peak": 0.25,
+      "processedSha256": "6517fc60e5faea4d4550bdf1b3515960125cbdcc9a64f1fef86387ce00962534"
+    },
+    {
+      "pad": "CP",
+      "sound": "High timbale",
+      "sampleId": "44d66876ab03879972d9",
+      "seconds": 0.6714739229024943,
+      "peak": 0.25,
+      "processedSha256": "362d486f5348933a955b8d2e519812df954dbd5cf3275ab8e09e03f16dddbfa4"
+    },
+    {
+      "pad": "RS",
+      "sound": "Low timbale",
+      "sampleId": "46487878342460da49a6",
+      "seconds": 0.6757596371882086,
+      "peak": 0.25,
+      "processedSha256": "b4aa324283c41b8986934e4777c4b73bfd82c834f88ee8bd5dbc82ffd4e8f80b"
+    },
+    {
+      "pad": "CB",
+      "sound": "High agogo",
+      "sampleId": "231b621a5bd62d363074",
+      "seconds": 0.14512471655328799,
+      "peak": 0.25,
+      "processedSha256": "24be598d542c4ddc24fd6f0d7676d876f8aa415e9f09e9c3088add2c5c7ef2b8"
+    },
+    {
+      "pad": "RD",
+      "sound": "Low agogo",
+      "sampleId": "56a0e0f5e6ca45a9b3d0",
+      "seconds": 0.16507936507936508,
+      "peak": 0.25,
+      "processedSha256": "1f264d795b37957526088e06a62067464877203495f8adb6918dcfed916e2d81"
+    },
+    {
+      "pad": "SY",
+      "sound": "Cabasa",
+      "sampleId": "3a3f48f53b349fb09746",
+      "seconds": 0.1571201814058957,
+      "peak": 0.25,
+      "processedSha256": "1d7a6240fa23cd6f1009373b4622facedb777392e77870ee23842d99fb836c8f"
+    },
+    {
+      "pad": "SD",
+      "sound": "Maracas",
+      "sampleId": "3ad62e2b5206830be8a9",
+      "seconds": 0.10503401360544218,
+      "peak": 0.25,
+      "processedSha256": "50c41a118ebb1bdcb176bfa9f5815facde24216977292fb278bfa53b486f36e7"
+    },
+    {
+      "pad": "C",
+      "sound": "Short whistle",
+      "sampleId": "45e8ce0234cc26c041d7",
+      "seconds": 0.13848072562358277,
+      "peak": 0.25,
+      "processedSha256": "09115b4010543ebe008b3393d0cf182936dba4904f7dc6e8347c7867568f2548"
+    },
+    {
+      "pad": "ZAP",
+      "sound": "Long whistle",
+      "sampleId": "199508abe994256481c3",
+      "seconds": 0.2702947845804989,
+      "peak": 0.25,
+      "processedSha256": "73cafd1e66b3cd2e43023194b81266ed699210304cbc5cb459013ba0af67d2cb"
+    },
+    {
+      "pad": "BD",
+      "sound": "Quijada",
+      "sampleId": "67f54a2bedb990b7833e",
+      "seconds": 1.3243310657596372,
+      "peak": 0.25,
+      "processedSha256": "9bca68ad0248eec4a32113dd00e5b8aa4a5581e0ed02b6e84c242b75c8359389"
+    },
+    {
+      "pad": "CY",
+      "sound": "Star chime",
+      "sampleId": "eb4ec6836b5dab801c6c",
+      "seconds": 1.3996825396825396,
+      "peak": 0.25,
+      "processedSha256": "5955be4b4f5b0792ea5c33ccf366bcf5d105a153f75c28b6bf467fb386a7f837"
+    }
+  ]
+}

@@ -1,0 +1,415 @@
+{
+  "title": "Siboney - 1929 Feist two verses and D.S. return",
+  "composer": "Ernesto Lecuona",
+  "edition": "Leo. Feist, New York, 1929, plate 6212-4",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/cac07603-91eb-4533-8efa-988573d7c006/download",
+  "source_sha256": "21b2c443d489c4b7a0fec7d8b76e167408ba2a3d742459a7200508b1e441a39f",
+  "source_location": "York University JAC006835, printed and PDF pp. 2–5.",
+  "scope": "The printed piano introduction, two verses and complete chorus route with First, Second and Last endings.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 100,
+  "editorial": [
+    "On the first pass, take the two-bar segno lead repeat, then verse one. Sing the chorus pickup, play the common chorus, take First and return to the common chorus. First already contains the harmonized repeat pickup.",
+    "Second leads back to the sign on page 2. This reading takes the two-bar lead once after D.S., then plays verse two and the chorus through Last. The barline repeats are used on the outward pass.",
+    "First has a natural E in the piano cadence. Second flattens that E and leaves the voice at rest over the piano's C and E-flat lead-in to the D.S. The vocal guide follows the lower printed line at the optional ad lib.",
+    "Both piano staves play throughout with independent lines for split stems. Tempo and velocities are fixed for rehearsal. Printed rolls sound together and fermatas retain their nominal values. Lyrics and scan images stay with the source."
+  ],
+  "play_order": [
+    "INTRO",
+    "SEGNO LEAD",
+    "SEGNO LEAD",
+    "VERSE",
+    "CHORUS PICKUP",
+    "CHORUS",
+    "FIRST ENDING",
+    "CHORUS",
+    "SECOND ENDING",
+    "SEGNO LEAD",
+    "VERSE",
+    "CHORUS PICKUP",
+    "CHORUS",
+    "LAST ENDING"
+  ],
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "SEGNO LEAD",
+      "bar": 10
+    },
+    {
+      "name": "VERSE ONE",
+      "bar": 14
+    },
+    {
+      "name": "REFRAIN ONE",
+      "bar": 42
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 74
+    },
+    {
+      "name": "CHORUS REPEAT",
+      "bar": 77
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 108
+    },
+    {
+      "name": "D.S. RETURN",
+      "bar": 111
+    },
+    {
+      "name": "VERSE TWO",
+      "bar": 113
+    },
+    {
+      "name": "REFRAIN TWO",
+      "bar": 141
+    },
+    {
+      "name": "LAST ENDING",
+      "bar": 173
+    },
+    {
+      "name": "FINAL CADENCE",
+      "bar": 178
+    }
+  ],
+  "parts": [
+    {
+      "title": "Lower piano staff",
+      "program": 0,
+      "patterns": {
+        "i01": "R:24",
+        "i02": "C2:18 G2:6 C3:12 G2:12",
+        "i05": "C2:18 G2:6 C3:12 C#2+C#3:12",
+        "i06": "D2+D3:18 G2:6 D3:12 G2:12",
+        "i07": "D2:18 G2:6 D3:12 G2:12",
+        "i08": "C2:48~",
+        "i09": "C2:12 R:36",
+        "s02": "C2:18 G2:6 C3:12 R:12",
+        "v02": "C2:18 C3:6 F2:12 F3:12",
+        "v03": "C3:12 G3:12 F2:12 F3:12",
+        "v04": "C3:12 G3:12 G2:12 F3:12",
+        "v05": "C2+G2+Eb3:18 G2:6 C2+C3:12 R:12",
+        "v06": "C2+C3:18 G2:6 C2+C3:12 R:12",
+        "v12": "C2+C3:12 R:36",
+        "v13": "G2:18 D3:6 G3:12 D3:12",
+        "v14": "G2:18 D3:6 G3:12 R:12",
+        "v15": "G2:48",
+        "v16": "G2:24~ G2:12 R:12",
+        "v19": "G2:48~",
+        "v20": "G2:24 G2:24",
+        "v25": "C2+G2+E3:18 G2:6 C3:12 G2:12",
+        "v26": "C2+C3:18 G2:6 C3:12 G2:12",
+        "v28": "C2+C3:12 R:12",
+        "c18": "C2:12 C3:12~ C3:12 R:12",
+        "c30": "C2:12 R:12 F2+C3+Ab3:12 F3:12",
+        "b02": "C2+G2+Eb3:18 G2:6 C3:12 G2:12",
+        "z02": "C2+G2+Eb3:18 G2:6 C3:12 R:12",
+        "z04": "C4:24 G3:12 R:12",
+        "z05": "G2:12 R:12 D2+D3:6 G2:6 G1+G2:12",
+        "z07": "C2:18 G2:6 C3:12 G3:12",
+        "z08": "C4:12 R:36",
+        "z09": "C2+G2+C3+Eb3+G3+C4:24 R:24"
+      },
+      "partial_ticks": {
+        "i01": 24,
+        "v28": 24
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i02 i02 i05 i06 i07 i08 i09"
+        },
+        "SEGNO LEAD": {
+          "bars": "i02 s02"
+        },
+        "VERSE": {
+          "bars": "i02 v02 v03 v04 v05 v06 i02 v02 v03 v04 v05 v12 v13 v14 v15 v16 v15 v16 v19 v20 i02 v02 v03 v04 v25 v26 v26 v28"
+        },
+        "CHORUS PICKUP": {
+          "bars": "i01"
+        },
+        "CHORUS": {
+          "bars": "i02 i02 i02 i05 i06 i07 i07 i07 i07 i07 i07 i07 i02 i02 i02 i02 i02 c18 i02 i05 i06 i07 i07 i07 i07 i07 i07 i07 i02 c30 v03"
+        },
+        "FIRST ENDING": {
+          "bars": "v04 v25 s02"
+        },
+        "SECOND ENDING": {
+          "bars": "v04 b02 s02"
+        },
+        "LAST ENDING": {
+          "bars": "v04 z02 s02 z04 z05 i02 z07 z08 z09"
+        }
+      }
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "patterns": {
+        "i01": "E4:12 G4:12",
+        "i02": "E5:48~",
+        "i03": "E5:24 D5:12 E5:12",
+        "i04": "E4+G4+D5:18 E4+G4+C5:6~ E4+G4+C5:12 E4+G4+B4:12",
+        "i05": "E4+G4+D5:6 E4+G4+C5:12 E4+G4+B4:6~ E4+G4+B4:6 A4:6 C#4+E4:12",
+        "i06": "B3+F4:6 G4:12 B3+F4+B4:6~ B3+F4+B4:24",
+        "i07": "B4+F5:6 G5:12 B4+F5+B5:6~ B4+F5+B5:12 B4+F5+G5:12",
+        "i08": "C5+E5+G5+C6:48~",
+        "i09": "C5+E5+G5+C6:12 R:12 C4:12 Eb4:12",
+        "s01": "G4:48~",
+        "s02": "G4:24 C4:12 Eb4:12",
+        "v02": "G4:24 C5:12 Ab4:12",
+        "v03": "C4+Eb4+G4:18 C4+Eb4:6~ C4+Eb4:6 C5:6 C4+F4+Ab4:12",
+        "v04": "C4+Eb4+G4:18 C4+Eb4:6~ C4+Eb4:6 D4+F4:6 B3+D4:12",
+        "v05": "G3+C4+Eb4:12 C5+Eb5+G5+C6:12 R:12 Bb4+D5+F5+Bb5:12",
+        "v06": "R:12 G4+C5+Eb5+G5:12 C4:12 Eb4:12",
+        "v11": "G3+C4:12 G3+C4+Eb4+G4:12 R:12 G3+C4+Eb4+G4:12",
+        "v12": "R:12 G3+C4+Eb4+G4:12 G3+G4:12 B3+B4:12",
+        "v13": "D5:48~",
+        "v14": "D5:24 C5:12 D5:12",
+        "v15": "Eb4+G4+C5:18 D4+G4+B4:6~ D4+G4+B4:12 B3+D4+G4:12~",
+        "v16": "B3+D4+G4:6 C4+Eb4+Ab4:12 D4+F4+Bb4:6~ D4+F4+Bb4:6 Eb4+G4+C5:6 F4+Ab4+D5:12",
+        "v18": "B3+D4+G4:6 G3+Bb3+F4:12 B3+D4+G4:6~ B3+D4+G4:6 Bb3+D4+Ab4:6 C4+Eb4+Bb4:12",
+        "v20": "G4:12 R:12 C4:12 Eb4:12",
+        "v25": "G3+C4:12 G3+C4+E4+G4:12 R:12 G3+C4+E4+G4:12",
+        "v26": "R:12 G3+C4+E4+G4:12 R:12 G3+C4+E4+G4:12",
+        "v28": "R:12 G3+C4+E4+G4:12",
+        "c06": "B4+F5:6 G5:12 B4+F5+B5:6~ B4+F5+B5:12 G4+B4+G5:12",
+        "c07": "F4+B4+F5:6 D5:12 F4+B4+F5:6~ F4+B4+F5:6 D5:6 B4:12",
+        "c08": "A4:4 B4:4 A4:4 G4:12 F4:12 B3+F4+G4:12",
+        "c11": "D4+F4+C5:18 D4+F4+B4:6~ D4+F4+B4:12 B3+F4+A4:12~",
+        "c12": "B3+F4+A4:6 B3+E4+G4:12 B3+F4+A4:6~ B3+F4+A4:6 E4+G4:6 B3+D4+F4:12",
+        "c13": "C4+E4:6 G3:12 C4+E4:6~ C4+E4:24",
+        "c14": "E4:6 G4:12 E4+G4+E5:6~ E4+G4+E5:12 G4+C5+G5:12",
+        "c15": "E4+G4+E5:6 C5:12 E4+G4+E5:6~ E4+G4+E5:6 C5:6 A4:12",
+        "c16": "A4:4 B4:4 A4:4 G4:12 E4:12 G4:12",
+        "c18": "E5:18 F5:6~ F5:12 E5:12",
+        "c23": "F4+B4+F5:6 D5:12 F4+B4+F5:6~ F4+B4+F5:6 D5:6 F4:12",
+        "c29": "C4+E4:6 G3:12 C4+E4:6~ C4+E4:12 C4+E4+G4:12~",
+        "c30": "C4+E4+G4:12 C4+E4+G4:12 C4+F4+C5:12 C4+F4+Bb4:12",
+        "c31": "C4+Eb4+G4:18 C4+Eb4:6~ C4+Eb4:6 C5:6 C4+F4+Bb4:12",
+        "a03": "R:12 G3+C4+E4+G4:12 C4+E4:12 E4+G4:12",
+        "b03": "R:12 G3+C4+Eb4+G4:12 C4:12 Eb4:12",
+        "z02": "G3+C4+Eb4:12 G3+C4+Eb4+G4:12 R:12 G3+C4+Eb4+G4:12",
+        "z03": "R:12 G3+C4+Eb4+G4:12 Eb4+G4+C5:12 F4+Ab4+D5:12",
+        "z04": "G4+Eb5:6 F4+Ab4+D5:12 Eb4+G4+C5:6~ Eb4+G4+C5:6 D4+F4+Bb4:6 C4+Eb4+Ab4:12",
+        "z05": "B3+D4+G4:6 D4:12 B3+F4:6~ B3+F4:6 Eb4:1 F4:1 B3+Eb4:4 B3+D4:12",
+        "z06": "C4:12 C4+Eb4:12 R:12 C4+Eb4+G4:12",
+        "z07": "R:12 C4+Eb4+G4+C5:12 R:12 Eb4+G4+C5+Eb5:12",
+        "z08": "R:12 G4+C5+Eb5+G5:12 C4+G4+C5+Eb5+G5+C6:24",
+        "z09": "R:48"
+      },
+      "partial_ticks": {
+        "i01": 24,
+        "v28": 24
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i03 i04 i05 i06 i07 i08 i09"
+        },
+        "SEGNO LEAD": {
+          "bars": "s01 s02"
+        },
+        "VERSE": {
+          "bars": "s01 v02 v03 v04 v05 v06 s01 v02 v03 v04 v11 v12 v13 v14 v15 v16 v15 v18 s01 v20 s01 v02 v03 v04 v25 v26 v26 v28"
+        },
+        "CHORUS PICKUP": {
+          "bars": "i01"
+        },
+        "CHORUS": {
+          "bars": "i02 i03 i04 i05 i06 c06 c07 c08 v13 v14 c11 c12 c13 c14 c15 c16 i02 c18 i04 i05 i06 c06 c23 c08 v13 v14 c11 c12 c29 c30 c31"
+        },
+        "FIRST ENDING": {
+          "bars": "v04 v25 a03"
+        },
+        "SECOND ENDING": {
+          "bars": "v04 v11 b03"
+        },
+        "LAST ENDING": {
+          "bars": "v04 z02 z03 z04 z05 z06 z07 z08 z09"
+        }
+      }
+    },
+    {
+      "title": "Treble counterline",
+      "program": 0,
+      "patterns": {
+        "i01": "R:24",
+        "i02": "R:12 E4+G4:12 R:12 E4+G4:12~",
+        "i03": "E4+G4:12 E4+G4:12 E4+G4:12 E4+G4:12",
+        "i04": "R:48",
+        "s01": "R:12 G3+C4+Eb4:12 R:12 G3+C4+Eb4:12",
+        "s02": "R:12 G3+C4+Eb4:12 R:24",
+        "v02": "R:12 G3+C4+Eb4:12 R:12 C4+F4:12",
+        "v13": "D4:12 D4+G4+B4:12 R:12 D4+G4+B4:12",
+        "v14": "R:12 D4+G4+B4:12 E4+G4:12 F4+Ab4:12",
+        "v19": "R:6 B3:6 D4:6 B3:6 R:12 G3+C4:12",
+        "v20": "R:6 G3:6 B3:6 G3:6 R:24",
+        "c09": "R:12 D4+F4:12 R:12 D4+F4:12~",
+        "c10": "D4+F4:12 D4+F4:12 D4+F4:12 D4+F4:12",
+        "c18": "E4+G4:12 E4+G4:6 F4+A4:6~ F4+A4:12 E4+G4:12"
+      },
+      "partial_ticks": {
+        "i01": 24
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i03 i04 i04 i04 i04 i04 i04"
+        },
+        "SEGNO LEAD": {
+          "bars": "s01 s02"
+        },
+        "VERSE": {
+          "bars": "s01 v02 i04 i04 i04 i04 s01 v02 i04 i04 i04 i04 v13 v14 i04 i04 i04 i04 v19 v20 s01 v02 i04 i04 i04 i04 i04 i01"
+        },
+        "CHORUS PICKUP": {
+          "bars": "i01"
+        },
+        "CHORUS": {
+          "bars": "i02 i03 i04 i04 i04 i04 i04 i04 c09 c10 i04 i04 i04 i04 i04 i04 i02 c18 i04 i04 i04 i04 i04 i04 c09 c10 i04 i04 i04 i04 i04"
+        },
+        "FIRST ENDING": {
+          "bars": "i04 i04 i04"
+        },
+        "SECOND ENDING": {
+          "bars": "i04 i04 i04"
+        },
+        "LAST ENDING": {
+          "bars": "i04 i04 i04 i04 i04 i04 i04 i04 i04"
+        }
+      }
+    },
+    {
+      "title": "Bass counterline",
+      "program": 0,
+      "patterns": {
+        "i01": "R:24",
+        "i02": "R:48",
+        "i08": "R:18 G2:6 C3:6 E3:6 G3:12",
+        "i09": "C4:12 R:36",
+        "v15": "R:12 G3:24~ G3:12",
+        "v16": "R:24 G3:12 R:12",
+        "v19": "G3:24 F3:12 Eb3:12",
+        "v20": "D3:24 Eb3:12 G3:12",
+        "c18": "R:24 C4:12 G3:12",
+        "z05": "G3:12 R:6 Ab3:6~ Ab3:6 G3:6 F3:12",
+        "z06": "Eb3+G3:12 G3:12 R:12 G3:12"
+      },
+      "partial_ticks": {
+        "i01": 24
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i02 i02 i02 i02 i02 i08 i09"
+        },
+        "SEGNO LEAD": {
+          "bars": "i02 i02"
+        },
+        "VERSE": {
+          "bars": "i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 v15 v16 v15 v16 v19 v20 i02 i02 i02 i02 i02 i02 i02 i01"
+        },
+        "CHORUS PICKUP": {
+          "bars": "i01"
+        },
+        "CHORUS": {
+          "bars": "i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 c18 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02 i02"
+        },
+        "FIRST ENDING": {
+          "bars": "i02 i02 i02"
+        },
+        "SECOND ENDING": {
+          "bars": "i02 i02 i02"
+        },
+        "LAST ENDING": {
+          "bars": "i02 i02 i02 i02 z05 z06 i02 i02 i02"
+        }
+      }
+    },
+    {
+      "title": "Vocal guide",
+      "program": 53,
+      "patterns": {
+        "i01": "R:24",
+        "i02": "R:48",
+        "s02": "R:24 C4:12 Eb4:12",
+        "v01": "G4:48~",
+        "v02": "G4:24 C5:12 Ab4:12",
+        "v03": "G4:18 Eb4:6~ Eb4:6 C5:6 Ab4:12",
+        "v04": "G4:18 Eb4:6~ Eb4:6 F4:6 D4:12",
+        "v05": "Eb4:48~",
+        "v06": "Eb4:12 R:12 C4:12 Eb4:12",
+        "v11": "C4:48~",
+        "v12": "C4:12 R:12 G4:12 B4:12",
+        "v13": "D5:48~",
+        "v14": "D5:24 C5:12 D5:12",
+        "v15": "C5:18 B4:6~ B4:12 G4:12~",
+        "v16": "G4:6 Ab4:12 Bb4:6~ Bb4:6 C5:6 D5:12",
+        "v18": "G4:6 F4:12 G4:6~ G4:6 Ab4:6 Bb4:12",
+        "v20": "G4:12 R:12 C4:12 Eb4:12",
+        "v28": "C4:12 R:12",
+        "p01": "E4:12 G4:12",
+        "c01": "E5:48~",
+        "c02": "E5:24 D5:12 E5:12",
+        "c03": "D5:18 C5:6~ C5:12 B4:12",
+        "c04": "D5:6 C5:12 B4:6~ B4:6 A4:6 E4:12",
+        "c05": "F4:6 G4:12 B4:6~ B4:24~",
+        "c06": "B4:48~",
+        "c08": "B4:12 R:12 F4:12 G4:12",
+        "c11": "C5:1 D5:1 C5:16 B4:6~ B4:12 A4:12~",
+        "c12": "A4:6 G4:12 A4:6~ A4:6 G4:6 F4:12",
+        "c13": "E4:48~",
+        "c16": "E4:12 R:12 E4:12 G4:12",
+        "c18": "E5:18 F5:6~ F5:12 E5:12",
+        "c27": "C5:18 B4:6~ B4:12 A4:12~",
+        "c30": "E4:12 R:12 C5:12 Ab4:12",
+        "a03": "C4:12 R:12 E4:12 G4:12",
+        "b03": "C4:12 R:36",
+        "z03": "Eb4:12 R:12 C5:12 D5:12",
+        "z04": "Eb5:6 D5:12 C5:6~ C5:6 Bb4:6 Ab4:12",
+        "z05": "G4:6 D4:12 F4:6~ F4:6 Eb4:1 F4:1 Eb4:4 D4:12",
+        "z09": "C4:24 R:24"
+      },
+      "partial_ticks": {
+        "i01": 24,
+        "v28": 24,
+        "p01": 24
+      },
+      "sections": {
+        "INTRO": {
+          "bars": "i01 i02 i02 i02 i02 i02 i02 i02 i02"
+        },
+        "SEGNO LEAD": {
+          "bars": "i02 s02"
+        },
+        "VERSE": {
+          "bars": "v01 v02 v03 v04 v05 v06 v01 v02 v03 v04 v11 v12 v13 v14 v15 v16 v15 v18 v01 v20 v01 v02 v03 v04 v11 v11 v11 v28"
+        },
+        "CHORUS PICKUP": {
+          "bars": "p01"
+        },
+        "CHORUS": {
+          "bars": "c01 c02 c03 c04 c05 c06 c06 c08 v13 v14 c11 c12 c13 c13 c13 c16 c01 c18 c03 c04 c05 c06 c06 c08 v13 v14 c27 c12 c13 c30 v03"
+        },
+        "FIRST ENDING": {
+          "bars": "v04 v11 a03"
+        },
+        "SECOND ENDING": {
+          "bars": "v04 v11 b03"
+        },
+        "LAST ENDING": {
+          "bars": "v04 v05 z03 z04 z05 v11 v11 v11 z09"
+        }
+      }
+    }
+  ]
+}

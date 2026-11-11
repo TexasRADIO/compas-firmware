@@ -1,0 +1,170 @@
+{
+  "title": "La Cucaracha - Songbag right hand",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Piano arrangement credited A. G. W. (Alfred George Wathall).",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed p. 290, PDF page 318 (one-based), middle piano staff",
+  "scope": "One printed verse and chorus at written pitches and nominal lengths. Preview tempo is editorial.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "Four systems read from the scanned 1927 print.",
+    "audit": "la-cucaracha-songbag-review.md"
+  },
+  "system_bars": [
+    [
+      1,
+      4
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      9,
+      12
+    ],
+    [
+      13,
+      17
+    ]
+  ],
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 112,
+  "form": [
+    {
+      "name": "VERSE",
+      "bar": 1
+    },
+    {
+      "name": "CHORUS",
+      "bar": 9
+    },
+    {
+      "name": "ENDING",
+      "bar": 17
+    }
+  ],
+  "parts": [
+    {
+      "title": "Piano treble voice 1",
+      "program": 0,
+      "bars": [
+        "R:24 G3:48",
+        "R:24 G3:48",
+        "R:24 G3:48",
+        "R:24 G3:48",
+        "R:24 G3:48",
+        "R:24 G3:48",
+        "R:24 G3:48",
+        {
+          "notes": "R:24 G3+C4+E4+G4:12",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "R:24 G3:12 R:36",
+        "R:24 C4:12 R:36",
+        "R:24 G#3+A3+E4:12 R:36",
+        "R:24 G3+B3+F4:12 R:36",
+        "R:24 G3+B3+F4:12 R:36",
+        "R:24 G3+B3+D4:12 R:36",
+        "R:24 G3+D4+F4+G4:24 G3+B3+F4+G4:24",
+        "C4:24 C5+E5+G5+C6:24 R:24"
+      ]
+    },
+    {
+      "title": "Piano treble voice 2",
+      "program": 0,
+      "bars": [
+        "R:25 C4:47",
+        "R:25 C4:47",
+        "R:25 C4:47",
+        "R:25 D4:47",
+        "R:25 D4:47",
+        "R:25 D4:47",
+        "R:25 D4:47",
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "R:25 C4:11 R:36",
+        "R:25 G4:11 R:36",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72"
+      ]
+    },
+    {
+      "title": "Piano treble voice 3",
+      "program": 0,
+      "bars": [
+        "R:26 E4:46",
+        "R:26 E4:46",
+        "R:26 E4:46",
+        "R:26 F4:46",
+        "R:26 F4:46",
+        "R:26 F4:46",
+        "R:26 F4:46",
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "R:26 E4:10 R:36",
+        "R:26 C5:10 R:36",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72"
+      ]
+    },
+    {
+      "title": "Piano treble voice 4",
+      "program": 0,
+      "bars": [
+        "R:27 G4:45",
+        "R:27 G4:45",
+        "R:27 G4:45",
+        "R:27 G4:45",
+        "R:27 G4:45",
+        "R:27 G4:45",
+        "R:27 G4:45",
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        {
+          "notes": "R:36",
+          "ticks": 36
+        },
+        "R:27 G4:9 R:36",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72"
+      ]
+    }
+  ],
+  "realization": "Rolled chords ascend with one tick between adjacent attacks and release together at the written endpoint."
+}

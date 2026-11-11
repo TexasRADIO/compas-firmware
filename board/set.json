@@ -1,0 +1,106 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "CUMBIA COAST",
+      "study": "coast",
+      "feel": 24,
+      "section": "base"
+    },
+    {
+      "title": "CUMBIA ELÉCTRICA",
+      "study": "mx",
+      "kit": true,
+      "feel": 33,
+      "section": "base"
+    },
+    {
+      "title": "BOLERO CANCIÓN",
+      "study": "bolero",
+      "kit": true,
+      "feel": 22,
+      "section": "base"
+    },
+    {
+      "title": "SON MONTUNO",
+      "study": "son",
+      "kit": true,
+      "feel": 25,
+      "section": "base"
+    },
+    {
+      "title": "SALSA SON CLAVE",
+      "study": "salsa",
+      "kit": true,
+      "feel": 26,
+      "section": "lift"
+    },
+    {
+      "title": "MERENGUE",
+      "study": "merengue",
+      "feel": 20,
+      "section": "base"
+    },
+    {
+      "title": "TEJANO CUMBIA",
+      "study": "tejano",
+      "kit": true,
+      "feel": 25,
+      "section": "base"
+    },
+    {
+      "title": "CONJUNTO POLKA",
+      "study": "conjunto",
+      "feel": 23,
+      "section": "base"
+    },
+    {
+      "title": "LA PALOMA",
+      "study": "la-paloma",
+      "bpm": 88,
+      "feel": 0
+    },
+    {
+      "title": "LA GOLONDRINA",
+      "study": "la-golondrina",
+      "bpm": 84,
+      "feel": 0
+    },
+    {
+      "title": "CDMX SONIDERA",
+      "study": "cdmx",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MTY CUMBIA DUB",
+      "study": "mty-dub",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "TRIBAL 132",
+      "study": "tribal",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "VILLERA STUDY",
+      "study": "villera",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "LIMA DIGITAL",
+      "study": "lima",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "CHILE ELECTRO",
+      "study": "chile",
+      "feel": 0,
+      "kit": true
+    }
+  ]
+}

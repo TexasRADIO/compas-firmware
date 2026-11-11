@@ -1,0 +1,82 @@
+{
+  "title": "La Cucaracha - Songbag canto",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Piano arrangement credited A. G. W. (Alfred George Wathall).",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed p. 290, PDF page 318 (one-based), upper vocal staff",
+  "scope": "One printed verse and chorus at written pitches and nominal lengths. Preview tempo is editorial.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "Four systems read from the scanned 1927 print.",
+    "audit": "la-cucaracha-songbag-review.md"
+  },
+  "system_bars": [
+    [
+      1,
+      4
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      9,
+      12
+    ],
+    [
+      13,
+      17
+    ]
+  ],
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 112,
+  "form": [
+    {
+      "name": "VERSE",
+      "bar": 1
+    },
+    {
+      "name": "CHORUS",
+      "bar": 9
+    },
+    {
+      "name": "ENDING",
+      "bar": 17
+    }
+  ],
+  "parts": [
+    {
+      "title": "Written canto",
+      "program": 0,
+      "bars": [
+        "G3:12 G3:12 C4:12 C4:12 E4:12 E4:12",
+        "G4:24 E4:48",
+        "G4:12 G4:12 A4:12 G4:12 F4:12 E4:12",
+        "F4:24 D4:48",
+        "G3:12 G3:12 B3:12 B3:12 D4:12 D4:12",
+        "F4:24 D4:48",
+        "G4:12 A4:12 G4:12 F4:12 E4:12 D4:12",
+        {
+          "notes": "E4:24 C4:12",
+          "ticks": 36
+        },
+        {
+          "notes": "G3:12 G3:12 G3:12",
+          "ticks": 36
+        },
+        "C4:24 E4:18 G3:6 G3:18 G3:6",
+        "C4:24 E4:48",
+        "C4:12 B3:12 C4:12 B3:12 C4:12 C#4:12",
+        "D4:36 G3:12 G3:12 G3:12",
+        "B3:24 D4:18 G3:6 G3:18 G3:6",
+        "B3:24 D4:48",
+        "G4:12 A4:12 G4:12 F4:12 E4:12 D4:12",
+        "C4:72"
+      ]
+    }
+  ]
+}

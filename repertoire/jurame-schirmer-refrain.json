@@ -1,0 +1,101 @@
+{
+  "title": "Júrame · Schirmer refrain to D.C.",
+  "edition": "María Grever, G. Schirmer, New York, 1926, plate 37700, digitized pages 2–3",
+  "source": "https://petruccimusiclibrary.ca/files/imglnks/caimg/d/db/IMSLP675258-PMLP1083489-Grever.pdf",
+  "source_sha256": "459e84c5e25cf752e3743ad9a5c8ed2aaaf754327b7c86e3b4cc130e6cc00ca1",
+  "scope": "The first printed refrain, counted measures 23–45. The rehearsal stops at the D.C.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 72,
+  "form": [
+    {
+      "name": "REFRAIN ENTRY",
+      "bar": 1
+    },
+    {
+      "name": "ANSWER",
+      "bar": 6
+    },
+    {
+      "name": "BÉSAME",
+      "bar": 11
+    },
+    {
+      "name": "QUIÉREME",
+      "bar": 16
+    },
+    {
+      "name": "CADENCE",
+      "bar": 18
+    }
+  ],
+  "editorial": [
+    "The canto follows the written first refrain through the last tied C5 and rests. The MIDI retains both printed pitches at the three divided onsets. The FM-1 guide sounds the upper pitch.",
+    "The sparse piano cue selects attacks from the bottom staff. Most inner and upper notes, the treble staff and several high left-hand replies are left to the player.",
+    "The opening bass C2 and G2 share a printed roll. The player renders them together. The 32nd-note bass triplets in measures 23 and 28 retain their three attacks.",
+    "The editorial quarter-note tempo is 72. The printed rubato, accelerando and fermatas use their nominal note lengths here. The D.C. and second stanza remain outside this rehearsal."
+  ],
+  "parts": [
+    {
+      "title": "Selected piano bass",
+      "program": 0,
+      "bars": [
+        "C2+G2:18 R:24 E2:2 F2:2 F#2:2",
+        "G2:48",
+        "C2+G2:48",
+        "C3:18 G3:6 C#3:12 G3:12",
+        "D3:18 G3:6 R:24",
+        "D2+G2:18 R:24 D2:2 E2:2 F2:2",
+        "G1+G2:48",
+        "R:12 G2:36",
+        "F3:24 F3:24",
+        "C3:18 E3:6 G3:12 G2:12",
+        "C2:18 R:30",
+        "C2:48",
+        "F2+C3:48~",
+        "F2+C3:24 R:24",
+        "D3:12 G2:12 R:24",
+        "E2:18 R:18 E2:12",
+        "D2:18 R:18 A1:12",
+        "G1+C2+G2:12 C3:12 R:24",
+        "A1+A2:12 R:12 A2:24",
+        "D2:18 A2:6 F3:12 A2:12",
+        "G1:18 G2:6 R:12 G2:12",
+        "C2+G2:18 G2:6 E3:12 G2:12",
+        "C1+C2:48"
+      ]
+    },
+    {
+      "title": "Printed canto",
+      "program": 0,
+      "bars": [
+        "C5:12 B4:12 D5:24~",
+        "D5:12 B4:6 C5:6 D5:6 C5:6 B4:6 A4:6",
+        "B4:6 B4:6 A4:6 B4:6 C5:6 B4:6 A4:6 G4:6",
+        "A4:6 A4:6 E4:6 F4:6 G4:6 G4:6 F4:6 E4:6",
+        "G4:48",
+        "B4:6 A4:6 C5:36~",
+        "C5:12 A4:6 B4:6 C5:6 B4:6 A4:6 G4:6",
+        "A4:6 A4:6 D4:6 E4:6 F4:6 G4:6 A4:6 G4:6",
+        "B4:6 B4:6 G4:6 A4:6 B4:6 D5:6 B4:6 G4:6",
+        "A4:48",
+        "D5:18 C5:6 E5:24~",
+        "E5:12 C5:6 D5:6 E5:6 E5+G5:6 E5:6 C5:6",
+        "E5:6 D5:6 E5:6 D5:6 E5:6 D5:6 E5:6 D5:6",
+        "E5:6 D5:6 C5:6 B4:6 D5:6 C5:6 B4:6 A4:6",
+        "B4:48",
+        "C5:6 B4:6 D5:36~",
+        "D5:12 C5:6 B4:6 D5:6 C5:6 B4:6 C5:6",
+        "E5+G5:24 E5+G5:24~",
+        "E5+G5:12 E4:6 F4:6 G4:6 F#4:6 G4:6 G#4:6",
+        "A4:12 F4:24 A4:12",
+        "C5:12 B4:6 A4:6 B4:12 G4:12",
+        "C5:48~",
+        "C5:12 R:36"
+      ]
+    }
+  ]
+}

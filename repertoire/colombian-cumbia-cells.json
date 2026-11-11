@@ -1,0 +1,161 @@
+{
+  "source": {
+    "title": "Plan especial de salvaguardia de la cumbia tradicional del Caribe colombiano",
+    "asset": "https://mincultura.gov.co/direcciones/patrimonio-y-memoria/Documents/plan-especial-de-salvagurdia-cumbia.pdf",
+    "sha256": "dacd2a944586c7d2488ebd420c0dc9a4af59aa561a2adf02920fe2e053cc1bc6"
+  },
+  "scope": "The four traditional body bars after the pickup. Each 2/2 bar occupies two quarter-note pulses in Compás. The printed half-note metronome mark becomes the Compás quarter-note BPM.",
+  "rights": "Original Compas release sound design based on documented traditional percussion practice. The modern engravings and recordings remain source references. No named composition is encoded.",
+  "rack727": {
+    "sourcePatternScope": "Same four body bars, with their attacks at the same steps. The 727 reduces the strokes to one-shot substitutes and does not reproduce the sustained guache.",
+    "voiceMap": {
+      "alegreCross": 2,
+      "alegreRound": 3,
+      "llamador": 1,
+      "tamboraRim": 5,
+      "tamboraHead": 4,
+      "maraca": 10,
+      "guache": 13
+    },
+    "accents": {
+      "alegreRound": true,
+      "llamador": [2, 6]
+    },
+    "titles": ["BANQUEÑA 727", "BARRANQUILLA 727", "SOLEDAD 727"]
+  },
+  "shared": {
+    "headEven": [
+      6
+    ],
+    "maraca": [
+      0,
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "guacheAttack": [
+      2,
+      6
+    ],
+    "initialGuacheAttack": 0
+  },
+  "patterns": [
+    {
+      "study": "cumbia-banquena",
+      "short": "CUMBIA BANQUEÑA",
+      "bpm": 94,
+      "page": 75,
+      "credit": "Ligio José Arce Martínez",
+      "alegre": [
+        0,
+        1,
+        3,
+        4,
+        6
+      ],
+      "alegreRound": [
+        1,
+        6
+      ],
+      "llamador": [
+        2,
+        6
+      ],
+      "rimOdd": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "rimEven": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "study": "cumbia-barranquilla",
+      "short": "BARRANQUILLA",
+      "bpm": 97,
+      "page": 146,
+      "credit": "Gusti De La Hoz Ferreira",
+      "alegre": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "alegreRound": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "llamador": [
+        2,
+        6
+      ],
+      "rimOdd": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "rimEven": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "study": "cumbia-soledad",
+      "short": "CUMBIA SOLEDAD",
+      "bpm": 110,
+      "page": 147,
+      "credit": "Gusti De La Hoz Ferreira",
+      "alegre": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "alegreRound": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "llamador": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "rimOdd": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "rimEven": [
+        0,
+        2,
+        3,
+        5
+      ]
+    }
+  ]
+}

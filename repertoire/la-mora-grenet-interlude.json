@@ -1,0 +1,55 @@
+{
+  "title": "La Mora - instrumental interlude and text pickup",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University John Arpin collection JAC009399, printed and PDF p. 4, system 3 after the double bar, system 4, and the first bar of system 5.",
+  "scope": "Seven instrumental bars and the one-bar pickup before the texted repeat. Starts after OTRA 2ª and stops at the repeat start.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 96,
+  "form": [
+    {"name": "INTERLUDE", "bar": 1},
+    {"name": "PHRASE RETURN", "bar": 5},
+    {"name": "ACCENTED FIGURE", "bar": 7},
+    {"name": "TEXT PICKUP", "bar": 8}
+  ],
+  "editorial": [
+    "The upper C4 ties across bars 1–2 and 5–6. There is a fresh C4 at the start of system 4, even though the preceding system ends on C4.",
+    "The last two upper sixteenths of bar 2 are both E4. The first system of the closing refrain on p. 5 instead ends the corresponding bar on C4.",
+    "The lower staff has both C2 and E2 on the final eighth of bar 6. The analogous closing-refrain bar has C2 alone.",
+    "The pickup uses the four printed upper chords and the one lower octave. The repeat that follows it is outside the excerpt.",
+    "Quarter-note tempo 96 and fixed velocity are editorial. The hairpins, accent marks and phrasing slurs do not change MIDI note lengths."
+  ],
+  "parts": [
+    {
+      "title": "Lower piano staff",
+      "program": 0,
+      "bars": [
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2+E2:12",
+        "F2+F3:12 A2:6 C3:6 F3:12 F2+F3:6 F2+F3:6",
+        "F2+F3:12 R:36"
+      ]
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "bars": [
+        "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "C4:6 C4:6 E4:6 G4:6 Bb4:6 G4:6 E4:6 E4:6",
+        "F4:12 F4:6 D4:12 D4:6 C4:12",
+        "C4:12 E4:6 G4:6 C5:24",
+        "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "C4:6 C4:6 E4:6 G4:6 Bb4:12 G4:6 E4:6",
+        "A3+F4:12 R:24 F4+A4+C5+F5:6 F4+A4+C5+F5:6",
+        "F4+A4+C5+F5:12 A4+C5:12 Bb4+D5:12 C5+E5:12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "La Mora - closing refrain, both piano staves",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University John Arpin collection JAC009399, printed and PDF p. 5, systems 5–6.",
+  "scope": "Eight consecutive written bars from the double bar to the end of the print. The lyric-bearing upper piano staff and lower piano staff share the same clock.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 96,
+  "form": [
+    {"name": "REFRAIN", "bar": 1},
+    {"name": "REFRAIN RETURN", "bar": 5},
+    {"name": "CLOSING FIGURE", "bar": 7}
+  ],
+  "editorial": [
+    "The C4 at the end of each odd bar in bars 1–5 ties to the first C4 in the next bar. The next C4 within bars 2 and 6 is a separate attack.",
+    "The score's one-flat key signature applies to the lower-neighbor Bb3 and the lower-staff Bb2.",
+    "Phrasing slurs and dynamic hairpins are recorded as printed context. The MIDI uses fixed velocity and an editorial quarter-note tempo of 96.",
+    "The last bar keeps both printed sharps in the bass and ends at the double bar. No resolving chord or reprise is added."
+  ],
+  "parts": [
+    {
+      "title": "Lower piano staff",
+      "program": 0,
+      "bars": [
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "F2+F3:18 Bb2:18 C3:12",
+        "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "F2+F3:12 A2:6 C3:6 F3:12 F2+F3:6 F2+F3:6",
+        "F2+F3:12 F3:6 A3:6 C4:12 F#3+D#4:12"
+      ]
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "bars": [
+        "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "C4:6 C4:6 E4:6 G4:6 Bb4:6 G4:6 E4:6 C4:6",
+        "F4:12 F4:6 D4:12 D4:6 C4:12~",
+        "C4:12 E4:6 G4:6 C5:24",
+        "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "C4:6 C4:6 E4:6 G4:6 Bb4:12 G4:6 E4:6",
+        "A3+F4:12 R:24 F4+A4+C5+F5:6 F4+A4+C5+F5:6",
+        "F4+A4+C5+F5:12 A4:6 C5:6 G5:6 A5:6 C6:6 A5:6"
+      ]
+    }
+  ]
+}

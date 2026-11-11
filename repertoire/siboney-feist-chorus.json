@@ -1,0 +1,157 @@
+{
+  "title": "Siboney - 1929 Feist chorus opening",
+  "composer": "Ernesto Lecuona",
+  "edition": "Leo. Feist, New York, 1929, plate 6212-4",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/cac07603-91eb-4533-8efa-988573d7c006/download",
+  "source_sha256": "21b2c443d489c4b7a0fec7d8b76e167408ba2a3d742459a7200508b1e441a39f",
+  "source_location": "York University John Arpin Sheet Music Collection JAC006835, PDF and printed page 4, systems 1–3.",
+  "scope": "Chorus pickup, first fifteen full bars and the first beat of bar sixteen. Stops before the next sung pickup. Both piano staves and the separately printed vocal line.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 100,
+  "form": [
+    {
+      "name": "CHORUS PICKUP",
+      "bar": 1
+    },
+    {
+      "name": "FIRST PHRASE",
+      "bar": 2
+    },
+    {
+      "name": "SECOND PHRASE",
+      "bar": 10
+    },
+    {
+      "name": "LAST CADENCE",
+      "bar": 14
+    }
+  ],
+  "editorial": [
+    "The printed chorus starts with two eighths. The first beat of its sixteenth bar completes the tied vocal cadence before the next two-eighth pickup. These opening and closing beats are partial measures in this excerpt.",
+    "The upper piano counterline has its own MIDI track where it sounds against held notes. Short ties between matching chords and the long sung cadences remain sustained.",
+    "The two small notes in the vocal line at chorus bar 11 use one tick each, taken from the following dotted eighth. Piano sixteenth triplets use four ticks each.",
+    "Tempo and fixed velocities are rehearsal settings. The export contains no lyrics, diagrams, or later recording arrangement."
+  ],
+  "parts": [
+    {
+      "title": "Lower piano staff",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "C2:18 G2:6 C3:12 G2:12",
+        "C2:18 G2:6 C3:12 G2:12",
+        "C2:18 G2:6 C3:12 G2:12",
+        "C2:18 G2:6 C3:12 C#2+C#3:12",
+        "D2+D3:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "D2:18 G2:6 D3:12 G2:12",
+        "C2:18 G2:6 C3:12 G2:12",
+        "C2:18 G2:6 C3:12 G2:12",
+        "C2:18 G2:6 C3:12 G2:12",
+        {
+          "notes": "C2:18 G2:6",
+          "ticks": 24
+        }
+      ]
+    },
+    {
+      "title": "Upper piano staff",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "E4:12 G4:12",
+          "ticks": 24
+        },
+        "E5:48~",
+        "E5:24 D5:12 E5:12",
+        "E4+G4+D5:18 E4+G4+C5:6~ E4+G4+C5:12 E4+G4+B4:12",
+        "E4+G4+D5:6 E4+G4+C5:12 E4+G4+B4:6~ E4+G4+B4:6 A4:6 C#4+E4:12",
+        "B3+F4:6 G4:12 B3+F4+B4:6~ B3+F4+B4:24",
+        "B4+F5:6 G5:12 B4+F5+B5:6~ B4+F5+B5:12 G4+B4+G5:12",
+        "F4+B4+F5:6 D5:12 F4+B4+F5:6~ F4+B4+F5:6 D5:6 B4:12",
+        "A4:4 B4:4 A4:4 G4:12 F4:12 B3+F4+G4:12",
+        "D5:48~",
+        "D5:24 C5:12 D5:12",
+        "D4+F4+C5:18 D4+F4+B4:6~ D4+F4+B4:12 B3+F4+A4:12~",
+        "B3+F4+A4:6 B3+E4+G4:12 B3+F4+A4:6~ B3+F4+A4:6 E4+G4:6 B3+D4+F4:12",
+        "C4+E4:6 G3:12 C4+E4:6~ C4+E4:24",
+        "E4:6 G4:12 E4+G4+E5:6~ E4+G4+E5:12 G4+C5+G5:12",
+        "E4+G4+E5:6 C5:12 E4+G4+E5:6~ E4+G4+E5:6 C5:6 A4:12",
+        {
+          "notes": "A4:4 B4:4 A4:4 G4:12",
+          "ticks": 24
+        }
+      ]
+    },
+    {
+      "title": "Upper piano counterline",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:12 E4+G4:12 R:12 E4+G4:12~",
+        "E4+G4:12 E4+G4:12 E4+G4:12 E4+G4:12",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:12 D4+F4:12 R:12 D4+F4:12~",
+        "D4+F4:12 D4+F4:12 D4+F4:12 D4+F4:12",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        "R:48",
+        {
+          "notes": "R:24",
+          "ticks": 24
+        }
+      ]
+    },
+    {
+      "title": "Vocal guide",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "E4:12 G4:12",
+          "ticks": 24
+        },
+        "E5:48~",
+        "E5:24 D5:12 E5:12",
+        "D5:18 C5:6~ C5:12 B4:12",
+        "D5:6 C5:12 B4:6~ B4:6 A4:6 E4:12",
+        "F4:6 G4:12 B4:6~ B4:24~",
+        "B4:48~",
+        "B4:48~",
+        "B4:12 R:12 F4:12 G4:12",
+        "D5:48~",
+        "D5:24 C5:12 D5:12",
+        "C5:1 D5:1 C5:16 B4:6~ B4:12 A4:12~",
+        "A4:6 G4:12 A4:6~ A4:6 G4:6 F4:12",
+        "E4:48~",
+        "E4:48~",
+        "E4:48~",
+        {
+          "notes": "E4:12 R:12",
+          "ticks": 24
+        }
+      ]
+    }
+  ]
+}

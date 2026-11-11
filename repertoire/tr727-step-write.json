@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "id": "roland-step-write",
+  "title": "ROLAND STEP WRITE",
+  "source": {
+    "edition": "Roland TR-727 Owner’s Manual, Example Step Write",
+    "url": "https://cdn.roland.com/assets/media/pdf/TR-727_OM.pdf#page=14",
+    "printedPages": [
+      12,
+      13
+    ],
+    "scanPages": [
+      14,
+      15
+    ],
+    "retainedScanSha256": "cd16e82f6f8ea9d50bb5605d6a1beb2fc4d88cdf1768f17a3cda87915ecdefbe",
+    "scope": "Four percussion lanes in the one-bar teaching example. Figure 2 has an empty accent row. Rights to the manual and illustrations remain with their owners."
+  },
+  "sourceSteps": 16,
+  "meter": "4/4",
+  "sourceVoices": {
+    "Hi Bongo": [
+      3,
+      6,
+      11,
+      13
+    ],
+    "Open Hi Conga": [
+      1,
+      4,
+      5,
+      10,
+      12
+    ],
+    "Low Conga": [
+      2,
+      7,
+      8,
+      9,
+      15,
+      16
+    ],
+    "Hi Agogo": [
+      1,
+      5,
+      9,
+      13
+    ]
+  },
+  "sourceAccent": [],
+  "rackVoices": {
+    "Hi Bongo": 0,
+    "Open Hi Conga": 3,
+    "Low Conga": 4,
+    "Hi Agogo": 7
+  },
+  "adaptation": "Repeat the printed bar in both Compás editor bars at the current tempo and Feel. For the straight source timing, set Feel to zero. "
+}

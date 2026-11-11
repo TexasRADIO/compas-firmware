@@ -1,0 +1,255 @@
+{
+  "title": "La Mora · sung passage through the printed finale",
+  "composer": "Eliseo Grenet",
+  "edition": "Anselmo López y Cía., Habana, 1918",
+  "source": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+  "source_sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+  "source_location": "York University JAC009399, printed and PDF p. 4 system 5 from the text pickup through the last bar of p. 5.",
+  "scope": "43 performed bars in 2/4. Includes one pickup bar, both passes and endings of the verse, the texted continuation and the complete eight-bar closing refrain.",
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 96,
+  "play_order": [
+    "PICKUP",
+    "VERSE",
+    "FIRST ENDING",
+    "REPEAT",
+    "SECOND ENDING",
+    "CONTINUATION",
+    "REFRAIN",
+    "FINALE"
+  ],
+  "form": [
+    {
+      "name": "TEXT PICKUP",
+      "bar": 1
+    },
+    {
+      "name": "VERSE",
+      "bar": 2
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 12
+    },
+    {
+      "name": "REPEAT",
+      "bar": 13
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 23
+    },
+    {
+      "name": "CONTINUATION",
+      "bar": 24
+    },
+    {
+      "name": "REFRAIN",
+      "bar": 36
+    },
+    {
+      "name": "FINALE",
+      "bar": 42
+    }
+  ],
+  "editorial": [
+    "The sung voice takes the upper pitch of the printed texted piano chords. It is a monophonic guide at printed pitch. Lower right-hand chord tones are reduced after the pickup.",
+    "The pickup splits its three upper melody notes from the remaining piano chord tones. The verse and the two endings retain the readings in la-mora-grenet-sung-guide.json.",
+    "The low C2 and C3 at the end of the second ending are tied into the dotted-quarter opening of the continuation. The lower dyads across its first five bars preserve the printed ties.",
+    "The separate numeral 6 in the second bar of the continuation is read with the written sixteenth–eighth pattern, as in the parallel fourth bar. The preceding tied eighth leaves 36 ticks here, unlike the second ending.",
+    "The wordless answer in p. 5 system 3 bar 3 keeps the upper quarter chord, lower bass and cross-staff inner voice. The inner voice enters one eighth after the barline and follows its own sixteenth–eighth beaming, with E3–G3 held through the two tied middle notes.",
+    "The wordless pickup before the final refrain contains three and four written sixteenths. An editorial sixteenth rest puts the second group on beat two.",
+    "The first six bars of the closing refrain use the printed right-hand melody as guide. Its two closing piano bars remain audible with Guide off. The print supplies no added final resolution.",
+    "Quarter note = 96 and fixed velocities are editorial. Dynamics and phrasing slurs do not change the written durations."
+  ],
+  "parts": [
+    {
+      "title": "Printed lower piano staff",
+      "program": 0,
+      "patterns": {
+        "a1": "F2:12 F3:6 A3+C4:12 A3+C4:6 C3:12",
+        "a2": "F3:12 A3+C4:24 C3:12",
+        "a3": "G3:12 G3+Bb3+C4:6 G3+Bb3+C4:12 G3+Bb3+C4:6 G3+Bb3+C4:12",
+        "a4": "C3+G3+Bb3+C4:12 G3+Bb3+C4:24 R:12",
+        "a5": "C2+C3:8 E3:8 G3:8 C4:12 G2+G3:12",
+        "a6": "C2+C3:12 G3+E4:24 G2+G3:12",
+        "a7": "C2+C3:12 E3:6 G3:6 C4:12 C3:12",
+        "a8": "G2+G3:12 G3+Bb3+D4:6 G3+Bb3+D4:12 G3+Bb3+D4:6 G3+Bb3+D4:12",
+        "a9": "G3+Bb3+D4:12 G3+Bb3+D4:12 C2+C3:24",
+        "a10": "F2+F3:12 F3+A3+C4:6 F3+A3+C4:12 F3+A3+C4:6 C3:12",
+        "e1": "F2+F3:12 R:12 R:12 C2+C3:12",
+        "e2": "F2+F3:12 F3:6 A3:6 C4:12 C2+C3:12~",
+        "rest": "R:48",
+        "pickup_1": "F2+F3:12 R:36",
+        "continuation_1": "C2+C3:36 F2+F3:12~",
+        "continuation_2": "F2+F3:12 F3:6 A3:6 C4:12 C2+C3:12~",
+        "continuation_3": "C2+C3:36 F2+F3:12~",
+        "continuation_4": "F2+F3:12 F3:6 A3:6 C4:12 C2+C3:12~",
+        "continuation_5": "C2+C3:36 F2+F3:12",
+        "continuation_6": "C2+C3:12 E3:6 G3:6 C4:12 C2+C3:12",
+        "continuation_7": "C3:18 G2:6 G2:18 F2:6",
+        "continuation_8": "C3:12 E3:6 G3:6 Bb3:12 G2:12",
+        "continuation_9": "C3:12 E3:6 G3:6 Bb3:12 G2:12",
+        "continuation_10": "C3:12 E3:6 G3:6 Bb3:12 G2:12",
+        "continuation_11": "C2+C3:18 G2+G3:18 C2+C3:12",
+        "refrain_1": "F2+F3:18 Bb2:18 C3:12",
+        "refrain_2": "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "refrain_3": "F2+F3:18 Bb2:18 C3:12",
+        "refrain_4": "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "refrain_5": "F2+F3:18 Bb2:18 C3:12",
+        "refrain_6": "C2:12 E2:6 G2:6 C3:12 C2:12",
+        "finale_1": "F2+F3:12 A2:6 C3:6 F3:12 F2+F3:6 F2+F3:6",
+        "finale_2": "F2+F3:12 F3:6 A3:6 C4:12 F#3+D#4:12"
+      },
+      "sections": {
+        "PICKUP": {
+          "bars": "pickup_1"
+        },
+        "VERSE": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10"
+        },
+        "FIRST ENDING": {
+          "bars": "e1"
+        },
+        "REPEAT": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10"
+        },
+        "SECOND ENDING": {
+          "bars": "e2"
+        },
+        "CONTINUATION": {
+          "bars": "continuation_1 continuation_2 continuation_3 continuation_4 continuation_5 continuation_6 continuation_7 continuation_8 continuation_9 continuation_10 continuation_11 rest"
+        },
+        "REFRAIN": {
+          "bars": "refrain_1 refrain_2 refrain_3 refrain_4 refrain_5 refrain_6"
+        },
+        "FINALE": {
+          "bars": "finale_1 finale_2"
+        }
+      }
+    },
+    {
+      "title": "Upper piano pickup and answers",
+      "program": 0,
+      "patterns": {
+        "rest": "R:48",
+        "pickup_1": "F4+A4+C5+F5:12 A4:12 Bb4:12 C5:12",
+        "continuation_7": "C5+E5:24 R:24",
+        "continuation_12": "C4:6 D4:6 E4:6 R:6 F4:6 E4:6 D4:6 C4:6",
+        "finale_1": "A3+F4:12 R:24 F4+A4+C5+F5:6 F4+A4+C5+F5:6",
+        "finale_2": "F4+A4+C5+F5:12 A4:6 C5:6 G5:6 A5:6 C6:6 A5:6"
+      },
+      "sections": {
+        "PICKUP": {
+          "bars": "pickup_1"
+        },
+        "VERSE": {
+          "bars": "rest rest rest rest rest rest rest rest rest rest"
+        },
+        "FIRST ENDING": {
+          "bars": "rest"
+        },
+        "REPEAT": {
+          "bars": "rest rest rest rest rest rest rest rest rest rest"
+        },
+        "SECOND ENDING": {
+          "bars": "rest"
+        },
+        "CONTINUATION": {
+          "bars": "rest rest rest rest rest rest continuation_7 rest rest rest rest continuation_12"
+        },
+        "REFRAIN": {
+          "bars": "rest rest rest rest rest rest"
+        },
+        "FINALE": {
+          "bars": "finale_1 finale_2"
+        }
+      }
+    },
+    {
+      "title": "Upper melody guide",
+      "program": 53,
+      "patterns": {
+        "a1": "G5:18 F5:18 A5:12~",
+        "a2": "A5:36 G5:6 D5:6",
+        "a3": "F5:18 E5:6~ E5:24~",
+        "a4": "E5:24 R:12 G5:12",
+        "a5": "C6:8 C6:8 C6:8 G5:1 A5:1 G5:10 E5:6 G5:6",
+        "a6": "C6:12 C6:24 E5:6 G5:6",
+        "a7": "C6:12 C6:12 E5:12 G5:12",
+        "a8": "Bb5:48~",
+        "a9": "Bb5:36 Bb5:12",
+        "a10": "A5:18 F5:6 F5:24~",
+        "a10second": "A5:18 F5:6 F5:24",
+        "e1": "F5:12 C5:12 D5:12 E5:12",
+        "e2": "F5:24 F5:4 A5:8 C6:4 A5:8",
+        "rest": "R:48",
+        "pickup_1": "R:12 C5:12 D5:12 E5:12",
+        "continuation_1": "Bb5:6 G5:12 A5:6~ A5:12 F5:12~",
+        "continuation_2": "F5:12 F5:6 A5:12 C6:6 A5:12",
+        "continuation_3": "Bb5:6 G5:12 A5:6~ A5:12 F5:12~",
+        "continuation_4": "F5:12 F5:6 A5:12 C6:6 A5:12",
+        "continuation_5": "Bb5:6 G5:12 A5:6~ A5:12 F5:12",
+        "continuation_6": "G5:6 G5:12 Bb5:6~ Bb5:12 E5:12",
+        "continuation_8": "R:12 A4:6 E5:12 G5:6 Bb5:12",
+        "continuation_9": "A5:6 G5:12 Bb5:6~ Bb5:6 Bb5:18~",
+        "continuation_10": "Bb5:12 C5:6 E5:12 G5:6 Bb5:12",
+        "continuation_11": "A5:6 G5:12 Bb5:6~ Bb5:12 C6:12",
+        "refrain_1": "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "refrain_2": "C4:6 C4:6 E4:6 G4:6 Bb4:6 G4:6 E4:6 C4:6",
+        "refrain_3": "F4:12 F4:6 D4:12 D4:6 C4:12~",
+        "refrain_4": "C4:12 E4:6 G4:6 C5:24",
+        "refrain_5": "F4:12 F4:6 D4:12 Bb3:6 C4:12~",
+        "refrain_6": "C4:6 C4:6 E4:6 G4:6 Bb4:12 G4:6 E4:6"
+      },
+      "sections": {
+        "PICKUP": {
+          "bars": "pickup_1"
+        },
+        "VERSE": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10"
+        },
+        "FIRST ENDING": {
+          "bars": "e1"
+        },
+        "REPEAT": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10second"
+        },
+        "SECOND ENDING": {
+          "bars": "e2"
+        },
+        "CONTINUATION": {
+          "bars": "continuation_1 continuation_2 continuation_3 continuation_4 continuation_5 continuation_6 rest continuation_8 continuation_9 continuation_10 continuation_11 rest"
+        },
+        "REFRAIN": {
+          "bars": "refrain_1 refrain_2 refrain_3 refrain_4 refrain_5 refrain_6"
+        },
+        "FINALE": {
+          "bars": "rest rest"
+        }
+      }
+    },
+    {
+      "title": "Cross-staff piano answer",
+      "program": 0,
+      "patterns": {
+        "rest": "R:48",
+        "answer": "R:12 E3+C4:6 E3+G3:12~ E3+G3:6 E3+C4:12"
+      },
+      "sections": {
+        "PICKUP": {"bars": "rest"},
+        "VERSE": {"bars": "rest rest rest rest rest rest rest rest rest rest"},
+        "FIRST ENDING": {"bars": "rest"},
+        "REPEAT": {"bars": "rest rest rest rest rest rest rest rest rest rest"},
+        "SECOND ENDING": {"bars": "rest"},
+        "CONTINUATION": {"bars": "rest rest rest rest rest rest answer rest rest rest rest rest"},
+        "REFRAIN": {"bars": "rest rest rest rest rest rest"},
+        "FINALE": {"bars": "rest rest"}
+      }
+    }
+  ]
+}

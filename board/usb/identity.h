@@ -1,0 +1,8 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+#ifndef COMPAS_USB_IDENTITY_H
+#define COMPAS_USB_IDENTITY_H
+#define FELUCCA_ID "FM-1_92210003"
+#define FELUCCA_HANDSHAKE_ID "FM-1_922"
+#define COMPAS_OTA_START 0xE0000u
+#define COMPAS_OTA_END 0xE5000u
+#endif

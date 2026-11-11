@@ -1,0 +1,285 @@
+{
+  "title": "Cielito Lindo - Songbag right hand",
+  "edition": "Carl Sandburg, The American Songbag, Harcourt, Brace, New York, 1927. Tune supplied by Luis Morones, harmonization by Alfred G. Wathall.",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+  "source_sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+  "source_location": "Printed pp. 298-299, PDF pages 326-327 (one-based), middle treble-clef piano staff of each system",
+  "scope": "Complete printed piano treble staff. No bass staff, canto, lyrics, percussion or additional stanzas. Nominal written durations; preview tempo and rolled-chord timing are editorial.",
+  "verification": {
+    "date": "2026-11-06",
+    "method": "All five treble piano systems inspected in enlarged crops of the retained PDF, with separate checks for accidentals, rests, rolls and ties.",
+    "audit": "cielito-lindo-songbag-review.md",
+    "playability": "Piano right hand for combined rehearsal; machine integration pending."
+  },
+  "system_bars": [
+    [
+      1,
+      7
+    ],
+    [
+      8,
+      13
+    ],
+    [
+      14,
+      19
+    ],
+    [
+      20,
+      26
+    ],
+    [
+      27,
+      33
+    ]
+  ],
+  "ppq": 24,
+  "meter": [
+    3,
+    4
+  ],
+  "preview_bpm": 108,
+  "form": [
+    {
+      "name": "VERSE",
+      "bar": 1
+    },
+    {
+      "name": "CHORUS",
+      "bar": 18
+    }
+  ],
+  "parts": [
+    {
+      "title": "Piano treble chords and melody",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:24 E4+G4+C5:24 C4+E4+A4:24",
+        "R:72",
+        "R:24 E4+G4+C5:24 C4+E4+A4:24",
+        "R:72",
+        "R:24 E4+G4+C5:24 C4+E4+A4:24",
+        "R:72",
+        "R:24 B3+D4:24 A3+C4+F4:24",
+        "B3+D4:24 A3+C4+F4:24 B3+D4:24",
+        "R:24 B3+F4+B4:24 B3+F4+B4:24",
+        "R:24 B3+F4+A4:24 B3+E4+G4:24",
+        "A4+F5:12 R:12 G4+E5:12 R:12 F4+D5:12 R:12",
+        "D4+F4+B4:12 R:12 E4:24 F4:24",
+        "G4:24 D4+F4+G4:24 D4+F4+G4:24",
+        "R:24 G4+B4:24 F4+G4+B4+D5:24",
+        "E4+G4+C5+E5:12 R:12 E4+G4+C5:12 R:12 E4+G4+C5:12 R:12",
+        "R:24 C4+G4+C5:24 C4+E4+G4:24",
+        "R:24 G4+C5+E5:12 E4:12 G4+C5+E5:24",
+        "R:24 E4+G#4+B4+D5:24 E4+G#4+C5:24",
+        "R:24 C4+F4+A4:12 A3:12 C4+F4+A4:24",
+        "R:24 A3+C#4+G4+A4:24 A3+C#4+G4+A4:24",
+        "R:24 F#4+A4+C5+D5:12 D4:12 F#4+A4+C5+D5:24",
+        "R:24 F4+B4+D5:24 F4+A4+C5:24",
+        "E4+G4+C5+E5:12 R:12 E4+G4+C5:12 R:12 D4+F4+A4:24",
+        "C4+E4+G4+C5:12 R:12 C4+E4:12 R:12 C4+E4+G4:24",
+        "C4+E4+A4:24 A4:24 C4+E4+G4:24",
+        "A#3+E4+G4:24 A4:24 A#3+E4+G4:24",
+        "B3+F4+G4:24 G4+B4+D5+F5:24 G4+B4+D5:24~",
+        "G4+B4+D5:24 F4+G4+B4:24 E4+G4:24",
+        "F4+A4:24 C4+F4+A4:24 B3+F4+G4:24~",
+        "B3+F4+G4:24 G4+B4:24 F4+G4+B4+D5:24",
+        "E4+G4+C5+E5:24 R:24 G4+C5+E5+G5:24",
+        {
+          "notes": "C5+E5+G5+C6:24 R:24",
+          "ticks": 48
+        }
+      ]
+    },
+    {
+      "title": "Rolled chord voice 1",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:72",
+        "R:24 B3:24 R:24",
+        "R:72",
+        "R:24 B3:24 R:24",
+        "R:72",
+        "R:24 B3:24 R:24",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        {
+          "notes": "R:48",
+          "ticks": 48
+        }
+      ]
+    },
+    {
+      "title": "Rolled chord voice 2",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:72",
+        "R:25 F4:23 R:24",
+        "R:72",
+        "R:25 F4:23 R:24",
+        "R:72",
+        "R:25 E4:23 R:24",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        {
+          "notes": "R:48",
+          "ticks": 48
+        }
+      ]
+    },
+    {
+      "title": "Rolled chord voice 3",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:72",
+        "R:26 G4:22 R:24",
+        "R:72",
+        "R:26 G4:22 R:24",
+        "R:72",
+        "R:26 G4:22 R:24",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        {
+          "notes": "R:48",
+          "ticks": 48
+        }
+      ]
+    },
+    {
+      "title": "Rolled chord voice 4",
+      "program": 0,
+      "bars": [
+        {
+          "notes": "R:24",
+          "ticks": 24
+        },
+        "R:72",
+        "R:27 B4:21 R:24",
+        "R:72",
+        "R:27 B4:21 R:24",
+        "R:72",
+        "R:27 B4:21 R:24",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        "R:72",
+        {
+          "notes": "R:48",
+          "ticks": 48
+        }
+      ]
+    }
+  ],
+  "editorial": [
+    "The rolled chords at bars 3, 5 and 7 start on beat 2. Their four notes enter bottom to top one 24-PPQ tick apart and all release at beat 3. The 3-tick spread is an editorial realization of the printed arpeggio signs.",
+    "Written G-sharp4 carries through both chords of bar 19. C-sharp4 carries through both chords of bar 21. F-natural4 in bar 23 cancels the preceding chromatic color. Bar 27 has A-sharp3 in the outer chords and the explicitly natural A4 on beat 2.",
+    "The identical chords joining bars 28-29 and 30-31 remain single tied attacks. Curves between changing chords are realized at nominal note values without adding pedal or slur overlap.",
+    "Accent, staccato, tenuto and dynamic shaping are not synthesized. Filled noteheads with pale scan interiors are read at their stem/flag values, checked against the 3/4 bar and parallel figures."
+  ]
+}

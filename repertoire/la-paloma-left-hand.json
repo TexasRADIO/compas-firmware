@@ -1,0 +1,48 @@
+{
+  "title": "La Paloma - printed piano left hand",
+  "composer": "Sebastián Yradier",
+  "edition": "Century Music Publishing, 1906, plate 84-4, pp. 2–5",
+  "source": "https://archive.org/details/lapalomadovecanc00yrad",
+  "source_sha256": "f6f3a948cf2dd33a99d5c40aa720a0aaf007a632b19c9758a54b6201a49a73bb",
+  "scope": "One pass of the printed left hand through the final cadence, from the eighth-rest pickup to the final fermata chord. The score's D.C. for additional stanzas is a separate repeat decision. The fermata is exported at nominal value. No right hand, vocal, added percussion, or tempo map is implied.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 88,
+  "patterns": {
+    "pickup": "R:12",
+    "A": "C3+E3:18 G3:6 C4:12 G3:12",
+    "B": "D3+F3:18 G3:6 B3:12 G3:12",
+    "C": "G2+G3:18 G3:6 B3:12 G3:12",
+    "D": "C3+C4:18 G2:6 C3:12 G2:12",
+    "E": "C2+C3:18 G2:6 C3:12 G2:12",
+    "F": "D2+D3:18 G2:6 D3:12 G2:12",
+    "G": "C2+C3:18 G3:6 C4:12 G3:12",
+    "H": "G2+G3:18 D3+G3:6 B3:12 G3:12",
+    "J": "C3:18 G3:6 C4+E4:12 G3:12",
+    "K": "C2+D3:18 G3:6 D4+F4:12 G3:12",
+    "L": "G2+G3:18 G3:6 D4+F4:12 G3:12",
+    "ending": "C2+C3:24 C3+C4:12"
+  },
+  "systems": [
+    {"page": 2, "system": 1, "bars": "pickup A A A B B C"},
+    {"page": 2, "system": 2, "bars": "C C D E F F G"},
+    {"page": 2, "system": 3, "bars": "A A A A B B"},
+    {"page": 2, "system": 4, "bars": "C C C A A A"},
+    {"page": 3, "system": 1, "bars": "A A B B C C"},
+    {"page": 3, "system": 2, "bars": "H A A A B B"},
+    {"page": 3, "system": 3, "bars": "B B A A A A"},
+    {"page": 3, "system": 4, "bars": "B B H H A J J"},
+    {"page": 4, "system": 1, "bars": "J K K L L"},
+    {"page": 4, "system": 2, "bars": "J J J J K"},
+    {"page": 4, "system": 3, "bars": "K L L E E"},
+    {"page": 4, "system": 4, "bars": "F F E E F"},
+    {"page": 5, "system": 1, "bars": "F E E F F"},
+    {"page": 5, "system": 2, "bars": "E E F F ending"}
+  ],
+  "form": [
+    {"name": "INTRO", "bar": 1},
+    {"name": "VERSE", "bar": 15},
+    {"name": "REFRAIN", "bar": 35},
+    {"name": "CODA", "bar": 65}
+  ]
+}

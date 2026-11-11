@@ -1,0 +1,37 @@
+{
+  "title": "Juana Quilina - melody fragment",
+  "composer": "Attributed to Juan Bautista Alfonseca",
+  "edition": "Cheposo, 2011 modern engraving of the melody fragment",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/24/Juana_Quilina_Partitura..png",
+  "source_sha256": "9d02744fd9fc376f956314470eaaa07db1601ca31b34a6d665679df734cde228",
+  "source_location": "Both melody systems in the Wikimedia Commons engraving",
+  "scope": "Nine written bars of monophonic melody in 2/4 with two sharps. Attribution remains qualified. No accompaniment, text or inferred bars.",
+  "attribution": {
+    "author": "Cheposo",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Juana_Quilina_Partitura..png",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "changes": "Encoded the written melody as MIDI at an editorial 108 quarter notes per minute with fixed velocity. Omitted the lyrics. This adaptation is licensed CC BY-SA 3.0."
+  },
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 108,
+  "form": [{"name": "FRAGMENT", "bar": 1}],
+  "parts": [
+    {
+      "title": "Written melody",
+      "program": 0,
+      "bars": [
+        "F#5:6 F#5:12 E5:6 G5:12 F#5:12",
+        "D5:6 D5:12 C#5:6 E5:12 D5:12",
+        "F#5:6 F#5:12 E5:6 G5:12 F#5:12",
+        "D5:6 D5:12 C#5:6 E5:12 D5:12",
+        "D5:6 B4:12 D5:6 F#5:12 D5:12",
+        "D5:6 B4:12 D5:6 F#5:12 D5:12",
+        "D5:6 B4:12 D5:6 G5:24~",
+        "G5:24 F#5:12 C#5:12",
+        "B4:24 R:24"
+      ]
+    }
+  ]
+}

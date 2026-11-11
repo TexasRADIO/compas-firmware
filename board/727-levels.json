@@ -1,0 +1,249 @@
+{
+  "source": "Alessandro Saccoia, Roland TR-727, 2013",
+  "url": "https://web.archive.org/web/20160404214027id_/http://www.keplero.com/material/tr727/RolandTR727Samples.zip",
+  "archiveSha256": "ccf3f2aa395c055635547792413052595c484c39097a4602abaa7c0c8e9c4b1d",
+  "baseline": "Normal hits relative to unaccented high timbale. Common -12 dB playback scale for the loudest hit.",
+  "qualification": "Recorder reports common input gain and no normalization. The normal and accented files were measured without clipping. Hardware fader and accent settings are undocumented.",
+  "referenceMaxPeak24": 2163043,
+  "alternateShortWhistle": [
+    {
+      "referenceFile": "Whistle Short Two.wav",
+      "sha256": "620692d4ee8a69cb917b52705a491db4b88fbca1f94a6be86bdf62e738882964",
+      "frames": 78096,
+      "peak24": 679508
+    },
+    {
+      "referenceFile": "Whistle Short Two Acc.wav",
+      "sha256": "25d4bdaa16934f371cc7112aa887e4306d7a0b35e3df97b6086225c84950eedc",
+      "frames": 94310,
+      "peak24": 2015553
+    }
+  ],
+  "voices": [
+    {
+      "sound": "High bongo",
+      "sampleId": "48036bb04bbaa3bd5d61",
+      "referenceFile": "Bongo Hi.wav",
+      "sha256": "540b43b2a447973cb5834207bc944d14e70b6ab766081ddcd5a95793d1224567",
+      "frames": 78292,
+      "peak24": 1313082,
+      "accented": {
+        "referenceFile": "Bongo Hi Acc.wav",
+        "sha256": "44089872feaf4d0042c3c7bca94596f5cc248a8fcf7375edeb7c27e50d28bf52",
+        "frames": 84188,
+        "peak24": 4279260
+      },
+      "gainQ15": 19892
+    },
+    {
+      "sound": "Low bongo",
+      "sampleId": "65cad09b6e56554fe15e",
+      "referenceFile": "Bongo Lo.wav",
+      "sha256": "5896af495f52037e607b46ff6cabc856ae6157aefdd1c1722ef6b699f7a138d8",
+      "frames": 79301,
+      "peak24": 1220112,
+      "accented": {
+        "referenceFile": "Bongo Lo Acc.wav",
+        "sha256": "ce0bfe74fc396bb7e4e4ee562b2f05583575efb9b7b9700eb67bcc5d396fe062",
+        "frames": 92393,
+        "peak24": 4027862
+      },
+      "gainQ15": 18484
+    },
+    {
+      "sound": "Muted high conga",
+      "sampleId": "2eff2d6bcc68c8f56bdd",
+      "referenceFile": "Hi Conga Mute.wav",
+      "sha256": "f2404b4960562fc36b07b86cdb10b70df4b606136f8364ec280e29adbed6f78c",
+      "frames": 79514,
+      "peak24": 1252836,
+      "accented": {
+        "referenceFile": "Hi Conga Mute Acc.wav",
+        "sha256": "65b107ab73ce720990d7dcbf0b71f6397b831f2724e1e153518833149b066aea",
+        "frames": 92455,
+        "peak24": 3890214
+      },
+      "gainQ15": 18979
+    },
+    {
+      "sound": "Open high conga",
+      "sampleId": "fad5f548c45640af4103",
+      "referenceFile": "Hi Conga Open.wav",
+      "sha256": "cec99a7136385e166f4f3c774aabd64738d388a41fa618e1f77c09e4e042a509",
+      "frames": 80005,
+      "peak24": 1327515,
+      "accented": {
+        "referenceFile": "Hi Conga Open Acc.wav",
+        "sha256": "bfaed5c39122489a1e94beec6286be61abb90e36719f3412e5c7c22134ebb36f",
+        "frames": 90931,
+        "peak24": 3945656
+      },
+      "gainQ15": 20111
+    },
+    {
+      "sound": "Low conga",
+      "sampleId": "dca0566263f0f5b38fc6",
+      "referenceFile": "Low Conga.wav",
+      "sha256": "71336900852724542485174709375ca4415e22351b97f7c7864a5a0ef6833f0f",
+      "frames": 76218,
+      "peak24": 1502372,
+      "accented": {
+        "referenceFile": "Low Conga Acc.wav",
+        "sha256": "f949d5072db9676d08f03e37adca9f15ed9b4c7521a459ea3a3a0327cc53f794",
+        "frames": 81448,
+        "peak24": 4748944
+      },
+      "gainQ15": 22759
+    },
+    {
+      "sound": "High timbale",
+      "sampleId": "44d66876ab03879972d9",
+      "referenceFile": "Hi Timbale.wav",
+      "sha256": "c534f26a73dd2fff6888ce720575a7ef38f18d1c91ee3c9f94f0cbb5e728db05",
+      "frames": 80629,
+      "peak24": 2163043,
+      "accented": {
+        "referenceFile": "Hi Timbale Acc.wav",
+        "sha256": "f41173e737820f6e784b833b34b0668471a04dc68bada6f77842563f3f4c627b",
+        "frames": 90729,
+        "peak24": 7170775
+      },
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Low timbale",
+      "sampleId": "46487878342460da49a6",
+      "referenceFile": "Low Timbale.wav",
+      "sha256": "7f7ed7d1a5d170868b059a3f71459605fb7e3afe815027917b2a3333faa6a00d",
+      "frames": 80212,
+      "peak24": 1742380,
+      "accented": {
+        "referenceFile": "Low Timbale Acc.wav",
+        "sha256": "8121c6c26b9a222648e0153af0c6355c15fa1f739b3b0fbce37d6f9bd15c5078",
+        "frames": 92394,
+        "peak24": 6511234
+      },
+      "gainQ15": 26395
+    },
+    {
+      "sound": "High agogo",
+      "sampleId": "231b621a5bd62d363074",
+      "referenceFile": "Agogo Hi.wav",
+      "sha256": "7260fab44db7657c8289faa80239b791883fb68d997c34f6f9344f96529cb39c",
+      "frames": 83773,
+      "peak24": 1286476,
+      "accented": {
+        "referenceFile": "Agogo Hi Acc.wav",
+        "sha256": "05a7d4cf53abbe327e5d1453a59935d86bdc75b770ac5f51b1a08791c9f0e232",
+        "frames": 83768,
+        "peak24": 3840524
+      },
+      "gainQ15": 19489
+    },
+    {
+      "sound": "Low agogo",
+      "sampleId": "56a0e0f5e6ca45a9b3d0",
+      "referenceFile": "Agogo Low.wav",
+      "sha256": "8ab81bb1180d9ea807a8ab0f7ebbbdcc8d387e4ece0a798b590f32128487e580",
+      "frames": 77111,
+      "peak24": 1234101,
+      "accented": {
+        "referenceFile": "Agogo Low Acc.wav",
+        "sha256": "9f0c2e100776fedb4e89812285aaebf88df37c312e05ef8ec8d5f46e7cacd5ac",
+        "frames": 83201,
+        "peak24": 3660042
+      },
+      "gainQ15": 18695
+    },
+    {
+      "sound": "Cabasa",
+      "sampleId": "3a3f48f53b349fb09746",
+      "referenceFile": "Cabasa.wav",
+      "sha256": "31091a531732cd6ddb0be00c6c95ef09373050054733f1fa8a6d5c29ed5cf1a6",
+      "frames": 79455,
+      "peak24": 934515,
+      "accented": {
+        "referenceFile": "Cabasa Acc.wav",
+        "sha256": "75f317c2bfec4f9a303c7683420cf9c9a9f7a58fbc0f3f876c8164aab9c459a2",
+        "frames": 85419,
+        "peak24": 2794113
+      },
+      "gainQ15": 14157
+    },
+    {
+      "sound": "Maracas",
+      "sampleId": "3ad62e2b5206830be8a9",
+      "referenceFile": "Maracas.wav",
+      "sha256": "e50cbcd137c1d960d9ccade531127ccaef513195aef6e1bff72fea882c73ae89",
+      "frames": 87669,
+      "peak24": 1129194,
+      "accented": {
+        "referenceFile": "Maracas Acc.wav",
+        "sha256": "afe35415ecf7c37dab167723b0e18c336301a1c1eed30bebf6bc9a332ddf5742",
+        "frames": 92900,
+        "peak24": 3347060
+      },
+      "gainQ15": 17106
+    },
+    {
+      "sound": "Short whistle",
+      "sampleId": "45e8ce0234cc26c041d7",
+      "referenceFile": "Whistle Short One.wav",
+      "sha256": "cfbd0218727e026eb8202c2db5d6d19fd94e2644c788bbb0c2f143191ac2b4a2",
+      "frames": 77752,
+      "peak24": 669399,
+      "accented": {
+        "referenceFile": "Whistle Short One Acc.wav",
+        "sha256": "c05ac82b0aec991de288d9fab2986b73b636da4797059090861cb67c54d43d3e",
+        "frames": 85066,
+        "peak24": 2015972
+      },
+      "gainQ15": 10141
+    },
+    {
+      "sound": "Long whistle",
+      "sampleId": "199508abe994256481c3",
+      "referenceFile": "Whistle Long.wav",
+      "sha256": "3fa8d0fc9dacb89677091b58e34dbc217c0ff89f531b47b68597fe1ae5a665dd",
+      "frames": 84525,
+      "peak24": 700337,
+      "accented": {
+        "referenceFile": "Whistle Long Acc.wav",
+        "sha256": "844e53ef8785a604471daaaa39df4ecb40ab348179dca7007ce1e9195af3fa50",
+        "frames": 86929,
+        "peak24": 2077489
+      },
+      "gainQ15": 10609
+    },
+    {
+      "sound": "Quijada",
+      "sampleId": "67f54a2bedb990b7833e",
+      "referenceFile": "Quijada.wav",
+      "sha256": "0ffb6002d40a2861f4a736a0d257d50380f245fabd91d6f413cec1a1a3ffb106",
+      "frames": 113728,
+      "peak24": 1043579,
+      "accented": {
+        "referenceFile": "Quijada Acc.wav",
+        "sha256": "d27575721e57e7d26dfdc750034a7cc7e1b45b4a4cd7902ee0866e16fd4544c0",
+        "frames": 116768,
+        "peak24": 2390224
+      },
+      "gainQ15": 15809
+    },
+    {
+      "sound": "Star chime",
+      "sampleId": "eb4ec6836b5dab801c6c",
+      "referenceFile": "Star Chime.wav",
+      "sha256": "35ea64582ee1217fbb3744432cee7dae8f4ce71579257bc4547bd185f657a90d",
+      "frames": 184718,
+      "peak24": 780280,
+      "accented": {
+        "referenceFile": "Star Chime Acc.wav",
+        "sha256": "dfe3ea93b63b8608fcc3edd86b4898470a975bee25c0ea762a4069790a09bc97",
+        "frames": 112799,
+        "peak24": 2044409
+      },
+      "gainQ15": 11820
+    }
+  ]
+}

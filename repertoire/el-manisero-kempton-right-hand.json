@@ -1,0 +1,270 @@
+{
+  "title": "El Manisero - Kempton piano right hand",
+  "composer": "Moisés Simons",
+  "arranger": "Lawrence Kempton",
+  "edition": "Edward B. Marks Music Co., New York, 1930, plate 9737-4",
+  "source": "https://www.sheetmusicsinger.com/wp-content/uploads/2023/01/The-Peanut-Vendor.pdf",
+  "source_sha256": "79f28cbda8c19e9996b591ede74928f24ebae1ed670bfc4978bd03e8179962a5",
+  "source_location": "Printed pp. 2–5 and PDF pp. 2–5",
+  "ppq": 24,
+  "meter": [
+    2,
+    2
+  ],
+  "preview_bpm": 112,
+  "play_order": [
+    "p2_s1",
+    "p2_s2",
+    "p2_s3",
+    "p2_s4",
+    "p3_s1",
+    "p3_s2",
+    "p3_s3",
+    "p3_s4",
+    "p4_s1",
+    "p4_s2",
+    "p4_s3",
+    "p4_s4",
+    "p5_s1",
+    "p5_s2",
+    "p2_s2",
+    "p2_s3",
+    "p2_s4",
+    "p3_s1",
+    "p3_s2",
+    "p3_s3",
+    "p3_s4",
+    "p4_s1",
+    "p4_s2",
+    "p4_s3",
+    "p4_s4",
+    "p5_s1",
+    "p5_s2",
+    "p5_s3",
+    "p5_s4"
+  ],
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "VERSE",
+      "bar": 5
+    },
+    {
+      "name": "REFRAIN",
+      "bar": 9
+    },
+    {
+      "name": "CODA",
+      "bar": 81
+    }
+  ],
+  "scope": "Complete piano treble from the four-bar introduction through the printed coda, across 89 performed bars. The separate vocal staff and its peanut-whistle imitation are outside this piano transcription.",
+  "editorial": [
+    "Section names identify each printed page and system. The shared play order repeats from the segno before taking the coda.",
+    "Keep printed ties within and across measures. The second piano treble voice preserves independent durations wherever stem direction separates the voices. In the coda the tied upper notes continue over the new whole-note chords.",
+    "The preview retains cut time at an editorial 112 quarter notes per minute with fixed velocity and nominal fermata lengths. The score retains the printed dynamics, articulation and rallentando."
+  ],
+  "parts": [
+    {
+      "title": "Piano treble",
+      "program": 0,
+      "patterns": {
+        "p2_s1_1": "R:24 B4:12 C5:12 D5:12 E5:12 D5:12 C#5:12",
+        "p2_s1_2": "D5:12 D5:24 C5:12~ C5:12 C5:12 B4:24",
+        "p2_s1_3": "R:12 G4:24 A4:12 B4:12 C5:12 D5:12 B4:12",
+        "p2_s1_4": "D5:12 A4:24 C5:12~ C5:12 B4:12 G4:24",
+        "p2_s2_1": "R:24 G4+B3:24 D4+B3:24 E4+B3:24",
+        "p2_s2_2": "R:24 F#4+C4:12 E4+C4:12~ E4+C4:12 E4+C4:12 D4+C4:24",
+        "p2_s3_1": "R:24 B4:24 D5:48~",
+        "p2_s3_2": "D5:96",
+        "p2_s4_2": "D5+F#4:24 D5+F#4:12 C5+E4:12~ C5+E4:12 C5+E4:12 B4+D4:24",
+        "p3_s1_1": "R:24 G4+B3:12 A4+C4:12 B4+D4:12 C5+E4:12 D5+F#4:12 B4+D4:12",
+        "p3_s1_2": "D5+F#4:24 A4+F#4:12 C5+E4:12~ C5+E4:12 B4+D4:12 G4+B3:24",
+        "p3_s3_1": "R:24 B3+D4:24 B3+E4:24 G4:12 A4:12~",
+        "p3_s3_2": "A4:12 A4:24 C5+C4+E4:12~ C5+C4+E4:12 B4+C4+E4:12 G4+D4+B3:24",
+        "p3_s4_1": "A4:12 A4:24 C5+E4+F#4:12~ C5+E4+F#4:12 B4+G4+D4:12 D5:24~",
+        "p3_s4_2": "D5:96~",
+        "p4_s1_1": "R:12 D5+B4+G4:12 E5+B4+G4:12 F#5+B4+G4:12 G5+B4+G4:24 E5+C5+F#4:12 F#5+C5+F#4:12~",
+        "p4_s1_2": "F#5+C5+F#4:24 D5+C5+F#4:12 E5+C5+F#4:12~ E5+C5+F#4:12 C5+A4+E4:12 D5+F#4+D4:24",
+        "p4_s2_1": "R:12 B4+G4+D4:12 C5+A4+D4:12 D5+B4+D4:12 E5+B4+G4:24 C5+G4+E4:12 D5:12~",
+        "p4_s2_2": "D5:24 B4:12 C5+E4+C4:12~ C5+E4+C4:12 C5+E4+C4:12 B4+D4+B3:24",
+        "p4_s3_1": "R:12 G4+B3:24 A4+C4:12 B4+D4:24 G4:12 A4:12~",
+        "p4_s3_2": "A4:24 F#4+C4:12 E4+C4:12~ E4+C4:12 E4+C4:12 D4+C4:24",
+        "p4_s4_3": "R:12 C5+F#4+E4:24 D5+F#4+D4:12 E5+C5+F#4:12 D5+B4+F#4:12 C5+A4+E4:12 D5:12~",
+        "p5_s1_1": "R:12 C5+G4+E4:24 D5+A4+F#4:12 E5+C5+G4:12 F#5+C5+A4:12 E5+C5+G4:12 D5+C5+F#4:12~",
+        "p5_s1_2": "D5+C5+F#4:12 B4+G4:24 C5+A4:12 D5:12 E5:12 D5:12 C#5:12",
+        "p5_s2_2": "R:12 G5+G4:24 A5+A4:12 B5+B4:12 C6+C5:12 D6+D5:12 B5+B4:12",
+        "p5_s2_3": "D6+D5:12 A5+A4:24 C6+C5:12~ C6+C5:12 B5+B4:12 G5+G4:24",
+        "p5_s3_1": "R:24 G3+B3:24 D4:48~",
+        "p5_s3_2": "D4:96",
+        "p5_s3_3": "R:24 G4+B4:24 D5:48~",
+        "p5_s4_1": "R:24 G5+B5:24 D6:48~",
+        "p5_s4_2": "D6:96",
+        "p5_s4_3": "D5+C5+A4:96",
+        "p5_s4_4": "D4+C4+A3:96",
+        "p5_s4_5": "G5+D5+B4+G4:12 R:12 R:24 R:48"
+      },
+      "sections": {
+        "p2_s1": {
+          "pages": "2, system 1",
+          "bars": "p2_s1_1 p2_s1_2 p2_s1_3 p2_s1_4"
+        },
+        "p2_s2": {
+          "pages": "2, system 2, segno",
+          "bars": "p2_s2_1 p2_s2_2 p2_s2_1 p2_s2_2"
+        },
+        "p2_s3": {
+          "pages": "2, system 3, vendor calls",
+          "bars": "p2_s3_1 p2_s3_2 p2_s3_1 p2_s3_2"
+        },
+        "p2_s4": {
+          "pages": "2, system 4",
+          "bars": "p2_s1_1 p2_s4_2"
+        },
+        "p3_s1": {
+          "pages": "3, system 1",
+          "bars": "p3_s1_1 p3_s1_2"
+        },
+        "p3_s2": {
+          "pages": "3, system 2",
+          "bars": "p2_s2_1 p2_s2_2 p2_s2_1 p2_s2_2"
+        },
+        "p3_s3": {
+          "pages": "3, system 3",
+          "bars": "p3_s3_1 p3_s3_2 p3_s3_1"
+        },
+        "p3_s4": {
+          "pages": "3, system 4",
+          "bars": "p3_s4_1 p3_s4_2 p2_s3_2"
+        },
+        "p4_s1": {
+          "pages": "4, system 1",
+          "bars": "p4_s1_1 p4_s1_2"
+        },
+        "p4_s2": {
+          "pages": "4, system 2",
+          "bars": "p4_s2_1 p4_s2_2"
+        },
+        "p4_s3": {
+          "pages": "4, system 3",
+          "bars": "p4_s3_1 p4_s3_2 p2_s2_1"
+        },
+        "p4_s4": {
+          "pages": "4, system 4",
+          "bars": "p2_s2_2 p2_s2_1 p4_s4_3 p2_s3_2"
+        },
+        "p5_s1": {
+          "pages": "5, system 1",
+          "bars": "p5_s1_1 p5_s1_2"
+        },
+        "p5_s2": {
+          "pages": "5, system 2, D.S.",
+          "bars": "p2_s4_2 p5_s2_2 p5_s2_3"
+        },
+        "p5_s3": {
+          "pages": "5, system 3, coda",
+          "bars": "p5_s3_1 p5_s3_2 p5_s3_3 p2_s3_2"
+        },
+        "p5_s4": {
+          "pages": "5, system 4, lower staff treble clef for bars 1–2",
+          "bars": "p5_s4_1 p5_s4_2 p5_s4_3 p5_s4_4 p5_s4_5"
+        }
+      }
+    },
+    {
+      "title": "Piano treble independent notes",
+      "program": 0,
+      "patterns": {
+        "silence": "R:96",
+        "p2_s3_1": "R:24 G4:24 D4:24 E4:24",
+        "p2_s3_2": "R:24 F#4:12 E4:12~ E4:12 E4:12 D4:24",
+        "p2_s4_1": "R:24 G4:48 G4:24",
+        "p3_s3_1": "R:72 C4+E4:24~",
+        "p3_s3_2": "C4+E4:12 C4+F#4:24 R:60",
+        "p3_s4_1": "C4+E4:12 C4+F#4:24 R:36 B4+G4:24",
+        "p4_s2_1": "R:84 F#4+D4:12~",
+        "p4_s2_2": "F#4+D4:24~ F#4+D4:12 R:60",
+        "p4_s3_1": "R:72 C4:24~",
+        "p4_s3_2": "C4:24 R:72",
+        "p4_s4_3": "R:84 B4+D4:12~",
+        "p4_s4_4": "B4+D4:24 G4:24 D4:24 E4:24",
+        "p5_s1_2": "R:48 B4:24 G4:24",
+        "p5_s3_1": "R:48 B3:48",
+        "p5_s3_2": "C4+A3:96",
+        "p5_s3_3": "R:48 B4:48",
+        "p5_s3_4": "C5+A4:96",
+        "p5_s4_1": "R:48 B5:48",
+        "p5_s4_2": "C6+A5:96"
+      },
+      "sections": {
+        "p2_s1": {
+          "pages": "2, system 1",
+          "bars": "silence silence silence silence"
+        },
+        "p2_s2": {
+          "pages": "2, system 2, segno",
+          "bars": "silence silence silence silence"
+        },
+        "p2_s3": {
+          "pages": "2, system 3, vendor calls",
+          "bars": "p2_s3_1 p2_s3_2 p2_s3_1 p2_s3_2"
+        },
+        "p2_s4": {
+          "pages": "2, system 4",
+          "bars": "p2_s4_1 silence"
+        },
+        "p3_s1": {
+          "pages": "3, system 1",
+          "bars": "silence silence"
+        },
+        "p3_s2": {
+          "pages": "3, system 2",
+          "bars": "silence silence silence silence"
+        },
+        "p3_s3": {
+          "pages": "3, system 3",
+          "bars": "p3_s3_1 p3_s3_2 p3_s3_1"
+        },
+        "p3_s4": {
+          "pages": "3, system 4",
+          "bars": "p3_s4_1 p2_s3_1 p2_s3_2"
+        },
+        "p4_s1": {
+          "pages": "4, system 1",
+          "bars": "silence silence"
+        },
+        "p4_s2": {
+          "pages": "4, system 2",
+          "bars": "p4_s2_1 p4_s2_2"
+        },
+        "p4_s3": {
+          "pages": "4, system 3",
+          "bars": "p4_s3_1 p4_s3_2 silence"
+        },
+        "p4_s4": {
+          "pages": "4, system 4",
+          "bars": "silence silence p4_s4_3 p4_s4_4"
+        },
+        "p5_s1": {
+          "pages": "5, system 1",
+          "bars": "silence p5_s1_2"
+        },
+        "p5_s2": {
+          "pages": "5, system 2, D.S.",
+          "bars": "silence silence silence"
+        },
+        "p5_s3": {
+          "pages": "5, system 3, coda",
+          "bars": "p5_s3_1 p5_s3_2 p5_s3_3 p5_s3_4"
+        },
+        "p5_s4": {
+          "pages": "5, system 4, lower staff treble clef for bars 1–2",
+          "bars": "p5_s4_1 p5_s4_2 silence silence silence"
+        }
+      }
+    }
+  ]
+}
