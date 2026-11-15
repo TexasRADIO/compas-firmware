@@ -6,6 +6,8 @@
     "drums"
   ],
   "play": "https://thebigbeat.app/compas/play/",
+  "cheat": "https://thebigbeat.app/compas/",
   "image": "docs/media/compas-screen.png",
-  "color": "#22D3EE"
+  "color": "#22D3EE",
+  "sounds": "licensed: author-recorded TR-727-style kit, GPL-3.0-only; Hanan Cumbia sounds by Oficina de Sonido, CC BY-SA 3.0"
 }
