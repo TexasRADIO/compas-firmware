@@ -1,11 +1,12 @@
 {
-  "what": "Compás turns the FM-1 into a Latin rhythm section: cumbia, salsa, merengue and bolero. Cue sections and the whole band lands together. Includes 29 groove studies, 28 song arrangements, TR-727 percussion, Hanan Kumbia Kit and English and Spanish builds.",
-  "author": "Big Beat Studio / TexasRADIO",
+  "what": "A Latin rhythm section instrument — cumbia, salsa, son and more. Six-role ensemble with bass, percussion, piano and guide parts. 727 rhythm grid, show/arrangement system, ROOM reverb, tempo-synced echo and rebajada. English/Spanish bilingual.",
+  "author": "Ole Big Beat / TexasRADIO",
   "kinds": [
     "groove",
-    "drums"
+    "drums",
+    "latin"
   ],
-  "play": "https://thebigbeat.app/compas/play/",
-  "image": "docs/media/compas-screen.png",
-  "color": "#22D3EE"
+  "play": "https://thebigbeat.app/compas/",
+  "cheat": "https://thebigbeat.app/compas/guide/",
+  "image": "docs/media/compas-240.png"
 }
