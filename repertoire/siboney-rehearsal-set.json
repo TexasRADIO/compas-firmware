@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"SIBONEY GUIDE","study":"siboney-feist-chorus","bpm":100,"guide":true},
+    {"title":"SIBONEY BACKING","study":"siboney-feist-chorus","bpm":100,"guide":false},
+    {"title":"SIBONEY LAST GUIDE","study":"siboney-feist-last","bpm":100,"guide":true},
+    {"title":"SIBONEY LAST PIANO","study":"siboney-feist-last","bpm":100,"guide":false},
+    {"title":"SIBONEY VERSE","study":"siboney-feist-verse-last","bpm":100,"guide":true},
+    {"title":"SIBONEY VERSE PNO","study":"siboney-feist-verse-last","bpm":100,"guide":false},
+    {"title":"SIBONEY SONG GUIDE","study":"siboney-feist-song","bpm":100,"guide":true},
+    {"title":"SIBONEY SONG PNO","study":"siboney-feist-song","bpm":100,"guide":false}
+  ]
+}

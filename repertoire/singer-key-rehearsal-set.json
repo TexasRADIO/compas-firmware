@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "LA PALOMA",
+      "study": "la-paloma",
+      "guide": true,
+      "transpose": -2
+    },
+    {
+      "title": "LA GOLONDRINA",
+      "study": "la-golondrina",
+      "guide": true,
+      "transpose": -3
+    },
+    {
+      "title": "EL MANISERO",
+      "study": "el-manisero-kempton-bass",
+      "guide": true,
+      "transpose": 2
+    },
+    {
+      "title": "LA PALOMA PIANO",
+      "study": "la-paloma-piano",
+      "guide": true,
+      "transpose": -2
+    },
+    {
+      "title": "GOLONDRINA PIANO",
+      "study": "la-golondrina-piano",
+      "guide": true,
+      "transpose": -3
+    },
+    {
+      "title": "EL MANISERO PIANO",
+      "study": "el-manisero-kempton-piano",
+      "guide": true,
+      "transpose": 2
+    }
+  ]
+}

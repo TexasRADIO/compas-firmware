@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"CIELITO LINDO","study":"cielito-lindo-piano","guide":true},
+    {"title":"CIELITO SING","study":"cielito-lindo-piano","guide":false},
+    {"title":"CIELITO LOWER","study":"cielito-lindo-piano","guide":true,"transpose":-3},
+    {"title":"TEJANO CUMBIA","study":"tejano","kit":true}
+  ]
+}

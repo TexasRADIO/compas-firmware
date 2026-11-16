@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Compás · USB installer review</title>
+<style>
+  :root{color-scheme:dark;font:17px/1.5 system-ui;background:#120c18;color:#f6ebd9}
+  body{margin:0}main{max-width:42rem;margin:auto;padding:2rem 1.25rem}
+  h1,h2{line-height:1.1}h1{color:#ffe500;font-size:clamp(2.5rem,9vw,4rem)}
+  section{margin:1.5rem 0;padding:1rem;border:1px solid #826c91}
+  label{display:block;margin:.8rem 0}input,button{font:inherit;max-width:100%;min-height:44px}
+  button{background:#ffe500;color:#120c18;border:0;padding:.4rem .8rem;font-weight:bold}
+  #status{min-height:1.6em;color:#82ead7}
+</style>
+<main>
+  <p>THE BIG BEAT · OFFLINE REVIEW</p>
+  <h1>Compás USB Installer</h1>
+  <p>This review checks package identity and integrity. The transfer runs in the emulator.</p>
+  <section>
+    <h2>1. Check your starting firmware</h2>
+    <p>The rehearsal covers official V15, BB1 1.5, 2.0 and 2.1, and Compás with USB.</p>
+    <p>Before a physical install, prove chip ROM recovery and keep a verified full-flash backup for the exact unit. Back up your shows separately before returning to official firmware.</p>
+  </section>
+  <section>
+    <h2>2. Check the package</h2>
+    <label for="candidate">Compás review fixture</label>
+    <input id="candidate" type="file" accept=".fixture,.fwsc">
+    <label for="official">Official V15 return file</label>
+    <input id="official" type="file" accept=".fwsc">
+    <p id="status" role="status" aria-live="polite"></p>
+    <button type="button" disabled>Install on FM-1</button>
+  </section>
+  <section>
+    <h2>When the instrument cannot start</h2>
+    <p>Hold OCT− and OCT+ while powering on. Compás opens USB Update Mode. The chip’s ROM recovery is a separate path.</p>
+  </section>
+</main>
+<script type="module">
+import {validateCompasPackage, validateOfficialReturn} from "./compas-policy.mjs";
+
+const status = document.querySelector("#status");
+const checks = {
+  async candidate(bytes) {
+    const response = await fetch("./review-manifest.json");
+    if (!response.ok) throw new Error("The offline review manifest is missing.");
+    const manifest = await response.json();
+    return validateCompasPackage(bytes, manifest.sha256);
+  },
+  official: validateOfficialReturn,
+};
+for (const [id, validate] of Object.entries(checks)) {
+  document.querySelector("#"+id).addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    status.textContent = "Checking package…";
+    try {
+      const result = await validate(new Uint8Array(await file.arrayBuffer()));
+      status.textContent = "Verified package "+result.product+".";
+    } catch (error) {
+      status.textContent = error.message;
+    }
+  });
+}
+</script>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compás · Sonidero board bench</title>
+<style>
+:root{color-scheme:dark;font:16px system-ui;background:#0b0710;color:#fff8ec}
+body{max-width:940px;margin:24px auto;padding:0 12px}
+main{display:grid;grid-template-columns:minmax(245px,360px) 1fr;grid-template-areas:"screen controls" "keys keys";gap:20px;align-items:start}
+.board-controls{grid-area:controls;min-width:0}.key-deck{grid-area:keys;min-width:0}
+canvas{grid-area:screen;width:100%;image-rendering:pixelated;border:2px solid #6b5c7a;box-sizing:border-box}
+h1{color:#ffe600;margin:0 0 14px}
+.transport{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+#transport{min-width:7em;min-height:44px;background:#ffe600;color:#0b0710;font-weight:800}
+#transport[data-playing=true]{background:#ff2e88}
+.transport label{display:flex;align-items:center;gap:5px}p{margin:.5em 0}fieldset{min-width:0;border:1px solid #6b5c7a;margin:0 0 8px}
+input[type=file]{max-width:100%}
+#running-order{margin:8px 0 12px}
+#song-cues{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px}
+#song-cues button{width:100%;min-height:44px;text-align:left;display:flex;align-items:center;gap:.65em}
+#song-cues button[aria-current=true]{border-color:#ffe600;color:#ffe600}
+#song-cues button[data-next=true]{border-color:#ff2e88;color:#ff83b2}
+#song-cues .cue-state{margin-left:auto;font-size:.75em;font-weight:800}
+#open-set-control{display:grid;gap:4px;margin:8px 0}
+.set-picker{display:grid;gap:4px;margin:8px 0}
+.set-picker select{font:inherit;width:100%;background:#21192b;color:inherit;border:1px solid #6b5c7a;border-radius:4px;padding:5px}
+.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.control{text-align:center;font-size:.8rem}.control button{min-width:2em}
+button{font:inherit;border:1px solid #6b5c7a;background:#21192b;padding:5px;border-radius:4px;cursor:pointer}
+#fill-control{touch-action:none}
+button:active,button[aria-pressed=true]{background:#ffe600;color:#0b0710}
+#encoders .control:nth-child(3){grid-area:2/1}#encoders .control:nth-child(4){grid-area:2/2}#encoders .control:nth-child(5){grid-area:2/3}#encoders .control:nth-child(6){grid-area:2/4}#encoders .control:nth-child(7){grid-area:1/4}
+.key-bank{display:none;gap:6px;margin:8px 0}
+.key-bank button{flex:1;min-height:44px}
+.keyboard-scroll{overflow-x:auto;padding-bottom:6px}
+#keys{position:relative;height:116px;min-width:704px;margin:8px 0}
+#keys button{position:absolute;top:0;min-width:0;padding:4px 1px;font-size:11px;color:#0b0710;touch-action:none;-webkit-tap-highlight-color:transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;border-radius:0 0 5px 5px}
+#keys .white{width:6.25%;height:114px;background:#fff8ec;border:1px solid #6b5c7a}
+#keys .black{width:4%;height:63px;background:#3a2c4a;color:#fff8ec;z-index:1;border:1px solid #0b0710}
+#keys .job{font-weight:800;line-height:1.1;white-space:nowrap}kbd{font:10px system-ui;opacity:.65}
+#keys [data-kind=drum]{border-top:6px solid var(--family)}
+#keys [data-kind=unused]{background:#31273c;color:#9587a4}
+#keys [data-on=true]{background:#43ff91;color:#0b0710}
+#keys [data-current=true]{background:#ffe600;color:#0b0710}
+#keys [data-queued=true]{background:#ff2e88;color:#0b0710}
+#keys button[aria-pressed=true]{box-shadow:inset 0 0 0 3px #17d4ee}
+#keys button:focus-visible{outline:2px solid #17d4ee;outline-offset:-3px}
+#key-hint,.key-legend{font-size:.85rem}.key-legend{color:#c4b2d9}
+.key-legend span:nth-child(1){color:#ffe600}.key-legend span:nth-child(2){color:#ff2e88}.key-legend span:nth-child(3){color:#43ff91}
+details{border-top:1px solid #6b5c7a;margin-top:16px;padding-top:12px}summary{cursor:pointer;color:#17d4ee}details fieldset{margin-top:12px}
+@media(max-width:727px){main{display:block}canvas{max-width:360px}.key-bank{display:flex}#enable:disabled{display:none}.controls{margin-top:8px}body{margin:12px auto}}
+</style>
+<h1>Compás · Sonidero</h1>
+<div class="transport" aria-label="Playback">
+<button id="transport" type="button" disabled>PLAY</button>
+<label>Master <input id="master" type="range" min="0" max="100" value="60"></label>
+<button id="enable" type="button" disabled>Enable audio</button>
+</div>
+<p id="message" role="status">Loading Compás…</p>
+<main>
+<canvas id="screen" width="240" height="240" aria-label="Compás stage screen"></canvas>
+<section class="key-deck" aria-label="Playable keyboard">
+<div class="key-bank" role="group" aria-label="Show keyboard region">
+<button id="keys-left" type="button">Left keys</button>
+<button id="keys-center" type="button">Center keys</button>
+<button id="keys-right" type="button">Right keys</button>
+</div>
+<div class="keyboard-scroll" id="key-scroll"><div id="keys" aria-label="27 musical keys"></div></div>
+<p id="key-hint"></p>
+<p class="key-legend"><span>Yellow: current</span> · <span>Pink: queued / step accent</span> · <span>Green: layer on / step hit</span></p>
+</section>
+<div class="board-controls">
+<p>Current set · <strong id="set-name">Factory set</strong></p>
+<label class="set-picker">Rehearsal sets <select id="rehearsal-set"><option value="">Choose a set…</option></select></label>
+<label id="open-set-control">Open set or show <input id="open-set" type="file" accept=".json,.cpshow,application/json"></label>
+<details id="running-order"><summary>Cue songs · Running order</summary>
+<p>Tap a song to cue it at the phrase boundary. Tap NOW to clear a cue.</p>
+<ol id="song-cues" aria-label="Songs in this show"></ol>
+</details>
+<fieldset><legend>Encoders</legend><div class="controls" id="encoders"></div></fieldset>
+<fieldset><legend>Panel</legend><div class="controls" id="buttons"></div></fieldset>
+</div>
+</main>
+
+<details><summary>Sets, saved shows and playing notes</summary><p><button id="save-show">Save show</button></p>
+<p>GLO → SAVE keeps a rhythm with a slot. Save show preserves your slots and current edits. Reopening starts at the first slot.</p>
+<fieldset><legend>Reorder a saved show</legend>
+<label>Choose a show <input id="order-show" type="file" accept=".cpshow,application/json"></label>
+<p>Move whole songs with their attached rhythms and settings. Export a copy, then open it when you’re ready to play it.</p>
+<p id="show-order-status" role="status"></p>
+<ol id="show-order-list"></ol>
+<button id="export-show-order" type="button" disabled>Export reordered show</button>
+</fieldset>
+<p>On Band, press ARP and tap a part key for a fill into that part. ARP also works on its own for a fill.</p>
+<p>Rebajada: FX → Mix, KNOB4 SPEED slows the whole band and lowers its pitch. Turn to 100 for normal speed. Speed is a live master setting; saved shows keep the original tempo and reopen at 100%.</p>
+<p>Written songs: on Band, KNOB4 SHIFT transposes accompaniment and guide together. Zero is printed pitch; live changes wait for the next bar.</p>
+<p><em>La Adelita</em> follows the <a href="https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)">2016 arrangement by David Edward Kemp</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Compás renders the written pitches and rhythm with its score synth and makes Alto 1 an optional guide.</p>
+<p><em>La Valentina</em> follows <a href="https://imslp.org/wiki/5_Canciones_mexicanas_para_guitarra_(Ponce,_Manuel)">Stefan Apke’s 2019 guitar edition</a> of Ponce’s arrangement. Compás uses its score synth and keeps the repeated form. The score-data adaptation uses <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+<p><em>Juana Quilina</em> follows the <a href="https://commons.wikimedia.org/wiki/File:Juana_Quilina_Partitura..png">2011 melody engraving by Cheposo</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>. The Compás score adaptation keeps the written pitches and rhythm, plays the nine bars on its score synth at an editable 108 BPM, and omits lyrics. The adapted score data uses the same license.</p>
+<fieldset><legend>Your 727 rhythms</legend>
+<button id="save-rhythm">Save 727 steps</button>
+<label>Open 727 steps <input id="open-rhythm" type="file" accept=".c7r"></label>
+<p>REC opens the pads. On the pads, PRESETS browses rhythms, ARP toggles Roll, and a second REC press arms the selected sound. SEQ opens step editing. These files save the 727 steps only; use GLO → SAVE then Save show for the complete rhythm.</p>
+</fieldset>
+</details>
+<script type="module">/* COMPAS_BOARD_SCRIPT */</script>
+</html>

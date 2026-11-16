@@ -1,0 +1,18 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "LA VALENTINA",
+      "study": "la-valentina-apke",
+      "bpm": 80,
+      "kit": false
+    },
+    {
+      "title": "LA VALENTINA -2",
+      "study": "la-valentina-apke",
+      "bpm": 80,
+      "kit": false,
+      "transpose": -2
+    }
+  ]
+}

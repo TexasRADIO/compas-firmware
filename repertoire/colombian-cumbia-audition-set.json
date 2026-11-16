@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "CUMBIA BANQUEÑA",
+      "study": "cumbia-banquena",
+      "bpm": 94,
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "BARRANQUILLA",
+      "study": "cumbia-barranquilla",
+      "bpm": 97,
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "CUMBIA SOLEDAD",
+      "study": "cumbia-soledad",
+      "bpm": 110,
+      "feel": 0,
+      "kit": false
+    }
+  ]
+}

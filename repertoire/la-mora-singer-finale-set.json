@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"MORA FINALE GUIDE","study":"la-mora-singer-finale","bpm":96,"guide":true},
+    {"title":"MORA FINALE SING","study":"la-mora-singer-finale","bpm":96},
+    {"title":"MORA FINALE LOWER","study":"la-mora-singer-finale","bpm":96,"transpose":-2}
+  ]
+}

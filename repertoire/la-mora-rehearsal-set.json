@@ -1,0 +1,10 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"LA MORA OPENING","study":"la-mora-opening","bpm":96},
+    {"title":"MORA RETURN","study":"la-mora-return","bpm":96},
+    {"title":"MORA INTERLUDE","study":"la-mora-interlude","bpm":96},
+    {"title":"MORA SING GUIDE","study":"la-mora-sung-bass","bpm":96,"guide":true},
+    {"title":"LA MORA REFRAIN","study":"la-mora-refrain","bpm":96}
+  ]
+}

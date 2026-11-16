@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"TEJANO CUMBIA","study":"tejano","bpm":105,"kit":true},
+    {"title":"LA CUCARACHA","study":"la-cucaracha-piano","bpm":112,"guide":true},
+    {"title":"CUMBIA COAST","study":"coast","bpm":94},
+    {"title":"LA PALOMA","study":"la-paloma-piano","bpm":88,"guide":false},
+    {"title":"BOLERO CANCIÓN","study":"bolero","bpm":76,"kit":true},
+    {"title":"CIELITO LINDO","study":"cielito-lindo-piano","bpm":108,"guide":false},
+    {"title":"SON MONTUNO","study":"son","bpm":103,"kit":true},
+    {"title":"EL MANISERO","study":"el-manisero-kempton-piano","bpm":112,"guide":false},
+    {"title":"SALSA SON CLAVE","study":"salsa","bpm":108,"section":"lift","kit":true},
+    {"title":"MERENGUE","study":"merengue","bpm":150},
+    {"title":"LA GOLONDRINA","study":"la-golondrina","bpm":84,"guide":false}
+  ]
+}

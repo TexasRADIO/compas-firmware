@@ -1,4 +1,4 @@
-"""Validate and compile the Compas release score data. Python 3.10+, no packages."""
+"""Validate and compile the score ledger. Python 3.10+, no packages."""
 import json
 from pathlib import Path
 import re

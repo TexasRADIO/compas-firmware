@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"BOLERO TROVA","study":"bolero-trova","bpm":76},
+    {"title":"PLAY YOUR GUITAR","study":"bolero-trova","bpm":76,"mute":8},
+    {"title":"BOLERO CANCIÓN","study":"bolero","bpm":76,"kit":true},
+    {"title":"PLAY YOUR BASS","study":"bolero-trova","bpm":76,"mute":32}
+  ]
+}

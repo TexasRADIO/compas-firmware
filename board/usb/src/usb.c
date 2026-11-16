@@ -30,6 +30,7 @@ static struct {
     uint8_t rx_pend;             /* EP1 OUT packet seen, not yet taken (the MIDI ring was too full) */
     volatile uint8_t uboot_req;
     volatile uint8_t ota_req;    /* F0 22 24 35 7F F7: M-UPGRADE upgrade command (FELUCCA_OTA) */
+    volatile uint8_t rt_in;      /* Compás 1.2: MIDI Start/Continue (1) and Stop (2) seen, taken by the main loop */
 } usb;
 
 /* M-UPGRADE SysEx (ota.c): one received frame at a time (7-bit bytes between
@@ -330,6 +331,14 @@ static void midi_in_event(uint32_t pkt)                 /* one USB-MIDI event pa
     uint32_t cin = pkt & 15u, st = (pkt >> 8) & 0xFFu;
     if (pkt & 0xF0u)
         return;
+    if (cin == 15u && (st == 0xFAu || st == 0xFBu)) {   /* Start / Continue */
+        usb.rt_in = 1;
+        return;
+    }
+    if (cin == 15u && st == 0xFCu) {                     /* Stop */
+        usb.rt_in = 2;
+        return;
+    }
     if (cin >= 4u && cin <= 7u) {
         uint32_t k, nb = cin == 4u || cin == 7u ? 3u : cin == 6u ? 2u : 1u;
         for (k = 0; k < nb; k++)
@@ -390,6 +399,20 @@ static int ota_wire_send(const uint8_t *p, uint32_t n)   /* F0..F7 -> USB-MIDI S
         i += k;
     }
     return 0;
+}
+/* Compás 1.2: one USB-MIDI event packet (a realtime byte: CIN 15) on the same
+ * TX ring as SysEx, so clock and Sideman reports never interleave mid-message. */
+static int usb_midi_packet(uint32_t pkt)
+{
+    if (!usb.config || so_w - so_r >= SXQ)
+        return -1;
+    sx_out_q[so_w % SXQ] = pkt;
+    so_w++;
+    return 0;
+}
+static int usb_midi_realtime(uint8_t byte)
+{
+    return usb_midi_packet(15u | (uint32_t)byte << 8);
 }
 static int ota_frame_get(const uint8_t **p, uint32_t *n)
 {

@@ -1,6 +1,6 @@
 {
   "revision": 1,
-  "status": "Compas 1.1 release score data; licensing and source notes are in LICENSING.md",
+  "status": "Original Compás arrangement studies; no third-party assets embedded. See LICENSING.md.",
   "clock": "sixteenths, zero-based; two displayed measures per phrase",
   "conductorForms": {
     "default": [["Intro","INT"],["Verse A","V-A"],["Verse B","V-B"],["Chorus","CHO"],["Break","BRK"],["Ending","END"]],

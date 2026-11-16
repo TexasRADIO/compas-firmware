@@ -27,6 +27,7 @@ typedef struct {
 #define SONG_HIDDEN '\x7f'
 #include "set.inc"
 #include "board-grooves.inc"
+#include "fx.c"
 _Static_assert(sizeof rhythm_bank/sizeof *rhythm_bank==BOARD_RHYTHM_PATTERNS,"rhythm bank count");
 _Static_assert(sizeof groove_titles/sizeof *groove_titles==BOARD_GROOVE_PRESETS,"groove bank count");
 static uint8_t queued_groove, queued_root, queued_clave;
@@ -167,6 +168,7 @@ static void reset_song_layers(void)
 void board_init(void)
 {
     board_stats=(BoardStats){.callbacks=0};
+    fx_init();
 #ifdef COMPAS_HANAN
     board_hanan_mode=HANAN_OFF;
     hanan_pattern=0;
@@ -706,6 +708,8 @@ static unsigned apply(BoardCommand cmd)
         cmd=(BoardCommand){BOARD_PART,PART_END,0};
     }
     switch (cmd.command) {
+    case BOARD_FX:
+        return fx_set(cmd.a,cmd.b)?CP_OK:CP_RANGE;
     case BOARD_SPEED:
         if(cmd.a<60 || cmd.a>100) return CP_RANGE;
         speed=cmd.a;
@@ -1288,6 +1292,13 @@ BoardView board_view(unsigned role)
     return copy;
 }
 
+void board_fx_view(uint8_t out[FX_PARAMS])
+{
+    uint32_t lock=board_lock();
+    for(unsigned i=0;i<FX_PARAMS;++i) out[i]=fx.param[i];
+    board_unlock(lock);
+}
+
 RackFeedback board_rack_feedback(void)
 {
     uint32_t lock=board_lock();
@@ -1296,7 +1307,7 @@ RackFeedback board_rack_feedback(void)
     return copy;
 }
 
-static void render_half(int32_t *out)
+static void render_half(int32_t *out,uint32_t started)
 {
     rack_pending=(RackFeedback){.hits=0};
     unsigned refresh=queued || stop || master_request!=NO_MASTER_REQUEST;
@@ -1345,9 +1356,26 @@ static void render_half(int32_t *out)
         } else sum=mono[i];
         gain+=step;
         sum=sum*(int32_t)((uint32_t)gain/BOARD_FRAMES)/256;
-        if (sum>32767) { sum=32767; ++board_stats.rail_samples; }
-        if (sum<-32768) { sum=-32768; ++board_stats.rail_samples; }
-        out[2*i]=out[2*i+1]=sum*128;  /* retained Felucca Q15 to codec scaling */
+        out[2*i]=out[2*i+1]=sum;
+    }
+    /* Compás 1.2 effects: in place, mono in the left words, stereo out.
+     * Skipped entirely while every amount is 0 (1.1 output, bit for bit). */
+    if(fx.active) {
+        static int32_t dry[BOARD_FRAMES];
+        for(unsigned i=0;i<BOARD_FRAMES;++i) dry[i]=out[2*i];
+        fx_shed=(uint8_t)fx_guard(board_ticks()-started,BOARD_TICKS_PER_FRAME*BOARD_FRAMES);
+        board_stats.fx_shed_blocks+=fx_shed!=0;
+        fx_process(dry,out,BOARD_FRAMES,(view.bpm*speed+50u)/100u);
+    }
+    for(unsigned i=0;i<2*BOARD_FRAMES;i+=2) {
+        unsigned railed=0;
+        for(unsigned c=0;c<2;++c) {
+            int32_t sum=out[i+c];
+            if (sum>32767) { sum=32767; railed=1; }
+            if (sum<-32768) { sum=-32768; railed=1; }
+            out[i+c]=sum*128;  /* retained Felucca Q15 to codec scaling */
+        }
+        board_stats.rail_samples+=railed;
     }
 }
 
@@ -1358,7 +1386,7 @@ void fm1_alnk0_irq(void)
     board_ack_aux(pending);
     if (!(pending&BOARD_HALF_IRQ)) return;
     const unsigned half=board_free_half();
-    if (!fault) render_half(board_dma[half]);
+    if (!fault) render_half(board_dma[half],start);
     else silence(board_dma[half]);
     board_ack_half();
     const unsigned late=board_free_half()!=half;

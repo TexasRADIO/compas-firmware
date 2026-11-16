@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"KIT AND BASS","study":"tejano","kit":true,"mute":24},
+    {"title":"FULL RHYTHM BAND","study":"tejano","kit":true},
+    {"title":"HAND PERC AND BASS","study":"tejano","kit":true,"mute":7},
+    {"title":"PLAY YOUR BASS","study":"tejano","kit":true,"mute":32}
+  ]
+}

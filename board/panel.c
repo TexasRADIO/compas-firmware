@@ -222,7 +222,17 @@ static void browse_song(Panel *panel, BoardView v, int32_t delta)
     send(panel,BOARD_CUE,target,0);
 }
 
-void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc[7], uint32_t now)
+/* Compás 1.2: MIDI Start/Continue (start=1) or Stop (start=0) from the USB
+ * host. Same result as PLAY, on any page; a no-op when already there. */
+void panel_remote(Panel *panel, unsigned start)
+{
+    BoardView v=board_view(panel->page==PANEL_BASS?BOARD_BASS_LINE_ROLE:panel->role);
+    if(!start==!v.playing) return;
+    if(v.playing) ++panel->stop_epoch;
+    send(panel,v.playing?CP_STOP:CP_START,0,0);
+    panel->last_part=0;
+}
+static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc[7], uint32_t now)
 {
     BoardView v=board_view(panel->page==PANEL_BASS?BOARD_BASS_LINE_ROLE:panel->role);
     unsigned previous_page=panel->page, previous_edit=panel->rack_edit;
@@ -251,7 +261,7 @@ void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc
         else
 #endif
         if(panel->page==PANEL_RACK && !v.piano) send(panel,BOARD_SEQ_ENABLE,(v.rack_sequence+1u)%3u,0);
-        else panel->page=PANEL_MIX;
+        else panel->page=panel->page==PANEL_MIX?PANEL_FX:PANEL_MIX;   /* MIX twice: effects */
     }
     else if (buttons&(1u<<BASS)) panel->page=panel->page==PANEL_BASS?PANEL_HOME:PANEL_BASS;
     else if (buttons&(1u<<PERC)) panel->page=panel->page==PANEL_PERC?PANEL_HOME:PANEL_PERC;
@@ -511,6 +521,30 @@ void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc
     }
 }
 
+/* Compás 1.2 effects page: MIX pressed on the mixer. K1-K4 are ROOM, ECHO,
+ * echo TIME and REPEAT; OCT-/OCT+ step GLUE by ten; MIX goes back. Every
+ * other control does what it does on the mixer, so the band stays playable. */
+void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc[7], uint32_t now)
+{
+    if(panel->page!=PANEL_FX) {
+        scan(panel,buttons,keys,enc,now);
+        return;
+    }
+    uint8_t fx[FX_PARAMS];
+    board_fx_view(fx);
+    static const uint8_t param[4]={FX_SALA,FX_ECO,FX_TIEMPO,FX_REPITE}, top[4]={100,100,FX_DIVISIONS-1,90};
+    for(unsigned i=0;i<4;++i)
+        if(enc[2+i]) send(panel,BOARD_FX,param[i],adjust(fx[param[i]],enc[2+i],0,top[i]));
+    const uint32_t octave=buttons&((1u<<OCT_DOWN)|(1u<<OCT_UP));
+    if(octave==1u<<OCT_DOWN || octave==1u<<OCT_UP)
+        send(panel,BOARD_FX,FX_PEGA,adjust(fx[FX_PEGA],octave==1u<<OCT_UP?10:-10,0,100));
+    const int32_t rest[7]={enc[0],enc[1],0,0,0,0,enc[6]};
+    const unsigned back=(buttons&(1u<<MIX))!=0;
+    panel->page=PANEL_MIX;
+    scan(panel,buttons&~((1u<<OCT_DOWN)|(1u<<OCT_UP)|(1u<<MIX)),keys,rest,now);
+    if(panel->page==PANEL_MIX && !back) panel->page=PANEL_FX;
+}
+
 void panel_input(Panel *panel,uint32_t buttons,uint32_t keys,const int32_t enc[7])
 {
     panel_scan(panel,buttons,keys,enc,0);
@@ -545,7 +579,7 @@ void panel_face(const Panel *panel, BoardView v, char lines[FACE_LINES][FACE_COL
         lines[i][FACE_COLS]='\0';
     }
     label(lines[0],0,"COMPAS");
-    static const char *const pages[]={"BAND","MIX","STEP","727","SONGS","BASS","PERC"};
+    static const char *const pages[]={"BAND","MIX","STEP","727","SONGS","BASS","PERC","KUMBIA","FX"};
     label(lines[0],10,pages[panel->page]);
     label(lines[0],15,v.fault?"FAULT":v.playing?"LIVE":"READY");
     label(lines[1],0,v.song<SET_SLOTS?board_song_title(v.song):studies[v.study]);
@@ -655,6 +689,16 @@ void panel_face(const Panel *panel, BoardView v, char lines[FACE_LINES][FACE_COL
             for(unsigned i=0;i<count;++i)
                 lines[4][i]=(v.steps&(1u<<(i+panel->bar)))?'#':'-';
             label(lines[5],0,panel->bar?"BAR 2 / OCT-":"BAR 1 / OCT+");
+        } else if(panel->page==PANEL_FX) {
+            static const char *const divisions[FX_DIVISIONS]={"1/16","1/8","3/16","1/4","3/8","1/2"};
+            uint8_t fx[FX_PARAMS];
+            board_fx_view(fx);
+            label(lines[3],0,"                    ");
+            label(lines[3],0,"EFFECTS");
+            label(lines[3],11,"ECHO");
+            label(lines[3],16,divisions[fx[FX_TIEMPO]<FX_DIVISIONS?fx[FX_TIEMPO]:0]);
+            label(lines[4],0,"GLUE"); number(lines[4],5,fx[FX_PEGA]);
+            label(lines[5],0,"OCT- OCT+ GLUE");
         } else if(panel->page==PANEL_MIX) {
             label(lines[4],0,"1-6 MUTE 7-12 SOLO");
             for(unsigned i=0;i<6;++i) {

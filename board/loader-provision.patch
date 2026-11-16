@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Synthetic first-show transaction, after the three existing loader patches.
+--- a/firmware/loader/loader.c
++++ b/firmware/loader/loader.c
+@@ -17,7 +17,7 @@
+ #include "fm1_time.h"
+ #include "fm1_sys.h"
+ #include "loader-flash-policy.h"
+-#define FL_RANGE_OK(off, n) (compas_loader_erase_range(off, n) || compas_loader_program_range(off, n))
++#define FL_RANGE_OK(off, n) (compas_loader_erase_range(off, n) || compas_loader_program_range(off, n) || compas_first_show_range(off,n))
+ #include "fm1_flash.h"
+ #include "../src/libc.c"
+ #include "../src/usb.c"
+@@ -59,6 +59,7 @@
+ static int ldr_fread(uint32_t off, void *p, uint32_t n) { return fl_read_ram(off, p, n); }
+ static int ldr_erase(uint32_t off)
+ {
++    if(!compas_loader_erase_range(off,4096))return -1;
+     uint32_t took;
+     return fl_erase4k_ram(off, &took);
+ }
+@@ -74,6 +75,7 @@
+     fm1_updata_parm_clear();                        /* CRC 0: the SPL ignores it on a warm reset */
+ }
+ static void ldr_progress(uint32_t done, uint32_t total) { (void)done; (void)total; ldr_poll(); }
++#include "loader-provision.h"
+ #include "ldr_core.c"
+ 
+ extern uint32_t _bss_start[], _bss_end[];
+--- a/firmware/loader/ldr_core.c
++++ b/firmware/loader/ldr_core.c
+@@ -95,5 +95,8 @@
+         if (ota_read(fl_off + i, b, n))
+             return -7;
++#ifdef COMPAS_FIRST_SHOW_WIRE
++        ldr_provision_app_bytes(i,b,n);
++#endif
+         crc = ota_crc16(b, n, crc);
+         if (i >= LDR_APP_LO && i < LDR_APP_HI) {     /* (512-byte reads from 0: never across a sector) */
+             uint32_t k = (i - LDR_APP_LO) >> 12;
+@@ -128,6 +131,7 @@
+     /* 2b. the whole package first: nothing is erased for a damaged one */
+     if ((rc = ldr_check(fl_off, fl_size, want, sc, sec)) != 0)
+         return rc;
++    if(ldr_prepare_provision())return -18; /* Refuse unknown tails before app writes. */
+     /* 3. app area, sector by sector */
+     for (s = LDR_APP_LO; s < LDR_APP_HI; s += 0x1000u) {
+         uint32_t again;
+@@ -162,6 +166,7 @@
+             break;
+     if (i == 4u)
+         return -14;
++    if(ldr_commit_provision())return -19; /* Recovery records survive a failed show. */
+     {
+         static const uint32_t records[] = {0xE4F00u, 0xE8F00u};
+         uint8_t r[80];

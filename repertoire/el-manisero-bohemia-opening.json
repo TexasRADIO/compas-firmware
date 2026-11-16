@@ -1,0 +1,57 @@
+{
+  "title": "El Manisero - Havana danzon opening",
+  "edition": "Bohemia, Havana, 26 May 1929, printed p. 66",
+  "source": "https://ufdcimages.uflib.ufl.edu/UF/00/02/90/10/01764/26_mayo_1929_21.pdf",
+  "source_sha256": "95f5173d25df6abf0cba3b1badcbb7487c82334e2e93d15cacfecd9268bbacc3",
+  "source_location": "PDF p. 34, left page, top system. From the four repeated attacks to the barline after the chromatically rising bass figure.",
+  "credits_as_printed": ["E. Lecuona", "M. Simons", "Antonio Mª Romeu"],
+  "scope": "The four-note lead-in and the first three full measures after the opening repeat sign, once through.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 100,
+  "form": [
+    {"name": "LEAD-IN", "bar": 1},
+    {"name": "OPENING REPEAT SIGN", "bar": 2},
+    {"name": "SECOND BAR", "bar": 3},
+    {"name": "RISING BASS", "bar": 4}
+  ],
+  "editorial": [
+    "The initial beam group alternates sixteenth and eighth attacks, making a 36-tick partial measure.",
+    "The three-note chords in the treble retain their printed dotted-eighth lengths. Shared heads at the fourth sixteenth sound once, on the upper track.",
+    "The printed chord rolls are realized as simultaneous attacks. Tempo and MIDI velocity are editorial. The MIDI carries the pitch, timing and source metadata.",
+    "The third bar keeps four treble chords against the opening C octave and the ascending E, F and F-sharp bass octaves, each split low then high.",
+    "This excerpt ends before the source’s repeat return and alternate endings."
+  ],
+  "parts": [
+    {
+      "title": "Piano lower staff",
+      "program": 0,
+      "bars": [
+        {"notes": "G2+G3:6 G2+G3:12 G2+G3:6 G2+G3:12", "ticks": 36},
+        "C2+C3:12 G3+C4+E4:12 F2+F3:12 A2+A3:12",
+        "C2+C3:12 G3+C4+E4:12 D2+D3:12 G2+G3:12",
+        "C2+C3:12 E2:6 E3:6 F2:6 F3:6 F#2:6 F#3:6"
+      ]
+    },
+    {
+      "title": "Piano upper staff",
+      "program": 0,
+      "bars": [
+        {"notes": "G4+G5:6 G4+G5:12 G4+G5:6 G4+G5:12", "ticks": 36},
+        "C6:6 G5:6 E5:6 C5:6 F5:6 A5:6 C6:6 A5:6",
+        "C6:6 G5:6 E5:6 C5:6 A5:6 F5:6 D5:6 B4:6",
+        "C4+E4+C5:12 E4+G4+E5:12 D4+F4+D5:12 C4+G4+B4:12"
+      ]
+    },
+    {
+      "title": "Piano upper staff held voice",
+      "program": 0,
+      "bars": [
+        {"notes": "R:36", "ticks": 36},
+        "C5+E5+G5:18 R:6 C5:12 C5:12",
+        "C5+E5+G5:18 R:6 B4+D5+G5:18 R:6",
+        "R:48"
+      ]
+    }
+  ]
+}

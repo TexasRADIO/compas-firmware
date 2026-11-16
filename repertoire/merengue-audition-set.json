@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "MERENGUE CONGAS",
+      "study": "merengue-congas",
+      "bpm": 120,
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MERENGUE VARIATION",
+      "study": "merengue-congas",
+      "bpm": 120,
+      "section": "lift",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "PAMBICHE CIBAO",
+      "study": "pambiche",
+      "bpm": 126,
+      "feel": 0,
+      "kit": false
+    },
+    {"title":"DERECHO PRIMERA","study":"derecho-primera","bpm":158,"feel":0},
+    {"title":"DERECHO SEGUNDA","study":"derecho-segunda","bpm":158,"feel":0},
+    {"title":"MERENGUE A LO MACO","study":"merengue-maco","bpm":168,"feel":0},
+    {"title":"JUANA QUILINA","study":"juana-quilina","bpm":108}
+  ]
+}

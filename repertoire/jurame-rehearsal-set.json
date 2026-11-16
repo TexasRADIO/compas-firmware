@@ -1,0 +1,22 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "JÚRAME GUIDE",
+      "study": "jurame-schirmer-refrain",
+      "bpm": 72,
+      "guide": true
+    },
+    {
+      "title": "JÚRAME PIANO CUE",
+      "study": "jurame-schirmer-refrain",
+      "bpm": 72
+    },
+    {
+      "title": "JÚRAME LOWER",
+      "study": "jurame-schirmer-refrain",
+      "bpm": 72,
+      "transpose": -2
+    }
+  ]
+}

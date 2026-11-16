@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "CDMX SONIDERA",
+      "study": "cdmx",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MTY CUMBIA DUB",
+      "study": "mty-dub",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "TRIBAL 132",
+      "study": "tribal",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "VILLERA STUDY",
+      "study": "villera",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "LIMA DIGITAL",
+      "study": "lima",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "CHILE ELECTRO",
+      "study": "chile",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "PUEBLA SINTES",
+      "study": "puebla",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "POTOSÍ WEPA",
+      "study": "wepa",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "PERÚ TECNO",
+      "study": "tecno-peru",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "BA CUMBIA DIGITAL",
+      "study": "ba-digital",
+      "feel": 0,
+      "kit": true
+    }
+  ]
+}

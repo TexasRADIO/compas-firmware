@@ -1,11 +1,11 @@
 #!/bin/sh
-# Link the Compas board ELF. This recipe has no packaging or device steps.
+# Link the board ELF. This recipe has no packaging or device steps.
 set -eu
 cd "$(dirname "$0")/.."
 root="$(pwd -P)"
-sdk="${COMP_JIELI:?Set COMP_JIELI to the PI32v2 JieLi toolchain directory}"
-bsp="${COMP_BSP:-$root/release-inputs/felucca}"
-studio="${COMP_STUDIO:-$root/release-inputs/studio}"
+sdk="${COMP_JIELI:?Set COMP_JIELI}"
+bsp="${COMP_BSP:?Set COMP_BSP}"
+studio="${COMP_STUDIO:?Set COMP_STUDIO}"
 docker="${COMP_DOCKER:-docker}"
 language="${COMPAS_LANG_DEFAULT:-0}"
 case "$language" in
@@ -20,8 +20,7 @@ else
     python3 tools/board-piano.py
 fi
 python3 tools/board-set.py "${COMP_SET:-board/set.json}"
-hanan="${COMP_HANAN:-$root/release-inputs/hanan}"
-python3 tools/board-hanan.py "$hanan"
+if [ -n "${COMP_HANAN:-}" ]; then python3 tools/board-hanan.py "$COMP_HANAN"; fi
 python3 - "$bsp" <<'PY'
 from pathlib import Path
 import hashlib,json,sys
@@ -33,7 +32,7 @@ PY
     -e "COMPAS_EMU_STORE_BUILD=${COMP_EMU_STORE:-0}" \
     -e "COMPAS_USB_BUILD=${COMP_USB:-0}" \
     -e "COMPAS_LANG_DEFAULT=$language" \
-    -e "COMPAS_HANAN_BUILD=1" \
+    -e "COMPAS_HANAN_BUILD=${COMP_HANAN:+1}" \
     -e "COMPAS_RELEASE_BUILD=${COMP_RELEASE:-0}" \
     --mount "type=bind,source=$sdk,target=/opt/jieli,readonly" \
     --mount "type=bind,source=$bsp,target=/bsp,readonly" \
@@ -69,12 +68,12 @@ PY
         "$bin/ld" --gc-sections -T /bsp/firmware/app.ld -Map=compas-stress.map -o compas-stress.elf \
             crt0.o irq.o fm1_vec.o emu-stress.o panel.o board.o piano.o engine.o bank.o
         "$bin/objdump" -h -t compas-stress.elf > compas-stress.sections
-        "$bin/objdump" -d compas-offline.elf > compas.disassembly
+        "$bin/objdump" -d -mcpu=r3 -mattr=+fprev1 compas-offline.elf > compas.disassembly
         "$bin/objdump" -h -t compas-offline.elf > compas.sections
         if [ "$COMPAS_EMU_STORE_BUILD" = 1 ]; then
             store_flags="-DCOMPAS_EMU_STORE"
             if [ "$COMPAS_USB_BUILD" = 1 ]; then store_flags="$store_flags -DCOMPAS_USB"; fi
-            # COMP_RELEASE=1: the installable release layout, with no saved show.
+            # COMP_RELEASE=1: the installable 1.0 (BB1 layout and loader, no saved show).
             if [ "$COMPAS_RELEASE_BUILD" = 1 ]; then store_flags="$store_flags -DCOMPAS_NO_SHOW_STORE"; fi
             for name in board piano fm1 store; do
                 unit_flags=
@@ -86,7 +85,6 @@ PY
             "$bin/ld" --gc-sections -T /bsp/firmware/app.ld -Map=compas-store.map -o compas-store.elf \
                 crt0.o irq.o fm1_vec.o fm1-store.o panel.o board-store.o piano-store.o store-store.o engine.o bank.o
             "$bin/objdump" -h -t compas-store.elf > compas-store.sections
-            "$bin/objdump" -d compas-store.elf > compas-store.disassembly
-            /opt/jieli/common/bin/objcopy -O binary compas-store.elf compas-store.xip
+            "$bin/objdump" -d -mcpu=r3 -mattr=+fprev1 compas-store.elf > compas-store.disassembly
         fi
     ' >build/board/link.log 2>&1 || { cat build/board/link.log; exit 1; }

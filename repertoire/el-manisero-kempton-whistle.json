@@ -1,0 +1,134 @@
+{
+  "composer": "Moisés Simons",
+  "arranger": "Lawrence Kempton",
+  "edition": "Edward B. Marks Music Co., New York, 1930, plate 9737-4",
+  "source": "https://www.sheetmusicsinger.com/wp-content/uploads/2023/01/The-Peanut-Vendor.pdf",
+  "source_sha256": "79f28cbda8c19e9996b591ede74928f24ebae1ed670bfc4978bd03e8179962a5",
+  "ppq": 24,
+  "meter": [
+    2,
+    2
+  ],
+  "preview_bpm": 112,
+  "title": "El Manisero - Kempton peanut-whistle imitation",
+  "source_location": "Printed p. 5 and PDF p. 5, systems 3–4, upper vocal staff. Aligned to the 89-bar Kempton piano rehearsal.",
+  "scope": "Separate printed peanut-whistle imitation. Written vocal notes and both piano staves are outside this track.",
+  "editorial": [
+    "On p. 5 system 3, the small unison D5 heads at the starts of bars 2 and 4 are whole-note whistle entries. The tied D5 to the left belongs to the sung line.",
+    "On system 4 bar 2, the small whole note ties to the small D5 quarter in bar 3. The quarter rest and half rest leave room for the continuing sung line.",
+    "The labelled D5 quarter on beat four of system 4 bar 4 uses its nominal written length under the fermata. The final bar rests.",
+    "The GM Whistle patch and fixed velocity are preview choices. The printed diminuendo hairpins and fermata duration are not synthesized in this MIDI."
+  ],
+  "play_order": [
+    "p2_s1",
+    "p2_s2",
+    "p2_s3",
+    "p2_s4",
+    "p3_s1",
+    "p3_s2",
+    "p3_s3",
+    "p3_s4",
+    "p4_s1",
+    "p4_s2",
+    "p4_s3",
+    "p4_s4",
+    "p5_s1",
+    "p5_s2",
+    "p2_s2",
+    "p2_s3",
+    "p2_s4",
+    "p3_s1",
+    "p3_s2",
+    "p3_s3",
+    "p3_s4",
+    "p4_s1",
+    "p4_s2",
+    "p4_s3",
+    "p4_s4",
+    "p5_s1",
+    "p5_s2",
+    "p5_s3",
+    "p5_s4"
+  ],
+  "form": [
+    {
+      "name": "INTRO",
+      "bar": 1
+    },
+    {
+      "name": "VERSE",
+      "bar": 5
+    },
+    {
+      "name": "REFRAIN",
+      "bar": 9
+    },
+    {
+      "name": "CODA",
+      "bar": 81
+    }
+  ],
+  "parts": [
+    {
+      "title": "Peanut-whistle imitation",
+      "program": 78,
+      "patterns": {
+        "rest": "R:96",
+        "whistle": "D5:96",
+        "sustained": "D5:96~",
+        "reply_release": "D5:24 R:24 R:48",
+        "fermata": "R:72 D5:24"
+      },
+      "sections": {
+        "p2_s1": {
+          "bars": "rest rest rest rest"
+        },
+        "p2_s2": {
+          "bars": "rest rest rest rest"
+        },
+        "p2_s3": {
+          "bars": "rest rest rest rest"
+        },
+        "p2_s4": {
+          "bars": "rest rest"
+        },
+        "p3_s1": {
+          "bars": "rest rest"
+        },
+        "p3_s2": {
+          "bars": "rest rest rest rest"
+        },
+        "p3_s3": {
+          "bars": "rest rest rest"
+        },
+        "p3_s4": {
+          "bars": "rest rest rest"
+        },
+        "p4_s1": {
+          "bars": "rest rest"
+        },
+        "p4_s2": {
+          "bars": "rest rest"
+        },
+        "p4_s3": {
+          "bars": "rest rest rest"
+        },
+        "p4_s4": {
+          "bars": "rest rest rest rest"
+        },
+        "p5_s1": {
+          "bars": "rest rest"
+        },
+        "p5_s2": {
+          "bars": "rest rest rest"
+        },
+        "p5_s3": {
+          "bars": "rest whistle rest whistle"
+        },
+        "p5_s4": {
+          "bars": "rest sustained reply_release fermata rest"
+        }
+      }
+    }
+  ]
+}

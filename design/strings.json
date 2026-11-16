@@ -1,6 +1,6 @@
 {
  "version": 2,
- "about": "Every Compás screen string with its box. tools/strings.py checks it against the source and the font. Spanish: project es-MX catalogue and sheet return, 7 Nov.",
+ "about": "Every Compás screen string with its box. tools/strings.py checks it against the source and the font.",
  "font": {
   "1": "6 px per character",
   "2": "11 px per character",
@@ -2416,7 +2416,7 @@
     "src/score.json:conductorForms.salsa"
    ],
    "kind": "keep",
-   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (project audit, 7 Nov).",
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists.",
    "max": 10
   },
   {
@@ -2548,7 +2548,7 @@
    ],
    "kind": "keep",
    "max": 3,
-   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (project audit, 7 Nov)."
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists."
   },
   {
    "id": "part.key.cierre",
@@ -4554,7 +4554,7 @@
    "where": [
     "board/board.c:289"
    ],
-   "note": "Not in the project catalogue. Spanish from the project sheet return (22:40)."
+   "note": "Spanish interface label."
   },
   {
    "id": "RHYTHM",
@@ -4566,7 +4566,7 @@
    "where": [
     "board/board.c:390"
    ],
-   "note": "Not in the project catalogue. Spanish from the project sheet return (22:40)."
+   "note": "Spanish interface label."
   },
   {
    "id": "hanan.drive",
@@ -4622,6 +4622,101 @@
     "board/stage.c"
    ],
    "kind": "label"
+  },
+  {
+   "id": "fx.knob.room",
+   "en": "ROOM",
+   "es": "SALA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "Compás 1.2 effects page, K1"
+  },
+  {
+   "id": "fx.knob.echo",
+   "en": "ECHO",
+   "es": "ECO",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c",
+    "board/panel.c"
+   ],
+   "kind": "label",
+   "note": "K2; also face row 3 (4 characters)"
+  },
+  {
+   "id": "fx.knob.time",
+   "en": "TIME",
+   "es": "TIEMPO",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "K3: echo time in sixteenths, follows the tempo"
+  },
+  {
+   "id": "fx.knob.repeat",
+   "en": "REPEAT",
+   "es": "REPITE",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "K4: echo feedback"
+  },
+  {
+   "id": "fx.title",
+   "en": "EFFECTS",
+   "es": "EFECTOS",
+   "max": 11,
+   "scale": 1,
+   "where": [
+    "board/panel.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "fx.glue",
+   "en": "GLUE",
+   "es": "PEGA",
+   "max": 4,
+   "scale": 1,
+   "where": [
+    "board/panel.c"
+   ],
+   "kind": "label",
+   "note": "glue compressor on the whole mix"
+  },
+  {
+   "id": "fx.glue_keys",
+   "en": "OCT- OCT+ GLUE",
+   "es": "OCT- OCT+ PEGA",
+   "max": 20,
+   "scale": 1,
+   "where": [
+    "board/panel.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "tab.fx",
+   "en": "FX",
+   "es": "EFX",
+   "max": 5,
+   "scale": 1,
+   "where": [
+    "board/panel.c"
+   ],
+   "kind": "hidden",
+   "note": "panel_face row 0: not drawn on any screen."
   }
  ]
 }

@@ -1,7 +1,7 @@
 #ifndef COMPAS_PANEL_H
 #define COMPAS_PANEL_H
 #include "board.h"
-enum { PANEL_HOME, PANEL_MIX, PANEL_EDIT, PANEL_RACK, PANEL_SET, PANEL_BASS, PANEL_PERC, PANEL_HANAN };
+enum { PANEL_HOME, PANEL_MIX, PANEL_EDIT, PANEL_RACK, PANEL_SET, PANEL_BASS, PANEL_PERC, PANEL_HANAN, PANEL_FX };
 enum { PANEL_PLAY_BUTTON=12 };
 enum { FACE_LINES=8, FACE_COLS=20 };
 enum { PANEL_INTRO_C4=7, PANEL_VERSE_D4=9, PANEL_VARIATION_E4=11, PANEL_CHORUS_F4=12,
@@ -20,6 +20,7 @@ PanelKeys panel_keys(const Panel *panel, BoardView view);
 unsigned panel_key_number(unsigned key, PanelKeys map);
 void panel_input(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc[7]);
 void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc[7], uint32_t now);
+void panel_remote(Panel *panel, unsigned start);
 void panel_master(Panel *panel, int32_t raw);
 unsigned panel_beats(unsigned study);
 unsigned panel_has_bass(BoardView view);

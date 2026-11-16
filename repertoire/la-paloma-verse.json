@@ -1,0 +1,33 @@
+{
+  "title": "La Paloma",
+  "composer": "Sebastián Yradier",
+  "edition": "Century Music Publishing, 1906, plate 84-4, pp. 2–3, canto line",
+  "source": "https://archive.org/details/lapalomadovecanc00yrad",
+  "source_sha256": "f6f3a948cf2dd33a99d5c40aa720a0aaf007a632b19c9758a54b6201a49a73bb",
+  "scope": "First sung verse, from the initial sung entrance to the cadence before the refrain. Piano introduction, accompaniment, lyrics, refrain and later verses are outside this transcription. Unmeasured grace notes are omitted.",
+  "ppq": 24,
+  "meter": [2, 4],
+  "preview_bpm": 88,
+  "bars": [
+    "R:24 R:12 G4:12",
+    "G4:48~",
+    "G4:8 E4:8 F4:8 G4:12 A4:12",
+    "B4:8 C5:8 A4:8 B4:12 G4:12",
+    "F4:48",
+    "R:24 R:12 D5:12",
+    "D5:48~",
+    "D5:8 E5:8 C5:8 D5:12 B4:12",
+    "C5:8 B4:8 A4:8 G4:12 F4:12",
+    "E4:48~",
+    "E4:24 R:12 G4:12",
+    "G4:48~",
+    "G4:8 E4:8 F4:8 G4:12 A4:12",
+    "B4:8 C5:8 A4:8 B4:12 G4:12",
+    "F4:48~",
+    "F4:24 R:12 D5:12",
+    "D5:48~",
+    "D5:8 E5:8 C5:8 D5:12 B4:12",
+    "C5:8 B4:8 A4:8 G4:12 F4:12",
+    "E4:48"
+  ]
+}

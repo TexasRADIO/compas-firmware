@@ -5,7 +5,7 @@
     "sha256": "dacd2a944586c7d2488ebd420c0dc9a4af59aa561a2adf02920fe2e053cc1bc6"
   },
   "scope": "The four traditional body bars after the pickup. Each 2/2 bar occupies two quarter-note pulses in Compás. The printed half-note metronome mark becomes the Compás quarter-note BPM.",
-  "rights": "Original Compas release sound design based on documented traditional percussion practice. The modern engravings and recordings remain source references. No named composition is encoded.",
+  "rights": "Original Compás sound design based on documented traditional percussion practice. The modern engravings and recordings remain source references. No named composition is encoded.",
   "rack727": {
     "sourcePatternScope": "Same four body bars, with their attacks at the same steps. The 727 reduces the strokes to one-shot substitutes and does not reproduce the sustained guache.",
     "voiceMap": {

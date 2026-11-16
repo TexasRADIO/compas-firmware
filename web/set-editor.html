@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compás · Set Builder</title>
+<style>
+:root { color-scheme: dark; font: 16px system-ui; background: #211631; color: #fff4d5 }
+body { margin: 0 auto; max-width: 78rem; padding: 1.25rem }
+h1 img { vertical-align:baseline; width:6ch; margin-right:.25em }
+h1 { margin-bottom: .25rem; color: #ffcf55; font-size: clamp(2rem,5vw,3.5rem) }
+p { max-width: 66ch; line-height: 1.5 }
+button,input,select { font: inherit; padding: .35rem; color: inherit; background: #382649; border: 1px solid #9b80a8; border-radius: .25rem }
+button { cursor: pointer } button[disabled] { opacity: .4; cursor: default }
+#save { background: #ffcf55; color: #161a14; font-weight: 700 }
+.tools,.fields { display:flex; flex-wrap:wrap; gap:.55rem; align-items:end }
+.song { margin:1rem 0; border:1px solid #6f537c; border-radius:.4rem; padding:.8rem }
+.song h2 { font-size:1.05rem; margin:.2rem 0 .6rem }
+.slot-head { display:flex; justify-content:space-between; gap:.6rem; align-items:baseline }
+.slot-head a { color:#84eedf; font-size:.85rem }
+#running-order h2 { margin:.25rem 0 .5rem; font-size:1.05rem }
+#running-order ol { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.4rem; list-style:none; padding:0; margin:0 }
+#running-order button { width:100%; height:100%; text-align:left; padding:.45rem .6rem }
+@media (max-width:65rem) { #running-order ol { grid-template-columns:repeat(3,minmax(0,1fr)) } }
+@media (max-width:45rem) { #running-order ol { grid-template-columns:repeat(2,minmax(0,1fr)) } }
+.order-title,.order-detail { display:block }
+.order-title { color:#ffcf55; font-weight:700; overflow-wrap:anywhere }
+.order-detail { font-size:.85rem; margin-top:.2rem }
+label { display:grid; gap:.18rem; font-size:.9rem }
+input[type=number] { width:4.6rem } .actions { margin-top:.6rem; display:flex; flex-wrap:wrap; gap:.4rem }
+#status { min-height:1.5rem; color:#ffcf55 } details { margin:.6rem 0 }
+#library { padding:.7rem .85rem; border:1px solid #6f537c }
+#library summary { color:#84eedf; cursor:pointer; font-weight:700 }
+#library article { padding:.5rem 0; border-bottom:1px solid #6f537c }
+#library article h3 { margin:0; color:#ffcf55; font-size:1rem }
+#library article p { margin:.2rem 0; font-size:.9rem }
+#library a { color:#84eedf; margin-right:1rem }
+</style>
+<h1><img src="data:image/svg+xml;base64,__WORDMARK__" alt="Compás"> Set Builder</h1>
+<p>Build a running order of up to 16 songs. Set a phrase count to advance automatically, or leave it at 0 to hold until you cue the next song.</p>
+<div class="tools"><button type="button" id="add">Add song</button><button type="button" id="save">Export set</button><label>Open set <input id="file" type="file" accept=".json"></label></div>
+<p id="status" role="status">Ready. The example set is loaded.</p>
+<nav id="running-order" aria-labelledby="order-title">
+  <h2 id="order-title" tabindex="-1">Running order</h2>
+  <ol id="order-slots"></ol>
+</nav>
+<details id="library">
+  <summary>Repertoire sources <span id="repertoire-count"></span></summary>
+  <p>Research and rehearsal sources. Open a rehearsal MIDI for aligned parts and section markers, or download individual tracks where available. For playable editions, choose the arrangement and put it directly in the running order.</p>
+  <label>Find a title, artist or style <input type="search" id="repertoire-search"></label>
+  <div id="repertoire-results"></div>
+</details>
+<form id="songs"></form>
+<p>Export your set, then choose the JSON in the Sonidero browser bench or open it with <strong>Play a Prepared Set</strong> on this Mac. The first song is ready on Band. Turn PRESETS to browse, or open GLO for the slot keys.</p>
+<script id="seed" type="application/json">__COMPAS_SET__</script>
+<script id="catalog" type="application/json">__COMPAS_STUDIES__</script>
+<script id="repertoire" type="application/json">__REPERTOIRE__</script>
+<script id="score-arrangements" type="application/json">__SCORE_ARRANGEMENTS__</script>
+<script id="score-downloads" type="application/json">__SCORE_DOWNLOADS__</script>
+<script>
+'use strict';
+const catalog = JSON.parse(document.querySelector('#catalog').textContent);
+const form = document.querySelector('#songs');
+const order = document.querySelector('#order-slots');
+const message = text => document.querySelector('#status').textContent = text;
+const byId = id => catalog.find(study => study.id === id);
+/* COMPAS_SET_FORMAT */
+const normalize = data => normalizeSet(data, catalog);
+let songs = normalize(JSON.parse(document.querySelector('#seed').textContent));
+
+function element(tag,text) {
+  const node=document.createElement(tag);
+  if(text) node.textContent=text;
+  return node;
+}
+const sources = JSON.parse(document.querySelector('#repertoire').textContent).entries;
+const arrangements = JSON.parse(document.querySelector('#score-arrangements').textContent);
+const downloads = JSON.parse(document.querySelector('#score-downloads').textContent);
+document.querySelector('#repertoire-count').textContent='· '+sources.length+' titles';
+const repertoireSearch = document.querySelector('#repertoire-search');
+const repertoireResults = document.querySelector('#repertoire-results');
+const sourceLabels = {
+  'score-backing':'Playable score backing', 'transcribed-excerpt':'MIDI excerpt',
+  'transcribed-melody':'Melody MIDI · backing pending', 'scan-available':'Archive score',
+  'transcribed-parts':'Rehearsal parts · machine arrangement pending',
+  'published-score':'Published score', 'score-located':'Score located', 'edition-lead':'Edition to verify',
+  'recording-lead':'Recording lead'
+};
+const searchable = text=>text.toLowerCase().normalize('NFD').replace(/\p{M}/gu,'');
+function renderRepertoire() {
+  const query=searchable(repertoireSearch.value.trim());
+  const matches=sources.filter(e=>searchable([e.title,e.credit,e.tradition,e.edition].join(' ')).includes(query));
+  repertoireResults.replaceChildren(...matches.map(e=>{
+    const card=element('article');
+    const link=element('a','Open source');link.href=e.source;link.target='_blank';link.rel='noopener';
+    card.append(element('h3',e.title),element('p',e.credit+' · '+e.tradition),
+      element('p',sourceLabels[e.status]+' · '+e.edition),link);
+    const playable = arrangements[e.id];
+    if (playable?.length) {
+      const controls=element('div');
+      controls.className='tools repertoire-slot';
+      let study=playable[0];
+      let destination=songs.length<16 ? String(songs.length) : '';
+      const slotOptions=[['','Choose a slot'],...songs.map((_,index)=>[index,'Replace slot '+(index+1)])];
+      if (songs.length<16) slotOptions.push([songs.length,'Append as slot '+(songs.length+1)]);
+      choice(controls,'Score arrangement',playable.map(id=>[id,byId(id).title]),study,id=>study=id);
+      choice(controls,'Destination',slotOptions,destination,value=>{
+        destination=value;
+        apply.disabled=destination==='';
+        apply.textContent=destination===String(songs.length) ? 'Add score' : 'Replace with score';
+      });
+      const apply=button(destination===String(songs.length) ? 'Add score' : 'Replace with score',()=>{
+        const index=Number(destination);
+        const title=e.panelTitle ?? e.title.split(' · ')[0].toUpperCase();
+        const [song]=normalize({format:1,songs:[{title,study}]});
+        songs[index]=song;
+        render();
+        focusSlot(index);
+        message(byId(study).title+' in slot '+(index+1)+'.');
+      },destination==='');
+      controls.append(apply);
+      card.append(controls);
+    }
+    if (e.performanceNote) card.append(element('p',e.performanceNote));
+    for(const edition of e.historicScoreLeads ?? []) {
+      const citation=element('a',edition.edition);
+      citation.href=edition.scanPage ? edition.asset+'#page='+edition.scanPage : edition.source;
+      citation.target='_blank';citation.rel='noopener';
+      card.append(element('p',(edition.scanPage || edition.inspected) ? 'Inspected score · rights review' : 'Catalog record'),citation);
+    }
+    for (const reference of [e.recording,e.alternateRecording,...(e.relatedRecordings ?? [])].filter(Boolean)) {
+      const {artist,label,position,matrix,date,source}=reference;
+      const recording=element('a',[artist,label,position,matrix,date].filter(Boolean).join(' · '));
+      recording.href=source;
+      recording.target='_blank';
+      recording.rel='noopener';
+      card.append(element('p','Recording reference'),recording);
+    }
+    if (e.broadcast) {
+      const broadcast=element('a',e.broadcast.title);
+      broadcast.href=e.broadcast.source;
+      broadcast.target='_blank';
+      broadcast.rel='noopener';
+      card.append(element('p','Broadcast documentation'),broadcast);
+    }
+    if (e.rights?.status==='reference-only') card.append(element('p',e.rights.scope));
+    for(const track of downloads[e.id] ?? []) {
+      const download=element('a',track.title);
+      download.href='data:audio/midi;base64,'+track.base64;
+      download.download=track.filename;
+      card.append(download);
+      if (track.attribution) {
+        const {author,source_page,license,license_url,changes}=track.attribution;
+        const credit=element('p','Adapted from ');
+        const original=element('a',author);
+        original.href=source_page;
+        const terms=element('a',license);
+        terms.href=license_url;
+        credit.append(original,' · ',terms,'. '+changes);
+        card.append(credit);
+      }
+    }
+    return card;
+  }));
+  if(!matches.length) repertoireResults.append(element('p','No matches.'));
+}
+repertoireSearch.oninput=renderRepertoire;
+function button(label,callback,disabled=false) {
+  const node=element('button',label);
+  node.type='button';node.disabled=disabled;node.onclick=callback;
+  return node;
+}
+function field(parent,label,input) {
+  const wrapper=element('label',label);
+  wrapper.append(input);parent.append(wrapper);
+}
+function choice(parent,label,options,value,change) {
+  const select=element('select');
+  for(const [key,text] of options) select.add(new Option(text,key));
+  select.value=String(value);select.onchange=()=>change(select.value);field(parent,label,select);
+}
+function number(parent,label,value,min,max,change) {
+  const input=element('input');
+  input.type='number';input.value=value;input.min=min;input.max=max;input.required=true;
+  input.oninput=()=>change(input.valueAsNumber);field(parent,label,input);
+}
+function focusSlot(index, action) {
+  const card=form.children[index];
+  const control=action && card.querySelector(`[data-move="${action}"]:enabled`);
+  (control || card.querySelector('h2')).focus();
+}
+function refreshOrderSlot(index) {
+  const song=songs[index], study=byId(song.study);
+  const title=song.title.trim() || 'UNTITLED';
+  const tempo=Number.isFinite(song.bpm) ? song.bpm+' BPM' : 'Set tempo';
+  let advance='Hold for cue';
+  if(study.piano) advance='Score · stops at end';
+  else if(!Number.isFinite(song.phrases)) advance='Set phrase count';
+  else if(song.phrases>0) advance=index===songs.length-1 ? 'Final groove holds' :
+    'Next after '+song.phrases+(song.phrases===1?' phrase':' phrases');
+  const item=order.children[index].firstElementChild;
+  item.children[0].textContent=String(index+1).padStart(2,'0')+' · '+title;
+  item.children[1].textContent=tempo+' · '+advance;
+}
+function render() {
+  form.replaceChildren();
+  order.replaceChildren();
+  songs.forEach((song,index) => {
+    const card=element('section');card.className='song';
+    const item=element('li');
+    const jump=button('',()=>focusSlot(index));
+    jump.append(element('span'),element('span'));
+    jump.children[0].className='order-title';
+    jump.children[1].className='order-detail';
+    item.append(jump);order.append(item);
+    refreshOrderSlot(index);
+
+    const heading=element('h2','Slot '+(index+1));
+    heading.tabIndex=-1;
+    const header=element('div');header.className='slot-head';
+    const back=element('a','Running order');back.href='#order-title';
+    header.append(heading,back);card.append(header);
+    const row=element('div');row.className='fields';card.append(row);
+    const title=element('input');title.value=song.title;title.maxLength=18;title.required=true;
+    title.oninput=()=>{song.title=title.value=title.value.toUpperCase();refreshOrderSlot(index);};
+    field(row,'Panel name',title);
+    const study=byId(song.study);
+    choice(row,'Arrangement',catalog.map(x=>[x.id,x.title]),song.study,id=>{
+      const next=byId(id);
+      Object.assign(song,{study:id,bpm:next.bpm,feel:next.feel??30,root:0,transpose:0,clave:0,mute:0,guide:false,countIn:!next.piano});
+      if(next.piano) Object.assign(song,{feel:0,phrases:0,kit:false,section:'base',levels:[100,100,100,100,100,100]});
+      render();focusSlot(index);
+    });
+    if(study.evidence) card.append(element('p',study.region+' · '+study.evidence+' '+study.note));
+    number(row,study.compoundPulse?'Tempo (dotted-quarter BPM)':'Tempo',song.bpm,60,180,n=>{song.bpm=n;refreshOrderSlot(index);});
+    if(study.piano) {
+      number(row,'Transpose (semitones)',song.transpose,-6,5,n=>song.transpose=n);
+      if(study.guide) {
+        const guide=element('input');guide.type='checkbox';guide.checked=song.guide;
+        guide.onchange=()=>song.guide=guide.checked;
+        field(row,'Canto guide',guide);
+      }
+      card.append(element('p','Printed form · 0 = printed pitch. Accompaniment and guide move together. Count-in, live hold and coda on the FM-1.'));
+    } else {
+      const count=element('input');count.type='checkbox';count.checked=song.countIn;
+      count.onchange=()=>song.countIn=count.checked;
+      field(row,'One-bar count-in',count);
+      number(row,'Feel',song.feel,0,100,n=>song.feel=n);
+      number(row,'Phrases (0 = hold)',song.phrases,0,64,n=>{song.phrases=n;refreshOrderSlot(index);});
+      choice(row,'Start section',[['base','Base'],['lift','Lift'],['break','Break']],song.section,v=>song.section=v);
+      choice(row,'Sound',[['0','Compás synth'],['1','Hybrid 727']],Number(song.kit),v=>song.kit=v==='1');
+      const details=element('details');details.append(element('summary','Key and mix'));
+      const mix=element('div');mix.className='fields';details.append(mix);card.append(details);
+      if(study.id!=='coast') choice(mix,'Root',['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'].map((x,i)=>[i,x]),song.root,v=>song.root=Number(v));
+      if(['salsa','son'].includes(study.id)) choice(mix,'Clave',[[0,'3–2'],[1,'2–3']],song.clave,v=>song.clave=Number(v));
+      study.parts.forEach((part,i)=>{
+        if(part[1]==='none') return;
+        number(mix,part[0]+' level',song.levels[i],0,100,v=>song.levels[i]=v);
+        const mute=element('input');mute.type='checkbox';mute.checked=!!(song.mute&(1<<i));
+        mute.onchange=()=>song.mute^=1<<i;field(mix,'Mute '+part[0],mute);
+      });
+    }
+    const actions=element('div');actions.className='actions';card.append(actions);
+    const move=delta=>{
+      const destination=index+delta;
+      [songs[index],songs[destination]]=[songs[destination],songs[index]];
+      render();focusSlot(destination,delta);
+    };
+    const up=button('Move up',()=>move(-1),index===0);
+    const down=button('Move down',()=>move(1),index===songs.length-1);
+    up.dataset.move='-1';down.dataset.move='1';
+    actions.append(up,down,
+      button('Duplicate',()=>{songs.splice(index+1,0,structuredClone(song));render();focusSlot(index+1);},songs.length===16),
+      button('Remove',()=>{songs.splice(index,1);render();focusSlot(Math.min(index,songs.length-1));},songs.length===1));
+    form.append(card);
+  });
+  document.querySelector('#add').disabled=songs.length===16;
+  renderRepertoire();
+}
+form.onsubmit=event=>event.preventDefault();
+document.querySelector('#add').onclick=()=>{
+  songs.push(normalize({format:1,songs:[{title:'NEW SONG',study:'mx',countIn:true}]})[0]);render();focusSlot(songs.length-1);
+};
+document.querySelector('#save').onclick=()=>{
+  if(!form.reportValidity()) return;
+  try {
+    const validated=normalize({format:1,songs});
+    const blob=new Blob([JSON.stringify({format:1,songs:validated},null,2)+'\n'],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const anchor=element('a');anchor.href=url;anchor.download='compas-set.json';anchor.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    message('Exported '+validated.length+' songs.');
+  } catch(error) { message(error.message); }
+};
+document.querySelector('#file').onchange=async event=>{
+  const file=event.target.files[0];event.target.value='';
+  if(!file) return;
+  try {
+    if(file.size>65536) throw Error('Set file is too large.');
+    songs=normalize(JSON.parse(await file.text()));render();message('Opened '+songs.length+' songs.');
+  } catch(error) { message(error.message+' Current set kept.'); }
+};
+render();
+</script>
+</html>

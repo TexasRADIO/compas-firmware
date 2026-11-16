@@ -522,7 +522,9 @@ static unsigned overlay_average(BoardView v)
 
 #include "stage-bass.inc"
 
-static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,BoardView old,unsigned old_slot,unsigned old_sound,unsigned hot)
+static const char *const fx_division_names[FX_DIVISIONS]={"1/16","1/8","3/16","1/4","3/8","1/2"};
+
+static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,BoardView old,unsigned old_slot,unsigned old_sound,unsigned hot,const uint8_t fx[FX_PARAMS])
 {
     const char *labels[4]={"TEMPO","FEEL","BASS","PERC"};
     unsigned val[4]={v.bpm,v.feel,v.levels[5],overlay_average(v)};
@@ -572,6 +574,10 @@ static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,Boa
             val[i]=v.kumbia[i]; before[i]=old.kumbia[i]; max[i]=range[i];
         }
 #endif
+    } else if(page==PANEL_FX) {
+        static const uint8_t param[4]={FX_SALA,FX_ECO,FX_TIEMPO,FX_REPITE}, range[4]={100,100,FX_DIVISIONS-1,90};
+        labels[0]="ROOM"; labels[1]="ECHO"; labels[2]="TIME"; labels[3]="REPEAT";
+        for(unsigned i=0;i<4;++i) { val[i]=before[i]=fx[param[i]]; max[i]=range[i]; }
     } else if(page==PANEL_SET) {
         labels[0]="TEMPO"; labels[1]="RPT"; labels[2]="SLOT"; labels[3]=v.piano?"":"COUNT";
         val[0]=v.bpm; val[1]=v.phrases; val[2]=p->slot+1u; val[3]=board_count_enabled(v);
@@ -596,7 +602,8 @@ static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,Boa
         const char *value=(page==PANEL_HOME && v.piano && i>0 && i<3) ? (val[i]?"ON":"OFF") :
             (page==PANEL_BASS && i==3) ? (val[i]?"ACD":"ENS") :
             (page==PANEL_SET && i==1 && !val[i]) ? lang_repeat_hold[panel_lang] :
-            (page==PANEL_SET && i==3) ? (val[i]?"ON":"OFF") : s;
+            (page==PANEL_SET && i==3) ? (val[i]?"ON":"OFF") :
+            (page==PANEL_FX && i==2) ? fx_division_names[val[i]<FX_DIVISIONS?val[i]:0] : s;
         unsigned unavailable=page==PANEL_HOME && v.piano && i==2 &&
            (!v.playing || v.score_ending || v.score_form==PIANO_FORM_CODA);
         if(unavailable) value="--";
@@ -839,6 +846,7 @@ typedef struct {
     uint8_t rack_last, rack_serial;
     uint16_t rack_press, rack_ripple, rack_cut;
     uint8_t pad_flash, pad_name; /* Band finger pads: sound+1 while lit / named, 0 when idle */
+    uint8_t fx[FX_PARAMS];       /* Compás 1.2 effect amounts (board_fx_view) */
 } StageModel;
 static StageModel model;
 #include "stage-motion.inc"
@@ -847,6 +855,9 @@ static uint32_t perc_hit_at[4], perc_in_at;
 static uint32_t rack_hit_at[RACK_SOUNDS], rack_cut_at[RACK_SOUNDS];
 static uint16_t order_rows, rack_dirty, rack_batch;
 static uint8_t rack_header_pending;
+/* Beat decoration that arrives during a full redraw waits for it to finish
+ * (R3: it used to add 4,634 pixels, about 6 ms of wire time, to the page). */
+static uint32_t deferred_beat_jobs;
 static uint32_t pad_hit_at;
 static uint8_t pad_side, pad_dirty; /* Most recent bank and the banks awaiting repaint. */
 static uint8_t stripe_row, working_job, measurement, notice_priority;
@@ -931,6 +942,8 @@ static void stage_paint(const StageModel *m)
     const Panel *p=&m->panel;
     BoardView v=m->view;
     unsigned page=p->page;
+    const unsigned fx_page=page==PANEL_FX;   /* effects: the mixer screen, effect knobs */
+    if(fx_page) page=PANEL_MIX;
     unsigned wide=page==PANEL_RACK || page==PANEL_SET || page==PANEL_HANAN;
     unsigned bandlike=page==PANEL_HOME || page==PANEL_MIX || page==PANEL_EDIT;
     background(page!=PANEL_RACK);
@@ -1090,7 +1103,7 @@ static void stage_paint(const StageModel *m)
             }
         }
     }
-    if(visible(0,188,240,52)) footer(p,page,v,1,v,0,0,m->hot);
+    if(visible(0,188,240,52)) footer(p,fx_page?PANEL_FX:page,v,1,v,0,0,m->hot,m->fx);
     if(m->notice && visible(0,184,240,12)) {
         static const char *const messages[]={"","OUTPUT STOPPED","BUSY / RETRY","STOP TO EDIT",
             "EMPTY SLOT","SET SAVED","ACTION UNAVAILABLE","MASTER","727 DRUMS ONLY","REBAJADA"};
@@ -1192,6 +1205,8 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
         v.song!=old->song || v.study!=old->study || p->rack_edit!=model.panel.rack_edit ||
         panel_lang!=drawn_lang;
     drawn_lang=panel_lang;
+    const unsigned fx_page=page==PANEL_FX;
+    if(fx_page) page=PANEL_MIX;
     unsigned bandlike=page==PANEL_HOME || page==PANEL_MIX || page==PANEL_EDIT;
     unsigned beat=v.playing?v.position/4u:8u;
     if(beat>8) beat=8;
@@ -1206,8 +1221,9 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
     if(!opening && v.master!=old->master) master_at=now;
     StageModel next={*p,v,keys,(uint8_t)cameo,(uint8_t)flash,(uint8_t)beat,
         (uint8_t)next_slot(v),(uint8_t)pending,0,model.beat,model.view.position,0,0,4,0,0,
-        p->rack_sound,feedback.serial,0,0,0,0,0};
+        p->rack_sound,feedback.serial,0,0,0,0,0,{0}};
     next.notice=(uint8_t)current_notice(&next,master_at && now-master_at<24000000u);
+    board_fx_view(next.fx);
     StageMotion effects=motion_offer(v,*old,p,opening,beat,model.beat,now);
     /* Finish the page's first image before advancing a decorative frame.
      * A 50 ms sign animation otherwise resends the same 8,160 pixels while
@@ -1266,6 +1282,11 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
             if(page==PANEL_HOME && overlay_average(v)!=overlay_average(*old)) change|=1u<<(KNOB0+3);
             if(page!=PANEL_HOME && (v.steps!=old->steps || v.muted!=old->muted || v.solo!=old->solo ||
                 p->bar!=model.panel.bar || p->role!=model.panel.role)) change|=1u<<BODY;
+        }
+        if(fx_page) {
+            static const uint8_t param[4]={FX_SALA,FX_ECO,FX_TIEMPO,FX_REPITE};
+            for(unsigned i=0;i<4;++i) if(next.fx[param[i]]!=model.fx[param[i]]) change|=1u<<(KNOB0+i);
+            if(next.fx[FX_PEGA]!=model.fx[FX_PEGA] || next.fx[FX_TIEMPO]!=model.fx[FX_TIEMPO]) change|=1u<<BODY;
         }
 #ifdef COMPAS_HANAN
         if(page==PANEL_HANAN) {
@@ -1528,15 +1549,21 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
     }
     if(touching && change&~((1u<<(STICKER+1))-256u)) touch_queued=1;
     if(beat==model.beat) next.old_beat=model.old_beat;
+    uint32_t beat_jobs=(((1u<<(STICKER+1))-1u)&~255u)|(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1)|(1u<<CONES_ALL)|(1u<<RACK_OLD_STEP)|(1u<<RACK_NEW_STEP);
+    if(page==PANEL_SET) beat_jobs&=~(1u<<ORDER_ROW);
+    if(page==PANEL_HOME) beat_jobs&=~(1u<<PAD_FLASH);
     if(full || !jobs) {
+        deferred_beat_jobs=0;
         jobs=change;
         stripe_row=0;
         compute=transfer=pixels=0;
         redraw_started=now;
-        uint32_t beat_jobs=(((1u<<(STICKER+1))-1u)&~255u)|(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1)|(1u<<CONES_ALL)|(1u<<RACK_OLD_STEP)|(1u<<RACK_NEW_STEP);
-        if(page==PANEL_SET) beat_jobs&=~(1u<<ORDER_ROW);
-        if(page==PANEL_HOME) beat_jobs&=~(1u<<PAD_FLASH);
         measurement=full?3u:(!(change&~beat_jobs)?1u:0u);
+    } else if(measurement==3) {
+        /* the page is still being drawn: decoration follows it */
+        deferred_beat_jobs|=change&beat_jobs&~jobs;
+        jobs|=change&~beat_jobs;
+        if(change&~beat_jobs&(1u<<working_job)) stripe_row=0;
     } else {
         jobs|=change;
         if(change&(1u<<working_job)) stripe_row=0;
@@ -1625,6 +1652,13 @@ static unsigned stage_work(void)
         }
     }
     if(!jobs && measurement) high_water(measurement==1?0:2,compute,transfer,done-redraw_started,pixels);
+    if(!jobs && deferred_beat_jobs) {      /* the full page is done: now the beat */
+        jobs=deferred_beat_jobs;
+        deferred_beat_jobs=0;
+        compute=transfer=pixels=0;
+        redraw_started=done;
+        measurement=1;
+    }
     return 1;
 }
 

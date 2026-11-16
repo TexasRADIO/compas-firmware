@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"LA ADELITA","study":"la-adelita-kemp","guide":true,"bpm":100},
+    {"title":"CONJUNTO POLKA","study":"conjunto","bpm":111},
+    {"title":"ADELITA BACKING","study":"la-adelita-kemp","guide":false,"bpm":100}
+  ]
+}

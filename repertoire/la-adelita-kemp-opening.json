@@ -1,0 +1,96 @@
+{
+  "title": "La Adelita - Kemp recorder quartet opening",
+  "composer": "Traditional Mexican corrido",
+  "edition": "David Edward Kemp, 2016; IMSLP score 666981",
+  "source": "https://s9.imslp.org/files/imglnks/usimg/4/4e/IMSLP666981-PMLP1070327-Adelita_-_Score.pdf",
+  "source_sha256": "8f46a2a00d9b8a29e62583709f4aa40071f60e972f3e94d7649cb9b00625105b",
+  "source_location": "PDF p. 1, systems 1–2, written mm. 1–9.",
+  "scope": "Opening nine written bars across the four recorder staves.",
+  "attribution": {
+    "author": "Adelita, traditional Mexican folk song, arranged by David Edward Kemp (2016).",
+    "source_page": "https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "Compás excerpt of written bars 1-9, transcribed to MIDI at written pitch; uniform MIDI velocity and GM recorder preview."
+  },
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 100,
+  "form": [
+    {
+      "name": "OPENING EXCERPT",
+      "bar": 1
+    }
+  ],
+  "editorial": [
+    "The opening is a complete 2/4 bar. The upper three staves enter after an eighth rest and bass rests for the whole bar.",
+    "The Alto 1 and Alto 2 notes at bar 8 tie through the first eighth of bar 9. Bar 9 includes two notes leading into the next phrase.",
+    "MIDI follows written octaves and note values. Breath marks do not add time, and the preview uses one General MIDI recorder sound and fixed velocity.",
+    "This is a modern quartet setting of the corrido. The San Antonio dance recording is separate."
+  ],
+  "parts": [
+    {
+      "title": "Alto recorder 1",
+      "program": 74,
+      "bars": [
+        "R:12 B5:12 B5:12 A5:12",
+        "G5:12 G5:24 A5:12",
+        "G5:12 G5:12 B5:12 D6:12",
+        "C6:48",
+        "R:12 E5:12 E5:12 F5:12",
+        "G5:24 F#5:12 G5:12",
+        "A5:24 G5:12 F5:12",
+        "E5:48~",
+        "E5:12 R:12 C5:12 E5:12"
+      ]
+    },
+    {
+      "title": "Alto recorder 2",
+      "program": 74,
+      "bars": [
+        "R:12 G5:12 F5:12 E5:12",
+        "F5:12 F5:24 F5:12",
+        "F5:12 F5:24 F5:12",
+        "E5:18 A5:6 G5:12 F5:12",
+        "E5:12 C5:12 C5:12 D5:12",
+        "E5:24 D#5:12 E5:12",
+        "F5:24 E5:12 D5:12",
+        "C5:48~",
+        "C5:12 R:12 C5:12 C5:12"
+      ]
+    },
+    {
+      "title": "Tenor recorder",
+      "program": 74,
+      "bars": [
+        "R:12 D5:12 D5:12 C5:12",
+        "B4:12 D5:24 C5:12",
+        "B4:12 A4:12 G4:12 B4:12",
+        "C5:18 C5:6 B4:12 A4:12",
+        "G4:12 R:36",
+        "R:12 C5:24 G4:12",
+        "R:12 B4:24 B4:12",
+        "R:12 A4:12 G4:12 F4:12",
+        "A4:12 G4:24 R:12"
+      ]
+    },
+    {
+      "title": "Bass recorder",
+      "program": 74,
+      "bars": [
+        "R:48",
+        "G2:12 D3:24 D3:12",
+        "G2:12 D3:24 G3:12",
+        "C3:24 G3:12 G2:12",
+        "C3:12 R:36",
+        "C3:12 E3:24 E3:12",
+        "G2:12 D3:24 G3:12",
+        "C3:12 G2:24 B2:12",
+        "G2:12 C3:24 R:12"
+      ]
+    }
+  ]
+}

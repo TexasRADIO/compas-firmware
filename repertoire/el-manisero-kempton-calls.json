@@ -1,0 +1,81 @@
+{
+  "title": "El Manisero - Kempton vendor-call excerpt",
+  "composer": "Moisés Simons",
+  "arranger": "Lawrence Kempton",
+  "edition": "Edward B. Marks Music Co., New York, 1930, plate 9737-4",
+  "source": "https://www.sheetmusicsinger.com/wp-content/uploads/2023/01/The-Peanut-Vendor.pdf",
+  "source_sha256": "79f28cbda8c19e9996b591ede74928f24ebae1ed670bfc4978bd03e8179962a5",
+  "source_location": "Printed p. 2, systems 2 and 3 (PDF page 2), eight complete bars beginning at the segno",
+  "scope": "Piano grand staff and the separate upper vendor-call staff as printed in these eight bars. Play once from the segno to the system-ending double bar.",
+  "editorial": [
+    "Preview tempo is an editorial quarter-note 112 BPM (half-note 56). The cut-time signature is retained.",
+    "The syllables under the piano treble stay with that staff. The separately printed call is silent in the first four bars.",
+    "In system 2 the paired treble notes are assigned to the two MIDI voices by register. In system 3 the score separates the held upper voice from the moving lower voice by stem direction.",
+    "The calls and upper piano D5s are held across the printed ties while the lower part continues. Accent and dynamic marks remain in the source. MIDI uses fixed preview velocity."
+  ],
+  "ppq": 24,
+  "meter": [2, 2],
+  "preview_bpm": 112,
+  "form": [
+    {"name": "SEGNO", "bar": 1},
+    {"name": "VENDOR CALLS", "bar": 5}
+  ],
+  "parts": [
+    {
+      "title": "Vendor call",
+      "program": 53,
+      "bars": [
+        "R:96",
+        "R:96",
+        "R:96",
+        "R:96",
+        "R:24 B4:24 D5:48~",
+        "D5:96",
+        "R:24 B4:24 D5:48~",
+        "D5:96"
+      ]
+    },
+    {
+      "title": "Piano treble upper",
+      "program": 0,
+      "bars": [
+        "R:24 G4:24 D4:24 E4:24",
+        "R:24 F#4:12 E4:12~ E4:12 E4:12 D4:24",
+        "R:24 G4:24 D4:24 E4:24",
+        "R:24 F#4:12 E4:12~ E4:12 E4:12 D4:24",
+        "R:24 B4:24 D5:48~",
+        "D5:96",
+        "R:24 B4:24 D5:48~",
+        "D5:96"
+      ]
+    },
+    {
+      "title": "Piano treble lower",
+      "program": 0,
+      "bars": [
+        "R:24 B3:24 B3:24 B3:24",
+        "R:24 C4:12 C4:12~ C4:12 C4:12 C4:24",
+        "R:24 B3:24 B3:24 B3:24",
+        "R:24 C4:12 C4:12~ C4:12 C4:12 C4:24",
+        "R:24 G4:24 D4:24 E4:24",
+        "R:24 F#4:12 E4:12~ E4:12 E4:12 D4:24",
+        "R:24 G4:24 D4:24 E4:24",
+        "R:24 F#4:12 E4:12~ E4:12 E4:12 D4:24"
+      ]
+    },
+    {
+      "title": "Piano bass",
+      "program": 0,
+      "bars": [
+        "G2+G3:24 R:48 D2+D3:24",
+        "A2:24 R:48 D2+D3:24",
+        "G2+G3:24 R:48 D2+D3:24",
+        "A2:24 R:48 D2+D3:24",
+        "G2:24 D3+G3+B3:48 D2+D3:24",
+        "A2:24 D3+F#3+C4:48 D2+D3:24",
+        "G2:24 D3+G3+B3:48 D2+D3:24",
+        "A2:24 D3+F#3+C4:48 D2+D3:24"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"BAMBA STRUM", "study":"jarocho-bamba", "bpm":136, "kit":false, "mute":33, "levels":[52,100,100,82,100,75]},
+    {"title":"BAMBA WITH BASS", "study":"jarocho-bamba", "bpm":136, "kit":false, "mute":1, "levels":[52,100,100,82,100,75]},
+    {"title":"BAMBA FOOTWORK", "study":"jarocho-bamba", "bpm":136, "kit":false, "mute":0, "levels":[52,100,100,82,100,75]}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title": "SOBRE LAS OLAS", "study": "sobre-las-olas-trifet-strain", "bpm": 132},
+    {"title": "CONJUNTO POLKA", "study": "conjunto", "bpm": 111},
+    {"title": "SOBRE LAS OLAS -2", "study": "sobre-las-olas-trifet-strain", "bpm": 132, "transpose": -2}
+  ]
+}

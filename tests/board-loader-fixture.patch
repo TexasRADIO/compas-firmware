@@ -1,0 +1,97 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Based on Felucca, Copyright (C) 2026 Leo Kuroshita and Hügelton Instruments
+--- a/tests/ldr_test.c
++++ b/tests/ldr_test.c
+@@ -19,0 +20,2 @@
++static uint32_t finish_fault, readback_fault, interrupt_program, programs, app_erases;
++static uint32_t cleanup_fault;
+@@ -58,0 +61,2 @@
++        if (addr == 0xF0000000u && finish_fault == 1)
++            return 0;
+@@ -60 +64 @@
+-        memcpy(m + 14, "success", 8);
++        memcpy(m + 14, finish_fault == 2 ? "failure" : "success", 8);
+@@ -84 +88,9 @@
+-static int ldr_fread(uint32_t off, void *p, uint32_t n) { memcpy(p, nor + off, n); return 0; }
++static int ldr_fread(uint32_t off, void *p, uint32_t n)
++{
++    memcpy(p, nor + off, n);
++    if (readback_fault && n == 0x1000u && off == 0x4000u && programs) {
++        ((uint8_t *)p)[0] ^= 1;
++        readback_fault = 0;
++    }
++    return 0;
++}
+@@ -89,0 +102,3 @@
++    app_erases += off < 0x93000u;
++    if (cleanup_fault && off == 0xE4000u)
++        return -1;
+@@ -97,0 +113,5 @@
++    programs++;
++    if (interrupt_program && programs == 2) {
++        for (i = 0; i < n / 2; i++) nor[off + i] &= s[i];
++        return -1;
++    }
+@@ -142 +162,2 @@
+-    static uint8_t user[0x1000];
++    static uint8_t user[0x1000], tail[0x100000 - 0x93000];
++    static const uint32_t decoys[] = {0x93F00, 0xE5F00, 0xE6F00, 0xE7F00, 0xEAF00, 0xFBF00};
+@@ -164,0 +186,3 @@
++        for (i = 0; i < sizeof decoys / sizeof decoys[0]; i++)
++            memcpy(nor + decoys[i], r, sizeof r);
++        memcpy(tail, nor + 0x93000, sizeof tail);
+@@ -176,0 +201,32 @@
++    interrupt_program = 1;
++    rc = ldr_session();
++    bad += check("partial page program stops, recovery record retained",
++                 rc == -10 && app_erases == 1 && programs == 2 && !record_cleared &&
++                 !memcmp(nor + 0x93000, tail, sizeof tail));
++    interrupt_program = 0;
++
++    readback_fault = 1;
++    programs = 0; app_erases = 0;
++    rc = ldr_session();
++    bad += check("verify mismatch stops after one sector write",
++                 rc == -11 && app_erases == 1 && programs == 16 && !record_cleared &&
++                 !memcmp(nor + 0x93000, tail, sizeof tail));
++
++    finish_fault = 1;
++    rc = ldr_session();
++    bad += check("missing final confirm keeps both staging records",
++                 rc == -14 && !record_cleared && !memcmp(nor + 0x93000, tail, sizeof tail) &&
++                 !memcmp(nor + 0x4000, logical + nfo + 0x4000, 0x93000 - 0x4000));
++    finish_fault = 2;
++    app_erases = 0; programs = 0;
++    rc = ldr_session();
++    bad += check("wrong final confirm keeps records and skips app writes",
++                 rc == -14 && app_erases == 0 && programs == 0 && !record_cleared &&
++                 !memcmp(nor + 0x93000, tail, sizeof tail));
++    finish_fault = 0;
++    cleanup_fault = 1;
++    rc = ldr_session();
++    bad += check("cleanup failure cannot complete the session",
++                 rc == -16 && !record_cleared && !memcmp(nor + 0x93000, tail, sizeof tail));
++    cleanup_fault = 0;
++
+@@ -178,0 +235 @@
++    erases = 0;
+@@ -189,0 +247,5 @@
++    memset(tail + 0xE4000 - 0x93000, 0xFF, 0x1000);
++    memset(tail + 0xE8000 - 0x93000, 0xFF, 0x1000);
++    bad += check("only the two known staging sectors are erased on resume",
++                 erases == 2 && app_erases == 0 && programs == 0 &&
++                 !memcmp(nor + 0x93000, tail, sizeof tail));
+@@ -199 +260,0 @@
+-        memcpy(nor, old + ofo, 0x93000);
+@@ -204,0 +266,11 @@
++    {
++        uint8_t *candidate = logical;
++        logical = old; logical_len = olen;
++        rc = ldr_session();
++        bad += check("explicit restore reinstates the prior synthetic app",
++                     rc == 0 && !memcmp(nor + 0x4000, old + ofo + 0x4000, 0x93000 - 0x4000) &&
++                     !memcmp(nor, head, sizeof head) &&
++                     !memcmp(nor + 0x93000, tail, sizeof tail));
++        free(candidate);
++        free(old);
++    }

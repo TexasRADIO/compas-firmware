@@ -1,0 +1,67 @@
+{
+  "source": {
+    "author": "Karem Andrea Raquejo Domínguez",
+    "title": "El saxofón en el merengue dominicano",
+    "year": 2018,
+    "catalog": "https://hdl.handle.net/11349/15948",
+    "asset": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download",
+    "sha256": "8dfe42a13bdec139987c297849f0716efc1249a48d739a5959fd19dedc0f1146",
+    "locators": "PDF and printed pages 26–30. Tambora key and figures 4, 5, 7. Güira key and figures 10, 11."
+  },
+  "comparison": {
+    "authors": "Anny Alejandra Osorio Barrera and Diego Nicolás Bonelo García",
+    "asset": "https://repository.udistrital.edu.co/server/api/core/bitstreams/90cab3cb-00e4-4c74-b5ff-9ea47573dc7d/content",
+    "sha256": "586ad0c2f28296aead6948ca0228e2b5474b57587aa99acebcf6d2b48deaf4ec",
+    "locators": "Printed pages 42–44 (PDF 52–54), table 7 and figures 9, 10, 12. A later reading of the same tradition citing Raquejo; its symbols use a different key.",
+    "rights": "CC BY-NC-ND 4.0 document; reference only."
+  },
+  "scope": "Zero-based sixteenth onsets in one 4/4 body bar, repeated twice by Compás. The first printed bar of primera and maco introduces the cell with a right-hand open. The second bar, marked for repeat, supplies the loop. The second güira example in figure 11 is separate from the first bar used here.",
+  "rights": "Original Compás backing arrangements use the traditional percussion patterns described by the sources. Thesis illustrations, named song examples and recordings are reference only.",
+  "strokes": {
+    "right-open": ["Stick head", "skin"],
+    "left-open": ["Hand head", "low"],
+    "right-rim": ["Stick rim", "stick"],
+    "left-slap": ["Hand slap", "hand"]
+  },
+  "patterns": [
+    {
+      "study": "derecho-primera",
+      "tamboraFigure": 4,
+      "guiraFigure": 10,
+      "tambora": {
+        "right-open": [13, 14],
+        "left-open": [],
+        "right-rim": [3, 6, 7, 10, 11],
+        "left-slap": [0, 4, 8, 12]
+      },
+      "guira": [0, 2, 3, 4, 7, 8, 10, 11, 12, 15],
+      "guiraAccents": [4, 12]
+    },
+    {
+      "study": "derecho-segunda",
+      "tamboraFigure": 5,
+      "guiraFigure": 11,
+      "tambora": {
+        "right-open": [0, 13, 14],
+        "left-open": [15],
+        "right-rim": [2, 3, 6, 7, 10, 11],
+        "left-slap": [4, 8, 12]
+      },
+      "guira": [0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15],
+      "guiraAccents": [0, 4, 8, 12]
+    },
+    {
+      "study": "merengue-maco",
+      "tamboraFigure": 7,
+      "guiraFigure": 11,
+      "tambora": {
+        "right-open": [6, 14],
+        "left-open": [],
+        "right-rim": [0, 4, 8, 12],
+        "left-slap": [3, 11]
+      },
+      "guira": [0, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15],
+      "guiraAccents": [0, 4, 8, 12]
+    }
+  ]
+}

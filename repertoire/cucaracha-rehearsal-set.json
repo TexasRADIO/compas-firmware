@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"LA CUCARACHA","study":"la-cucaracha-piano","guide":true},
+    {"title":"CUCARACHA SING","study":"la-cucaracha-piano","guide":false},
+    {"title":"TEJANO CUMBIA","study":"tejano","kit":true}
+  ]
+}

@@ -214,6 +214,43 @@ static void store_poll(void)
 
 #ifdef COMPAS_USB
 #include "usb/runtime.inc"
+#include "sideman.h"
+
+/* Compás 1.2: Sideman state reports, MIDI clock out and Start/Stop in.
+ * Runs every 0.5 ms with USB in the foreground; nothing here touches audio. */
+static Sideman sideman;
+static MidiClock midiclock;
+static uint8_t midi_knob=SIDEMAN_KNOB_NONE;
+static uint32_t midi_last;
+/* encoder index (SELECT, ALGORITHM, K1..K4, PRESETS) to the Sideman knob code */
+static inline uint8_t midi_knob_of(unsigned enc) { return (uint8_t)(enc<2u?enc+4u:enc<6u?enc-2u:6u); }
+
+static void compas_midi_service(uint32_t now)
+{
+    if(now-midi_last<12000u) return;
+    midi_last=now;
+    if(!usb.config) { midiclock.playing=0; sideman.primed=0; usb.rt_in=0; return; }
+    if(usb.rt_in) {
+        unsigned start=usb.rt_in==1u;
+        usb.rt_in=0;
+        panel_remote(&panel,start);
+    }
+    const BoardView v=board_view(panel.page==PANEL_BASS?BOARD_BASS_LINE_ROLE:panel.role);
+    const unsigned bpm=board_effective_bpm(v);
+    const ClockOut c=midiclock_step(&midiclock,v.playing,v.position,bpm,now);
+    if(c.stop) usb_midi_realtime(CLOCK_STOP);
+    if(c.start) usb_midi_realtime(CLOCK_START);
+    for(unsigned i=0;i<c.ticks;++i) usb_midi_realtime(CLOCK_TICK);
+    SidemanState st={panel.page,panel.role,panel_lang,midi_knob,(uint16_t)bpm,
+                     v.study,v.playing,v.part,0,0,0};
+#ifdef COMPAS_HANAN
+    st.hanan=v.hanan_pattern;
+    st.kumbia=v.hanan_mode;
+#endif
+    uint8_t report[SIDEMAN_BYTES];
+    if(sideman_due(&sideman,&st,now,report) && ota_wire_send(report,SIDEMAN_BYTES)==0)
+        sideman_sent(&sideman,&st,now);
+}
 
 /* Spell out the store: the PI32 compiler can emit a stride of eight for
  * the paired pointer increments in this copy loop. */
@@ -311,6 +348,7 @@ void fm1_cstart(void)
 #ifdef COMPAS_USB
         compas_usb_poll();
         ota_service();
+        compas_midi_service(fm1_ticks());
         if(usb.uboot_req) {
             fm1_audio_stop();
             compas_enter_rom();
@@ -346,6 +384,9 @@ void fm1_cstart(void)
         for(unsigned i=0;i<7;++i) {
             enc[i]=fm1_enc_take(i);
             if(enc[i]) activity=1;
+#ifdef COMPAS_USB
+            if(enc[i]) midi_knob=midi_knob_of(i);
+#endif
         }
         const uint32_t now=fm1_ticks();
         if(recovery_guard.pending && now-splash_started>=720000000u)

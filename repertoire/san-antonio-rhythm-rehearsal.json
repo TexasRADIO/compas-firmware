@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"CONJUNTO POLKA","study":"conjunto","bpm":111},
+    {"title":"TEJANO CUMBIA","study":"tejano","bpm":105,"kit":true},
+    {"title":"CONGA AND BASS","study":"tejano","bpm":105,"kit":true,"mute":15}
+  ]
+}

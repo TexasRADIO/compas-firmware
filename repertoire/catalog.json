@@ -1,0 +1,2139 @@
+{
+  "format": 1,
+  "entries": [
+    {
+      "id": "la-paloma",
+      "title": "La Paloma",
+      "credit": "Sebastián Yradier",
+      "tradition": "Habanera / canción americana",
+      "version": "1906",
+      "status": "score-backing",
+      "edition": "Voice and piano, Century Music, 1906, plate 84-4, pp. 2–5 (BYU scan)",
+      "source": "https://archive.org/details/lapalomadovecanc00yrad",
+      "scan": {
+        "sha256": "f6f3a948cf2dd33a99d5c40aa720a0aaf007a632b19c9758a54b6201a49a73bb",
+        "location": "Harold B. Lee Library, Brigham Young University, Internet Archive",
+        "scorePages": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "transcription": "la-paloma-canto.json",
+      "backing": "la-paloma-left-hand.json",
+      "rightHand": "la-paloma-right-hand.json",
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "1906 Century Music print and the new MIDI transcription of its published notes",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "la-golondrina",
+      "title": "La Golondrina",
+      "credit": "Narciso Serradell",
+      "tradition": "Mexican canción",
+      "version": "Galveston, plate 29512",
+      "status": "score-backing",
+      "edition": "Thos. Goggan & Bro., Galveston, plate 29512. 1883 copyright and March 1889 cover date.",
+      "source": "https://levysheetmusic.mse.jhu.edu/collection/058/032",
+      "performanceNote": "Choose the printed piano alone, printed piano with Compás’s conga and maraca bolero, or the sparse left-hand bolero. All three offer the optional canto guide. The MIDI downloads contain the printed score parts.",
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "The dated Galveston print’s musical notation and newly transcribed MIDI.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      },
+      "alternateEdition": {
+        "title": "Houston, Thos. Goggan & Bro., 1900, A. F. Heckle",
+        "source": "https://scholarsjunction.msstate.edu/cht-sheet-music/7016/"
+      },
+      "backing": "la-golondrina-left-hand.json",
+      "rightHand": "la-golondrina-right-hand.json",
+      "transcription": "la-golondrina-canto.json",
+      "scan": {
+        "url": "https://levysheetmusic.mse.jhu.edu/sites/default/files/collection-pdfs/levy-058-032.pdf",
+        "sha256": "e1ab198dac0378f63d33fb307022bae60d87f9cae7655769ab897f95a1ffec5e",
+        "location": "Lester S. Levy Sheet Music Collection, Johns Hopkins University Sheridan Libraries, box 058 item 032",
+        "creditNote": "Catalog and score leave the composer and arranger unnamed. Standard work attribution is Narciso Serradell Sevilla.",
+        "scorePages": [
+          2,
+          3
+        ]
+      },
+      "otherEdition": {
+        "title": "ASU Sheet Music Collection, 1923",
+        "source": "https://prism.lib.asu.edu/items/637"
+      }
+    },
+    {
+      "id": "como-la-flor",
+      "title": "Como La Flor",
+      "credit": "A. B. Quintanilla III and Pete Astudillo",
+      "tradition": "Tejano cumbia",
+      "version": "1992",
+      "status": "published-score",
+      "edition": "Musicnotes MN0074974, piano/voice/guitar, EMI Music Publishing",
+      "source": "https://www.musicnotes.com/sheetmusic/selena/como-la-flor/MN0074974_U4",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "missing-my-baby",
+      "title": "Missing My Baby",
+      "credit": "A.B. Quintanilla III · performed by Selena",
+      "tradition": "Tejano crossover · English-language R&B",
+      "version": "1992 album issue and 1995 Full Force version",
+      "status": "published-score",
+      "edition": "Hal Leonard Dreaming of You matching folio, HL 00306078, 1996, piano/voice/guitar",
+      "source": "https://www.halleonard.com/dealers/bin/PromoSpanishPublications.pdf",
+      "recording": {
+        "artist": "Selena with Full Force",
+        "label": "EMI Latin Dreaming of You, track 6",
+        "source": "https://selena-official.com/products/dreaming-of-you-30th-anniversary-cd"
+      },
+      "alternateRecording": {
+        "artist": "Selena",
+        "label": "EMI Latin Entre a Mi Mundo",
+        "source": "https://music.apple.com/us/song/1443161536"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Publisher index and recording references. The folio pages and permission for playable distribution remain to be checked."
+      }
+    },
+    {
+      "id": "baila-esta-cumbia",
+      "title": "Baila Esta Cumbia",
+      "credit": "A. B. Quintanilla III and Pete Astudillo",
+      "tradition": "Tejano cumbia",
+      "version": "1990 studio recording; distinct Canales performance",
+      "status": "published-score",
+      "edition": "Musicnotes MN0075339, five-page piano/voice/guitar, C major, 2/2",
+      "source": "https://www.musicnotes.com/sheetmusic/selena/baila-esta-cumbia/MN0075339",
+      "recording": {
+        "artist": "Selena",
+        "label": "Ven Conmigo · studio",
+        "date": "1990",
+        "source": "https://music.apple.com/us/song/1633344247"
+      },
+      "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 9. The linked Ven Conmigo cut is the studio reference. The piano edition marks half note = 90.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      },
+      "broadcast": {
+        "title": "Johnny Canales Presenta: Selena · Q-Productions QV-8050",
+        "source": "https://selena-official.com/products/johnny-canales-presenta-selena"
+      }
+    },
+    {
+      "id": "la-carcacha",
+      "title": "La Carcacha",
+      "credit": "A. B. Quintanilla III and Pete Astudillo",
+      "tradition": "Tejano cumbia",
+      "version": "1992 studio recording",
+      "status": "published-score",
+      "edition": "Hal Leonard ¡Puro Tejano! HL 00310950, piano/voice/guitar",
+      "source": "https://www.stantons.com/sheet-music/title/puro-tejano/00310950/",
+      "recording": {
+        "artist": "Selena",
+        "label": "Entre a Mi Mundo · studio",
+        "date": "1992",
+        "source": "https://music.apple.com/us/song/1489663147"
+      },
+      "performanceNote": "A dance-band listening reference. The piano arrangement supplies melody and harmony. Use the recording separately to map the rhythm section.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      }
+    },
+    {
+      "id": "techno-cumbia",
+      "title": "Techno Cumbia",
+      "credit": "A. B. Quintanilla III and Pete Astudillo",
+      "tradition": "Tejano cumbia",
+      "version": "1994 album recording",
+      "status": "published-score",
+      "edition": "Hal Leonard ¡Puro Tejano! HL 00310950, piano/voice/guitar, publisher catalog p. 443",
+      "source": "https://www.halleonard.com/dealers/bin/CatalogMusic2007Page430-464MixedFolios.pdf#page=14",
+      "recording": {
+        "artist": "Selena",
+        "label": "Amor Prohibido · album version",
+        "date": "1994",
+        "source": "https://music.apple.com/us/song/1703308142"
+      },
+      "performanceNote": "Selena’s 1994 Tejano crossover cut. The posthumous Ragga Latin remix and the Peruvian tecnocumbia scene have separate references.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      }
+    },
+    {
+      "id": "no-debes-jugar",
+      "title": "No Debes Jugar",
+      "credit": "A. B. Quintanilla III and Ricky Vela",
+      "tradition": "Tejano · Canales repertoire",
+      "version": "1993 recording; distinct Canales performance",
+      "status": "published-score",
+      "edition": "Hal Leonard ¡Puro Tejano! HL 00310950, piano/voice/guitar",
+      "source": "https://www.stantons.com/sheet-music/title/puro-tejano/00310950/",
+      "recording": {
+        "artist": "Selena",
+        "label": "La Leyenda · compilation issue",
+        "date": "1993 recording",
+        "source": "https://music.apple.com/us/song/721269517"
+      },
+      "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 13. The linked audio is the separately cataloged commercial issue.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      },
+      "broadcast": {
+        "title": "Johnny Canales Presenta: Selena · Q-Productions QV-8050",
+        "source": "https://selena-official.com/products/johnny-canales-presenta-selena"
+      }
+    },
+    {
+      "id": "la-llamada",
+      "title": "La Llamada",
+      "credit": "A. B. Quintanilla III and Pete Astudillo",
+      "tradition": "Tejano · Canales repertoire",
+      "version": "1993 recording; distinct Canales performance",
+      "status": "published-score",
+      "edition": "Hal Leonard ¡Puro Tejano! HL 00310950, piano/voice/guitar",
+      "source": "https://www.stantons.com/sheet-music/title/puro-tejano/00310950/",
+      "recording": {
+        "artist": "Selena",
+        "label": "Unforgettable · compilation issue",
+        "date": "1993 recording",
+        "source": "https://music.apple.com/us/song/714064735"
+      },
+      "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 15. Credits on the linked commercial issue distinguish drums, percussion and keyboard programming.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      },
+      "broadcast": {
+        "title": "Johnny Canales Presenta: Selena · Q-Productions QV-8050",
+        "source": "https://selena-official.com/products/johnny-canales-presenta-selena"
+      }
+    },
+    {
+      "id": "juana-la-cubana",
+      "title": "Juana la Cubana",
+      "credit": "Rodolfo ‘Fito’ Olivares",
+      "tradition": "Mexican and Texas border cumbia",
+      "version": "Gil 162-A 45",
+      "status": "published-score",
+      "edition": "Matthew Naughtin string arrangement, ArrangeMe A0.852958",
+      "source": "https://www.sheetmusicplus.com/en/product/juana-la-cubana-21699929.html",
+      "recording": {
+        "artist": "Fito Olivares y Su Grupo",
+        "label": "Gil Records · Gil 162-A",
+        "source": "https://frontera.library.ucla.edu/recordings/juana-la-cubana-0"
+      },
+      "performanceNote": "The Gil disc is the dance-band reference. The available string setting is a separate arrangement.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
+      }
+    },
+    {
+      "id": "pollera-colora",
+      "title": "La Pollera Colorá",
+      "credit": "Juan Madera and Wilson Choperena",
+      "tradition": "Colombian cumbia",
+      "version": "1962 registration",
+      "status": "published-score",
+      "edition": "Fundación Nacional Batuta choral score",
+      "source": "https://fundacionbatuta.org/wp-content/uploads/2024/10/La-pollera-colora-Score.pdf",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "ma-teodora",
+      "title": "Son de la Má Teodora",
+      "panelTitle": "MÁ TEODORA",
+      "credit": "Traditional attribution to Teodora Ginés is disputed",
+      "tradition": "Cuban call-and-response canción · son historiography",
+      "version": "Cuba musical, Havana, 1929",
+      "status": "score-backing",
+      "edition": "Cuba musical, p. 25, Imprenta de Molina y Compañía, 1929",
+      "source": "https://imslp.org/wiki/Son_de_la_m%C3%A1_Teodora_(Gin%C3%A9s,_Teodora)",
+      "performanceNote": "The MIDI follows all five printed systems in 6/8. It includes the harmonized responses and four echoes marked p, pp and ppp. The Compás slot and MIDI both play the complete setting. The score's tempo is measured in dotted-quarter beats.",
+      "historicScoreLeads": [
+        {
+          "edition": "La “Ma” Teodora · Cuba musical, 1929, p. 25",
+          "source": "https://dpanther.fiu.edu/record/64101",
+          "asset": "https://s9.imslp.org/files/imglnks/usimg/6/68/IMSLP1061279-PMLP1647556-gines_la_ma_teodora.pdf",
+          "scanPage": 1,
+          "sha256": "5744a7834f76920d914b5d56beb66f25ff9353baaccb2fac80abca3cb22356f4",
+          "inspected": true,
+          "midiExcerpts": [
+            {
+              "ledger": "ma-teodora-cuba-musical-1929.json",
+              "label": "Havana 1929 · complete 6/8 setting MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        },
+        {
+          "edition": "Gisela Hernández Gonzalo · soprano, alto and güiro · FIU FISI007403_00001",
+          "source": "https://dpanther.fiu.edu/record/71666?v=%5B%22%5B%27uv%27%5D%22%5D",
+          "status": "A separate arrangement cataloged by FIU. Score and distribution terms unverified."
+        }
+      ],
+      "recording": {
+        "artist": "Music Together · featuring Ben Lapidus on tres and marímbula",
+        "label": "Triangle collection · separate modern arrangement",
+        "source": "https://www.musictogether.com/parents/song-story-ma-teodora"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Notation as printed in 1929 and newly transcribed MIDI. Scan reuse and other territories are separate.",
+        "evidence": "https://www.copyright.gov/circs/circ38b.pdf"
+      }
+    },
+    {
+      "id": "dile-a-catalina",
+      "title": "Dile a Catalina",
+      "credit": "Arsenio Rodríguez",
+      "tradition": "Cuban son montuno",
+      "version": "Sher edition",
+      "status": "published-score",
+      "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
+      "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "performanceNote": "Victor issued the 1942 conjunto recording as Como traigo la yuca and FIU catalogs it as guaracha. Fernández Bernal’s teaching figure aligns one melody passage with 2–3 son clave.",
+      "recording": {
+        "artist": "Conjunto Arsenio Rodríguez",
+        "label": "Victor 83948-B · Como traigo la yuca",
+        "date": "18 June 1942",
+        "source": "https://latinpop.fiu.edu/albumdd.cfm?bid=7235&term=Como+traigo+la+yuca"
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "Alejandro Fernández Bernal · annotated melody/clave example, Trémolo no. 3, fig. 3",
+          "source": "https://www.ucundinamarca.edu.co/documents/sedes/zipaquira/Tremolo_3.pdf",
+          "status": "Teaching excerpt only. Its 2–3 analysis applies to the printed phrase."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "son-de-la-loma",
+      "title": "Son de la Loma",
+      "credit": "Miguel Matamoros",
+      "tradition": "Cuban son",
+      "version": "Sher edition",
+      "status": "published-score",
+      "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
+      "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "recording": {
+        "artist": "Trío Matamoros",
+        "label": "Victor 81378-B",
+        "date": "1928",
+        "source": "https://latinpop.fiu.edu/albumdd.cfm?bid=6583&term=Son+de+la+loma"
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "Reported 1922 Havana print · Mamá, Pastor R. Lahera",
+          "source": "https://es.scribd.com/document/405785894/Ochenta-anos-del-son-y-los-soneros-en-el-Caribe-1909-1989-pdf",
+          "status": "Jesús Blanco Aguilar’s chronology identifies the Havana publisher and registration number 16. The print and registration have not been inspected."
+        },
+        {
+          "edition": "Undated manuscript-index lead · PM-94-1146",
+          "source": "https://es.scribd.com/document/382894408/partituras-manuscritas-titulos-pdf",
+          "status": "A mirrored 2014 index gives the title, Matamoros credit and shelfmark. Confirm the holding institution and edition independently."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "el-manisero",
+      "title": "El Manisero",
+      "credit": "Moisés Simons",
+      "tradition": "Cuban pregón / son",
+      "version": "1927 and 1930 recorded versions",
+      "status": "published-score",
+      "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
+      "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "Bohemia, Havana, 26 May 1929, pp. 66–67, El Manisero — Danzón",
+          "source": "https://ufdc.ufl.edu/UF00029010/01764",
+          "asset": "https://ufdcimages.uflib.ufl.edu/UF/00/02/90/10/01764/26_mayo_1929_21.pdf",
+          "manifest": "https://ufdcimages.uflib.ufl.edu/UF/00/02/90/10/01764/UF00029010_01764.mets.xml",
+          "sha256": "95f5173d25df6abf0cba3b1badcbb7487c82334e2e93d15cacfecd9268bbacc3",
+          "scanPage": 34,
+          "creditsAsPrinted": [
+            "E. Lecuona",
+            "M. Simons",
+            "Antonio Mª Romeu"
+          ],
+          "status": "The lead-in and first three full bars are available as a three-part piano MIDI. The complete form remains under review.",
+          "formMap": "el-manisero-bohemia-form.md",
+          "midiExcerpts": [
+            {
+              "ledger": "el-manisero-bohemia-opening.json",
+              "label": "Havana 1929 · danzón piano opening MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ],
+          "usTermEvidence": "https://www.copyright.gov/circs/circ38b.pdf",
+          "rights": "The repository manifest records permission for nonprofit research and education display. For notation first published in the 1929 issue, any U.S. term restored under the URAA would have run at most through 2024. That assessment is separate from scan reuse. The three printed names are recorded without inferred arranger roles. Other territories remain open."
+        },
+        {
+          "edition": "Edward B. Marks, New York, 1930, Lawrence Kempton setting, plate 9737-4",
+          "source": "https://scholarsjunction.msstate.edu/cht-sheet-music/12489/",
+          "asset": "https://www.sheetmusicsinger.com/wp-content/uploads/2023/01/The-Peanut-Vendor.pdf",
+          "sha256": "79f28cbda8c19e9996b591ede74928f24ebae1ed670bfc4978bd03e8179962a5",
+          "scanPage": 2,
+          "status": "music pages 2–5 visually verified; both piano staves and a lead guide available in the Kempton rehearsal entry",
+          "midiExcerpt": {
+            "ledger": "el-manisero-kempton-calls.json",
+            "label": "Kempton 1930 · eight-bar vendor-call MIDI",
+            "rightsStatus": "us-public-domain-edition"
+          },
+          "midiExcerpts": [
+            {
+              "ledger": "el-manisero-kempton-whistle.json",
+              "label": "Kempton 1930 · aligned peanut-whistle MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "el-manisero-kempton-bass.json",
+              "guideLedger": "el-manisero-kempton-guide.json",
+              "rightHandLedger": "el-manisero-kempton-right-hand.json",
+              "extraLedger": "el-manisero-kempton-whistle.json",
+              "label": "Kempton 1930 · piano, guide and whistle rehearsal MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ],
+          "creditNote": "The cover names G. Paoli and advertises multiple versions. The dated title and music pages identify Lawrence Kempton's arrangement and plate 9737-4 throughout. Use those pages as the source of record for this setting.",
+          "rights": "The dated 1930 New York music pages fall within the U.S. public-domain cutoff. Scope is a fresh transcription of this edition's notation. Other territories and scan reuse are separate.",
+          "usTermEvidence": "https://www.copyright.gov/circs/circ15a.pdf"
+        },
+        {
+          "edition": "The Peanut Vendor / El Manisero, Edward B. Marks, New York, Baylor copy",
+          "source": "https://digitalcollections-baylor.quartexcollections.com/Documents/Detail/the-peanut-vendor-el-manisero-fox-trot/2270260",
+          "status": "repository catalog confirmed, scan access and edition comparison pending"
+        }
+      ]
+    },
+    {
+      "id": "el-manisero-kempton-bass",
+      "title": "El Manisero · Kempton bass and guide",
+      "credit": "Moisés Simons · Lawrence Kempton arrangement",
+      "tradition": "Cuban pregón / son, New York fox-trot print",
+      "version": "1930 Kempton setting, complete lower staff and selected lead vocal line",
+      "status": "score-backing",
+      "edition": "Edward B. Marks, New York, 1930, plate 9737-4, pp. 2–5",
+      "source": "https://www.sheetmusicsinger.com/wp-content/uploads/2023/01/The-Peanut-Vendor.pdf",
+      "scan": {
+        "sha256": "79f28cbda8c19e9996b591ede74928f24ebae1ed670bfc4978bd03e8179962a5",
+        "scope": "Printed pages 2–5 and PDF pages 2–5"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Fresh piano, vocal-guide and whistle notation transcription from the 1930 U.S. edition. The source scan and other recordings or editions are separate. Other territories remain open.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "lagrimas-negras",
+      "title": "Lágrimas Negras",
+      "credit": "Miguel Matamoros",
+      "tradition": "Bolero-son",
+      "version": "Sher edition",
+      "status": "published-score",
+      "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
+      "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "historicScoreLeads": [
+        {
+          "edition": "Alfredo Brito setting, Southern Music Publishing Co., 1932",
+          "source": "https://archive.org/details/catalogofcopyrig273libr/page/325/mode/1up",
+          "status": "Registration EF23157, 11 February 1932, and renewal R230826, 11 February 1959. Score not yet acquired.",
+          "renewalSource": "https://archive.org/details/CatalogOfCopyrightEntriesSeries3Vol.13Part5No.1jan.-june1959/page/688/mode/1up"
+        },
+        {
+          "edition": "Editorial Musical Ibero Americana, Barcelona, 1932, three-page reduced score",
+          "source": "https://archivoybiblioteca.realacademiabellasartessanfernando.com/cgi-bin/koha/opac-detail.pl?biblionumber=65362",
+          "callNumber": "M-10964",
+          "status": "Holding verified. Cover names the singer Eduardo Brito. Arrangement identity and notation await inspection."
+        }
+      ],
+      "recording": {
+        "artist": "Freddie Fender with Los Ayala",
+        "label": "ARVLP-1020, McAllen, Texas",
+        "position": "B5",
+        "source": "https://frontera.library.ucla.edu/recordings/lagrimas-negras-1"
+      },
+      "alternateRecording": {
+        "artist": "Trío Matamoros",
+        "label": "Victor 30509, matrix XVE 67176",
+        "date": "1931-02-24",
+        "source": "https://diazayalacollection.fiu.edu/sites/diazayalacollection.fiu.edu/files/SECCION04Mpt1.pdf"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "lamento-borincano",
+      "title": "Lamento Borincano",
+      "credit": "Rafael Hernández Marín · Alfredo Brito piano arrangement",
+      "tradition": "Puerto Rican bolero · New York diaspora",
+      "version": "1930 Hernández deposit and separately registered 1932 Brito arrangement",
+      "status": "scan-available",
+      "edition": "Alfredo Brito, Southern Music Publishing Co., 1932; Peer reprint in ERIC ED059933, printed pp. 23–24",
+      "source": "https://files.eric.ed.gov/fulltext/ED059933.pdf#page=33",
+      "scan": {
+        "asset": "https://files.eric.ed.gov/fulltext/ED059933.pdf",
+        "sha256": "e5058438ec9c8a610487c9a01ffb1d0ffa3e95e489d340a25eeda79a48ccefe9",
+        "scorePages": [
+          33,
+          34
+        ],
+        "printedPages": [
+          23,
+          24
+        ]
+      },
+      "compositionDeposit": {
+        "registration": "EU25702",
+        "date": "1930-07-31",
+        "source": "https://archive.org/details/catalogofcopyrig253libr/page/994/mode/1up",
+        "status": "Registration verified; deposited notation not inspected"
+      },
+      "arrangementRegistration": {
+        "registration": "EP30072",
+        "date": "1932-04-05",
+        "source": "https://archive.org/details/catalogofcopyrig273libr/page/530/mode/1up",
+        "renewal": "R234645",
+        "renewalDate": "1959-04-08",
+        "renewalSource": "https://archive.org/details/CatalogOfCopyrightEntriesSeries3Vol.13Part5No.1jan.-june1959/page/688/mode/1up"
+      },
+      "recording": {
+        "artist": "Canario y Su Grupo",
+        "date": "1930-07-14",
+        "label": "Victor 30008",
+        "matrix": "BVE-62790-2",
+        "source": "https://frontera.library.ucla.edu/node/371381"
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "Marvin Duchow Music Library CA MDML 015-2-1143",
+          "source": "https://archivalcollections.library.mcgill.ca/index.php/lamento-borincano",
+          "status": "McGill names Alfredo Brito as arranger. This is a separate holding of the arranged score. The copy date and contents were not inspected."
+        },
+        {
+          "edition": "Real Conservatorio Superior de Música de Madrid Inv 12028(11)",
+          "source": "https://bibliotecavirtualmadrid.comunidad.madrid/bvmadrid_publicacion/es/consulta/registro.do?control=BDCM20214553079",
+          "status": "Barcelona voice-and-piano printing of the Brito arrangement. Madrid lists a possible 1941 date and a 1958 legal deposit. The catalog has no linked scan."
+        },
+        {
+          "edition": "Biblioteca Nacional de Puerto Rico PR 780.97295 H557s",
+          "source": "https://www.archivoicp.com/rafael-hernndez-bio",
+          "status": "Peer Song Folio includes the title. The bibliography does not identify the underlying setting or supply the notation."
+        }
+      ],
+      "formMap": "lamento-borincano-brito-form.md",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The ERIC scan reproduces the separately registered 1932 Brito arrangement under an educational reproduction permission. The 1930 composition deposit, 1932 arrangement and 1930 recording have distinct rights records.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "besame-mucho",
+      "title": "Bésame Mucho",
+      "credit": "Consuelo Velázquez",
+      "tradition": "Mexican bolero",
+      "version": "Musicnotes edition",
+      "status": "published-score",
+      "edition": "Musicnotes C-instrument lead sheet MN0173776",
+      "source": "https://www.musicnotes.com/sheetmusic/consuelo-vel%C3%A1zquez/b%C3%A9same-mucho/MN0173776",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "la-mora",
+      "title": "La Mora",
+      "credit": "Eliseo Grenet",
+      "tradition": "Cuban danzón · later New York salsa arrangement",
+      "version": "1918 Havana piano print, four two-staff excerpts and a guided sung-repeat rehearsal",
+      "status": "transcribed-excerpt",
+      "edition": "Anselmo López y Cía. · John Arpin Sheet Music Collection JAC009399",
+      "source": "https://yorkspace.library.yorku.ca/items/c8c80ab2-6429-42f1-9313-473a4acbc0e9",
+      "performanceNote": "The opening MIDI follows both piano staves through the repeat and both numbered endings. The page 4 return uses a different second ending. The interlude and closing refrain are independent eight-bar MIDIs with both staves. The sung repeat has both endings, a switchable guide and separate MIDI tracks for the upper melody and lower piano. Add any of the five as a score slot or play them in the La Mora rehearsal. The Singer to Finale rehearsal runs from the pickup through both endings and the final refrain in one continuous arrangement.",
+      "historicScoreLeads": [
+        {
+          "edition": "York University JAC009399 · Havana piano print, pp. 2–5",
+          "source": "https://yorkspace.library.yorku.ca/items/c8c80ab2-6429-42f1-9313-473a4acbc0e9",
+          "asset": "https://yorkspace.library.yorku.ca/bitstreams/ece1dddb-1df9-470b-87fe-d9116b5a15f9/download",
+          "sha256": "70a2cd3814d09e17c7190d0219d2cbb3068fe9d8827c0ed9886d0c6f447b32f6",
+          "scanPage": 2,
+          "inspected": true,
+          "status": "Complete scan inspected. Both piano staves transcribed for the opening, the page 4 return strain, interlude and text pickup, and the closing refrain. The texted repeat’s lower staff is transcribed with both endings. The upper note of the texted piano line is available as a guide. The complete chord voicing and other strains remain open.",
+          "midiExcerpts": [
+            {
+              "ledger": "la-mora-grenet-opening-bass.json",
+              "rightHandLedger": "la-mora-grenet-opening-treble.json",
+              "label": "La Mora · both hands and repeat markers MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-opening-bass.json",
+              "label": "La Mora · opening piano bass MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-opening-treble.json",
+              "label": "La Mora · opening piano treble MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-refrain.json",
+              "label": "La Mora · closing refrain, both piano staves MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-interlude.json",
+              "label": "La Mora · instrumental interlude and text pickup MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-return.json",
+              "label": "La Mora · instrumental return and alternate ending MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-sung-bass.json",
+              "label": "La Mora · sung repeat, lower piano staff MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-sung-guide.json",
+              "label": "La Mora · sung repeat, upper melody MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-sung-bass.json",
+              "guideLedger": "la-mora-grenet-sung-guide.json",
+              "label": "La Mora · sung repeat, left hand and melody guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-mora-grenet-singer-finale.json",
+              "label": "La Mora · singer to finale, piano and guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        }
+      ],
+      "recording": {
+        "artist": "Willie Colón and Rubén Blades · arrangement by Willie Colón",
+        "label": "Fania 500 · Metiendo Mano",
+        "date": "1977",
+        "source": "https://fania.com/es/record/metiendo-mano/"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Transcription of the notes in the 1918 published print for U.S. use. The archive scan, the 1977 arrangement, its recording and later editions are separate source objects.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "pablo-pueblo",
+      "title": "Pablo Pueblo",
+      "credit": "Rubén Blades",
+      "tradition": "Salsa",
+      "version": "Sher edition",
+      "status": "published-score",
+      "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
+      "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "recording": {
+        "artist": "Rubén Blades and Willie Colón · arrangement by Louis Ortíz",
+        "label": "Fania 500 · Metiendo Mano",
+        "date": "1977",
+        "source": "https://fania.com/es/record/metiendo-mano/"
+      },
+      "performanceNote": "Fania’s notes identify Tom Malone’s tuba in an instrumental interlude. Use that interlude as a separate form checkpoint when comparing the Sher score with this recording.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "cielito-lindo",
+      "title": "Cielito Lindo",
+      "credit": "Tune supplied by Luis Morones · harmonization by Alfred G. Wathall",
+      "tradition": "Mexican canción vals · border repertoire",
+      "version": "1927 American Songbag canto and both piano staves",
+      "status": "score-backing",
+      "performanceNote": "Choose Songbag printed piano for both hands in 3/4, with optional canto guide. The four part keys select Pickup, Verse, Chorus and Ending. The rhythm and harmony follow this edition; no automatic percussion is added.",
+      "edition": "Harcourt, Brace, New York, 1927 · printed pp. 298–299",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+      "scan": {
+        "sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+        "location": "The American Songbag, 1927 New York print, Wikimedia scan",
+        "scorePages": [
+          298,
+          299
+        ]
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "1927 Songbag · Wathall voice and piano, printed pp. 298–299",
+          "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf#page=326",
+          "asset": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+          "sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+          "inspected": true,
+          "midiExcerpt": {
+            "ledger": "cielito-lindo-songbag-canto.json",
+            "label": "Cielito Lindo · Songbag canto MIDI",
+            "rightsStatus": "us-public-domain-edition"
+          },
+          "midiExcerpts": [
+            {
+              "ledger": "cielito-lindo-songbag-left-hand.json",
+              "label": "Cielito Lindo · printed piano left-hand MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "cielito-lindo-songbag-left-hand.json",
+              "guideLedger": "cielito-lindo-songbag-canto.json",
+              "label": "Cielito Lindo · left hand and canto rehearsal MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "cielito-lindo-songbag-right-hand.json",
+              "label": "Cielito Lindo · printed piano right-hand MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        },
+        {
+          "edition": "Rodríguez and Mendoza · Okeh 16739, W 404162 B, accordion and bajo sexto",
+          "source": "https://frontera.library.ucla.edu/es/recordings/cielito-lindo-117",
+          "status": "Separate border recording. The MIDI follows the 1927 printed melody."
+        }
+      ],
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "1927 New York print and MIDI encoding of the published vocal line and both piano staves. Recording references are catalog links.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "la-cucaracha",
+      "title": "La Cucaracha",
+      "credit": "Traditional · arranged by Alfred George Wathall",
+      "tradition": "Mexican border song · 1927 voice-and-piano setting",
+      "version": "1927 American Songbag, one printed verse and chorus",
+      "status": "score-backing",
+      "performanceNote": "Start and Verse cue the opening. Chorus includes its three-note pickup. Ending plays the printed last bar. The optional canto guide follows the top staff.",
+      "edition": "Harcourt, Brace, New York, 1927 · printed p. 290",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+      "scan": {
+        "sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+        "location": "The American Songbag, 1927 New York print, Wikimedia scan",
+        "scorePages": [
+          290
+        ]
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "1927 Songbag · Wathall voice and piano",
+          "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf#page=318",
+          "asset": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Carl_Sandburg_-_The_American_Songbag.pdf",
+          "sha256": "7753977e675f6a2038ae6a6125faad9db5466285c8ec52d5ad4625dbf352b4a6",
+          "inspected": true,
+          "midiExcerpts": [
+            {
+              "ledger": "la-cucaracha-songbag-canto.json",
+              "label": "La Cucaracha · canto MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-cucaracha-songbag-left-hand.json",
+              "label": "La Cucaracha · printed bass staff MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "la-cucaracha-songbag-right-hand.json",
+              "label": "La Cucaracha · printed treble staff MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        }
+      ],
+      "recording": {
+        "artist": "Frank Corrales, Ben Tavera King and Los Polkeros",
+        "label": "Folkways FD 6527 · A7 · FW06527_107",
+        "date": "1982",
+        "source": "https://folkways.si.edu/frank-corrales-ben-tavera-king-and-the-los-folkeros-group/la-cucaracha-waltz-traditional/latin-world/music/track/smithsonian"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "1927 New York print and transcription of its vocal line and piano staves. The 1982 waltz recording is a separate reference.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "juana-quilina",
+      "title": "Juana Quilina",
+      "credit": "Attributed to Juan Bautista Alfonseca",
+      "tradition": "Early Dominican merengue · also called Juana Aquilina",
+      "version": "Nine-bar melody fragment in Cheposo’s 2011 engraving",
+      "status": "transcribed-excerpt",
+      "edition": "2011 engraving and 1949 printed comparison",
+      "source": "https://commons.wikimedia.org/wiki/File:Juana_Quilina_Partitura..png",
+      "performanceNote": "The Compás slot plays the nine written bars as an unaccompanied melody. The first three slots of the Merengue rehearsal are separate rhythm studies.",
+      "historicScoreLeads": [
+        {
+          "edition": "Cheposo, 2011 · licensed melody engraving",
+          "source": "https://commons.wikimedia.org/wiki/File:Juana_Quilina_Partitura..png",
+          "asset": "https://upload.wikimedia.org/wikipedia/commons/2/24/Juana_Quilina_Partitura..png",
+          "sha256": "9d02744fd9fc376f956314470eaaa07db1601ca31b34a6d665679df734cde228",
+          "inspected": true,
+          "midiExcerpt": {
+            "ledger": "juana-quilina-fragment.json",
+            "label": "Juana Quilina · nine-bar melody MIDI",
+            "rightsStatus": "cc-by-sa-3.0"
+          }
+        },
+        {
+          "edition": "Coopersmith, 1949 · printed p. 21 and note 72",
+          "source": "https://archive.org/details/musicmusiciansof00coop",
+          "asset": "https://archive.org/download/musicmusiciansof00coop/musicmusiciansof00coop.pdf",
+          "sha256": "6b026a755e3eb5e71e7ad512492d12d3a695a05409fb1e98d50c107d279795d6",
+          "scanPage": 33,
+          "status": "Printed melody compared. Alternate rhythm in bars 2 and 4 and alternate final pitches in bars 5 and 6."
+        },
+        {
+          "edition": "Flérida de Nolasco, 1939 · original book holding",
+          "source": "https://bd.bnphu.gob.do/items/0ec0a36f-1ce3-4fe6-be75-9401d2564210",
+          "status": "The National Library catalogs the 175-page Editora Montalvo volume and lists the PDF through a copy request. Printed p. 60 awaits inspection."
+        },
+        {
+          "edition": "Flérida de Nolasco, Vibraciones en el tiempo · 1948 Montalvo edition",
+          "source": "https://catalogo.bnphu.gob.do/cgi-bin/koha/opac-detail.pl?biblionumber=30949",
+          "status": "Centro León’s FL03394 names this separate publication and its singer, Federico Henríquez y Carvajal. The 1948 notation page still needs inspection."
+        }
+      ],
+      "rights": {
+        "status": "cc-by-sa-3.0",
+        "scope": "The MIDI and Compás score data adapt Cheposo’s engraving under CC BY-SA 3.0. The earlier prints remain research references."
+      }
+    },
+    {
+      "id": "ecos-del-cibao",
+      "title": "Ecos del Cibao",
+      "credit": "Juan Francisco García",
+      "tradition": "Dominican merengue · early Cibao print",
+      "version": "1918 print reported by Coopersmith",
+      "status": "edition-lead",
+      "edition": "Santiago de los Caballeros · La Cuna de América, Roques Román hermanos",
+      "source": "https://archive.org/download/musicmusiciansof00coop/musicmusiciansof00coop.pdf#page=69",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Printed bibliography verified. Notation and edition identity await the score."
+      }
+    },
+    {
+      "id": "merengue-garcia-suite",
+      "title": "Merengue (Suite de Impresiones, VI)",
+      "credit": "Juan Francisco García",
+      "tradition": "Dominican merengue · concert piano",
+      "version": "1948 university piano print and 2018 solo recording",
+      "status": "published-score",
+      "edition": "Universidad de Santo Domingo, 1948 · Academia M-3054",
+      "source": "https://www.academiacolecciones.com/musica/inventario.php?id=M-3054",
+      "historicScoreLeads": [
+        {
+          "edition": "Helen Ninoska Thrall, 2018 · pp. 24–25, fig. 24 · mm. 10–21",
+          "source": "https://doi.org/10.17077/etd.zffi-977w",
+          "status": "The thesis identifies the 1948 edition in its bibliography and describes paseo, cuerpo and jaleo. Its figure covers an excerpt of the piano movement."
+        }
+      ],
+      "recording": {
+        "artist": "Helen Ninoska Thrall",
+        "label": "University of Iowa recording project",
+        "position": "Track 17",
+        "date": "April–May 2018",
+        "source": "https://doi.org/10.25820/bath-kh57"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The Academy catalogs a 16-page suite. Compás has a bibliographic record and an excerpt citation. Complete movement pages and a reuse basis for the composition and selected edition are pending."
+      }
+    },
+    {
+      "id": "yo-me-encelere-garcia",
+      "title": "Yo me Enceleré",
+      "credit": "Juan Francisco García",
+      "tradition": "Dominican danza-merengue · concert piano",
+      "version": "Piano excerpt and 2018 solo recording",
+      "status": "edition-lead",
+      "edition": "Helen Ninoska Thrall, 2018 · pp. 10–11, fig. 6",
+      "source": "https://doi.org/10.17077/etd.zffi-977w",
+      "historicScoreLeads": [
+        {
+          "edition": "Thesis fig. 6 · piano mm. 17–24 and separate tambora examples",
+          "source": "https://doi.org/10.17077/etd.zffi-977w",
+          "status": "The caption identifies an eight-measure piano excerpt and two comparative tambora examples by Socrates García. The latter are analytical references."
+        }
+      ],
+      "recording": {
+        "artist": "Helen Ninoska Thrall",
+        "label": "University of Iowa recording project",
+        "position": "Track 5",
+        "date": "September 2018",
+        "source": "https://doi.org/10.25820/7tja-nr40"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The thesis documents an excerpt and a performance. Compás still needs the full piano score, its exact edition and a reuse basis. The two comparative tambora cells are separate from the composition."
+      }
+    },
+    {
+      "id": "santiago-hernandez",
+      "title": "Santiago",
+      "credit": "Julio Alberto Hernández",
+      "tradition": "Dominican merengue · Cibao and New York",
+      "version": "Álbum Musical piano lead and Nilo Menéndez recording",
+      "status": "edition-lead",
+      "edition": "Álbum Musical, vol. I, Tipografía del Carmen, Santo Domingo, reported as 1927",
+      "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=0554454789&informatico=00272834SR",
+      "recording": {
+        "artist": "Orquesta de Nilo Menéndez",
+        "label": "Columbia 3081-X",
+        "position": "B",
+        "matrix": "W 96308",
+        "date": "circa 1926–28 (Díaz-Ayala); the Dominican holding gives no date",
+        "source": "https://latinpop.fiu.edu/seccion04mpt2.pdf#page=65"
+      },
+      "historicScoreLeads": [
+        {
+          "edition": "Coopersmith, printed p. 31, note 152 · Álbum Musical imprint",
+          "source": "https://archive.org/download/musicmusiciansof00coop/musicmusiciansof00coop.pdf#page=43",
+          "status": "Bibliographic reference to the piano collection, with publication details. The title-level score remains to be located."
+        },
+        {
+          "edition": "Centro León FL03401 · Álbum Musical, p. 6 · prose extract",
+          "source": "https://mediateca.centroleon.org.do/docs/FL03401.pdf",
+          "status": "Inspected one-page typescript attributed to Hernández. It describes the last of two merengues in the album without naming it. No notation or title-level form established."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "Archival disc and matrix confirmed. The complete piano edition and the recording date await verification."
+      }
+    },
+    {
+      "id": "juangomero",
+      "title": "Juangomero (Juan Gomero)",
+      "credit": "Traditional attribution disputed · J. F. García credited on Colonial LA 1031",
+      "tradition": "Dominican merengue · Línea Noroeste and orchestra settings",
+      "version": "Museo de la Música Dominicana ensemble score, first page",
+      "status": "score-located",
+      "edition": "Undated ensemble setting pictured in Acento, 3 September 2020",
+      "source": "https://acento.com.do/cultura/el-dia-que-jose-marti-bailo-merengue-en-montecristi-8856793.html",
+      "historicScoreLeads": [
+        {
+          "edition": "Museo de la Música Dominicana · Juan Gomero, page 1",
+          "source": "https://ssl.c.photoshelter.com/img-get/I00002DlhWcTRApE/s/500/I00002DlhWcTRApE.jpg",
+          "asset": "https://ssl.c.photoshelter.com/img-get/I00002DlhWcTRApE/s/500/I00002DlhWcTRApE.jpg",
+          "sha256": "4bb06061b67e47de2367f706ee38d6f90a3882c0c983602aa5d3e44628008f87",
+          "inspected": true,
+          "status": "Opening page of a multistaff ensemble score. The preview does not establish its arranger, publication date or complete form."
+        },
+        {
+          "edition": "Arzeno, Del folk-lore musical dominicano, 1927, p. 49 · BNPHU/723",
+          "source": "https://bd.bnphu.gob.do/items/f5bd53c4-5830-431f-bfcb-e29cefd53791",
+          "status": "Copy-request holding. Pérez de Cuello and Solano attribute a separate musical example to Arzeno. The original notation remains to be inspected."
+        },
+        {
+          "edition": "Archivo General de la Nación · 1927 Tomo I · 780.97293 A797d",
+          "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=1802024183&informatico=00085523PI",
+          "status": "Second institutional holding of the 1927 imprint. The catalog establishes the volume and classification. Score pages still need inspection."
+        },
+        {
+          "edition": "Archivo General de la Nación 2025 facsimile · BNPHU 60784",
+          "source": "https://catalogo.bnphu.gob.do/cgi-bin/koha/opac-detail.pl?biblionumber=60784",
+          "status": "Library catalog identifies the facsimile of Tomo I, xvi + 148 pages. Check its pagination against the 1927 volume."
+        },
+        {
+          "edition": "Pérez de Cuello and Solano, El merengue, 2003 · examples at pp. 285 and 288–289",
+          "source": "https://es.scribd.com/document/25085652/EL-MERENGUE-DOMINICANO-1",
+          "status": "Preview text identifies Arzeno’s transcription and a separate rhythmic reading. The notation is not legible in that text."
+        }
+      ],
+      "recording": {
+        "artist": "Orquesta Generalísimo Trujillo · Arcadio Franco",
+        "label": "Colonial LA 1031",
+        "position": "B",
+        "date": "1930–61 (AGN range)",
+        "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=0029461263&informatico=00274076SR"
+      },
+      "alternateRecording": {
+        "artist": "Rafael Solano · Vinicio Franco · arr. Luis Pérez",
+        "label": "Karen KLP-19",
+        "position": "A5",
+        "date": "1975",
+        "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=0554454789&informatico=00270111SR"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The first-page photo identifies a score lead. The ensemble arrangement, early transcription and two recordings each need their own rights and edition check."
+      }
+    },
+    {
+      "id": "angelita-de-mi-vida",
+      "title": "Angelita de mi vida",
+      "credit": "Altamira field performance, collected by Fradique Lizardo",
+      "tradition": "Dominican merengue típico · Altamira, Puerto Plata",
+      "version": "Centro León’s 2022 digital archive edition",
+      "status": "recording-lead",
+      "edition": "Archivo Sonoro Fradique Lizardo, vol. I",
+      "source": "https://centroleon.org.do/archivo-sonoro-fradique-lizardo/#:~:text=ANGELITA%20DE%20MI%20VIDA",
+      "performanceNote": "Edis Sánchez documents an eight-bar 4/4 paseo, sung primera, instrumental segunda, return of the voice and a three-beat closing bar. Accordion, güira and tambora. This is the archive’s form map for this performance.",
+      "recording": {
+        "artist": "Altamira field recording",
+        "label": "Centro León",
+        "date": "2022 digital edition; original recording date unconfirmed",
+        "source": "https://soundcloud.com/user-124598724/angelita-de-mi-vida-merengue-antiguo-con-paseo/s-uuDRbDAYJ88"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Archive commentary and recording link. Composition, field recording and any item-level transcription require separate rights evidence."
+      }
+    },
+    {
+      "id": "compadre-pedro-juan",
+      "title": "Compadre Pedro Juan",
+      "credit": "Luis Alberti",
+      "tradition": "Dominican merengue",
+      "version": "Libertad Lamarque collection, Horace Diaz arrangement",
+      "status": "edition-lead",
+      "edition": "FIU FISI000854_00001, Box 6 C2. Printed Peer set and separate manuscript set.",
+      "source": "https://dpanther.fiu.edu/record/65287?ln=es",
+      "historicScoreLeads": [
+        {
+          "edition": "Musicnotes MN0041992 · 1955 Peer voice/C-instrument lead sheet",
+          "source": "https://www.musicnotes.com/sheetmusic/luis-alberti/compadre-pedro-juan/MN0041992",
+          "status": "Publisher-administered one-page lead-sheet listing. G major, half note 100. A lead sheet gives melody, lyrics and chords. The FIU band parts are a separate edition."
+        },
+        {
+          "edition": "José Antonio Molina arrangement · Library of Congress, Music of Machito and his Afro-Cubans, box 17 folder 5",
+          "source": "https://tile.loc.gov/storage-services/service/gdc/gdcfindingaidpdfs/mu020005/mu020005.pdf",
+          "status": "Finding aid lists a full score. This is a separate orchestration from the FIU Diaz materials. Music pages still to be inspected."
+        },
+        {
+          "edition": "Tejada Tabar, UNPHU, 2020 · printed p. 14, fig. 8",
+          "source": "https://repositorio.unphu.edu.do/handle/123456789/4176",
+          "status": "Caption identifies an Alberti melody fragment reproduced from Por amor al arte. The extracted image description dates the manuscript 1936. The figure image has not been audited."
+        }
+      ],
+      "recording": {
+        "artist": "Grupo Victoria · Pedro Ortiz-Dávila",
+        "label": "Victor 32965-1",
+        "date": "1937 (FIU catalog)",
+        "source": "https://dpanther.fiu.edu/record/29118?p=%5B%27%28+%28creator%3A%5BAlberti%2C+Luis%5D%29%29%27%5D"
+      },
+      "scan": {
+        "asset": "https://dpanther.fiu.edu/record/65287/files/Arpa.jpg",
+        "sha256": "8d0615a59bf77492ccfec60137666678c9d3acfd13aa9c68c1a5c5224d99ac1a",
+        "scope": "One handwritten harp cue sheet. Cut time, repeat marks, A/B and fade cues."
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Reference only. Peer is the listed lead-sheet administrator. The U.S. Copyright Office renewal data links RE0000157738, dated 1983-01-28, to EU0000391837. Confirm the selected arrangement and intended device rights separately.",
+        "evidence": "https://www.copyright.gov/economic-research/usco-datasets/"
+      }
+    },
+    {
+      "id": "todo-el-mundo-proyecto-uno",
+      "title": "Todo el Mundo (Everybody)",
+      "credit": "Proyecto Uno · Pavel de Jesús and Nelson Zapata production",
+      "tradition": "Dominican New York merenhouse",
+      "version": "Proyecto Uno’s early album version",
+      "status": "recording-lead",
+      "edition": "Todo el Mundo! · CUNY library cover dated 1991",
+      "source": "https://dominicanmusicusa.com/educational_resources/proyecto-uno/221",
+      "recording": {
+        "artist": "Proyecto Uno",
+        "label": "Todo el Mundo! album · digital listing",
+        "date": "1991 in the cover caption and Apple metadata. CUNY’s narrative gives 1990 for the debut.",
+        "source": "https://music.apple.com/us/album/todo-el-mundo/20846002"
+      },
+      "performanceNote": "CUNY traces the Black Box source and the Spanish/English vocal adaptation. The 1997 J&N listing carries separate production and composition credits.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The underlying Black Box composition, Proyecto Uno arrangement and each master require separate permission for score or audio redistribution.",
+        "evidence": "https://www.qobuz.com/es-es/album/todo-el-mundo-proyecto-uno/nf094pi57stea"
+      }
+    },
+    {
+      "id": "el-tiburon-proyecto-uno",
+      "title": "El Tiburón",
+      "credit": "Proyecto Uno",
+      "tradition": "Dominican New York merenhouse",
+      "version": "In Da House album cut",
+      "status": "recording-lead",
+      "edition": "In Da House · 1993 in CUNY’s album chronology",
+      "source": "https://dominicanmusicusa.com/educational_resources/proyecto-uno/221",
+      "recording": {
+        "artist": "Proyecto Uno",
+        "label": "In Da House",
+        "date": "1993",
+        "source": "https://dominicanmusicusa.com/educational_resources/proyecto-uno/221"
+      },
+      "performanceNote": "Zapata’s interview describes a reference to Got to Be Real during production. Verify credits and musical usage against the selected edition.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Recording, arrangement and any incorporated material require separate verification and permission for a playable transcription.",
+        "evidence": "https://www.elespectador.com/cromos/famosos-y-vida-social/proyecto-uno-y-el-inesperado-suceso-que-cambio-la-historia-de-el-tiburon/"
+      }
+    },
+    {
+      "id": "la-morena-ilegales",
+      "title": "La Morena",
+      "credit": "Ilegales · written and produced by Vladimir Dotel",
+      "tradition": "Dominican merenhouse",
+      "version": "1995 album recording",
+      "status": "recording-lead",
+      "edition": "Ilegales · Ariola listing, UPC 0743213241623",
+      "source": "https://www.qobuz.com/es-es/album/ilegales-los-ilegales/0743213241623",
+      "recording": {
+        "artist": "Los Ilegales",
+        "label": "BMG US Latin",
+        "position": "Track 1",
+        "date": "℗ 1995",
+        "source": "https://www.qobuz.com/es-es/album/ilegales-los-ilegales/0743213241623"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Album metadata identifies this track separately from the remix on the same release. Composition, arrangement and recording permissions remain open."
+      }
+    },
+    {
+      "id": "fiesta-caliente-ilegales",
+      "title": "Fiesta Caliente",
+      "credit": "Ilegales · Vladimir Dotel, Pavel de Jesús and Cholo Brenes production",
+      "tradition": "Dominican merenhouse",
+      "version": "1995 original and separate Party Mix",
+      "status": "recording-lead",
+      "edition": "Ilegales · Ariola listing, UPC 0743213241623",
+      "source": "https://www.qobuz.com/es-es/album/ilegales-los-ilegales/0743213241623",
+      "recording": {
+        "artist": "Ilegales",
+        "label": "BMG Music",
+        "position": "Track 2 · Original",
+        "date": "℗ 1995",
+        "source": "https://www.qobuz.com/es-es/album/ilegales-los-ilegales/0743213241623"
+      },
+      "alternateRecording": {
+        "artist": "Ilegales · Pavel de Jesús remix",
+        "label": "Sony Music Latin · Mis Favoritas",
+        "position": "Track 4 · Party Mix",
+        "date": "℗ 1998, compilation 2010",
+        "source": "https://www.qobuz.com/us-en/album/mis-favoritas-ilegales/0884977590708"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The label metadata separates the original and the Party Mix. Both are listening references. A playable song would require a verified arrangement and reuse basis."
+      }
+    },
+    {
+      "id": "el-diente-de-oro",
+      "title": "El Diente de Oro",
+      "credit": "El Ciego de Nagua · Bartolo Alvarado",
+      "tradition": "Merengue típico · accordion and alto sax",
+      "version": "Raquejo Domínguez’s 2018 university transcription",
+      "status": "edition-lead",
+      "edition": "Universidad Distrital Francisco José de Caldas · PDF p. 81 onward",
+      "source": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download#page=81",
+      "historicScoreLeads": [
+        {
+          "edition": "Raquejo Domínguez, 2018",
+          "source": "https://hdl.handle.net/11349/15948",
+          "asset": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download",
+          "sha256": "8dfe42a13bdec139987c297849f0716efc1249a48d739a5959fd19dedc0f1146",
+          "scanPage": 81,
+          "inspected": true,
+          "status": "Annex 4, pp. 81–95. Opening and closing pages inspected. Alto sax and accordion notation, with piano figures and chord slashes. The opening three bars are described as a contradanza."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
+      },
+      "recording": {
+        "artist": "El Ciego de Nagua",
+        "label": "Producciones Jose Luis JL-063",
+        "position": "A1",
+        "source": "https://frontera.library.ucla.edu/recordings/el-diente-de-oro-0"
+      }
+    },
+    {
+      "id": "cabo-e-vela",
+      "title": "Cabo e’ Vela",
+      "credit": "Toño Abreu · Johnny Ventura version in Raquejo",
+      "tradition": "Merengue clásico · saxophone jaleo",
+      "version": "Raquejo Domínguez’s 2018 university transcription",
+      "status": "edition-lead",
+      "edition": "Universidad Distrital Francisco José de Caldas · PDF p. 96 onward",
+      "source": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download#page=96",
+      "historicScoreLeads": [
+        {
+          "edition": "Raquejo Domínguez, 2018",
+          "source": "https://hdl.handle.net/11349/15948",
+          "asset": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download",
+          "sha256": "8dfe42a13bdec139987c297849f0716efc1249a48d739a5959fd19dedc0f1146",
+          "scanPage": 96,
+          "inspected": true,
+          "status": "Annex 5 starts on p. 96. Opening page inspected. Two trumpets, two trombones, three saxophones, piano and electric bass. The jaleo enters as a saxophone pickup. The title page credits the Ventura version."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
+      },
+      "recording": {
+        "artist": "Toño Abreu y su cuarteto",
+        "label": "Alberti LA-1026",
+        "position": "B1",
+        "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=0029461263&informatico=00277395SR"
+      }
+    },
+    {
+      "id": "la-faldita-cocoband",
+      "title": "La Faldita",
+      "credit": "Cocoband as credited on the score",
+      "tradition": "Modern Dominican merengue · saxophone jaleo",
+      "version": "Raquejo Domínguez’s 2018 university transcription",
+      "status": "edition-lead",
+      "edition": "Universidad Distrital Francisco José de Caldas · PDF p. 123 onward",
+      "source": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download#page=123",
+      "historicScoreLeads": [
+        {
+          "edition": "Raquejo Domínguez, 2018",
+          "source": "https://hdl.handle.net/11349/15948",
+          "asset": "https://repository.udistrital.edu.co/bitstreams/986ed78a-7f84-4d2a-ae2e-2cb639779fd5/download",
+          "sha256": "8dfe42a13bdec139987c297849f0716efc1249a48d739a5959fd19dedc0f1146",
+          "scanPage": 123,
+          "inspected": true,
+          "status": "Annex 6 starts on p. 123. First two pages inspected. Score lists two trumpets, trombone, alto and tenor saxophones, piano and electric bass. Performance and composition credits require separate record matching."
+        }
+      ],
+      "rights": {
+        "status": "reference-only",
+        "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
+      }
+    },
+    {
+      "id": "merengue-del-soldado",
+      "title": "Merengue del soldado",
+      "credit": "Julio A. Hernández, music and arrangement · Emilio A. Morel, words",
+      "tradition": "Dominican merengue · orchestral parts",
+      "version": "Undated printed Famous Music Corporation set",
+      "status": "edition-lead",
+      "edition": "AGN Museo de la Música 8-189 · signatura 516132",
+      "source": "https://colecciones.agn.gob.do/opac/ficha.php?codopac=OP003&idpag=1345084862&informatico=00221020EX&suposi=16",
+      "performanceNote": "The catalog identifies a 14-page set in F with piano, voice, bass, drums, strings and winds. The part pages are still to be examined.",
+      "rights": {
+        "status": "reference-only",
+        "scope": "Archive catalog. The date, music and rights of this exact printed arrangement remain open."
+      }
+    },
+    {
+      "id": "ojala-que-llueva-cafe",
+      "title": "Ojalá que llueva café",
+      "credit": "Juan Luis Guerra",
+      "tradition": "Dominican merengue",
+      "version": "1989",
+      "status": "edition-lead",
+      "edition": "Creciendo Cantando educational score",
+      "source": "https://crecercantando.com/materiales/wp-content/uploads/2017/10/1718Ojala%CC%81-que-llueva-cafe%CC%81_G.pdf",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "la-adelita",
+      "title": "La Adelita",
+      "credit": "Traditional; quartet arranged by David Edward Kemp",
+      "tradition": "Mexican revolutionary corrido · San Antonio polka versions",
+      "version": "2016 recorder quartet, complete 73-bar score",
+      "status": "score-backing",
+      "edition": "David Edward Kemp · IMSLP 666981",
+      "source": "https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)",
+      "performanceNote": "On Compás, the upper Guide key switches Alto 1 in or out over the other three written parts. Four MIDI tracks are also available. The 1981–82 San Antonio polka is a separate listening reference.",
+      "historicScoreLeads": [
+        {
+          "edition": "Kemp quartet score · IMSLP 666981 · PDF pp. 1–4",
+          "source": "https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)",
+          "asset": "https://s9.imslp.org/files/imglnks/usimg/4/4e/IMSLP666981-PMLP1070327-Adelita_-_Score.pdf",
+          "sha256": "8f46a2a00d9b8a29e62583709f4aa40071f60e972f3e94d7649cb9b00625105b",
+          "scanPage": 1,
+          "inspected": true,
+          "status": "All four pages inspected and transcribed. Full score and opening study available with four MIDI parts each.",
+          "midiExcerpts": [
+            {
+              "ledger": "la-adelita-kemp-quartet.json",
+              "label": "La Adelita · complete recorder quartet MIDI",
+              "rightsStatus": "cc-by-4.0"
+            },
+            {
+              "ledger": "la-adelita-kemp-opening.json",
+              "label": "La Adelita · four recorder parts, opening MIDI",
+              "rightsStatus": "cc-by-4.0"
+            }
+          ]
+        },
+        {
+          "edition": "Carlos Chávez · Cantos Mexicanos, op. 16 · Wagner y Levien, c. 1920 · Grainger MG C1/RAMI-1",
+          "source": "https://grainger.unimelb.edu.au/__data/assets/pdf_file/0011/2116883/graingercollectionpart2.pdf",
+          "inspected": false,
+          "status": "Cataloged piano score, plate 1912, includes Adelita y la cucaracha. The score leaves remain to be inspected."
+        }
+      ],
+      "recording": {
+        "artist": "Frank Corrales, Ben Tavera King and Los Polkeros",
+        "label": "Folkways FD 6527 · Tex-Mex Dance Music: Saturday Night San Antonio · A6 (1982)",
+        "date": "December 1981–January 1982, session",
+        "source": "https://folkways.si.edu/frank-corrales-ben-tavera-king-and-the-los-folkeros-group/la-adelita-polka-traditional/latin-world/music/track/smithsonian"
+      },
+      "rights": {
+        "status": "cc-by-4.0",
+        "scope": "Applies to the Kemp quartet arrangement and its attributed Compás playback and MIDI transcriptions. Does not cover the archival recordings or different arrangements.",
+        "evidence": "https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)"
+      }
+    },
+    {
+      "id": "mi-cafetal",
+      "title": "Mi Cafetal",
+      "credit": "Credited to Crescencio Salcedo in the EAFIT chart and on the Bego disc",
+      "tradition": "Colombian porro · San Antonio conjunto cumbia",
+      "version": "2015 EAFIT clarinet chart and 1982 San Antonio recording",
+      "status": "published-score",
+      "edition": "Duque Acosta and Toro Isaza · EAFIT, no. 27, p. 86",
+      "source": "https://repository.eafit.edu.co/bitstreams/0c17e19a-7148-41bd-833f-133f70d03522/download#page=86",
+      "performanceNote": "The clarinet page is a melody reference. Folkways credits guitar, accordion, string bass and congas for the Los Polkeros cumbia. The McAllen Bego disc calls its version a porro.",
+      "recording": {
+        "artist": "Frank Corrales, Ben Tavera King and Los Polkeros",
+        "label": "Folkways FD 6527 · A1 · FW06527_101",
+        "date": "1982",
+        "source": "https://folkways.si.edu/frank-corrales-ben-tavera-king-and-the-los-folkeros-group/mi-cafetal-cumbia-traditional/latin-world/music/track/smithsonian"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The library links to the pedagogical score and recorded versions. Composition and edition permission for a MIDI or board arrangement is open.",
+        "evidence": "https://www.senalmemoria.co/articulos/crescencio-salcedo-y-el-ano-viejo"
+      }
+    },
+    {
+      "id": "la-bamba",
+      "title": "La Bamba",
+      "credit": "Traditional; arrangement depends on version",
+      "tradition": "Veracruz son jarocho / rock and Tejano crossover",
+      "version": "Veracruz son, 1958 Valens single, 1987 film and Selena/Canales witnesses",
+      "status": "published-score",
+      "edition": "Veracruz son jarocho · listening and accompaniment sources",
+      "source": "https://content.ucpress.edu/title/9780520285583/hess_ch6oag.pdf#page=22",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The traditional title’s listening and score links are reference-only. The playable Compás accompaniment uses a harmonic cycle and original cue parts. Edition, arrangement and recording permissions remain separate."
+      },
+      "performanceNote": "The original Compás Veracruz accompaniment follows the documented I–IV–V–V cycle in two 2/4 bars. The melody is left to the player.",
+      "historicScoreLeads": [
+        {
+          "edition": "Luis Berber · Huapango Veracruzano piano score · UNT Box 2, item 18",
+          "source": "https://archives.library.unt.edu/repositories/3/archival_objects/284377",
+          "status": "Institutional finding aid. The collection date range is not the date of this score. Notes and terms not inspected."
+        },
+        {
+          "edition": "Ángel Currás · piano manuscript · SGAE AS-4557",
+          "source": "https://archivo.sgae.es/heritageobject/la-bamba/",
+          "status": "Catalog credits the tune as popular and Currás as arranger. The manuscript is a separate undated witness."
+        }
+      ],
+      "recording": {
+        "artist": "José Gutiérrez and Los Hermanos Ochoa",
+        "label": "SFW40505_101",
+        "date": "2003 release",
+        "source": "https://folkways.si.edu/jose-gutierrez-los-hermanos-ochoa/la-bamba/latin-world/music/track/smithsonian"
+      },
+      "alternateRecording": {
+        "artist": "Ritchie Valens",
+        "label": "Del-Fi single",
+        "date": "1958",
+        "source": "https://www.loc.gov/programs/national-recording-preservation-board/recording-registry/registry-by-induction-years/2018/"
+      },
+      "relatedRecordings": [
+        {
+          "artist": "Álvaro Hernández Ortiz (El Jarocho)",
+          "date": "1939, Indiana University exhibit attribution",
+          "source": "https://collections.libraries.indiana.edu/cookmusiclibrary/exhibits/show/sounds_of_mexico/la_bamba"
+        },
+        {
+          "artist": "Los Lobos",
+          "label": "La Bamba soundtrack",
+          "date": "1987",
+          "source": "https://catalog.afi.com/Catalog/MovieDetails/57682"
+        },
+        {
+          "artist": "Selena",
+          "label": "Commercial digital issue",
+          "source": "https://music.apple.com/us/song/1442962335"
+        }
+      ],
+      "broadcast": {
+        "title": "Selena y Los Dinos · attributed to the 1987 Canales show in Matamoros",
+        "source": "https://www.youtube.com/watch?v=_6kFS__GBrE",
+        "status": "Surviving clip and corroborating reporting. Exact taping date and backing source remain open."
+      }
+    },
+    {
+      "id": "chicle-de-amor",
+      "title": "Chicle de Amor",
+      "credit": "Menudo (recording artist)",
+      "tradition": "Puerto Rican pop",
+      "version": "1983",
+      "status": "recording-lead",
+      "edition": "RCA A Todo Rock album",
+      "source": "https://music.apple.com/us/album/a-todo-rock-remasterizado/1650850353",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "no-controles",
+      "title": "No Controles",
+      "credit": "Flans (recording artist)",
+      "tradition": "Mexican pop",
+      "version": "1985",
+      "status": "recording-lead",
+      "edition": "Flans debut album",
+      "source": "https://music.apple.com/us/album/flans/1443501998",
+      "rights": {
+        "status": "reference-only",
+        "scope": "catalog metadata and source link; score and device distribution eligibility pending"
+      }
+    },
+    {
+      "id": "zacatecas-march",
+      "title": "Zacatecas March",
+      "credit": "Genaro Codina",
+      "tradition": "Mexican march · Texas-Mexican conjunto repertoire",
+      "version": "1895 San Francisco piano print, third edition",
+      "status": "transcribed-excerpt",
+      "edition": "Armstrong & Bacon · Johns Hopkins Levy Collection 059.160",
+      "source": "https://levysheetmusic.mse.jhu.edu/collection/059/160",
+      "performanceNote": "Play the six-bar introduction, march lead-in and first strain with both numbered endings. The MIDI keeps the lower staff, upper staff and independent fanfares separable. Pedro Ayala’s later recording is a distinct conjunto arrangement.",
+      "historicScoreLeads": [
+        {
+          "edition": "Levy 059.160, third edition, with 1895 copyright notice",
+          "source": "https://levysheetmusic.mse.jhu.edu/collection/059/160",
+          "asset": "https://levysheetmusic.mse.jhu.edu/sites/default/files/collection-pdfs/levy-059-160.pdf",
+          "sha256": "48cb07fae24c2c7bd871a79a23958d3434c3ed9b520ae06bfc0def0d44b7a3c9",
+          "scanPage": 3,
+          "inspected": true,
+          "status": "Seven-page scan inspected. PDF p. 3 and p. 4 system 1 transcribed through both endings. The remainder includes the later march strains, Trio and the D.C. return.",
+          "midiExcerpts": [
+            {
+              "ledger": "zacatecas-levy-opening.json",
+              "label": "Zacatecas March · introduction and first strain MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        }
+      ],
+      "recording": {
+        "artist": "Pedro Ayala",
+        "label": "Arhoolie ARH09022, track 105",
+        "date": "2001 reissue",
+        "source": "https://folkways.si.edu/pedro-ayala/la-marcha-zacatecas/latin-world/music/track/smithsonian"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Notes of the 1895 U.S. published piano print. Later arrangements, sound recordings and scan use are separate.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "sobre-las-olas",
+      "title": "Sobre las olas",
+      "panelTitle": "SOBRE LAS OLAS",
+      "credit": "Juventino Rosas",
+      "tradition": "Mexican vals · border string-band repertoire",
+      "version": "1895 Trifet piano print, first strain of Waltz No. 1",
+      "status": "transcribed-excerpt",
+      "edition": "F. Trifet, Boston, 9 October 1895, plate 1030, Ball State SM-2-196",
+      "source": "https://dmr.bsu.edu/digital/collection/ShtMus/id/248/",
+      "performanceNote": "Choose the 16-bar theme or the complete first strain with both numbered endings through Fine. The 1895 Boston piano edition and the Quinteto Típico Mexicano disc are separate arrangements.",
+      "historicScoreLeads": [
+        {
+          "edition": "F. Trifet, Boston, 9 October 1895, plate 1030, Ball State SM-2-196",
+          "source": "https://dmr.bsu.edu/digital/collection/ShtMus/id/248/",
+          "asset": "https://dmr.bsu.edu/digital/iiif/ShtMus/242/full/full/0/default.jpg",
+          "scanPage": 3,
+          "sha256": "2a2bd710d66cb690eae46e6b3a9a3de72cbc4b03ba111f4ebed5afe0f9728dca",
+          "inspected": true,
+          "midiExcerpts": [
+            {
+              "ledger": "sobre-las-olas-trifet-theme.json",
+              "label": "Trifet 1895 · both piano staves, first waltz theme",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "sobre-las-olas-trifet-strain.json",
+              "label": "Trifet 1895 · first strain with both endings",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        },
+        {
+          "edition": "Thos. Goggan & Bro., Galveston, Mary D. Hudgins Collection MC 534",
+          "source": "https://uark.as.atlas-sys.com/repositories/2/archival_objects/798152",
+          "status": "Undated archival holding. A photographed cover and inner spread are separate evidence. The complete Galveston score has not been compared."
+        },
+        {
+          "edition": "Zeno Mauvais Music Co., San Francisco, ca. 1891–1903",
+          "source": "https://digicoll.lib.berkeley.edu/record/99518",
+          "status": "Nine-page piano score in the California Sheet Music Project. Catalog verified. Scan comparison pending."
+        }
+      ],
+      "recording": {
+        "artist": "Quinteto Típico Mexicano",
+        "label": "Columbia 2553-X",
+        "matrix": "95432",
+        "source": "https://frontera.library.ucla.edu/recordings/sobre-las-olas-2"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "The 1895 U.S. print and its new MIDI transcription. Ball State marks the archival item No Copyright – United States. The scan and recordings are not bundled. Other territories remain separate."
+      }
+    },
+    {
+      "id": "jesusita-en-chihuahua",
+      "title": "Jesusita en Chihuahua",
+      "credit": "Quirino Mendoza y Cortés",
+      "tradition": "Mexican polka · El Paso orquesta and Texas-Mexican conjunto",
+      "version": "1979 trumpet mariachi transcription and early border recordings",
+      "status": "scan-available",
+      "edition": "James G. Bennett, trumpet mariachi transcription, 1979, pp. 167–171. Accompaniment study on p. 172.",
+      "source": "https://digital.library.unt.edu/ark:/67531/metadc332341/",
+      "historicScoreLeads": [
+        {
+          "edition": "Bennett, Illustration 7, three staves with parts for violin, trumpet and guitarrón",
+          "source": "https://digital.library.unt.edu/ark:/67531/metadc332341/m2/1/high_res_d/1002783563-Bennett.pdf",
+          "asset": "https://digital.library.unt.edu/ark:/67531/metadc332341/m2/1/high_res_d/1002783563-Bennett.pdf",
+          "scanPage": 176,
+          "status": "Inspected all five score pages and the accompaniment example. Repeats, alternate endings, Fine and D.C. belong to this mariachi transcription."
+        },
+        {
+          "edition": "Banda del Estado de Oaxaca, Canciones, box 2, expediente 55",
+          "source": "https://file.adabi.org.mx/recursos/publicaciones/inventarios/civiles/144.pdf",
+          "status": "Inventory names the work without author, date or version. Notation has not been inspected."
+        },
+        {
+          "edition": "Peer International 1963 piano print, Conservatorio Superior de Música Manuel de Falla 003862",
+          "source": "https://buenosaires.gob.ar/sites/default/files/2025-10/PRIMER_CATALOGO_BIBLIO.pdf",
+          "status": "Published edition located in the library catalog. The claimed new matter in the U.S. registration is Henry Levine’s arrangement, EP172468 and renewal RE538069."
+        },
+        {
+          "edition": "Diario Oficial de la Federación, 4 March 1949",
+          "source": "https://dof.gob.mx/abrirPDF.php?anio=1949&archivo=04031949-MAT.pdf&repo=repositorio%2F",
+          "status": "The published registration list records Jesusita en Chihuahua with an arrangement designation and credits Quirino Fidel Mendoza y Cortés. The deposit notation and earlier publication remain to be located."
+        },
+        {
+          "edition": "John Chambers ABC transcription, Mexican Mixer",
+          "source": "https://abcnotation.com/tunePage?a=trillian.mit.edu%2F~jc%2Fmusic%2Fabc%2FIntl%2FJesucitaEnChi_A%2F0000",
+          "status": "The transcriber is credited and the ABC exposes a multi-strain version. Its source edition and reuse basis are unverified. A later upload's public-domain label does not establish the rights of this transcription."
+        },
+        {
+          "edition": "8notes violin edition 19620",
+          "source": "https://www.8notes.com/scores/19620.asp?ftype=pdf",
+          "status": "Modern score route for comparison. The date associated with the composition does not establish the date or reuse terms of this edition."
+        }
+      ],
+      "recording": {
+        "artist": "Orquesta del Norte",
+        "label": "Victor matrix BVE 42183; Arhoolie 7001 reissue",
+        "date": "1928-04-20, El Paso",
+        "source": "https://frontera.library.ucla.edu/recordings/jesusita-en-chihuahua-85"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Bennett’s transcription is available to inspect. No reuse grant for that arrangement or verified early print has been established."
+      },
+      "scan": {
+        "sha256": "6e3760dd8cc654f8be75263a54437503ab07731647bf5cc4159daf2dfc96aff6",
+        "location": "UNT Digital Library, 1002783563-Bennett",
+        "scorePages": [
+          176,
+          177,
+          178,
+          179,
+          180
+        ]
+      }
+    },
+    {
+      "id": "alla-en-el-rancho-grande",
+      "title": "Allá en el Rancho Grande",
+      "credit": "Silvano R. Ramos; Emilio D. Uranga and J. D. del Moral in separate witnesses",
+      "tradition": "Mexican canción ranchera · Texas-Mexican border repertoire",
+      "version": "1927 deposit and print leads, 1931 Moro melody, 1934 Lomax and Marks witnesses",
+      "status": "published-score",
+      "edition": "Silvano R. Ramos, voice and piano, Salvador Cabrera, c1926, Morgan 159383",
+      "source": "https://www.themorgan.org/music-manuscripts-and-printed-music/159383",
+      "historicScoreLeads": [
+        {
+          "edition": "1927 U.S. deposit E 663020, two voices, revised by J. López Alavez",
+          "source": "https://archive.org/details/catalogofcopyrig223libr/page/828/mode/1up",
+          "status": "Printed registration entry 15800 checked on p. 828. The OCR misreads the number. The deposit notation has not been inspected.",
+          "registrationScanSHA256": "03c6df41977b8413d83996ced0ce57e85dbc9e5da57bf0e943c1c8eadbba5b5b"
+        },
+        {
+          "edition": "A. Wagner y Levien, Mexico, 1927, arranged by Emilio D. Uranga, words credited to J. D. del Moral",
+          "source": "https://static1.squarespace.com/static/52c6cfe3e4b02b1e85cae962/t/5ff3b8c39b309f34a9d20f51/1609808067084/Hote%2BCasella%2BFinding%2BAid%2BBox%2B2%2BSheet%2BMusic%2BInventory.pdf",
+          "status": "Hote Casella inventory, Folder 9. The notation has not been inspected."
+        },
+        {
+          "edition": "Edward B. Marks · My Ranch · 1934 notice · plate 10,129-3",
+          "source": "https://blogs.law.gwu.edu/mcir/case/marks-v-stasny/",
+          "asset": "https://blogs.law.gwu.edu/mcir/files/2018/12/elranchogrande-1gma2hk.pdf",
+          "scanPage": 2,
+          "sha256": "a6ac3859366947505038afcd30c84bf3bd218b3e1606f30485b802b3fb773bcd",
+          "status": "Inspected cover and all three music pages. Silvano R. Ramos, Emilio D. Uranga, J. del Moral and Bartley Costello have separately stated credits. The scan carries a 1934 notice. The cover advertises Crosby’s Decca 2494 and reflects a later issue."
+        },
+        {
+          "edition": "American Ballads and Folk Songs · Lomax melody exhibit",
+          "source": "https://blogs.law.gwu.edu/mcir/case/marks-v-stasny/",
+          "asset": "https://blogs.law.gwu.edu/mcir/files/2018/12/Stasny-20sgpv6.pdf",
+          "scanPage": 1,
+          "sha256": "d224aec6681d5b07e20150ac2a45d312ce97f5845f8a8a44abd48ffbfd42b865",
+          "status": "Inspected single-staff melody in 2/4. The printed page credits Silvano R. Ramos despite the exhibit index’s Anonymous label. The page references the Texas Folk-Lore Society and has no printed page number in the exhibit."
+        },
+        {
+          "edition": "Southwestern Lore · Joaquin Moro · 1931, p. 119",
+          "source": "https://digital.library.unt.edu/ark:/67531/metadc38867/m1/125/",
+          "asset": "https://digital.library.unt.edu/iiif/ark:/67531/metadc38867/m1/125/full/1700,/0/default.jpg",
+          "sha256": "1b84f44721945f53105115736f3f2f75b9e636b57e66ced5991ef2386776089b",
+          "inspected": true,
+          "status": "UNT’s 1965 facsimile of Texas Folklore Society vol. IX, sequence 125. Three systems of 2/4 melody with one sharp, an eighth-note pickup and 20 measures after the pickup. Printed measures 6 and 8 each contain three eighth-note units. Lomax fills both to 2/4.",
+          "formMap": "rancho-grande-moro-comparison.md",
+          "rights": "The facsimile reproduces a 1931 Texas Folklore Society notice. No matching title or chapter was found in the searched book-renewal indexes. The original book registration and any separate notation claim remain open."
+        }
+      ],
+      "recording": {
+        "artist": "Cantantes de la Orquesta Típica Mexicana",
+        "label": "Victor 79066-B",
+        "matrix": "BVE-36966",
+        "date": "1926",
+        "source": "https://frontera.library.ucla.edu/recordings/all%C3%A1-en-el-rancho-grande-47"
+      },
+      "alternateRecording": {
+        "artist": "Orquesta del Norte",
+        "label": "Victor 81236-A",
+        "matrix": "BVE42214-2",
+        "date": "1928-04-20",
+        "source": "https://frontera.library.ucla.edu/node/315922"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The 1931 Moro melody and later Lomax and Marks witnesses are reference-only. The 1927 deposit and early prints remain uninspected, and the negative book-renewal searches do not establish rights in the exact notation.",
+        "evidence": "https://archive.org/download/catalogofcopyrig223libr/page/828"
+      },
+      "performanceNote": "Moro’s voice line has an eighth-note pickup and a verse after the double bar. Two short measures carry a full 2/4 in the Lomax print. The Marks piano setting uses a separate introduction and D.S. to Fine route.",
+      "relatedRecordings": [
+        {
+          "artist": "Santiago Jiménez y sus Valedores",
+          "label": "Imperial 236-A",
+          "matrix": "DI-285",
+          "date": "c. 1948",
+          "source": "https://frontera.library.ucla.edu/recordings/el-rancho-grande-24",
+          "linerNotes": "https://folkways-media.si.edu/docs/folkways/artwork/ARH07001.pdf#page=12",
+          "lineupNote": "Arhoolie booklet p. 23 says San Antonio, circa 1948, credits accordion and vocal to Santiago Jiménez, and gives guitar and bass personnel with probable attribution. Frontera indexes the 78 as corrido and instrumental, while Arhoolie lists ranchera and describes the performance as a polka version."
+        }
+      ]
+    },
+    {
+      "id": "la-valentina",
+      "title": "La Valentina",
+      "credit": "Traditional Mexican song · Manuel M. Ponce · Stefan Apke guitar edition",
+      "tradition": "Mexican canción revolucionaria · Texas-Mexican polka, ranchera and orquesta repertoire",
+      "version": "Apke's 2019 guitar edition is playable. Early Ponce and later De Lamadrid Chan settings are separate.",
+      "status": "playable-score",
+      "edition": "IMSLP 561574 · Stefan Apke, 2019 · 6/8 guitar edition",
+      "source": "https://imslp.org/wiki/5_Canciones_mexicanas_para_guitarra_(Ponce,_Manuel)",
+      "historicScoreLeads": [
+        {
+          "edition": "IMSLP 561574 · Stefan Apke, 2019 · 6/8 guitar edition",
+          "source": "https://imslp.org/wiki/5_Canciones_mexicanas_para_guitarra_(Ponce,_Manuel)",
+          "asset": "https://s9.imslp.org/files/imglnks/usimg/3/32/IMSLP561574-PMLP904667-Ponce_M_M-5_canc_mex%2Bmid.pdf",
+          "sha256": "4cc3abc3aeb425579f96302a89c7063e7c9191a3a714d3343be68b36f2410fda",
+          "status": "Printed score and embedded MIDI inspected. Complete 32-bar score with the opening 16 measures repeated.",
+          "midiExcerpts": [
+            {
+              "ledger": "la-valentina-apke-guitar.json",
+              "label": "Complete guitar MIDI · 48 played measures",
+              "rightsStatus": "cc-by-sa-4.0"
+            }
+          ]
+        },
+        {
+          "edition": "Alfredo De Lamadrid Chan · arranger-uploaded score 1051603",
+          "source": "https://imslp.org/wiki/La_Valentina_(Anonymous)",
+          "asset": "https://imslp.org/images/d/d8/PMLP1634104-Valentina_voz_y_piano.pdf",
+          "status": "The arranger lists three piano versions and CC BY 4.0. The score download required human verification."
+        },
+        {
+          "edition": "Alfredo De Lamadrid Chan · engraving bundle 1051610",
+          "source": "https://imslp.org/wiki/Arreglos_Mexicanos_Revolucionarios_(De_Lamadrid_Chan,_Alfredo)",
+          "status": "The engraving collection includes MusicXML. The file metadata were checked. The bundle download required human verification."
+        },
+        {
+          "edition": "Manuel M. Ponce · Canciones Mexicanas XXIV · CENIDIM autograph",
+          "source": "https://inbadigital.bellasartes.gob.mx/jspui/bitstream/11271/1337/1/384PubLibC4a.pdf",
+          "status": "CENIDIM identifies the autograph. Its published history describes the holding without showing the Valentina music pages."
+        },
+        {
+          "edition": "Ponce · Escritos y composìciones musicales · Cultura IV/4, July 1917",
+          "source": "https://play.google.com/store/books/details/Manuel_Mar%C3%ADa_Ponce_Escritos_y_composiciones_musica?id=7Gtx4QvHtIsC",
+          "status": "The 1917 book preview places the sung stanzas after the printed arrangement and credits Enrique Munguía. The original note pages remain to be inspected."
+        },
+        {
+          "edition": "José de Jesús Martínez · Canciones Mexicanas · Enrique Munguía, pp. 3–5, plate 270",
+          "source": "https://www.worldradiohistory.com/BOOKSHELF-ARH/Radio-Programming/The-Book-of-World-Famous-Music-Fuld-3rd-1985.pdf",
+          "status": "Fuld identifies the 1916 two-song print and an LC copyright-deposit copy. Separate from the De la Peña Gil 1913 Martínez print reported in the Mexican music dictionary."
+        }
+      ],
+      "recording": {
+        "artist": "Rafael Gama y Sus Texanos",
+        "label": "Azteca 412 · La Adelita con La Valentina",
+        "matrix": "PM-344-1-BL",
+        "source": "https://frontera.library.ucla.edu/recordings/la-adelita-con-la-valentina"
+      },
+      "alternateRecording": {
+        "artist": "Augustine Ramirez y Su Orquesta",
+        "label": "El Zarape ZLP-1066 · Aquella Noche",
+        "position": "B4",
+        "source": "https://frontera.library.ucla.edu/node/332372"
+      },
+      "performanceNote": "Frontera catalogs the Rafael Gama medley as an accordion-and-strings polka and the Augustine Ramirez track as an instrumental orquesta setting. Félix H. Morales and Chano Carmona recorded a separate Houston ranchera.",
+      "rights": {
+        "status": "cc-by-sa-4.0",
+        "scope": "Applies to the Apke guitar edition and Compás score-data and MIDI adaptations. Other editions and recordings retain separate status.",
+        "evidence": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "me-estoy-enamorando",
+      "title": "Me Estoy Enamorando",
+      "credit": "Armando Larrinaga · La Mafia",
+      "tradition": "Houston Tejano · romantic canción",
+      "version": "Sony studio recording and licensed retail score route",
+      "status": "published-score",
+      "edition": "¡Puro Tejano! piano/vocal/guitar, Musicnotes MN0117025, five pages, B-flat major, 2/2, half note = 60",
+      "source": "https://www.musicnotes.com/sheetmusic/la-mafia/me-estoy-enamorando/MN0117025",
+      "recording": {
+        "artist": "La Mafia",
+        "label": "Sony Discos · Ahora y Siempre",
+        "date": "℗ 1992",
+        "source": "https://www.youtube.com/watch?v=_PcBl_5kEFI"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Published retail score route. A print purchase gives a playing copy. Compás MIDI and firmware inclusion need separate permission."
+      }
+    },
+    {
+      "id": "nuestra-cancion-la-mafia",
+      "title": "Nuestra Canción",
+      "credit": "La Mafia · songwriter credits vary by release",
+      "tradition": "Houston Tejano · later Puerto Rican merengue adaptation",
+      "version": "Canales appearance, Sony studio cut and separate Crespo adaptation",
+      "status": "recording-lead",
+      "edition": "La Mafia’s Estás Tocando Fuego recording, with a separately documented Canales performance",
+      "source": "https://www.qobuz.com/us-en/album/estas-tocando-fuego-la-mafia/0037628066026",
+      "recording": {
+        "artist": "La Mafia",
+        "label": "Sony Discos · Estás Tocando Fuego",
+        "date": "℗ 1991",
+        "source": "https://music.apple.com/us/song/180117479"
+      },
+      "alternateRecording": {
+        "artist": "Elvis Crespo",
+        "label": "Sony Discos · Suavemente",
+        "date": "℗ 1998",
+        "source": "https://www.qobuz.com/es-es/playlists/elvis-crespo/67960249"
+      },
+      "broadcast": {
+        "title": "San Antonio Express-News identifies La Mafia’s 1991 Canales performance of Nuestra Canción",
+        "source": "https://www.expressnews.com/lifestyle/article/johnny-canales-show-tejano-stars-19468399.php"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "Separate recordings and arrangements. A verified La Mafia score and permission for a playable edition remain open."
+      }
+    },
+    {
+      "id": "jurame",
+      "title": "Júrame",
+      "credit": "María Grever · English version in the print by Frederick H. Martens",
+      "tradition": "Spanish Tango in the 1926 print · Mexican bolero repertory",
+      "version": "1926 Schirmer song with one D.C. return, plus a separate short refrain",
+      "status": "transcribed-excerpt",
+      "edition": "G. Schirmer, New York, 1926, plate 37700 · IMSLP 675258",
+      "source": "https://imslp.org/wiki/J%C3%BArame_%28Grever%2C_Mar%C3%ADa%29",
+      "panelTitle": "JÚRAME",
+      "performanceNote": "Play both stanzas with the five-bar introduction and one D.C. return. The FM-1 guide follows the upper vocal pitch. The MIDI keeps paired vocal notes and the bracketed second-stanza omission. The piano cue uses selected bass and the upper line of the introduction.",
+      "historicScoreLeads": [
+        {
+          "edition": "Schirmer plate 37700 · three-page voice-and-piano score",
+          "source": "https://imslp.org/wiki/J%C3%BArame_%28Grever%2C_Mar%C3%ADa%29",
+          "asset": "https://petruccimusiclibrary.ca/files/imglnks/caimg/d/db/IMSLP675258-PMLP1083489-Grever.pdf",
+          "sha256": "459e84c5e25cf752e3743ad9a5c8ed2aaaf754327b7c86e3b4cc130e6cc00ca1",
+          "scanPage": 2,
+          "inspected": true,
+          "status": "All three pages inspected. The first page carries the 1926 notice. The D.C. is on digitized page 3. The full-song MIDI uses all three pages, and the short refrain uses pages 2–3, counted bars 23–45. Both keep the paired vocal pitches.",
+          "midiExcerpts": [
+            {
+              "ledger": "jurame-schirmer-song.json",
+              "label": "Júrame · two stanzas, canto, piano intro cue and bass MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "jurame-schirmer-refrain.json",
+              "label": "Júrame · refrain canto and selected piano bass MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        }
+      ],
+      "recording": {
+        "artist": "José Mojica",
+        "label": "Victor 423-0007 Collectors Issue, matrix B7FB-0030",
+        "date": "1927-09-22 recording per UCLA",
+        "source": "https://frontera.library.ucla.edu/recordings/j%C3%BArame-25"
+      },
+      "alternateRecording": {
+        "artist": "José Mojica with Lew Shilkret and Eduardo Vigil y Robles’s orchestra",
+        "label": "HMV DA 1193, original Victor matrix BVE-40023-3",
+        "date": "1927-09-22, Camden",
+        "source": "https://adp-assets.library.ucsb.edu/HMVCelebritySeriesDiscography.pdf"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Music from the identified 1926 U.S. print. Lyrics, later arrangements and recordings are separate.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "madrigal-galaz",
+      "title": "Madrigal",
+      "credit": "Enrique Galaz Chacón · words by Carlos R. Menéndez González",
+      "tradition": "Yucatecan trova · early Mexican bolero",
+      "version": "1918 composition · 2012 anthology score route",
+      "status": "score-located",
+      "edition": "Álbum de canciones yucatecas, Biblioteca Básica de Yucatán, p. 158",
+      "source": "https://es.scribd.com/document/373419306/Boleros-Yucatecos-pdf",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The anthology credits Pedro Carlos Herrera López for score preparation and adaptation. The underlying witness and its date remain unverified."
+      }
+    },
+    {
+      "id": "morena-mia-villarreal",
+      "title": "Morena mía",
+      "credit": "Armando Villarreal Lozano",
+      "tradition": "Nuevo León bolero · Canción colombiana in the reproduced print",
+      "version": "Opening of a print reproduced by Pablo Dueñas",
+      "status": "score-located",
+      "edition": "Dueñas, Bolero, p. 18, reproduced in Sáenz Pérez, 2024, fig. 5",
+      "source": "https://repository.udistrital.edu.co/bitstreams/f727b9e7-b21b-4c8a-b479-633d4d8846f2/download#page=23",
+      "historicScoreLeads": [
+        {
+          "edition": "Sáenz Pérez, fig. 5 · opening systems reproduced from Dueñas",
+          "source": "https://repository.udistrital.edu.co/bitstreams/f727b9e7-b21b-4c8a-b479-633d4d8846f2/download#page=23",
+          "asset": "https://repository.udistrital.edu.co/bitstreams/f727b9e7-b21b-4c8a-b479-633d4d8846f2/download",
+          "sha256": "d294d7575898a72e8e3305a3108dd971456f3a4546c8c41d0b0308163263ac8c",
+          "scanPage": 23,
+          "inspected": true,
+          "status": "The reproduction shows the piano opening and start of the sung line. The caption attributes publication to 1921. The publisher, complete notation and original date line are outside the crop."
+        }
+      ],
+      "recording": {
+        "artist": "Alcides Briceño and Jorge Añez",
+        "label": "Victor 78799-B, matrix BVE29760-6",
+        "date": "1926-06-09",
+        "source": "https://frontera.library.ucla.edu/recordings/morena-m%C3%ADa-14"
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "The original imprint and complete score await inspection. The Victor side is a separate witness."
+      }
+    },
+    {
+      "id": "nunca-guty",
+      "title": "Nunca",
+      "credit": "Guty Cárdenas · words by Ricardo López Méndez",
+      "tradition": "Yucatecan canción · Guty’s clave setting",
+      "version": "1927 Wagner y Levien voice-and-piano print",
+      "status": "score-located",
+      "edition": "Real Academia de Bellas Artes de San Fernando, M-6331",
+      "source": "https://www.academiacolecciones.com/musica/inventario.php?id=M-6331",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The dated catalogue record identifies the print. The score pages are unavailable in that record."
+      }
+    },
+    {
+      "id": "tristeza-pepe-sanchez",
+      "title": "Tristeza",
+      "credit": "Pepe Sánchez",
+      "tradition": "Cuban bolero · Santiago trova",
+      "version": "Partial typeset score and separately identified melodic guide",
+      "edition": "resDanza no. 5, p. 36 · voice and piano reproduction",
+      "source": "https://uach.mx/assets/media/publications/2023/6/5866_resdanza/fa_resdanza_numero_5.pdf#page=36",
+      "historicScoreLeads": [
+        {
+          "edition": "Sáenz Pérez, fig. 4 · Orovio, El bolero latino (1995), pp. 13–14",
+          "source": "https://repository.udistrital.edu.co/bitstreams/f727b9e7-b21b-4c8a-b479-633d4d8846f2/download#page=21",
+          "asset": "https://repository.udistrital.edu.co/bitstreams/f727b9e7-b21b-4c8a-b479-633d4d8846f2/download",
+          "sha256": "d294d7575898a72e8e3305a3108dd971456f3a4546c8c41d0b0308163263ac8c",
+          "scanPage": 21,
+          "inspected": true,
+          "status": "Two facing pages of voice and piano show the opening and closing double bar. The arranger and earlier publication basis are unverified."
+        },
+        {
+          "edition": "resDanza no. 5, p. 36 · one page of voice and piano",
+          "source": "https://uach.mx/assets/media/publications/2023/6/5866_resdanza/fa_resdanza_numero_5.pdf#page=36",
+          "asset": "https://uach.mx/assets/media/publications/2023/6/5866_resdanza/fa_resdanza_numero_5.pdf",
+          "sha256": "9cf11002fddad9905807ba72d866b08e8dbcb65e524bc915ca3e89d0ccf7d719",
+          "scanPage": 36,
+          "inspected": true,
+          "status": "The page shows a vocal pickup after an instrumental opening. The print date, arranger and complete form are unverified."
+        },
+        {
+          "edition": "Córdoba García, El Bolero en Cali (2021), fig. 21 · melodic guide",
+          "source": "https://repository.bellasartes.edu.co/handle/123456789/7",
+          "status": "A guide associated with Perucho Mejía. Full figure and publication history need direct inspection."
+        }
+      ],
+      "recording": {
+        "artist": "Dueto Ábrego y Picazo",
+        "label": "Fonoteca Nacional FN08030064768_01",
+        "date": "1907, Mexico City, per the Fonoteca",
+        "source": "https://fonotecanacional.cultura.gob.mx/escucha/miscelanea-sonora/feria-del-libro-cuba"
+      },
+      "alternateRecording": {
+        "artist": "Dueto Ábrego y Picazo",
+        "label": "Un Beso · Columbia C436, matrix 5906",
+        "date": "ca. 1907 per FIU; 1908–09 in the Columbia matrix discography",
+        "source": "https://frontera.library.ucla.edu/recordings/un-beso"
+      },
+      "status": "score-located",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The 1995 piano witness is reproduced. Its arrangement credit and any earlier publication are unverified. The recordings have separate reuse terms."
+      }
+    },
+    {
+      "id": "bolero-de-manzanillo",
+      "title": "Bolero de Manzanillo",
+      "credit": "Text attributed to Ramón Moreno in the 1900 witness",
+      "tradition": "Early Cuban bolero · patriotic song",
+      "version": "1900 voice and piano copy",
+      "edition": "INBAL Archivo Lavalle–Kuri, Josefina Lavalle Collection",
+      "source": "https://dblavallekuri.inba.gob.mx/xmlui/handle/123456789/8/browse?etal=-1&offset=69&order=ASC&rpp=20&sort_by=1&type=title",
+      "performanceNote": "The Bolero Trova rehearsal uses two documented rhythm cells in an original accompaniment.",
+      "status": "score-located",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The score pages and publication evidence await inspection. The rhythm study uses no melodic or verbal material from the song."
+      }
+    },
+    {
+      "id": "quiereme-mucho-roig",
+      "title": "Quiéreme mucho",
+      "credit": "Gonzalo Roig",
+      "tradition": "Cuban serenata criolla · bolero repertory",
+      "version": "Havana voice and piano or piano solo, estimated 1930–40",
+      "edition": "Biblioteca Digital de Madrid 580479 · Vda. de Carreras & Co.",
+      "source": "https://bibliotecavirtualmadrid.comunidad.madrid/bvmadrid_publicacion/es/bib/580479.do?format=rdf_dc",
+      "historicScoreLeads": [
+        {
+          "edition": "Yours · New York Edward B. Marks, estimated 1932",
+          "source": "https://scholarsjunction.msstate.edu/cht-sheet-music/5963/",
+          "status": "Separately catalogued English edition. Mississippi State supplies its own use terms."
+        }
+      ],
+      "status": "score-located",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The Havana printing range is a catalogue estimate. Edition reuse remains unverified."
+      }
+    },
+    {
+      "id": "si-llego-a-besarte",
+      "title": "Si llego a besarte",
+      "credit": "Luis Casas Romero",
+      "tradition": "Cuban song · habanera in the score catalogue · bolero cubano on the Victor record",
+      "version": "Undated Editora Musical de Cuba voice-and-piano copy",
+      "edition": "Fundación Joaquín Díaz · Teresa Pérez Daniel 1157",
+      "source": "https://funjdiaz.net/partituras.php?pag=67",
+      "recording": {
+        "artist": "Orquesta Max Dolin",
+        "label": "Victor 73171-B, matrix B25814-2",
+        "date": "1921-11-22",
+        "source": "https://frontera.library.ucla.edu/recordings/si-llego-besarte-dame-un-beso-0"
+      },
+      "status": "score-located",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The archive catalogs an undated copy. The 1921 recording cannot date the piano setting."
+      }
+    },
+    {
+      "id": "aquellos-ojos-verdes",
+      "title": "Aquellos ojos verdes",
+      "credit": "Nilo Menéndez · lyrics by Adolfo Utrera",
+      "tradition": "Cuban bolero · piano and voice",
+      "version": "Southern Music bilingual print, New York",
+      "edition": "Morgan Library 213977 · notices for 1929, 1931 and 1941",
+      "source": "https://www.themorgan.org/music-manuscripts-and-printed-music/213977",
+      "recording": {
+        "artist": "Adolfo Utrera, Ernesto Lecuona and Nilo Menéndez",
+        "label": "Columbia 4267-X",
+        "date": "1930",
+        "source": "https://dpanther.fiu.edu/record/8971"
+      },
+      "status": "score-located",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The notices do not date the individual musical or translated elements of this printing."
+      }
+    },
+    {
+      "id": "siboney",
+      "title": "Siboney",
+      "credit": "Ernesto Lecuona · American lyric by Dolly Morse",
+      "tradition": "Cuban canción · danzón cubano in the Feist print · bolero performance tradition",
+      "version": "1929 Leo. Feist voice and piano, both verses and the complete D.S. route",
+      "status": "transcribed-excerpt",
+      "edition": "Leo. Feist, New York, plate 6212-4 · York John Arpin Collection JAC006835",
+      "source": "https://yorkspace.library.yorku.ca/items/d2e6d3e5-9138-4466-b6c0-f8c964a79dc7",
+      "performanceNote": "Play the chorus opening, single chorus, first verse or the full two-verse route with both numbered endings and Last. All four have two-staff piano and a switchable vocal guide.",
+      "historicScoreLeads": [
+        {
+          "edition": "York University JAC006835 · New York Feist print with 1929 notice",
+          "source": "https://yorkspace.library.yorku.ca/items/d2e6d3e5-9138-4466-b6c0-f8c964a79dc7",
+          "asset": "https://yorkspace.library.yorku.ca/bitstreams/cac07603-91eb-4533-8efa-988573d7c006/download",
+          "sha256": "21b2c443d489c4b7a0fec7d8b76e167408ba2a3d742459a7200508b1e441a39f",
+          "scanPage": 4,
+          "inspected": true,
+          "status": "Opening study from page 4, systems 1–3. The longer setting uses the chorus pickup, all 31 common bars and the nine-bar Last ending on pages 4–5. The first-verse rehearsal adds the piano introduction, two-bar repeat and the first verse from pp. 2–3. The two-verse setting adds both numbered endings and returns to the segno after Second before playing through Last.",
+          "midiExcerpts": [
+            {
+              "ledger": "siboney-feist-chorus.json",
+              "label": "Siboney · Feist chorus opening, piano and vocal-guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "siboney-feist-last.json",
+              "label": "Siboney · Feist chorus with Last ending, piano and vocal-guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "siboney-feist-verse-last.json",
+              "label": "Siboney · Feist first verse through Last, piano and vocal-guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            },
+            {
+              "ledger": "siboney-feist-song.json",
+              "label": "Siboney · Feist both verses and D.S. return, piano and vocal-guide MIDI",
+              "rightsStatus": "us-public-domain-edition"
+            }
+          ]
+        },
+        {
+          "edition": "Canto Siboney · Havana eleventh edition, Morgan 159820",
+          "source": "https://www.themorgan.org/music-manuscripts-and-printed-music/159820",
+          "status": "Spanish-language voice-and-piano edition. Catalog dates printing to the 1930s with a 1929 notice. The notation has not been compared."
+        }
+      ],
+      "recording": {
+        "artist": "Ordaz y sus Rítmos",
+        "label": "Comix 15198A, matrix 922-49",
+        "source": "https://frontera.library.ucla.edu/recordings/siboney-4"
+      },
+      "rights": {
+        "status": "us-public-domain-edition",
+        "scope": "Notes of the 1929 U.S. published Feist print. The library scan and later recordings remain separate. No lyrics are embedded.",
+        "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
+      }
+    },
+    {
+      "id": "cumbia-de-barranquilla-murillo",
+      "title": "Cumbia de Barranquilla",
+      "credit": "Emilio Murillo",
+      "tradition": "Colombian cumbia · voice and piano",
+      "version": "Undated manuscript, catalog estimates 1900–1920",
+      "status": "score-located",
+      "edition": "Biblioteca Nacional de Colombia 165058 · two pages for voice and piano",
+      "source": "https://www.iberoamericadigital.net/BDPI/Search.do?numfields=1&field1=control&field1val=005-165058&field1Op=AND&text=&advanced=true",
+      "rights": {
+        "status": "reference-only",
+        "scope": "The education catalog labels the resource CC BY-NC-SA. The scan was inaccessible and the exact licence and publication history remain unverified.",
+        "source": "https://redaprende.colombiaaprende.edu.co/metadatos/recurso/cumbia-de-barranquilla-partitura-general/"
+      }
+    },
+    {
+      "id": "cumbia-cienaguera",
+      "title": "Cumbia Cienaguera",
+      "credit": "Andrés Paz Barros · later lyric credited to Esteban Montaño Polo · accordion associated with Luis Enrique Martínez",
+      "tradition": "Ciénaga, Magdalena · Colombian cumbia",
+      "version": "Carlos A. Guillot Monsalvo’s digital transcription of the early instrumental melody",
+      "status": "score-located",
+      "edition": "Plan especial de salvaguardia · PDF p. 36 · 2/4, quarter note = 120",
+      "source": "https://mincultura.gov.co/direcciones/patrimonio-y-memoria/Documents/plan-especial-de-salvagurdia-cumbia.pdf#page=36",
+      "scan": {
+        "sha256": "dacd2a944586c7d2488ebd420c0dc9a4af59aa561a2adf02920fe2e053cc1bc6",
+        "location": "Colombian Ministry of Cultures safeguarding plan",
+        "scorePages": [
+          36
+        ]
+      },
+      "rights": {
+        "status": "reference-only",
+        "scope": "No named-song chart, modern arrangement or recording is included. Composition and edition permissions remain open."
+      }
+    }
+  ]
+}

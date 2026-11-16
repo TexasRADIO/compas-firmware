@@ -18,6 +18,10 @@ void board_kumbia_export(uint8_t settings[KUMBIA_SETTINGS]);
 int board_kumbia_restore(const uint8_t settings[KUMBIA_SETTINGS]);
 #endif
 enum { RACK_HIT_STRENGTH, RACK_ACCENT_STRENGTH, RACK_LEVEL };
+/* Compás 1.2 effects (board/fx.c): BOARD_FX a=FX_*, b=value */
+enum { BOARD_FX=BOARD_REC+6 };
+enum { FX_SALA, FX_ECO, FX_TIEMPO, FX_PEGA, FX_REPITE, FX_PARAMS };
+enum { FX_DIVISIONS=6 };
 enum { BOARD_OVERLAY_ALL=4 }; /* BOARD_OVERLAY_LEVEL lane: shift all four lanes, b=delta+128 */
 enum { BASS_ENSEMBLE, BASS_ACID };
 enum { PART_INTRO, PART_VERSE_A, PART_VERSE_B, PART_CHORUS, PART_BREAK, PART_END, PART_NONE };
@@ -56,6 +60,9 @@ typedef struct {
     uint8_t hanan_pattern, hanan_next, hanan_mode, kumbia[KUMBIA_SETTINGS];
 #endif
 } BoardView;
+/* Compás 1.2: the effect amounts, outside BoardView so its layout (and the
+ * browser bench's offsets) stay as in 1.1. */
+void board_fx_view(uint8_t fx[FX_PARAMS]);
 enum { ROLL_OFF, ROLL_EIGHTH, ROLL_TRIPLET, ROLL_SIXTEENTH, ROLL_THIRTYSECOND };
 static inline unsigned board_roll_rate(BoardView v)
 { return v.piano?ROLL_OFF:v.rack_live&7u; }
@@ -100,6 +107,7 @@ typedef struct {
     uint32_t callbacks, max_ticks, deadline_misses, late_halves, rail_samples;
     uint32_t choke_cuts, rack_peak, sequence_peak, total_peak;
     uint32_t irq_max_ticks;
+    uint32_t fx_shed_blocks; /* 1.2 CPU guard: blocks where ROOM/ECHO were skipped */
 } BoardStats;
 
 typedef struct {

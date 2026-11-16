@@ -1,0 +1,181 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "bpm": 94,
+      "feel": 24,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": false,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "CUMBIA COAST",
+      "study": "coast"
+    },
+    {
+      "bpm": 76,
+      "feel": 22,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": true,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "BOLERO CANCIÓN",
+      "study": "bolero"
+    },
+    {
+      "bpm": 103,
+      "feel": 25,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": true,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "SON MONTUNO",
+      "study": "son"
+    },
+    {
+      "bpm": 108,
+      "feel": 0,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": false,
+      "mute": 0,
+      "guide": true,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "CIELITO LINDO",
+      "study": "cielito-lindo-piano"
+    },
+    {
+      "bpm": 108,
+      "feel": 26,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "lift",
+      "kit": true,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "SALSA SON CLAVE",
+      "study": "salsa"
+    },
+    {
+      "bpm": 150,
+      "feel": 20,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": false,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "MERENGUE",
+      "study": "merengue"
+    },
+    {
+      "bpm": 105,
+      "feel": 25,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": true,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "TEJANO CUMBIA",
+      "study": "tejano"
+    },
+    {
+      "bpm": 112,
+      "feel": 0,
+      "root": 0,
+      "transpose": 0,
+      "clave": 0,
+      "phrases": 0,
+      "section": "base",
+      "kit": false,
+      "mute": 0,
+      "guide": false,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "title": "EL MANISERO",
+      "study": "el-manisero-kempton-piano"
+    }
+  ]
+}

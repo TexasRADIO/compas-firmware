@@ -24,6 +24,8 @@
     "firmware/hal/fm1_usb.h": "12b9b31bde0dbb15fa15379a215eaec11e882bd33c18f4b250fa9e3a47c202f0",
     "firmware/hal/fm1_vec.S": "8f9e787871332f522157d561dc3cfe8906ed0abf160139ed5819cfdeab66f01a",
     "firmware/hal/fm1_xip.h": "dcba6ddb9cd2403e1d97c4db49d836110ef2805d2369db7ed323e3fbe26c56ed",
+    "tests/ldr_test.c": "8386b850d503aee1179203a8f775a1c5b31581043a932b4425979479dfa277df",
+    "tests/ota_test.c": "7df06aed68832290cd8157216651cec7b0a391d4e0921e136f7aa7ce562f8f93",
     "firmware/loader/ldr_core.c": "e1f755641477079470d780fae3a3460dcf96da9384ae3a81437aef8b6247c6d9",
     "firmware/src/ota.c": "61e53d00615e167f37e9fd762466fbdb54bfb2f965f5ff63f5dbf6cafd2be37e",
     "tools/fm1pkg_make.py": "443803b77bf3647a65d89c5c27f64a9c57823048c61d51f536abfb36d765baf6",

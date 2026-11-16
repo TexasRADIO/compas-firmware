@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title": "GOLONDRINA BOLERO", "study": "la-golondrina-piano-bolero", "bpm": 84},
+    {"title": "GOLONDRINA PIANO", "study": "la-golondrina-piano", "bpm": 84},
+    {"title": "GOLONDRINA CANTO", "study": "la-golondrina", "bpm": 84, "guide": true},
+    {"title": "GOLONDRINA -2", "study": "la-golondrina-piano-bolero", "bpm": 84, "transpose": -2, "guide": true}
+  ]
+}

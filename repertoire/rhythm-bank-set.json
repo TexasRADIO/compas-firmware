@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "CUMBIA COSTA",
+      "study": "coast",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "CUMBIA ELÉCTRICA",
+      "study": "mx",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "SALSA SON",
+      "study": "salsa",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "CONJUNTO POLKA",
+      "study": "conjunto",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "TEJANO CUMBIA",
+      "study": "tejano",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "BOLERO CANCIÓN",
+      "study": "bolero",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "SON MONTUNO",
+      "study": "son",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MERENGUE",
+      "study": "merengue",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "PAMBICHE",
+      "study": "pambiche",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "TRIBAL 132",
+      "study": "tribal",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "CDMX SONIDERA",
+      "study": "cdmx",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MTY CUMBIA DUB",
+      "study": "mty-dub",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "VILLERA STUDY",
+      "study": "villera",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "LIMA DIGITAL",
+      "study": "lima",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "CHILE ELECTRO",
+      "study": "chile",
+      "feel": 0,
+      "kit": true
+    }
+  ]
+}

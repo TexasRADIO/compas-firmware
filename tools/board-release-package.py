@@ -4,7 +4,7 @@
 
   python3 tools/board-release-package.py BSP BB1-r85.fwsc APP.xip VERSION LANG OUT_DIR
 
-Compas 1.1 is packaged by the same pinned packager
+Compás 1.0 is packaged exactly as BB1 2.1 is, by the same pinned packager
 (BSP tools/fm1pkg_make.py). Every part except the app comes from BB1 BAND r85's
 published package, which has installed on real FM-1s:
 
@@ -17,7 +17,7 @@ r85's flash image and package from the parts it took out of them, and both must
 match the published bytes exactly. Only then does it put the Compás app in the
 same standard layout (app slot 0x4000-0x93000) under the Compás identity.
 
-The standard layout is why 1.1 keeps no saved show on the device: BB1's loader
+The standard layout is why 1.0 keeps no saved show on the device: BB1's loader
 rewrites 0x4000-0x93000, which holds the area 0x90000-0x93000 the emulator
 store used. Build the app with COMP_RELEASE=1 (-DCOMPAS_NO_SHOW_STORE).
 """
@@ -124,6 +124,13 @@ def main(argv):
     check = sdk_parts(pack, compas_flash)
     if check["app"][:len(app)] != app or any(check[k] != parts[k] for k in ("uboot.boot", "cfg_tool.bin", "cfg/eq_cfg_hw.bin")):
         raise SystemExit("The Compás package does not decode back to its parts.")
+    # Protected regions (tools/compas-pkg-assert.py): refuse before writing anything.
+    spec = importlib.util.spec_from_file_location("compas_pkg_assert", ROOT / "tools/compas-pkg-assert.py")
+    guard = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(guard)
+    failed = [m for ok, m in guard.check(pack, guard.release_tool(), raw, bb1) if not ok]
+    if failed:
+        raise SystemExit("Protected-region check failed: " + "; ".join(failed))
     out.mkdir(parents=True, exist_ok=True)
     name = f"compas-{version}-{lang}.fwsc"
     (out / name).write_bytes(raw)
@@ -132,6 +139,7 @@ def main(argv):
                 "sha256": hashlib.sha256(app).hexdigest()},
                 "loader": {"from": "BB1 BAND r85", "sha256": BB1_LOADER_SHA256},
                 "bb1RoundTrip": "flash image and package rebuilt byte-identical",
+                "protectedRegions": "head identical to BB1 r85; nothing at or above 0x93000 (BTIF, key_mac)",
                 "layout": "standard BB1 (app 0x4000-0x93000); no saved show on the device"}
     (out / f"compas-{version}-{lang}.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(json.dumps(manifest, indent=2))

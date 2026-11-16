@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title": "MÁ TEODORA 6/8", "study": "ma-teodora-1929", "bpm": 72},
+    {"title": "CIELITO LINDO", "study": "cielito-lindo-piano", "bpm": 108},
+    {"title": "EL MANISERO", "study": "el-manisero-kempton-piano", "bpm": 112},
+    {"title": "MÁ TEODORA -2", "study": "ma-teodora-1929", "bpm": 72, "transpose": -2}
+  ]
+}

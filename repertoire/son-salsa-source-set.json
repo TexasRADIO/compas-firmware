@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "title": "Son and salsa: source percussion rehearsal",
+  "sourceLedger": "afro-cuban-727-cells.json",
+  "sourceSHA256": "6f448fade7bc17e676b3fe5dbff0f5286fe7fc361750de038f66df5aa7eac0d6",
+  "scope": "Basic tumbao/martillo onset and register adaptations from Rendon pp.16-17, combined with original Compas accompaniment. Not a record transcription or complete source ensemble. Dynamics, tempo, bass, maracas, cascara, bell and conductor changes are Compas choices.",
+  "performance": "Choose paired 32/23 slots with PRESETS to recall backing and percussion together. On Percussion, OCT−/OCT+ changes the backing and an exact paired TUMBAO TWO or SON PERC preset together on the phrase. Edited/imported grids stay independent (BAND ONLY). Martillo continues through Lift while the authored bell enters; this is a layered arrangement, not a single bongo player switching to hand bell.",
+  "arrangements": [
+    {
+      "song": {
+        "title": "SON TUMBAO 32",
+        "study": "son",
+        "bpm": 103,
+        "feel": 0,
+        "clave": 0,
+        "kit": true,
+        "mute": 18,
+        "section": "base",
+        "phrases": 0
+      },
+      "rhythm": "son-perc-32",
+      "mutedRoles": [
+        "Bongo",
+        "Conga"
+      ]
+    },
+    {
+      "song": {
+        "title": "SON TUMBAO 23",
+        "study": "son",
+        "bpm": 103,
+        "feel": 0,
+        "clave": 1,
+        "kit": true,
+        "mute": 18,
+        "section": "base",
+        "phrases": 0
+      },
+      "rhythm": "son-perc-23",
+      "mutedRoles": [
+        "Bongo",
+        "Conga"
+      ]
+    },
+    {
+      "song": {
+        "title": "SALSA TUMBAO 32",
+        "study": "salsa",
+        "bpm": 108,
+        "feel": 0,
+        "clave": 0,
+        "kit": true,
+        "mute": 2,
+        "section": "base",
+        "phrases": 0
+      },
+      "rhythm": "tumbao-two-32",
+      "mutedRoles": [
+        "Conga"
+      ]
+    },
+    {
+      "song": {
+        "title": "SALSA TUMBAO 23",
+        "study": "salsa",
+        "bpm": 108,
+        "feel": 0,
+        "clave": 1,
+        "kit": true,
+        "mute": 2,
+        "section": "base",
+        "phrases": 0
+      },
+      "rhythm": "tumbao-two-23",
+      "mutedRoles": [
+        "Conga"
+      ]
+    }
+  ]
+}

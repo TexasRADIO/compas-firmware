@@ -1,0 +1,159 @@
+{
+  "source": "Kent Williams, TR-727 direct to RME Hammerfall DSP/Multiface, 2008",
+  "url": "https://www.cornwarning.com/xfer/727Samples.zip",
+  "archiveSha256": "5579d8cd000e1f8bbaf7429e74927cb9e6d354f8fa26ee1ebbdf4c4aee24d1cd",
+  "baseline": "Common -12 dB playback scale. Relative digital peaks from the direct archive.",
+  "qualification": "Hash-verified recordings. Capture gain, panel settings and unclipped hardware level are unverified.",
+  "voices": [
+    {
+      "sound": "High bongo",
+      "sampleId": "48036bb04bbaa3bd5d61",
+      "referenceFile": "Hi-Bongo-Orig.wav",
+      "sha256": "1a1fa97c95e59b7b0bb36aa99a5f3c0b349db926aaecf97dbef8726663ca8ea2",
+      "frames": 12125,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Low bongo",
+      "sampleId": "65cad09b6e56554fe15e",
+      "referenceFile": "Low-Bongo-Orig.wav",
+      "sha256": "1124e3641f88bbe57439540bb55663609bed0d01755cc70ac3238bc8d93f69e2",
+      "frames": 9160,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Muted high conga",
+      "sampleId": "2eff2d6bcc68c8f56bdd",
+      "referenceFile": "Hi-Conga-Mute-Orig.wav",
+      "sha256": "c865f960aec17ba0057367a888a3e62c454c3160b2937dc1b02598ae58cd74cf",
+      "frames": 7799,
+      "peak24": 7310810,
+      "railSamples": 0,
+      "gainQ15": 28558
+    },
+    {
+      "sound": "Open high conga",
+      "sampleId": "fad5f548c45640af4103",
+      "referenceFile": "Hi-Conga-Open-Orig.wav",
+      "sha256": "073d131a5f690607ac8946bafb2412d48ece5e6e55b9ea198ec441dc11db43a8",
+      "frames": 7745,
+      "peak24": 7676190,
+      "railSamples": 0,
+      "gainQ15": 29985
+    },
+    {
+      "sound": "Low conga",
+      "sampleId": "dca0566263f0f5b38fc6",
+      "referenceFile": "Low-Conga-Orig.wav",
+      "sha256": "c6f31fb2b66635ba588221f4fe408fec6f9048ea16bd5b92a5262d826748e105",
+      "frames": 20738,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "High timbale",
+      "sampleId": "44d66876ab03879972d9",
+      "referenceFile": "Hi-Timbale-Orig.wav",
+      "sha256": "b28f0d8749860b2ff8a1fca70f2aa5a4c7d8a76cceb06b7212a02066bbf16134",
+      "frames": 29612,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Low timbale",
+      "sampleId": "46487878342460da49a6",
+      "referenceFile": "Low-Timbale-Orig.wav",
+      "sha256": "e022a80e9e8dff5e10dcb3afb18131c5d755583d5f1270095d10026960b2ff53",
+      "frames": 29845,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "High agogo",
+      "sampleId": "231b621a5bd62d363074",
+      "referenceFile": "Hi-Agogo-Orig.wav",
+      "sha256": "252d619663d298fd151673f62969c548ce3c5098ad7372386a5c761c82f4b6b5",
+      "frames": 6400,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Low agogo",
+      "sampleId": "56a0e0f5e6ca45a9b3d0",
+      "referenceFile": "Low-Agogo-Orig.wav",
+      "sha256": "f8289984342ab4eaa0d7ee1d5cfa2d27132b0dd6ca686910bfb974821f8b7320",
+      "frames": 7280,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Cabasa",
+      "sampleId": "3a3f48f53b349fb09746",
+      "referenceFile": "Cabasa-Orig.wav",
+      "sha256": "051efb004d4d204255fce72d5fd19936fe73adac7c28efa6a276b1d133f3bbdc",
+      "frames": 6929,
+      "peak24": 2789650,
+      "railSamples": 0,
+      "gainQ15": 10897
+    },
+    {
+      "sound": "Maracas",
+      "sampleId": "3ad62e2b5206830be8a9",
+      "referenceFile": "Maracas-Orig.wav",
+      "sha256": "b6fdc07f866e293fe8014aff889f2d49d886bf3a0bd6ca8d9751d01f07ef501c",
+      "frames": 4632,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Short whistle",
+      "sampleId": "45e8ce0234cc26c041d7",
+      "referenceFile": "Short-Whistle-Orig.wav",
+      "sha256": "d992c8a866bba6946bc50bdce7fc8c6e846b5ab4ea1c04825a2d163ab73a8309",
+      "frames": 6107,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Long whistle",
+      "sampleId": "199508abe994256481c3",
+      "referenceFile": "Long-Whistle-Orig.wav",
+      "sha256": "2718b292c5399818c1d4f8c1d928cbd28e62418dcd64cf2b10b7e0434c0cedb8",
+      "frames": 11920,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Quijada",
+      "sampleId": "67f54a2bedb990b7833e",
+      "referenceFile": "Quijada-Orig.wav",
+      "sha256": "a08472f9db740d166d9bc4424da44ead1e75a0914bb12e4a23ce9a901278fc9e",
+      "frames": 62719,
+      "peak24": 8388608,
+      "railSamples": 1,
+      "gainQ15": 32768
+    },
+    {
+      "sound": "Star chime",
+      "sampleId": "eb4ec6836b5dab801c6c",
+      "referenceFile": "Star-Chime-Orig.wav",
+      "sha256": "c56bf7b4ca3957e04cd5a7761b629f68849a2427e908d6340ccb74d1a5ff33be",
+      "frames": 63228,
+      "peak24": 8388607,
+      "railSamples": 1,
+      "gainQ15": 32768
+    }
+  ]
+}

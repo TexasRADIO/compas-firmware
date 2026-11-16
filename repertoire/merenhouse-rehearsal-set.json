@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"MACO PERCUSSION","study":"merenhouse","bpm":128,"feel":0,"mute":34,"levels":[74,80,68,65,59,73]},
+    {"title":"MACO AND CLUB KICK","study":"merenhouse","bpm":128,"feel":0,"mute":32,"levels":[74,80,68,65,59,73]},
+    {"title":"MERENHOUSE","study":"merenhouse","bpm":128,"feel":0,"levels":[74,80,68,65,59,73]}
+  ]
+}

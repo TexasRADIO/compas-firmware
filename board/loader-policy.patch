@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Based on Felucca, Copyright (C) 2026 Leo Kuroshita and Hügelton Instruments
+--- a/firmware/loader/ldr_core.c
++++ b/firmware/loader/ldr_core.c
+@@ -19,4 +19,3 @@
+- *   4. asks 0xF0000000 ("success"), then invalidates the update record (RAM
+- *      and flash: 4K boundary - 256 between 0x93000 and 0xFC000, outside
+- *      Felucca's store, where only user data lives) so the SPL boots the new
+- *      app, and resets.
++ *   4. accepts the exact host confirmation, then invalidates only the
++ *      known staging records. Any read or erase error keeps the session
++ *      in recovery; retrying a write requires an explicit new session.
+@@ -33,4 +31,0 @@
+-#define LDR_REC_LO 0x93000u                     /* update records live above the app ... */
+-#define LDR_REC_HI 0xFC000u                     /* ... and below Felucca's globals (Felucca's records: 0xE4F00, */
+-#define LDR_DATA_LO 0x97000u                    /* the stock firmware's: 0xE8F00), never in Felucca's store, whose */
+-#define LDR_DATA_HI 0xE0000u                    /* bytes (user samples) the host writes */
+@@ -148,14 +143,9 @@
+-            uint32_t tries;
+-            for (tries = 0; tries < 2u; tries++) {
+-                if (ldr_erase(s))
+-                    return -9;
+-                for (k = 0; k < 0x1000u; k += 256u)
+-                    if (ldr_prog(s + k, sec + k, 256))
+-                        return -10;
+-                if (ldr_fread(s, cur, 0x1000u))
+-                    return -8;
+-                if (ota_memeq(sec, cur, 0x1000u))
+-                    break;
+-            }
+-            if (tries == 2u)
+-                return -11;                              /* verify failed twice */
++            if (ldr_erase(s))
++                return -9;
++            for (k = 0; k < 0x1000u; k += 256u)
++                if (ldr_prog(s + k, sec + k, 256))
++                    return -10;
++            if (ldr_fread(s, cur, 0x1000u))
++                return -8;
++            if (!ota_memeq(sec, cur, 0x1000u))
++                return -11;                              /* stop on ambiguous readback */
+@@ -166 +156 @@
+-    /* 4. finish: the host confirms, the record goes, the SPL boots the app */
++    /* 4. Match the exact acknowledgment used by the host and stage 1. */
+@@ -168 +158 @@
+-        if (!ota_read(0xF0000000u, sec, 8))
++        if (!ota_read(0xF0000000u, sec, 8) && ota_memeq(sec, (const uint8_t *)"success", 8))
+@@ -169,0 +160,14 @@
++    if (i == 4u)
++        return -14;
++    {
++        static const uint32_t records[] = {0xE4F00u, 0xE8F00u};
++        uint8_t r[80];
++        for (i = 0; i < sizeof records / sizeof records[0]; i++) {
++            s = records[i];
++            if (ldr_fread(s, r, sizeof r))
++                return -15;
++            if (ota_rd16(r + 6) == 0x5441u && ota_rd16(r) &&
++                ota_rd16(r) == ota_crc16(r + 2, 78, 0) && ldr_erase(s & ~0xFFFu))
++                return -16;
++        }
++    }
+@@ -171,9 +174,0 @@
+-    for (s = LDR_REC_HI; s > LDR_REC_LO; s -= 0x1000u) {   /* flash records: 4K boundary - 256 */
+-        uint8_t r[80];
+-        if (s - 0x1000u >= LDR_DATA_LO && s - 0x1000u < LDR_DATA_HI)
+-            continue;                                    /* Felucca's store: user data that may look like one */
+-        if (ldr_fread(s - 0x100u, r, 80))
+-            break;
+-        if (ota_rd16(r + 6) == 0x5441u && ota_rd16(r) && ota_rd16(r) == ota_crc16(r + 2, 78, 0))
+-            ldr_erase(s - 0x1000u);
+-    }

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compás — FM-1 rhythm bench</title>
+<link rel="stylesheet" href="panel.css">
+<script type="module" src="panel.mjs"></script>
+</head>
+<body>
+<main>
+<header class="masthead">
+  <div class="identity">
+    <p class="edition">BIG BEAT <span>·</span> FM-1</p>
+    <h1><img src="art/compas.svg" alt="Compás"></h1>
+    <img class="rhythm-mark" src="art/rhythm-section.svg" alt="Rhythm Section">
+  </div>
+  <div class="channel">
+    <div class="color-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <span class="dedication">A tribute to<br>Johnny Canales</span>
+    <img class="tribute-portrait" src="art/johnny-canales.png" width="80" height="80" alt="" aria-hidden="true">
+  </div>
+</header>
+<section class="face" aria-label="Performance controls">
+  <div class="device-heading"><span>01 / LIVE</span><span>PERFORMANCE</span></div>
+  <div class="top">
+    <div class="lcd" aria-label="Machine display"><strong id="study-title">CUMBIA COSTA</strong><span id="transport">STOPPED</span><span id="arrangement">BASE</span><span id="readout">94 BPM · 4/4</span><div id="beat-lamps" aria-hidden="true"></div></div>
+    <div class="instrument"><label for="study">Ensemble</label><select id="study" disabled></select><p id="description"></p>
+    <label for="clave" id="clave-row" hidden>Son clave <select id="clave" disabled><option value="0">3–2</option><option value="1">2–3</option></select></label>
+    <label for="root" id="root-row" hidden>Root <select id="root" disabled></select></label></div>
+  </div>
+  <div class="transport" aria-label="Transport and sections">
+    <button id="play" class="primary">Play</button><button id="stop" disabled>Stop</button>
+    <button data-section="0" aria-pressed="true" disabled>Base</button><button data-section="1" aria-pressed="false" disabled>Lift</button><button data-section="2" aria-pressed="false" disabled>Break</button>
+    <button id="fill" aria-pressed="false" disabled>Fill</button>
+  </div>
+  <div class="knobs">
+    <label>Tempo <output id="tempo-value">94</output><input id="tempo" type="range" min="60" max="180" value="94" disabled></label>
+    <label>Feel <output id="feel-value">30</output><input id="feel" type="range" min="0" max="100" value="30" disabled></label>
+  </div>
+  <p id="notice" role="status" aria-live="polite">Press Play to enable audio.</p>
+</section>
+<section class="mix" aria-label="Parts and mixer">
+<h2>Ensemble</h2><p class="small">Tap a part to play it. Mute, solo or pull its level down as you perform.</p>
+<div id="parts"></div>
+</section>
+<section class="edit" aria-label="Step editor">
+<h2>Base pattern</h2><p class="small">Choose a part to add or remove hits. Lift adds its own accents. The son clave timeline stays fixed in the salsa and son montuno studies.</p>
+<label>Part <select id="edit-part"></select></label>
+<div id="steps"></div>
+</section>
+<section class="project" aria-label="Project controls">
+<h2>Project</h2>
+<div class="transport">
+<button id="save" disabled>Save here</button><button id="load" disabled>Recall here</button><button id="export" disabled>Export project</button>
+<label class="file">Open project <input id="import" type="file" accept=".cps,application/octet-stream" disabled></label>
+</div>
+</section>
+<footer>COMPÁS · OFFLINE RHYTHM BENCH</footer>
+</main>
+</body>
+</html>
