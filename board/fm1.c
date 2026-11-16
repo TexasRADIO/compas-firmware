@@ -214,6 +214,7 @@ static void store_poll(void)
 
 #ifdef COMPAS_USB
 #include "usb/runtime.inc"
+#include "editor.inc"
 #include "sideman.h"
 
 /* Compás 1.2: Sideman state reports, MIDI clock out and Start/Stop in.
@@ -328,6 +329,9 @@ void fm1_cstart(void)
     lcd_init();
 #endif
     board_init();
+#ifdef COMPAS_USB
+    compas_editor_init();
+#endif
     panel_lang=COMPAS_LANG_DEFAULT;
     fm1_adc_init();
     (void)fm1_adc_read(FM1_ADC_MASTER);
@@ -347,6 +351,7 @@ void fm1_cstart(void)
         fm1_wdt_feed();
 #ifdef COMPAS_USB
         compas_usb_poll();
+        compas_editor_service();
         ota_service();
         compas_midi_service(fm1_ticks());
         if(usb.uboot_req) {

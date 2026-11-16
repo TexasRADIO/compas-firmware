@@ -1,4 +1,4 @@
-# Reproduce Compás 1.2
+# Reproduce Compás 1.2 with Big Beat Editor
 
 This release contains the corresponding firmware source, installer modules and
 public packaging helpers. The exact application and package hashes for each language are in
@@ -21,7 +21,7 @@ python3 -B tools/board-emu.py build/board store prepare
 ```
 
 Use `COMPAS_LANG_DEFAULT=1` in a separate source/build directory for Spanish.
-Both released applications are 573,588 bytes, with 7,976 bytes free in the
+Both released applications are 575,120 bytes, with 6,444 bytes free in the
 application slot.
 
 To reproduce the package, first obtain the already-public
@@ -30,7 +30,7 @@ Its SHA-256 is
 `b2236ebe924b4dd1f690bcc0fa765ffac7a92131502c542fb27a7d7ea0b12dea`.
 
 ```sh
-python3 -B tools/board-public-reproduce.py "$COMP_BSP" compas-1.1-en.fwsc build/board/emu-store.xip compas-1.2-en.fwsc
+python3 -B tools/board-public-reproduce.py "$COMP_BSP" compas-1.1-en.fwsc build/board/emu-store.xip compas-1.2-editor-en.fwsc
 ```
 
 For the Spanish build, use the Spanish XIP and output name. This verifies the
@@ -44,3 +44,12 @@ application write range. The standard build uses session-only show storage.
 
 Public reproduction uses the Compás seed above. Packaging tools produce local
 files only; installation is a separate operation.
+
+The language flag changes the default screen language; both packages include
+the shared editor adapter. The standalone host contract test can be run with:
+
+```sh
+mkdir -p build
+make build/test-board-editor
+./build/test-board-editor
+```

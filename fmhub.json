@@ -1,5 +1,5 @@
 {
-  "what": "Compás is a Latin rhythm section for the FM-1: cumbia, salsa, merengue and bolero, with 29 groove studies, written-song arrangements, TR-727 percussion, Hanan Kumbia Kit and ROOM, ECHO and GLUE effects. English and Spanish builds.",
+  "what": "Compás is a Latin rhythm section for the FM-1 with a two-way browser editor, English and Spanish interfaces, 29 groove studies, written-song arrangements, TR-727 percussion, Hanan Kumbia Kit and ROOM, ECHO and GLUE effects.",
   "author": "Big Beat Studio / TexasRADIO",
   "kinds": [
     "groove"
@@ -8,5 +8,6 @@
   "cheat": "https://thebigbeat.app/compas/",
   "image": "docs/media/compas-screen.png",
   "color": "#22D3EE",
-  "sounds": "licensed: author-recorded TR-727-style kit, GPL-3.0-only; Hanan Cumbia sounds by Oficina de Sonido, CC BY-SA 3.0"
+  "sounds": "licensed: author-recorded TR-727-style kit, GPL-3.0-only; Hanan Cumbia sounds by Oficina de Sonido, CC BY-SA 3.0",
+  "editor": "https://thebigbeat.app/editor/"
 }

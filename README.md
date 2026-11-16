@@ -1,31 +1,31 @@
-# Compás 1.2
+# Compás 1.2 with Big Beat Editor
 
 Compás turns the M-VAVE FM-1 into a Latin rhythm section: cumbia, salsa,
-merengue and bolero, with English and Spanish interface builds.
-
-Version 1.2 adds ROOM reverb, ECHO with musical time divisions and GLUE,
-with effects settings recalled with each song. The instrument includes 29
-groove studies, written-song arrangements, TR-727 percussion and Hanan Kumbia
-Kit sounds.
+merengue and bolero, with English and Spanish interfaces. This release adds
+the shared Big Beat browser editor to Compás 1.2. It includes ROOM reverb,
+tempo-synced ECHO, GLUE compression, 29 groove studies, written-song
+arrangements, TR-727 percussion and Hanan Kumbia Kit sounds.
 
 - [Install Compás](https://thebigbeat.app/compas/install/)
+- [Open Big Beat Editor](https://thebigbeat.app/editor/)
 - [Play in the browser](https://thebigbeat.app/compas/play/)
 - [Playing guide](https://thebigbeat.app/compas/)
-- [Compás 1.2 downloads](https://github.com/TexasRADIO/compas-firmware/releases/tag/compas-v1.2)
+- [Release downloads](https://github.com/TexasRADIO/compas-firmware/releases/tag/compas-v1.2-editor.1)
 
-Choose the English or Spanish firmware file. Both use the stable updater
-identity `FM-1_92210003` and the standard BB1 update loader. Working show edits
-last for the current device session; the browser's portable show files retain
-the running order and associated rhythms.
+Choose the English-default or Spanish-default editor firmware. Both include
+the same editor adapter and use updater identity `FM-1_92210003`. The screen
+language can also be changed on the instrument: GLO, then ALGORITHM.
 
-The English package completed physical installation, playback/USB-clock and
-identity checks, including a five-minute USB soak. Both language packages
-passed offline audio, resource, redraw and protected-package
-checks. The exact package hashes are in [RELEASE.json](RELEASE.json).
+Connect the FM-1 by USB and open Big Beat Editor in desktop Chrome or Edge.
+Allow MIDI access including SysEx and select Compás. The editor reads the
+instrument state and sends edits through the firmware’s shared protocol.
+Tempo, feel, groove, section, key, clave, mixer lanes and effects use the
+Compás instrument model. Working show edits last for the current device
+session. Portable show files retain their running order and rhythms.
 
-The complete corresponding firmware source and public build inputs are
-browsable in this repository at the release tag. See [BUILDING.md](BUILDING.md)
-for reproduction and [LICENSING.md](LICENSING.md) for licences and credits.
-The source archive contains the same source and inputs.
+Exact package hashes are in [RELEASE.json](RELEASE.json). The complete
+corresponding firmware source and public build inputs are included here.
+See [BUILDING.md](BUILDING.md) for reproduction and [LICENSING.md](LICENSING.md)
+for licences and credits.
 
 Compás is GPL-3.0-only. Included third-party material keeps its stated licence.

@@ -1,51 +1,34 @@
 {
   "schema": "compas-release/v1",
   "product": "Compás",
-  "version": "1.2",
-  "identity": "FM-1_92210003",
+  "version": "1.2-editor.1",
+  "firmwareIdentity": "FM-1_92210003",
+  "sharedEditorIncluded": true,
+  "editor": "https://thebigbeat.app/editor/",
   "packages": {
     "en": {
-      "file": "compas-1.2-en.fwsc",
+      "file": "compas-1.2-editor-en.fwsc",
+      "defaultLanguage": "en",
       "bytes": 610086,
-      "sha256": "5f6b69043af5ff56b643440b7834e94d87792077fc9891a544088ea9f04b9753",
-      "product": "FM-1_92210003",
-      "language": "en",
-      "app": {
-        "bytes": 573588,
-        "slot": 581564,
-        "free": 7976,
-        "sha256": "6a6bb4d6e5b702c48c1546ce60371c0a5c6a32d26bcb0c5a8750fd61e5024d27"
-      },
-      "loader": {
-        "from": "BB1 BAND r85",
-        "sha256": "a48ee499520cb16750e2504264bd8a8cd3e13ea953bbf319537cb840eb0d2115"
-      },
-      "bb1RoundTrip": "flash image and package rebuilt byte-identical",
-      "protectedRegions": "head identical to BB1 r85; nothing at or above 0x93000 (BTIF, key_mac)",
-      "layout": "standard BB1 (app 0x4000-0x93000); no saved show on the device"
+      "sha256": "e5d4e0b22500fd67e89d9e4346880798b6b4d2d0628b18e679514f3598852d7f",
+      "applicationSHA256": "652e1993f774027a5f59691b08ba207f7f240c7b05b7809c276d4685916a84bd"
     },
     "es": {
-      "file": "compas-1.2-es.fwsc",
+      "file": "compas-1.2-editor-es.fwsc",
+      "defaultLanguage": "es",
       "bytes": 610086,
-      "sha256": "fa1d96496abb2830685a1753d2c0e0ccf1cc1fb8fc331889b1f8feed41f2a058",
-      "product": "FM-1_92210003",
-      "language": "es",
-      "app": {
-        "bytes": 573588,
-        "slot": 581564,
-        "free": 7976,
-        "sha256": "0e6d664cce5df0d2893ac509e1e72bd7b224cd9262423759da2dc8c0d43345b5"
-      },
-      "loader": {
-        "from": "BB1 BAND r85",
-        "sha256": "a48ee499520cb16750e2504264bd8a8cd3e13ea953bbf319537cb840eb0d2115"
-      },
-      "bb1RoundTrip": "flash image and package rebuilt byte-identical",
-      "protectedRegions": "head identical to BB1 r85; nothing at or above 0x93000 (BTIF, key_mac)",
-      "layout": "standard BB1 (app 0x4000-0x93000); no saved show on the device"
+      "sha256": "5df552898db0c80af8772616704ef3500afc44ff89c1a70ea192c9b14cc22b4d",
+      "applicationSHA256": "3d3bffe1d20c124e61e87fe7c1e71fbb87401add98c79f0f6a875fc0cd29bc1c"
     }
   },
-  "persistentShows": false,
-  "sharedEditorIncluded": false,
-  "releaseNotes": "ROOM, ECHO, GLUE, per-song effects and revised installer restart handling."
+  "application": {
+    "bytes": 575120,
+    "slotBytes": 581564,
+    "freeBytes": 6444
+  },
+  "updateLoader": {
+    "origin": "BB1 BAND r85",
+    "sha256": "a48ee499520cb16750e2504264bd8a8cd3e13ea953bbf319537cb840eb0d2115"
+  },
+  "persistentShows": false
 }

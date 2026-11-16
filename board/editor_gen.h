@@ -1,0 +1,39 @@
+/* AUTO-GENERATED from the shared Big Beat Editor schema. */
+#ifndef COMPAS_EDITOR_GEN_H
+#define COMPAS_EDITOR_GEN_H
+#define BB_ED_PROTOCOL_VERSION 0
+#define BB_ED_PRODUCT_COMPAS 2u
+#define BB_ED_MFR_0 0x00u
+#define BB_ED_MFR_1 0x22u
+#define BB_ED_MFR_2 0x24u
+#define BB_ED_DEVICE 0x35u
+#define BB_ED_FAMILY 0x05u
+#define BB_ED_MSG_HELLO 0x01u
+#define BB_ED_MSG_HELLO_REPLY 0x02u
+#define BB_ED_MSG_SNAPSHOT_BEGIN 0x10u
+#define BB_ED_MSG_SNAPSHOT_CHUNK 0x11u
+#define BB_ED_MSG_SNAPSHOT_END 0x12u
+#define BB_ED_MSG_WATCH 0x13u
+#define BB_ED_MSG_TX_BEGIN 0x20u
+#define BB_ED_MSG_SET 0x21u
+#define BB_ED_MSG_TX_COMMIT 0x23u
+#define BB_ED_MSG_TX_ABORT 0x24u
+#define BB_ED_MSG_ACK 0x30u
+#define BB_ED_MSG_REJECT 0x31u
+#define BB_ED_MSG_BUSY 0x32u
+#define BB_ED_MSG_CONFLICT 0x33u
+#define BB_ED_MSG_APPLIED 0x34u
+#define BB_ED_MSG_PLAY 0x40u
+#define BB_ED_MSG_STOP 0x41u
+#define BB_ED_MSG_PING 0x70u
+#define BB_ED_MSG_PONG 0x71u
+#define BB_ED_MSG_SETTLE 0x73u
+#define BB_ED_MSG_SETTLE_REPLY 0x74u
+#define BB_ED_RESULT_OK 0u
+#define BB_ED_RESULT_QUEUED 1u
+#define BB_ED_RESULT_REFUSED 2u
+#define BB_ED_RESULT_UNKNOWN_FIELD 4u
+#define BB_ED_RESULT_BUSY 5u
+#define BB_ED_RESULT_NOT_SUPPORTED 6u
+#define BB_ED_RESULT_CONFLICT 7u
+#endif

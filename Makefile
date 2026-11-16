@@ -21,7 +21,10 @@ build/test-provision-transfer: tests/board-provision-transfer.c board/provision-
 build/test-recovery-guard: tests/board-recovery-guard.c board/recovery.h
 	@mkdir -p build
 	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Iboard tests/board-recovery-guard.c -o $@
-test: all build/test build/test-provision build/test-provision-transfer build/test-recovery-guard
+build/test-board-editor: tests/board-editor.c board/editor.inc board/editor_gen.h board/board.h src/engine.h
+	$(CC) $(CFLAGS) -Iboard -Isrc tests/board-editor.c -o $@
+test: all build/test build/test-provision build/test-provision-transfer build/test-recovery-guard build/test-board-editor
+	./build/test-board-editor
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-recovery-guard
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-provision-transfer
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-provision
