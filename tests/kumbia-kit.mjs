@@ -15,7 +15,7 @@ function bench() {
   const audio=()=>{
     ticks+=blockSize*544;
     const frame=new Int32Array(board.memory.buffer,board.bench_audio(),blockSize*2);
-    return Array.from({length:blockSize},(_,i)=>frame[i*2]/128);
+    return Array.from({length:blockSize},(_,i)=>frame[i*2]/board.bench_dac_scale());
   };
   const read=()=>{
     board.bench_read_view();
@@ -41,6 +41,7 @@ function bench() {
   return {board,audio,read,press,turn,tap,start,run};
 }
 const settings=bytes=>Array.from(bytes.subarray(99,103));
+const pattern=bytes=>bytes[96]&15; // RC3 high bits report sounding pad lamps.
 const factoryNames=['1-white','2-yellow','3-red','4-green'];
 const home=[0,100,12,0];
 for(let i=0;i<4;i++) {
@@ -92,9 +93,9 @@ rig.start();
 rig.run(40);
 assert.equal(rig.read()[98],2,'PLAY starts Drums Only');
 rig.tap(5);
-assert.deepEqual(Array.from(rig.read().subarray(96,98)),[0,1]);
+assert.deepEqual([pattern(rig.read()),rig.read()[97]],[0,1]);
 rig.tap(6);
-assert.deepEqual(Array.from(rig.read().subarray(96,98)),[0,2]);
+assert.deepEqual([pattern(rig.read()),rig.read()[97]],[0,2]);
 const presentation=keyPresentation(rig.read(),catalog);
 assert.equal(presentation.keys[6].name,'Red pattern');
 assert.equal(presentation.keys[6].next,true);
@@ -103,14 +104,14 @@ assert.equal(rig.read()[97],noCue);
 rig.tap(7);
 for(let blocks=48;blocks<917;blocks++) {
   rig.audio();
-  assert.equal(rig.read()[96],0,'Queue waits for the next bar');
+  assert.equal(pattern(rig.read()),0,'Queue waits for the next bar');
 }
-for(let i=0;i<6 && rig.read()[96]===0;i++) rig.audio();
-assert.deepEqual(Array.from(rig.read().subarray(96,98)),[3,noCue]);
+for(let i=0;i<6 && pattern(rig.read())===0;i++) rig.audio();
+assert.deepEqual([pattern(rig.read()),rig.read()[97]],[3,noCue]);
 rig.turn(ENC.K1,100);
 rig.turn(ENC.K2,-95);
 rig.turn(ENC.K3,12);
-rig.turn(ENC.K4,54);
+for(let i=0;i<54;++i){rig.press(BUTTON.OCT_DOWN);rig.audio();rig.press();rig.audio();}
 const limits=[100,5,24,54];
 assert.deepEqual(settings(rig.read()),limits);
 assert.equal(rig.read()[26],90,'CLOCK leaves BPM unchanged');

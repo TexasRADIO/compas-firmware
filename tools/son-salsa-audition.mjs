@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Assemble the documented cells with the existing accompaniment through panel controls.
 // Literal source masks below independently check the compiled bank and saved show.
 import {writeFileSync} from 'node:fs';
@@ -62,7 +63,7 @@ for(let slot=0;slot<4;slot++){
 }
 input(b,1<<7,1);input(b);
 assert.equal(b.bench_show_export(),0);
-const set=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).slice();
+const set=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1376).slice();
 const rhythms=new Uint8Array(b.memory.buffer,b.bench_rhythm_slots_buffer(),2416).slice();
 sources.forEach((id,i)=>assert.equal(rhythms[i*151+140],id));
 const show=serializeShow(set,rhythms);
@@ -85,7 +86,7 @@ for(let slot=0;slot<4;slot++){
   input(again,1<<12);assert.equal(view(again)[2],energy);
   const frames=Math.ceil(8*60*44100/recipe.arrangements[slot].song.bpm),start=samples.length;let peak=0;
   for(let n=0;n<frames;n+=128){const pcm=new Int32Array(again.memory.buffer,again.bench_audio(),256);
-   for(let i=0;i<Math.min(128,frames-n);i++){assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/128;peak=Math.max(peak,Math.abs(value));samples.push(value);}}
+   for(let i=0;i<Math.min(128,frames-n);i++){assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/dacScale(b);peak=Math.max(peak,Math.abs(value));samples.push(value);}}
   assert(peak>100&&peak<32767);input(again,1<<12);verify(again,slot);
   const hash=createHash('sha256').update(JSON.stringify(samples.slice(start))).digest('hex');
   if(energy)assert.notEqual(hash,clips.at(-1).sha256);

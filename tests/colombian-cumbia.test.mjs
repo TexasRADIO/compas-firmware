@@ -19,7 +19,7 @@ test('the three Colombian cells retain distinct strokes and a common tied guache
     const study=studies[23+i];
     assert.equal(study.id,pattern.study);
     assert.equal(set.songs[i].study,pattern.study);
-    assert.equal(packed[i*85+25],23+i);
+    assert.equal(packed[i*86+25],23+i);
     assert.deepEqual([pattern.alegre,pattern.llamador,pattern.rimOdd,pattern.rimEven],expected[i]);
     assert.deepEqual(study.parts.map(part=>part[1]),['hand','skin','stick','low','scrape','shake']);
     assert.deepEqual(study.parts.map(part=>part[2].split(' ').map(s=>parseInt(s,10))),[

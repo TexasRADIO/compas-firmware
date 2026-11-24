@@ -17,7 +17,7 @@ const blocks=800,frames=128*blocks;
 const baseline=source(100),reference=new Int16Array(frames+128);
 for(let block=0;block<=blocks;block++) {
   const pcm=new Int32Array(baseline.b.memory.buffer,baseline.b.bench_audio(),256);
-  for(let i=0;i<128;i++)reference[block*128+i]=pcm[2*i]/128;
+  for(let i=0;i<128;i++)reference[block*128+i]=pcm[2*i]/baseline.b.bench_dac_scale();
 }
 for(const rate of [60,75,78,100]) {
   const {b}=source(rate);
@@ -26,7 +26,7 @@ for(const rate of [60,75,78,100]) {
     for(let i=0;i<128;i++) {
       const time=(block*128+i)*rate,index=Math.floor(time/100),fraction=time%100;
       const expected=reference[index]+Math.trunc((reference[index+1]-reference[index])*fraction/100);
-      assert.equal(pcm[2*i],expected*128);assert.equal(pcm[2*i+1],pcm[2*i]);
+      assert.equal(pcm[2*i],expected*b.bench_dac_scale());assert.equal(pcm[2*i+1],pcm[2*i]);
     }
   }
   b.bench_input(1<<12,0,0);

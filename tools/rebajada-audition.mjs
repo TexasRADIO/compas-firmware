@@ -1,4 +1,5 @@
-// Listening reel from the same board WASM used by the browser.
+import {dacScale} from '../web/dac-format.mjs';
+// Private listening reel from the same board WASM used by the browser.
 import {readFile,writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
@@ -15,7 +16,7 @@ for(const rate of [100,75,78,60]) {
   const frames=Math.ceil(8*60*44100/rate),start=samples.length;
   for(let offset=0;offset<frames;offset+=128) {
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
-    for(let i=0;i<Math.min(128,frames-offset);i++)samples.push(pcm[2*i]/128);
+    for(let i=0;i<Math.min(128,frames-offset);i++)samples.push(pcm[2*i]/dacScale(b));
   }
   clips.push({study:'CDMX Sonidera',speedPercent:rate,originalBpm:100,effectiveBpm:rate,
     pitchSemitones:12*Math.log2(rate/100),startSeconds:start/44100,durationSeconds:frames/44100});

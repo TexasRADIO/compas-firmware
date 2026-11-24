@@ -27,5 +27,5 @@ def attach(logical, before, repeated, updated, legacy, compact, prepared_show):
               0x4000, 0x90000)
     header = b'CPPRV001' + struct.pack('<12I', *fields)
     header += struct.pack('<II', zlib.crc32(header), 0)
-    assert len(header) == HEADER and len(body) == 16064
+    assert len(header) == HEADER and len(body) == 16080
     return bytes(logical).ljust(OFFSET, b'\xff') + header + body, plan.run()

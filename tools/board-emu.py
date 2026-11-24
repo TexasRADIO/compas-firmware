@@ -1,4 +1,4 @@
-"""Prepare raw XIP emulator input and decode TIMER4/stack measurements."""
+"""Prepare private raw XIP emulator input and decode TIMER4/stack measurements."""
 from pathlib import Path
 import json
 import re
@@ -8,9 +8,9 @@ import wave
 
 folder=Path(sys.argv[1])
 variant=sys.argv[2]
-if variant not in ("offline","stress","piano","golondrina","demo","master","store","rehearsal","regional","rack-editor","conga","show-slots"):
+if variant not in ("offline","stress","sweep","compound","piano","golondrina","demo","master","store","rehearsal","regional","rack-editor","conga","show-slots"):
     raise SystemExit("Expected offline, stress, piano, golondrina, demo, master, store, rehearsal or regional")
-image_variant=variant if variant in ("stress","store") else "offline"
+image_variant=variant if variant in ("stress","store","sweep","compound") else "offline"
 elf=folder/f"compas-{image_variant}.elf"
 sections=folder/("compas"+(f"-{image_variant}" if image_variant!="offline" else "")+".sections")
 symbols={}
@@ -41,8 +41,11 @@ if sys.argv[3]=="prepare":
     # 0x8C000). A release build (COMPAS_NO_SHOW_STORE: store_boot is gone)
     # uses the BB1 slot instead, which covers 0x90000-0x93000 and is never
     # written: 0x120 + 0x8DFBC, as in board-install-plan.py.
-    limit=0x90000-0x4000 if "store_boot" in symbols else 0x120+0x8DFBC
-    if variant=="store":
+    # A 1.3 release (COMPAS_UNIT_STORE) keeps its A/B show at 0x91000-0x92FFF,
+    # so it must end before flash 0x91000 (XIP 0x8D000).
+    limit=(0x91000-0x4000 if "compas_unit_store_end" in symbols else
+           0x90000-0x4000 if "store_boot" in symbols else 0x120+0x8DFBC)
+    if variant in ("store","sweep","compound"):
         _,start,length=items[".ram_text"]
         load=symbols["_rt_load"]-0x02000000
         assert length and load>=len(image) and load+length<=limit

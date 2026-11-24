@@ -69,6 +69,56 @@ static const char *const sounds[]={
     "SHORT WHISTLE","LONG WHISTLE","QUIJADA","STAR CHIME"
 };
 
+static unsigned study_steps(unsigned study)
+{
+    return study<sizeof meter_steps/sizeof *meter_steps ? meter_steps[study] : 32u;
+}
+static unsigned study_pulses(unsigned study)
+{
+    return study<sizeof meter_pulses/sizeof *meter_pulses ? meter_pulses[study] : 4u;
+}
+static unsigned study_compound(unsigned study)
+{
+    return study<sizeof meter_bottom/sizeof *meter_bottom && meter_bottom[study]==8u;
+}
+/* Preserve 2/4's familiar two banks of eight.  Everything else uses
+ * Roland-style sixteen-step pages, including the 6/8 and 12/8 studies. */
+static unsigned editor_width(unsigned study)
+{
+    return !study_compound(study) && meter_top[study]==2u ? 8u : 16u;
+}
+static unsigned editor_pages(unsigned study)
+{
+    unsigned width=editor_width(study), steps=study_steps(study);
+    return (steps+width-1u)/width;
+}
+static void editor_normalize(Panel *panel,unsigned study)
+{
+    unsigned width=editor_width(study), pages=editor_pages(study);
+    unsigned page=panel->bar/width;
+    if(page>=pages) page=0;
+    panel->bar=(uint8_t)(page*width);
+}
+static void editor_move(Panel *panel,unsigned study,int direction)
+{
+    unsigned width=editor_width(study), pages=editor_pages(study), page=panel->bar/width;
+    if(page>=pages) page=0;
+    if(direction>0) { if(page+1u<pages) ++page; }
+    else if(page) --page;
+    panel->bar=(uint8_t)(page*width);
+}
+static unsigned editor_step(BoardView v,unsigned step)
+{
+    return step<32u ? (v.steps>>step)&1u : (v.steps_high>>(step-32u))&1u;
+}
+/* The 727's saved percussion format is intentionally a historic 16/32-step
+ * grid.  Compound grooves can use the role editor, but cannot be silently
+ * coerced into that different metre here. */
+unsigned panel_rack_edit_supported(unsigned study)
+{
+    return !study_compound(study) && study_steps(study)<=32u;
+}
+
 static unsigned band_page(const Panel *panel)
 {
     return panel->page==PANEL_HOME || panel->page==PANEL_BASS || panel->page==PANEL_PERC;
@@ -94,7 +144,7 @@ PanelKeys panel_keys(const Panel *panel, BoardView v)
 #ifdef COMPAS_HANAN
     if(panel->page==PANEL_HANAN) {
         map.pads=255u;
-        map.active=1u<<(4u+v.hanan_pattern);
+        map.active=1u<<(4u+board_kumbia_pattern(v));
         if(v.hanan_next<HANAN_PATTERNS) map.queued=1u<<(4u+v.hanan_next);
         return map;
     }
@@ -107,7 +157,8 @@ PanelKeys panel_keys(const Panel *panel, BoardView v)
     } else if(panel->page==PANEL_RACK) {
         map.pads=0xffffu;
         if(panel->rack_edit) {
-            unsigned offset=meter[v.study]==2?0:panel->bar;
+            if(!panel_rack_edit_supported(v.study)) return (PanelKeys){.parts=0};
+            unsigned offset=study_steps(v.study)<=16u?0:panel->bar;
             map.enabled=(v.rack_steps>>offset)&0xffffu;
             map.queued=(v.rack_accents>>offset)&0xffffu;
             if(v.playing && v.position>=offset && v.position<offset+16u)
@@ -207,6 +258,12 @@ void panel_master(Panel *panel, int32_t raw)
         panel->master_pot=(uint16_t)position;
 }
 
+/* Energy steps from the queued level when one is waiting. */
+static unsigned next_energy(BoardView v,int32_t delta)
+{
+    return adjust(v.pending<3 ? v.pending : board_part_energy(v.part,v.section),delta,0,2);
+}
+
 static void browse_song(Panel *panel, BoardView v, int32_t delta)
 {
     int slot=v.next_song<SET_SLOTS ? v.next_song : v.song<SET_SLOTS ? v.song : panel->slot;
@@ -264,7 +321,13 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
         else panel->page=panel->page==PANEL_MIX?PANEL_FX:PANEL_MIX;   /* MIX twice: effects */
     }
     else if (buttons&(1u<<BASS)) panel->page=panel->page==PANEL_BASS?PANEL_HOME:PANEL_BASS;
-    else if (buttons&(1u<<PERC)) panel->page=panel->page==PANEL_PERC?PANEL_HOME:PANEL_PERC;
+    else if (buttons&(1u<<PERC)) {
+#ifdef COMPAS_HANAN
+        panel->page=panel->page==PANEL_PERC?PANEL_HANAN:PANEL_PERC;   /* PERC twice: Kumbia */
+#else
+        panel->page=panel->page==PANEL_PERC?PANEL_HOME:PANEL_PERC;
+#endif
+    }
     else if (buttons&(1u<<EDIT)) {
         if(panel->page==PANEL_RACK) send(panel,BOARD_ASSIGN,panel->role,panel->rack_sound+1u);
         else panel->page=PANEL_EDIT;
@@ -280,8 +343,25 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
     }
     if(v.piano && panel->page==PANEL_EDIT) panel->page=PANEL_HOME;
     if(enc[0]) select_instrument(panel,enc[0]);
+    if(panel->page!=PANEL_RACK) panel->rack_edit=0;
+    /* SAVE keeps the song where it lives. A rhythm preset has no slot yet,
+     * so SAVE opens the show on the first free one. */
+    if((buttons&(1u<<SAVE)) && panel->page!=PANEL_SET && panel->page!=PANEL_HANAN) {
+        if(v.song<SET_SLOTS) send(panel,BOARD_SAVE,v.song,0);
+        else {
+            unsigned slot=0;
+            while(slot+1u<SET_SLOTS && board_song_exists(slot)) ++slot;
+            panel->slot=(uint8_t)slot;
+            panel->page=PANEL_SET;
+            buttons&=~(1u<<SAVE);
+        }
+    }
 #ifdef COMPAS_HANAN
     if(panel->page==PANEL_HANAN) {
+        unsigned volume_buttons=buttons&((1u<<OCT_DOWN)|(1u<<OCT_UP));
+        if(volume_buttons==1u<<OCT_DOWN || volume_buttons==1u<<OCT_UP)
+            send(panel,BOARD_HANAN_MOD,KUMBIA_CLOCK,
+                 adjust(v.kumbia[KUMBIA_CLOCK],volume_buttons==1u<<OCT_DOWN?1:-1,0,KUMBIA_CLOCK_MAX));
         unsigned pressed=keys&~panel->held;
         panel->held=keys;
         for(unsigned i=0;i<4;++i) {
@@ -289,12 +369,13 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
             if(pressed&(1u<<(i+4u))) send(panel,BOARD_HANAN_CUE,i,0);
         }
         if(enc[6]) {
-            unsigned from=v.hanan_next<HANAN_PATTERNS?v.hanan_next:v.hanan_pattern;
+            unsigned from=v.hanan_next<HANAN_PATTERNS?v.hanan_next:board_kumbia_pattern(v);
             send(panel,BOARD_HANAN_CUE,adjust(from,enc[6],0,HANAN_PATTERNS-1),0);
         }
         static const uint8_t min[]={0,5,0,0}, max[]={100,100,24,KUMBIA_CLOCK_MAX};
-        for(unsigned i=0;i<KUMBIA_SETTINGS;++i)
+        for(unsigned i=0;i<3;++i)
             if(enc[2+i]) send(panel,BOARD_HANAN_MOD,i,adjust(v.kumbia[i],enc[2+i],min[i],max[i]));
+        if(enc[5]) send(panel,BOARD_HANAN_LEVEL,0,adjust(v.kumbia_level,enc[5],0,100));
         if(buttons&(1u<<SAVE)) send(panel,BOARD_HANAN_SAVE,0,0);
         return;
     }
@@ -302,7 +383,10 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
     if(panel->page==PANEL_RACK && previous_page!=PANEL_RACK && v.rack_sequence)
         panel->rack_sound=v.rack_sequence_sound;
     if(panel->page==PANEL_RACK && (buttons&(1u<<SECTION))) {
-        panel->rack_edit=!panel->rack_edit;
+        if(!panel->rack_edit && !panel_rack_edit_supported(v.study)) {
+            /* Keep the fixed 727 editor out of a 6/8 or 12/8 session. */
+            panel->rack_edit=0;
+        } else panel->rack_edit=!panel->rack_edit;
         if(panel->rack_edit && board_recording(v)) send(panel,BOARD_REC,0,0);
         panel->bar=0;
         send(panel,BOARD_SEQ_SELECT,panel->rack_sound,0);
@@ -331,7 +415,7 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
             unsigned index=v.piano?0:adjust(from,enc[6],0,BOARD_GROOVE_PRESETS-1);
             panel->rack_edit=0;panel->bar=0;
             send(panel,BOARD_GROOVE_CUE,index,0);
-        } else if(panel->page==PANEL_RACK) {
+        } else if(panel->page==PANEL_RACK && panel_rack_edit_supported(v.study)) {
             unsigned from=v.next_rhythm<BOARD_RHYTHM_PATTERNS?v.next_rhythm:v.rhythm;
             unsigned index=from<BOARD_RHYTHM_PATTERNS?adjust(from,enc[6],0,BOARD_RHYTHM_PATTERNS-1):0;
             panel->rack_edit=1;panel->bar=0;
@@ -341,9 +425,10 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
         } else browse_song(panel,v,enc[6]);
     }
     if(panel->page==PANEL_SET) {
-        int32_t slot_delta=enc[4]+(enc[6]?0:enc[0]);
-        /* ALGORITHM picks the screen language here (RPT has its own knob). */
-        if(enc[1]) panel_lang=(uint8_t)adjust(panel_lang,enc[1],0,LANG_COUNT-1);
+        int32_t slot_delta=enc[6]?0:enc[0];
+        /* KNOB3 picks the screen language; ALGORITHM is Energy, as everywhere. */
+        if(enc[4]) panel_lang=(uint8_t)adjust(panel_lang,enc[4],0,LANG_COUNT-1);
+        if(enc[1] && !v.piano) send(panel,CP_SECTION,next_energy(v,enc[1]),0);
         if(slot_delta) panel->slot=(uint8_t)adjust(panel->slot,slot_delta,0,SET_SLOTS-1);
         if(buttons&(1u<<OCT_DOWN)) panel->slot=(uint8_t)adjust(panel->slot,-1,0,SET_SLOTS-1);
         if(buttons&(1u<<OCT_UP)) panel->slot=(uint8_t)adjust(panel->slot,1,0,SET_SLOTS-1);
@@ -409,10 +494,7 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
             }
         }
         /* ALGORITHM is Energy on every performance page; lands on the phrase. */
-        if(enc[1] && !v.piano) {
-            unsigned from=v.pending<3 ? v.pending : board_part_energy(v.part,v.section);
-            send(panel,CP_SECTION,adjust(from,enc[1],0,2),0);
-        }
+        if(enc[1] && !v.piano) send(panel,CP_SECTION,next_energy(v,enc[1]),0);
         if(buttons&(1u<<FILL)) send(panel,v.piano?BOARD_HOLD:CP_FILL,0,0);
         if(buttons&(1u<<SECTION)) {
             if(v.piano && v.playing) send(panel,BOARD_ENDING,0,0);
@@ -452,6 +534,11 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
         return;
     }
     if(panel->page==PANEL_RACK && panel->rack_edit) {
+        if(!panel_rack_edit_supported(v.study)) {
+            panel->rack_edit=0;
+            panel->held=keys;
+            return;
+        }
         if(enc[2]) {
             panel->rack_sound=(uint8_t)adjust(panel->rack_sound,enc[2],0,RACK_SOUNDS-1);
             send(panel,BOARD_SEQ_SELECT,panel->rack_sound,0);
@@ -459,33 +546,38 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
         if(enc[3] && !v.piano) send(panel,CP_BPM,adjust(v.bpm,enc[3],60,180),0);
         if(enc[4]) send(panel,BOARD_RACK_CONTROL,RACK_HIT_STRENGTH,adjust(v.rack_strength,enc[4],0,127));
         if(enc[5]) send(panel,BOARD_RACK_CONTROL,RACK_LEVEL,adjust(v.rack_level,enc[5],0,100));
-        if(enc[1] && !v.piano) send(panel,CP_SECTION,adjust(v.pending<3?v.pending:board_part_energy(v.part,v.section),enc[1],0,2),0);
+        if(enc[1] && !v.piano) send(panel,CP_SECTION,next_energy(v,enc[1]),0);
         if(buttons&(1u<<ACCENT)) send(panel,BOARD_ACCENT,!v.accent,0);
         if(buttons&(1u<<OCT_DOWN)) panel->bar=0;
-        if(buttons&(1u<<OCT_UP)) panel->bar=meter[v.study]==4?16:0;
-        if(meter[v.study]==2) panel->bar=0;
+        if(buttons&(1u<<OCT_UP)) panel->bar=study_steps(v.study)>16u?16:0;
         uint32_t pressed=keys&~panel->held;
         panel->held=keys;
         for(unsigned i=0;i<16;++i) if(pressed&(1u<<i))
             send(panel,BOARD_SEQ_STEP,panel->rack_sound,panel->bar+i);
         return;
     }
-    if (meter[v.study]==2) panel->bar=panel->bar?8:0;
-    else panel->bar=panel->bar?16:0;
+    if(panel->page==PANEL_EDIT) editor_normalize(panel,v.study);
+#ifdef COMPAS_HANAN
+    if(panel->page==PANEL_MIX) {
+        unsigned volume_buttons=buttons&((1u<<OCT_DOWN)|(1u<<OCT_UP));
+        if(volume_buttons==1u<<OCT_DOWN || volume_buttons==1u<<OCT_UP)
+            send(panel,BOARD_HANAN_LEVEL,0,adjust(v.kumbia_level,volume_buttons==1u<<OCT_UP?5:-5,0,100));
+    }
+#endif
     if (buttons&(1u<<OCT_DOWN)) {
         if(panel->page==PANEL_RACK) send(panel,BOARD_ASSIGN,panel->role,0);
+        else if(panel->page==PANEL_EDIT) editor_move(panel,v.study,-1);
         else panel->bar=0;
     }
-    if (buttons&(1u<<OCT_UP)) panel->bar=meter[v.study]==2?8:16;
+    if (buttons&(1u<<OCT_UP) && panel->page==PANEL_EDIT) editor_move(panel,v.study,1);
     if (buttons&(1u<<FILL)) send(panel,v.piano?BOARD_HOLD:CP_FILL,0,0);
     if(buttons&(1u<<SECTION)) {
         if(v.piano) send(panel,BOARD_ENDING,0,0);
-        else if(panel->page==PANEL_RACK) send(panel,BOARD_KIT,!v.kit,0);
         else send(panel,CP_SECTION,(v.section+1u)%3u,0);
     }
     if(panel->page==PANEL_RACK) {
         if(enc[1] && !v.piano && !rack_roll)
-            send(panel,CP_SECTION,adjust(v.pending<3?v.pending:board_part_energy(v.part,v.section),enc[1],0,2),0);
+            send(panel,CP_SECTION,next_energy(v,enc[1]),0);
         if(enc[2]) {
             panel->rack_sound=(uint8_t)adjust(panel->rack_sound,enc[2],0,RACK_SOUNDS-1);
             if(!board_recording(v)) send(panel,BOARD_SEQ_SELECT,panel->rack_sound,0);
@@ -496,11 +588,15 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
         if(buttons&(1u<<ACCENT)) send(panel,BOARD_ACCENT,!v.accent,0);
     } else {
         if(enc[0]) panel->role=(uint8_t)adjust(panel->role,enc[0],0,5);
-        if(enc[1]) send(panel,CP_SECTION,adjust(v.section,enc[1],0,2),0);
+        if(enc[1] && !v.piano) send(panel,CP_SECTION,next_energy(v,enc[1]),0);
         if(enc[2]) send(panel,CP_BPM,adjust(v.bpm,enc[2],60,180),0);
         if(enc[3] && !v.piano) send(panel,CP_FEEL,adjust(v.feel,enc[3],0,100),0);
         if(enc[4] && !v.piano) send(panel,CP_LEVEL,panel->role,adjust(v.levels[panel->role],enc[4],0,100));
-        if(enc[5] && panel->page==PANEL_MIX) send(panel,BOARD_SPEED,adjust(v.speed,enc[5],60,100),0);
+        if(enc[5] && panel->page==PANEL_MIX) {
+            /* Past the slowest REBAJADA while playing: FRENO, brake to a stop. */
+            if(enc[5]<0 && v.speed<=60 && v.playing) send(panel,BOARD_BRAKE,0,0);
+            else send(panel,BOARD_SPEED,adjust(v.speed,enc[5],60,100),0);
+        }
     }
     uint32_t pressed=keys&~panel->held;
     panel->held=keys;
@@ -513,7 +609,9 @@ static void scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t en
                 send(panel,BOARD_RACK,i,0);
             }
         } else if(panel->page==PANEL_EDIT) {
-            if(i<(meter[v.study]==2?8u:16u)) send(panel,CP_STEP,panel->role,panel->bar+i);
+            unsigned step=panel->bar+i;
+            if(i<editor_width(v.study) && step<study_steps(v.study))
+                send(panel,CP_STEP,panel->role,step);
         } else if(panel->page==PANEL_MIX && !v.piano) {
             if(i<6) send(panel,CP_MUTE,i,0);
             else if(i<12) send(panel,CP_SOLO,i-6,0);
@@ -561,7 +659,18 @@ static void number(char *line, unsigned col, unsigned value)
     line[col+1]=(char)('0'+value/10%10);
     line[col+2]=(char)('0'+value%10);
 }
-unsigned panel_beats(unsigned study) { return 2u*meter[study]; }
+const char *panel_role_name(unsigned study,unsigned role) { return names[study][role]; }
+unsigned panel_beats(unsigned study) { return study_pulses(study); }
+unsigned panel_beat_position(unsigned study,unsigned step)
+{
+    if(study>=sizeof meter_pulse_widths/sizeof *meter_pulse_widths) return step/4u;
+    unsigned at=0, pulses=study_pulses(study);
+    for(unsigned pulse=0;pulse<pulses;++pulse) {
+        at+=meter_pulse_widths[study][pulse];
+        if(step<at) return pulse;
+    }
+    return pulses ? pulses-1u : 0u;
+}
 unsigned panel_has_bass(BoardView view) { return !view.piano && study_bass[view.study]; }
 const char *panel_root_name(unsigned root)
 {
@@ -669,7 +778,8 @@ void panel_face(const Panel *panel, BoardView v, char lines[FACE_LINES][FACE_COL
         number(lines[6],13,v.bpm); label(lines[6],17,"BPM");
     } else if (panel->page==PANEL_RACK && panel->rack_edit) {
         label(lines[3],0,sounds[panel->rack_sound]);
-        if(v.piano) label(lines[4],0,"CHOOSE A GROOVE");
+        if(!panel_rack_edit_supported(v.study)) label(lines[4],0,"727 4/4 ONLY");
+        else if(v.piano) label(lines[4],0,"CHOOSE A GROOVE");
         else for(unsigned i=0;i<16;++i) lines[4][i]=(v.rack_steps&(1u<<(panel->bar+i)))?'#':'-';
         label(lines[5],0,v.rack_sequence==2?"FX DRUMS ONLY":v.rack_sequence?"FX LAYER ON":"FX LAYER OFF");
         label(lines[6],0,"SEQ PADS / SESSION");
@@ -679,16 +789,31 @@ void panel_face(const Panel *panel, BoardView v, char lines[FACE_LINES][FACE_COL
         label(lines[4],0,"1"); label(lines[4],2,sounds[panel->rack_sound]);
         label(lines[5],0,"4 LEVEL"); number(lines[5],8,v.rack_level);
         label(lines[5],13,v.accent?"ACC ON":"ACC OFF");
-        label(lines[6],0,v.piano?"SEQ 16-STEP EDITOR":v.rack_sequence==2?"FX DRUM LOOP":v.rack_sequence?"FX LAYER ON":"FX LAYER OFF");
+        label(lines[6],0,!panel_rack_edit_supported(v.study)?"727 4/4 ONLY":v.piano?"SEQ 16-STEP EDITOR":v.rack_sequence==2?"FX DRUM LOOP":v.rack_sequence?"FX LAYER ON":"FX LAYER OFF");
     } else {
         label(lines[3],0,names[v.study][panel->role]);
         label(lines[3],12,"LVL");
         number(lines[3],16,v.levels[panel->role]);
         if(panel->page==PANEL_EDIT) {
-            unsigned count=meter[v.study]==2?8:16;
+            unsigned count=editor_width(v.study), page=panel->bar/count+1u, pages=editor_pages(v.study);
             for(unsigned i=0;i<count;++i)
-                lines[4][i]=(v.steps&(1u<<(i+panel->bar)))?'#':'-';
-            label(lines[5],0,panel->bar?"BAR 2 / OCT-":"BAR 1 / OCT+");
+                if(panel->bar+i<study_steps(v.study)) lines[4][i]=editor_step(v,panel->bar+i)?'#':'-';
+            if(study_compound(v.study)) {
+                char page_label[20]; unsigned at=0, top=meter_top[v.study];
+                if(top>=10u) page_label[at++]=(char)('0'+top/10u);
+                page_label[at++]=(char)('0'+top%10u);
+                page_label[at++]='/'; page_label[at++]=(char)('0'+meter_bottom[v.study]);
+                page_label[at++]=' '; page_label[at++]='P'; page_label[at++]='A'; page_label[at++]='G'; page_label[at++]='E'; page_label[at++]=' ';
+                page_label[at++]=(char)('0'+page); page_label[at++]='/'; page_label[at++]=(char)('0'+pages);
+                page_label[at++]=' '; page_label[at++]='O'; page_label[at++]='C'; page_label[at++]='T'; page_label[at++]='+';
+                page_label[at]=0;
+                label(lines[5],0,page_label);
+            } else if(editor_width(v.study)==8u)
+                label(lines[5],0,panel->bar?"BAR 2 / OCT-":"BAR 1 / OCT+");
+            else {
+                char page_label[]={'B','A','R',' ',(char)('0'+page),'/',(char)('0'+pages),' ','O','C','T','+','/', '-',0};
+                label(lines[5],0,page_label);
+            }
         } else if(panel->page==PANEL_FX) {
             static const char *const divisions[FX_DIVISIONS]={"1/16","1/8","3/16","1/4","3/8","1/2"};
             uint8_t fx[FX_PARAMS];

@@ -10,7 +10,7 @@ export const read=path=>readFileSync(new URL(path,root));
 // its conductor form's part names, and each score its piano slot and guide flag.
 const ledger=JSON.parse(read('src/score.json'));
 export const catalog=[
-  ...ledger.studies.map(s=>({...s,conductorParts:ledger.conductorForms[s.conductor??'default']})),
+  ...ledger.studies.filter(s=>!s.testOnly).map(s=>({...s,conductorParts:ledger.conductorForms[s.conductor??'default']})),
   ...JSON.parse(read('repertoire/board-scores.json')).map((score,i)=>({...score,piano:i+1,guide:!!score.guide}))];
 let compiled;
 // COMPAS_BOARD_WASM selects the compiled board (relative to the repo root). The
@@ -22,7 +22,8 @@ export const color=(r,g,b)=>(r>>3)<<11|(g>>2)<<5|(b>>3);
 export const BUTTON={OCT_DOWN:1<<0,OCT_UP:1<<1,FX:1<<2,SCL:1<<3,ENV:1<<4,LFO:1<<5,EDIT:1<<6,
   GLO:1<<7,HOME:1<<8,SAVE:1<<9,ARP:1<<10,SEQ:1<<11,PLAY:1<<12,REC:1<<13};
 export const ENC={SELECT:0,ALGORITHM:1,K1:2,K2:3,K3:4,K4:5,PRESETS:6};
-// BoardView byte offsets used by the tests (76-byte view).
+// BoardView byte offsets used by the tests (80-byte view; the last word is
+// compound step bits 33–48, so all historic offsets remain unchanged).
 export const VIEW={playing:0,study:1,section:2,pending:3,fill:4,position:5,song:28,part:44,next_part:45};
 
 // trace: an optional array that receives every state-changing bench call, so
@@ -54,7 +55,7 @@ export function bench(songs,{sparse=false,live=false,trace=null,lang=0}={}) {
   let lastDraw=0;
   const audio=()=>{ tick+=128*544; b.bench_audio(); b.bench_read_view();
     if(live && tick-lastDraw>=1200000) { b.bench_draw(tick); lastDraw=tick; }
-    return new Uint8Array(b.memory.buffer,b.bench_snapshot()+20,76); };
+    return new Uint8Array(b.memory.buffer,b.bench_snapshot()+20,80); };
   const input=(buttons,keys=0)=>{ b.bench_input(buttons,keys,tick); audio(); b.bench_input(0,0,tick);
     const v=audio(); if(live) { b.bench_draw(tick); lastDraw=tick; } return v; };
   const turn=(index,delta)=>{ log(`E${index},${delta}`); new Int32Array(b.memory.buffer,b.bench_encoders(),7)[index]=delta; return input(0); };
@@ -64,7 +65,7 @@ export function bench(songs,{sparse=false,live=false,trace=null,lang=0}={}) {
   const frame=()=>{ const f=Uint16Array.from(new Uint16Array(b.memory.buffer,b.bench_draw(tick),240*240)); log('F'); return f; };
   const pixels=(x,y,width,height)=>{ const f=new Uint16Array(b.memory.buffer,b.bench_draw(tick),240*240);
     return Array.from({length:height},(_,i)=>Array.from(f.subarray((y+i)*240+x,(y+i)*240+x+width))).flat(); };
-  const rack=()=>new DataView(b.memory.buffer,b.bench_snapshot()+120,8);
+  const rack=()=>new DataView(b.memory.buffer,b.bench_snapshot()+b.bench_snapshot_size()-8,8);
   audio(); if(live) { b.bench_draw(tick); lastDraw=tick; }
   const master=level=>{ b.bench_master(level); return audio(); };
   const snapshot=()=>{ b.bench_read_view(); return new Uint8Array(b.memory.buffer,b.bench_snapshot(),b.bench_snapshot_size()).slice(); };

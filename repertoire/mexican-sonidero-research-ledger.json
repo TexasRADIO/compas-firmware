@@ -1,0 +1,265 @@
+{
+  "schema": "compas-sonidero-family-ledger/1",
+  "scope": "Mexican sonidero and adjacent regional routes; research and integration gate, not a claim that all entries share one rhythm.",
+  "rules": {
+    "newPreset": "Requires a source-labelled rhythm cell or a named practitioner-approved role map, an explicit statement of what has been authored, and a distinct display name.",
+    "performanceControl": "May be implemented from mechanism evidence, but must not be relabelled as a regional canonical accompaniment.",
+    "repertoireFamily": "Requires its own source chain; a repertoire listing alone cannot become a step grid.",
+    "compoundMeter": "Do not flatten a documented 6/8 or 12/8 practice into the current 2/4 or 4/4 engine. It remains a product-engine requirement until compound meter is supported."
+  },
+  "sources": {
+    "cdmx-decree-2023": {
+      "class": "institutional-primary",
+      "url": "https://www.transparencia.cdmx.gob.mx/storage/app/uploads/public/659/c30/744/659c307440d2e750695715.pdf",
+      "claim": "The declaration describes Cultura Sonidera as a social/performance practice and lists cumbia, salsa, guaracha, vallenato, chicha and son montuno among the repertoires circulated at public dances.",
+      "doesNotEstablish": "A universal drum grid, an exclusive city ownership of a genre, or a transcription right."
+    },
+    "puebla-cuetlaxcoapan-2023": {
+      "class": "municipal-cultural-research",
+      "url": "https://centrohistorico.pueblacapital.gob.mx/media/com_dpattachments/attachments/com_content.article/Revista-Cuetlaxcoapan-31.pdf",
+      "claim": "The article documents cumbia sonidera as a lived Puebla practice across neighbourhood, peripheral and public-event contexts.",
+      "doesNotEstablish": "One Poblano accompaniment pattern or a device-specific production method."
+    },
+    "puebla-local-listening-categories": {
+      "class": "municipal-cultural-research",
+      "url": "https://centrohistorico.pueblacapital.gob.mx/media/com_dpattachments/attachments/com_content.article/Revista-Cuetlaxcoapan-31.pdf",
+      "claim": "The Puebla dossier records local listener categories: slow lyrical poblanas, fast constant-tempo Peruvian/Andean material, and peñoneras whose recurring changes of rhythm and speed support more elaborate dancing.",
+      "doesNotEstablish": "A fixed instrumentation, a canonical 16-step pattern for any category, that Peruvian repertory is Mexican, or permission to use the category names as unqualified product genres."
+    },
+    "lippman-2018": {
+      "class": "scholarly-fieldwork",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/25729861.2018.1497273",
+      "claim": "Fieldwork supports treating selection, voice, dedications and mixer intervention as live sonidero practice.",
+      "doesNotEstablish": "A fixed genre tempo or a stock spoken sample."
+    },
+    "felini-regional-roles": {
+      "class": "artist-interview",
+      "url": "https://www.semana.com/cultura/articulo/el-amor-cumbiero-atemporal-de-amantes-del-futuro-vemos-a-colombia-como-la-cumbia-madre/202546/",
+      "claim": "Ima Felini distinguishes the CDMX sonidera instrumentation from a more synthesizer-forward Poblana vocabulary and treats wepa as a separate approach.",
+      "doesNotEstablish": "A complete regional grid, a universal local instrumentation, or an attribution for any individual programmed note."
+    },
+    "colmex-wepa": {
+      "class": "scholarly-linguistic-research",
+      "url": "https://linguisticamexicana-amla.colmex.mx/index.php/Linguistica_mexicana/article/download/449/431/2691",
+      "claim": "A Colegio de México study records the Potosí use of wepa as a music/sound-world associated with deep voices announcing names, barrios and greetings over a cumbia-like rhythm; it distinguishes the term from sonidero itself.",
+      "doesNotEstablish": "One drum pattern, a complete Wepa instrumentation, a pre-recorded vocal device, or a claim that the current Compás study reproduces Kiss Sound."
+    },
+    "monterrey-rebajada": {
+      "class": "scholarly-and-institutional",
+      "url": "https://doi.org/10.14325/mississippi/9781496832368.003.0002",
+      "claim": "Monterrey rebajada scholarship supports a distinct local record/playback history.",
+      "doesNotEstablish": "A canonical rebajada drum pattern."
+    },
+    "ucsbc-rebajada": {
+      "class": "institutional-research",
+      "url": "https://cism.music.ucsb.edu/node/355",
+      "claim": "The archive describes Sonido Dueñez's experimental tape-based rebajada practice in working-class Monterrey.",
+      "doesNotEstablish": "That slowed playback belongs solely to Monterrey or maps to one loop."
+    },
+    "rock-sonidero": {
+      "class": "national-cultural-institution",
+      "url": "https://www.gob.mx/cultura/prensa/de-neza-y-chimalhuacan-a-la-fonoteca-nacional-sonido-jagger-y-la-historia-poco-conocida-del-rock-sonidero",
+      "claim": "The programme identifies a Neza/Chimalhuacán rock-sonidero history and notes a need for more systematic research.",
+      "doesNotEstablish": "A programmable rhythm family."
+    },
+    "mixteca-tecladistas": {
+      "class": "scholarly-ethnography",
+      "url": "https://revistas.inah.gob.mx/index.php/diariodecampo/article/download/5608/6452/10605",
+      "claim": "INAH fieldwork documents Mixteca Baja tecladistas carrying local instrumentation and repertoire forward; it describes cumbia influence in the bass, sonidero greetings, and yaa sii/chilena in 6/8 or 12/8 with distinct fast and slow variants.",
+      "doesNotEstablish": "That yaa sii is cumbia, that its compound meter can be faithfully reduced to Compás's current straight-meter engine, or a stock sound/step grid."
+    },
+    "inah-yaa-sii-12-8": {
+      "class": "national-cultural-institution",
+      "url": "https://repositorio.inah.gob.mx/_flysystem/fedora/2024-01/disco_46.pdf",
+      "claim": "An INAH publication identifies the dactylic tetragroup in yaa sii as equivalent to 12/8 and distinguishes Mixtec yaa sii from the coastal chilena label used in Spanish translation.",
+      "doesNotEstablish": "A universal kick/conga grid, a device arrangement, or that a 12/8 pattern can replace local melody, language, instrumentation or performance practice."
+    },
+    "ecmo-chilena-meter-2025": {
+      "class": "scholarly-ethnography",
+      "url": "https://www.scielo.org.mx/scielo.php?lng=es&nrm=iso&pid=S2594-29992025000200295&script=sci_arttext",
+      "claim": "The ECMO account characterises chilena practice through dactylic rhythms in 6/8 or 12/8 and notes sesquialtera more strongly toward the coast.",
+      "doesNotEstablish": "That Mixteca Baja yaa sii and coastal chilena are interchangeable, or an exact accompaniment reduction for Compás."
+    },
+    "cumbia-sureste-lead": {
+      "class": "editorial-scene-lead",
+      "url": "https://musicaenmexico.com.mx/musica-mexicana/la-musica-tradicional-de-veracruz/",
+      "claim": "A regional overview distinguishes cumbia del sureste from Oaxaca/Guerrero sureña, CDMX tropical and northern cumbia, and describes a sax, keyboard, drum and tumbadora-oriented ensemble route.",
+      "doesNotEstablish": "A primary-source transcription, a stable name accepted in every locality, or an exact pattern suitable for release."
+    },
+    "unicach-chunchaca": {
+      "class": "academic-thesis",
+      "url": "https://repositorio.unicach.mx/bitstream/handle/20.500.12753/4565/Licenciatura-Ne%CC%81stor%20Ocan%CC%83a.pdf?isAllowed=y&sequence=1",
+      "claim": "The thesis distinguishes cumbia del sureste/Chunchaca as a Mexican regional route and describes acoustic kit, tumbadoras, horn space, occasional synth/electric-guitar colour and a flexible bass practice in ensemble performance.",
+      "doesNotEstablish": "A fixed 16-step loop, a universal tempo, a specific recording's bass line, or an interchangeable label for every southeastern musician."
+    },
+    "enes-sureste-2026": {
+      "class": "university-cultural-writing",
+      "url": "https://blog.enesmerida.unam.mx/la-cumbia-del-mar-la-cumbia-y-su-llegada-al-sureste-mexicano/",
+      "claim": "ENES Mérida traces cumbia's local adaptation in the southeast and identifies sax/metals, bass, güiro and drum kit as part of the regional ensemble colour.",
+      "doesNotEstablish": "An exact rhythm transcription or a single style for the whole region."
+    },
+    "inah-central-sonidero-circuit": {
+      "class": "national-cultural-institution",
+      "url": "https://www.inah.gob.mx/boletines/el-museo-regional-de-los-pueblos-de-morelos-festejara-la-cultura-sonidera",
+      "claim": "INAH describes a sonidero practice that grew from Mexico City into Estado de México, Morelos, Puebla, Tlaxcala and Hidalgo, and identifies Puebla, Tlaxcala, Hidalgo and Morelos as states with active sonidero communities.",
+      "doesNotEstablish": "A different drum grammar for every state, a fixed circuit repertoire, or a right to call one preset definitive for the corridor."
+    },
+    "unam-tropical-repertoire": {
+      "class": "scholarly-research",
+      "url": "https://ru.micisan.unam.mx/bitstream/handle/123456789/900/L0155.pdf?isAllowed=y&sequence=1",
+      "claim": "A UNAM study describes light-and-sound events as a tropical repertoire practice built around cumbia and salsa while also circulating sones, porros, vallenatos, guarachas, charangas, rumba and other Latin American forms; it distinguishes repertoire selection from one uniform rhythm.",
+      "doesNotEstablish": "That each repertory name is a local Mexican subgenre, a complete step grid, or a performance right in a copied recording."
+    },
+    "radio-educacion-digital-charanga": {
+      "class": "public-broadcaster-programme",
+      "url": "https://e-radio.edu.mx/Podcasts-por-categorias?id_category=40&search=3",
+      "claim": "Radio Educación describes Digital Charanga as a cumbia-sonidera project that combines pre-recorded digital tracks with live musicians and is designed for dancing.",
+      "doesNotEstablish": "That the project represents every sonidero, a transferable rhythm pattern, or a right to copy its arrangements."
+    },
+    "leon-cumbia-editada-lead": {
+      "class": "journalistic-scene-lead",
+      "url": "https://ra.co/features/3203",
+      "claim": "A scene report identifies computer-made cumbia editada layered over older songs in León as a local practice worth investigating.",
+      "doesNotEstablish": "A primary-source history, a stable genre definition, a canonical beat, or an implementation-ready pattern."
+    }
+  },
+  "lanes": [
+    {
+      "id": "cdmx-sonidera",
+      "kind": "authored-accompaniment-study",
+      "existingStudy": "cdmx",
+      "sourceRefs": ["cdmx-decree-2023", "lippman-2018"],
+      "claim": "An authored accompaniment with room for live speech and record-style selection.",
+      "nextGate": "Named-record rhythm cell or practitioner-reviewed role map."
+    },
+    {
+      "id": "puebla-cumbia-sonidera",
+      "kind": "authored-accompaniment-study",
+      "existingStudy": "puebla",
+      "sourceRefs": ["puebla-cuetlaxcoapan-2023"],
+      "claim": "An authored keyboard-and-timbal study; not a stand-in for all Puebla practice.",
+      "nextGate": "Puebla musician comparison of instrumental roles and dance phrase."
+    },
+    {
+      "id": "puebla-local-listening-categories",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["puebla-local-listening-categories"],
+      "claim": "Poblana, Peruvian/Andean and peñonera are locally reported listening and dance categories; they guide arrangement behaviour but are not yet three eligible Compás rhythm identities.",
+      "nextGate": "For a source-cell arrangement, identify the relevant repertoire and its named source; for a performance feature, prototype a player-controlled phrase/tempo transition and obtain Puebla dancer-musician review."
+    },
+    {
+      "id": "monterrey-colombias",
+      "kind": "authored-accompaniment-study",
+      "existingStudy": "mty-dub",
+      "sourceRefs": ["monterrey-rebajada", "ucsbc-rebajada"],
+      "claim": "An authored cumbia/dub crossover study, deliberately distinct from rebajada.",
+      "nextGate": "Source-labelled record-family role comparison."
+    },
+    {
+      "id": "rebajada-transform",
+      "kind": "performance-control",
+      "existingStudy": null,
+      "sourceRefs": ["lippman-2018", "monterrey-rebajada", "ucsbc-rebajada"],
+      "claim": "A rate-and-pitch playback transform, not a preset rhythm.",
+      "nextGate": "Preserve coupled pitch, speed and tails; no new beat name."
+    },
+    {
+      "id": "san-luis-potosi-wepa",
+      "kind": "authored-accompaniment-study",
+      "existingStudy": "wepa",
+      "sourceRefs": ["felini-regional-roles", "colmex-wepa"],
+      "claim": "An authored Potosí Wepa-context accompaniment, held separate from Puebla and tribal; its programmed cuts are Compás choices, while the documented deep-voice/saludo layer remains live and unprogrammed.",
+      "nextGate": "Potosí operator and musician review of rhythmic roles, pace and a player-authored live saludo route."
+    },
+    {
+      "id": "tribal-guarachero",
+      "kind": "adjacent-distinct-scene",
+      "existingStudy": "tribal",
+      "sourceRefs": [],
+      "claim": "A separate Compás club study; never rendered as a sonidero sub-beat.",
+      "nextGate": "Maintain its independent evidence ledger."
+    },
+    {
+      "id": "salsa-guaracha-son-montuno",
+      "kind": "repertoire-family",
+      "existingStudy": null,
+      "sourceRefs": ["cdmx-decree-2023"],
+      "claim": "Named repertoire families in sonidero programming, each requiring its own rhythm evidence.",
+      "nextGate": "Use only their individual source-cell ledgers."
+    },
+    {
+      "id": "vallenato-chicha",
+      "kind": "repertoire-family",
+      "existingStudy": null,
+      "sourceRefs": ["cdmx-decree-2023"],
+      "claim": "Repertoire families in the documented programming ecology.",
+      "nextGate": "Document local route, named source and player roles before a Compás lane."
+    },
+    {
+      "id": "rock-sonidero",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["rock-sonidero"],
+      "claim": "A named local history requiring a source dossier before any musical reduction.",
+      "nextGate": "Oral-history and source discovery; no pattern implementation."
+    },
+    {
+      "id": "mexican-cumbia-andina",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": [],
+      "claim": "A public label retained as an unresolved research lead.",
+      "nextGate": "Named performer/record, geography and role map."
+    },
+    {
+      "id": "mixteca-tecladistas-and-yaa-sii",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["mixteca-tecladistas", "inah-yaa-sii-12-8", "ecmo-chilena-meter-2025"],
+      "meterRequirement": "compound-6-8-or-12-8",
+      "claim": "A keyboard-led Mixteca Baja practice with its own local identity; cumbia influence and sonidero greetings are documented, but it is not a cumbia-sonidera preset.",
+      "nextGate": "Compound-meter editor/target qualification, then a Mixteca practitioner-approved role map and language-aware presentation. The 12/8 evidence supports a timing model, not a named factory loop."
+    },
+    {
+      "id": "cumbia-del-sureste",
+      "kind": "authored-accompaniment-study",
+      "existingStudy": "cumbia-sureste",
+      "sourceRefs": ["unicach-chunchaca", "enes-sureste-2026"],
+      "claim": "An authored Compás accompaniment using documented ensemble roles, kept separate from Mexican cumbia sureña and CDMX sonidera.",
+      "nextGate": "Southeast musician review of balance, tempo range and the decision to leave the lead line unprogrammed."
+    },
+    {
+      "id": "central-sonidero-circuit",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["inah-central-sonidero-circuit", "lippman-2018"],
+      "claim": "A connected central-Mexican circuit of sonidero communities, not evidence that CDMX, Estado de México, Morelos, Puebla, Tlaxcala and Hidalgo each require an invented proprietary beat.",
+      "nextGate": "Collect participant-led role maps or named-record cells from a particular locality before adding a geographically named rhythm; until then, improve set, saludo and cue workflows rather than multiplying presets."
+    },
+    {
+      "id": "tropical-repertoire-routing",
+      "kind": "repertoire-family",
+      "existingStudy": null,
+      "sourceRefs": ["unam-tropical-repertoire", "cdmx-decree-2023"],
+      "claim": "Sonidero programming is a repertoire-routing practice across distinct tropical forms, rather than a cumbia-only genre menu.",
+      "nextGate": "Add only individually sourced cells for a named family; a set browser may group them as repertoire without claiming rhythmic equivalence."
+    },
+    {
+      "id": "hybrid-digital-live-cumbia",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["radio-educacion-digital-charanga"],
+      "claim": "A documented cumbia-sonidera project combines digital backing with musicians playing live, supporting a one-man-band design that leaves lead and response roles available to the performer.",
+      "nextGate": "Interview practitioners before naming a rhythm lane; prototype an accompaniment mode with intentional open lead space rather than a canned band imitation."
+    },
+    {
+      "id": "leon-cumbia-editada",
+      "kind": "research-only",
+      "existingStudy": null,
+      "sourceRefs": ["leon-cumbia-editada-lead"],
+      "claim": "Computer-edited cumbia is a credible local production lead, but the current evidence is a scene report rather than a source chain sufficient for a Compás study.",
+      "nextGate": "Find a practitioner account plus a named, licensable/analysable work or player-approved role map; do not add an EDITADA beat from the present lead."
+    }
+  ]
+}

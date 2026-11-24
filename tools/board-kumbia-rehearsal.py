@@ -87,8 +87,8 @@ with ThreadPoolExecutor(max_workers=3) as pool:
 
 nor=(folder/"virtual.bin").read_bytes()
 magic,generation,crc=struct.unpack_from("<4sII",nor,0x90000)
-payload=nor[0x90100:0x90100+3780]
-assert magic==b"CPS3" and generation==1 and payload[-4:]==limits
+payload=nor[0x90100:0x90100+3797]
+assert magic==b"CPS6" and generation==1 and payload[-5:-1]==limits and payload[-1]==100
 assert zlib.crc32(struct.pack("<I",generation)+payload)==crc
 assert nor[:0x90000]==seed[:0x90000] and nor[0x91000:]==seed[0x91000:]
 _,reboot=run("reboot",1700,keys="850:e0:-1",flash=nor)

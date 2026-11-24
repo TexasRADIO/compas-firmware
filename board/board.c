@@ -22,14 +22,23 @@ static BoardCommand mailbox[8];
 static uint8_t read_pos, write_pos, queued, stop, kit, master, result, fault, accent;
 typedef struct {
     char title[19];
-    uint8_t project[CP_PROJECT_BYTES], assignment[CP_ROLES], kit, section, phrases, piano, guide_or_count;
+    uint8_t project[CP_PROJECT_BYTES], assignment[3], settings[2];
 } Song;
+/* The v1 record is retained only to import shows saved before the 48-step
+ * project codec.  It is never written by this build. */
+typedef struct {
+    char title[19];
+    uint8_t project[CP_PROJECT_V1_BYTES], assignment[CP_ROLES];
+    uint8_t kit, section, phrases, piano, guide_or_count;
+} SongV1;
 #define SONG_HIDDEN '\x7f'
 #include "set.inc"
 #include "board-grooves.inc"
 #include "fx.c"
 _Static_assert(sizeof rhythm_bank/sizeof *rhythm_bank==BOARD_RHYTHM_PATTERNS,"rhythm bank count");
 _Static_assert(sizeof groove_titles/sizeof *groove_titles==BOARD_GROOVE_PRESETS,"groove bank count");
+_Static_assert(sizeof(Song)==86,"Song v2 must keep the full stored show below one sector");
+_Static_assert(sizeof(SongV1)==85,"Song v1 import layout must remain exact");
 static uint8_t queued_groove, queued_root, queued_clave;
 static Song captures[SET_SLOTS];
 typedef struct {
@@ -46,6 +55,7 @@ _Static_assert(sizeof captures==BOARD_SET_BYTES,"Saved set layout is byte-packed
 static volatile uint8_t save_ready;
 #endif
 static uint8_t active_song, queued_song, phrases, remaining_phrases, song_dirty;
+static uint8_t edited; /* 1.3: the song differs from its saved copy */
 static uint8_t assigned[CP_ROLES];
 static uint8_t active_part, queued_part, queued_energy, next_bar;
 static uint8_t bass_style, bass_cut, bass_bite, overlays, overlay_hits, bass_hit;
@@ -64,12 +74,37 @@ static uint32_t master_gain;
  * source samples and a hundredth-frame phase; the existing engine block holds
  * at most 130 newly rendered frames. No second PCM block is allocated. */
 static uint8_t speed, speed_phase, speed_primed;
+/* FRENO: speed in 1/256 steps while braking (0 = not braking), and the
+ * REBAJADA setting to return to once the band has stopped. */
+enum { BRAKE_STEP=40, BRAKE_FLOOR=8<<8 };
+static uint16_t brake_q8;
+static uint8_t brake_return;
 static int16_t speed_left, speed_right;
 uint8_t board_piano_selected;
 static uint8_t groove_count_enabled;
 static uint8_t piano_running, piano_tempo, piano_hold, piano_guide, piano_perc_muted;
 static BoardView view;
 static uint8_t requested_role, shown_role;
+
+static unsigned song_assignment(const Song *song,unsigned role)
+{ return (song->assignment[role/2u]>>(4u*(role&1u)))&15u; }
+static void song_assignment_set(Song *song,unsigned role,unsigned value)
+{
+    unsigned shift=4u*(role&1u),index=role/2u;
+    song->assignment[index]=(uint8_t)((song->assignment[index]&~(15u<<shift))|(value<<shift));
+}
+static unsigned song_settings(const Song *song)
+{ return (unsigned)song->settings[0]|((unsigned)song->settings[1]<<8); }
+static void song_settings_set(Song *song,unsigned value)
+{ song->settings[0]=(uint8_t)value;song->settings[1]=(uint8_t)(value>>8); }
+static unsigned song_kit(const Song *song) { return song_settings(song)&1u; }
+static unsigned song_section(const Song *song) { return song_settings(song)>>1&3u; }
+static unsigned song_phrases(const Song *song) { return song_settings(song)>>3&127u; }
+static unsigned song_piano(const Song *song) { return song_settings(song)>>10&31u; }
+static unsigned song_guide_or_count(const Song *song) { return song_settings(song)>>15; }
+static void song_options(Song *song,unsigned kit_value,unsigned section,unsigned phrase_count,
+                         unsigned piano,unsigned guide_or_count)
+{ song_settings_set(song,kit_value|(section<<1)|(phrase_count<<3)|(piano<<10)|(guide_or_count<<15)); }
 
 #ifdef COMPAS_HANAN
 #include "hanan.inc"
@@ -113,9 +148,10 @@ static void begin(Player *player, unsigned sound, unsigned gain)
 
 int board_note727(unsigned study, unsigned role, unsigned event, unsigned velocity)
 {
+    if(!kit) return 0;
     /* +1 indices. Preserve the coastal instruments, cáscara, campana, güiro and bass. */
     unsigned sound = assigned[role] ? assigned[role] : groove_kit[study][role];
-    if (!kit || !sound) return 0;
+    if (!sound) return 0;
     if (!assigned[role] && sound == 3 && event == 2) sound = 4;
     begin(&sequence[role], sound-1, velocity);
     return 1;
@@ -175,8 +211,10 @@ void board_init(void)
     const uint8_t home[KUMBIA_SETTINGS]={0,100,12,0};
     board_kumbia_restore(home);
     hanan_clear();
+    board_kumbia_level_set(100);
 #endif
     read_pos=write_pos=queued=stop=kit=master=result=fault=accent=0;
+    brake_q8=0;edited=0;
     master_gain=0;
     bass_hit=overlay_hits=0;
     rack_feedback=(RackFeedback){.hits=0};
@@ -319,8 +357,8 @@ unsigned board_rhythm_sound(unsigned index)
 static void copy_rhythm(unsigned index)
 {
     for(unsigned i=0;i<RACK_SOUNDS;++i) {
-        rack_pattern[i]=rhythm_bank[index].hits[i];
-        rack_pattern_accents[i]=rhythm_bank[index].accents[i];
+        rack_pattern[i]=rhythm_masks[rhythm_bank[index].hits[i]];
+        rack_pattern_accents[i]=rhythm_masks[rhythm_bank[index].accents[i]];
     }
     rhythm_origin=active_rhythm=(uint8_t)index;
 }
@@ -372,9 +410,16 @@ void board_overlay_step(unsigned study,unsigned step)
         {0x00880088u,0x44444444u,0x80008000u,0x10001000u},
     };
     static const uint8_t sound[]={3,10,5,7}, gain[]={66,56,65,58};
-    const uint32_t bit=1u<<step;
+    /* Authored compound support, not a sourced regional drum part. Repeat a
+     * twelve-sixteenth cell without truncating a 24/48-step phrase or shifting
+     * a 32-bit mask by 32+. Existing straight-meter families stay byte-exact. */
+    static const uint32_t compound[]={0x410u,0x555u,0x400u,0x41u};
+    unsigned steps=cp_status(CP_STEP_COUNT);
+    unsigned ternary=steps==24u || steps==48u;
+    const uint32_t bit=1u<<(ternary?step%12u:step);
     for(unsigned lane=0;lane<4;++lane) {
-        if(!(overlays&(1u<<lane)) || !(patterns[groove_overlay[study]][lane]&bit)) continue;
+        uint32_t pattern=ternary?compound[lane]:patterns[groove_overlay[study]][lane];
+        if(!(overlays&(1u<<lane)) || !(pattern&bit)) continue;
         unsigned velocity=gain[lane]*overlay_levels[lane]/100u;
         if(velocity) {
             rack_hit(sound[lane],velocity);
@@ -394,7 +439,7 @@ int board_song_exists(unsigned slot) { return song_at(slot)!=0; }
 unsigned board_song_is_score(unsigned slot)
 {
     const Song *song=song_at(slot);
-    return song && song->piano;
+    return song && song_piano(song);
 }
 /* GLO rows: the saved study, tempo and clave of a slot. 0 for an empty slot. */
 unsigned board_song_meta(unsigned slot,unsigned *study,unsigned *bpm,unsigned *reverse)
@@ -439,7 +484,7 @@ static unsigned recall_groove(unsigned index)
     for(unsigned i=0;i<RACK_SOUNDS;++i) rack_pattern[i]=rack_pattern_accents[i]=0;
     for(unsigned i=0;i<CP_ROLES;++i) assigned[i]=0;
     reset_song_layers();
-    kit=1; song_dirty=1;clear_rack();
+    kit=1; song_dirty=1;edited=0;clear_rack();
     if(playing) cp_command(CP_START,0,0);
     return CP_OK;
 }
@@ -456,32 +501,32 @@ static unsigned recall_song(unsigned slot)
     for(unsigned i=0;i<CP_PROJECT_BYTES;++i) cp_blob()[i]=song->project[i];
     unsigned reply=cp_restore(CP_PROJECT_BYTES);
     if(reply) return reply;
-    kit=song->kit;queued_root=12;queued_clave=2;
+    kit=(uint8_t)song_kit(song);queued_root=12;queued_clave=2;
     queued_groove=BOARD_GROOVE_PRESETS;
     active_rhythm=queued_rhythm=BOARD_CUSTOM_RHYTHM;
     overlay_hits=0;
     board_roll_keys=0;
     clear_recording();
     rack_sequence=board_rhythm_only=0; /* An unsaved drum layer never follows a new song silently. */
-    for(unsigned i=0;i<CP_ROLES;++i) assigned[i]=song->assignment[i];
-    cp_command(CP_SECTION,song->section,0);
+    for(unsigned i=0;i<CP_ROLES;++i) assigned[i]=(uint8_t)song_assignment(song,i);
+    cp_command(CP_SECTION,song_section(song),0);
     active_part=queued_part=PART_NONE;
     queued_energy=3; next_bar=0;
     active_song=(uint8_t)slot;
-    song_dirty=1;
-    phrases=remaining_phrases=song->phrases;
-    board_piano_selected=song->piano;
-    piano_guide=song->piano && song->guide_or_count;
-    groove_count_enabled=!song->piano && song->guide_or_count;
-    piano_running=playing && song->piano;
+    song_dirty=1;edited=0;
+    phrases=remaining_phrases=(uint8_t)song_phrases(song);
+    board_piano_selected=(uint8_t)song_piano(song);
+    piano_guide=board_piano_selected && song_guide_or_count(song);
+    groove_count_enabled=!board_piano_selected && song_guide_or_count(song);
+    piano_running=playing && board_piano_selected;
     piano_hold=piano_perc_muted=0;
-    if(song->piano) {
-        piano_start(song->piano,0);
+    if(board_piano_selected) {
+        piano_start(board_piano_selected,0);
         unsigned root=cp_status(CP_ROOT_NOTE);
         piano_transpose(root<6 ? (int)root : (int)root-12);
         piano_tempo=cp_status(CP_TEMPO);
     }
-    if(!song->piano && rhythm_slots[slot].bytes[0]) recall_rhythm(slot);
+    if(!board_piano_selected && rhythm_slots[slot].bytes[0]) recall_rhythm(slot);
     else reset_song_layers();
     if(playing) cp_command(CP_START,0,0);
     return CP_OK;
@@ -629,12 +674,9 @@ static unsigned capture_song(unsigned slot)
     Song *song=&captures[slot];
     cp_snapshot();
     for(unsigned i=0;i<CP_PROJECT_BYTES;++i) song->project[i]=cp_blob()[i];
-    for(unsigned i=0;i<CP_ROLES;++i) song->assignment[i]=assigned[i];
-    song->kit=kit;
-    song->section=cp_status(CP_ACTIVE);
-    song->phrases=phrases;
-    song->piano=board_piano_selected;
-    song->guide_or_count=board_piano_selected ? piano_guide : groove_count_enabled;
+    for(unsigned i=0;i<CP_ROLES;++i) song_assignment_set(song,i,assigned[i]);
+    song_options(song,kit,cp_status(CP_ACTIVE),phrases,board_piano_selected,
+                 board_piano_selected ? piano_guide : groove_count_enabled);
     for(unsigned i=0;i<sizeof song->title;++i) {
         song->title[i]=*title;
         if(*title) ++title;
@@ -642,6 +684,7 @@ static unsigned capture_song(unsigned slot)
     capture_rhythm(slot);
     active_song=(uint8_t)slot;
     remaining_phrases=phrases;
+    edited=0;
 #if defined(COMPAS_EMU_STORE) && !defined(COMPAS_NO_SHOW_STORE)
     /* Only a build that keeps shows marks one for the store. Without a store
      * the flag would never clear and board_ota_idle() would refuse updates. */
@@ -674,16 +717,66 @@ unsigned board_store_load(const uint8_t *bytes)
                 if(((const uint8_t *)&song)[j]) valid=0;
             continue;
         }
-        valid=!song.title[18] && song.kit<=1 && song.section<=2 && song.phrases<=64 &&
-              song.guide_or_count<=1 && piano_id_valid(song.piano,song.piano && song.guide_or_count);
+        valid=!song.title[18] && song_kit(&song)<=1 && song_section(&song)<=2 && song_phrases(&song)<=64 &&
+              song_guide_or_count(&song)<=1 && piano_id_valid(song_piano(&song),song_piano(&song) && song_guide_or_count(&song));
         for(unsigned role=0;role<CP_ROLES;++role)
-            if(song.assignment[role]>RACK_SOUNDS) valid=0;
+            if(song_assignment(&song,role)>RACK_SOUNDS) valid=0;
         for(unsigned j=0;j<CP_PROJECT_BYTES;++j) cp_blob()[j]=song.project[j];
         if(cp_restore(CP_PROJECT_BYTES)!=CP_OK) valid=0;
     }
     cp_init(44100);
     if(valid)
         for(unsigned i=0;i<sizeof captures;++i) ((uint8_t *)captures)[i]=bytes[i];
+    return valid;
+}
+
+static unsigned song_v1_valid(const SongV1 *song)
+{
+    if(!song->title[0]) return 1;
+    if(song->title[0]==SONG_HIDDEN) {
+        for(unsigned i=1;i<sizeof *song;++i)
+            if(((const uint8_t *)song)[i]) return 0;
+        return 1;
+    }
+    if(song->title[18] || song->kit>1 || song->section>2 || song->phrases>64 ||
+       song->guide_or_count>1 || !piano_id_valid(song->piano,song->piano && song->guide_or_count)) return 0;
+    for(unsigned role=0;role<CP_ROLES;++role)
+        if(song->assignment[role]>RACK_SOUNDS) return 0;
+    for(unsigned i=0;i<CP_PROJECT_V1_BYTES;++i) cp_blob()[i]=song->project[i];
+    return cp_restore(CP_PROJECT_V1_BYTES)==CP_OK;
+}
+
+static void song_v1_migrate(Song *out,const SongV1 *old)
+{
+    for(unsigned i=0;i<sizeof *out;++i) ((uint8_t *)out)[i]=0;
+    for(unsigned i=0;i<sizeof old->title;++i) out->title[i]=old->title[i];
+    if(!old->title[0] || old->title[0]==SONG_HIDDEN) return;
+    for(unsigned i=0;i<CP_PROJECT_V1_BYTES;++i) cp_blob()[i]=old->project[i];
+    /* Validation pass has already restored this v1 payload.  Snapshotting it
+     * writes the identical musical state in the v2, 48-step-safe codec. */
+    cp_restore(CP_PROJECT_V1_BYTES);cp_snapshot();
+    for(unsigned i=0;i<CP_PROJECT_BYTES;++i) out->project[i]=cp_blob()[i];
+    for(unsigned role=0;role<CP_ROLES;++role) song_assignment_set(out,role,old->assignment[role]);
+    song_options(out,old->kit,old->section,old->phrases,old->piano,old->guide_or_count);
+}
+
+unsigned board_store_load_v1(const uint8_t *bytes)
+{
+    /* Validate every v1 record before replacing one capture.  The engine is
+     * temporary boot state here; captures remain untouched on failure. */
+    unsigned valid=1;
+    for(unsigned slot=0;slot<SET_SLOTS && valid;++slot) {
+        SongV1 song;
+        for(unsigned i=0;i<sizeof song;++i) ((uint8_t *)&song)[i]=bytes[slot*sizeof song+i];
+        valid=song_v1_valid(&song);
+    }
+    if(valid) for(unsigned slot=0;slot<SET_SLOTS;++slot) {
+        SongV1 old;Song migrated;
+        for(unsigned i=0;i<sizeof old;++i) ((uint8_t *)&old)[i]=bytes[slot*sizeof old+i];
+        song_v1_migrate(&migrated,&old);
+        for(unsigned i=0;i<sizeof migrated;++i) ((uint8_t *)&captures[slot])[i]=((const uint8_t *)&migrated)[i];
+    }
+    cp_init(44100);
     return valid;
 }
 
@@ -712,7 +805,12 @@ static unsigned apply(BoardCommand cmd)
         return fx_set(cmd.a,cmd.b)?CP_OK:CP_RANGE;
     case BOARD_SPEED:
         if(cmd.a<60 || cmd.a>100) return CP_RANGE;
+        brake_q8=0;                 /* turning REBAJADA back up cancels FRENO */
         speed=cmd.a;
+        return CP_OK;
+    case BOARD_BRAKE:
+        if(!cp_status(CP_PLAYING)) return CP_STOPPED;
+        if(!brake_q8) { brake_return=speed; brake_q8=(uint16_t)(speed<<8); }
         return CP_OK;
     case CP_CLAVE:
         if(cmd.a>1 || board_piano_selected || (cp_status(CP_STUDY_ID)!=2 && cp_status(CP_STUDY_ID)!=6)) return CP_RANGE;
@@ -899,6 +997,8 @@ static unsigned apply(BoardCommand cmd)
             settings[cmd.a]=cmd.b;
             return board_kumbia_restore(settings)?CP_OK:CP_RANGE;
         }
+    case BOARD_HANAN_LEVEL:
+        return board_kumbia_level_set(cmd.b)?CP_OK:CP_RANGE;
     case BOARD_HANAN_SAVE:
         if(cp_status(CP_PLAYING)) return CP_STOP_FIRST;
 #if defined(COMPAS_EMU_STORE) && !defined(COMPAS_NO_SHOW_STORE)
@@ -934,8 +1034,10 @@ static unsigned apply(BoardCommand cmd)
         return CP_OK;
     case BOARD_SEQ_STEP: {
         if(board_piano_selected || cmd.a>=RACK_SOUNDS || cmd.b>=32) return CP_RANGE;
-        /* A 2/4 study has sixteen steps across the complete two-bar phrase. */
-        if(cmd.b>=cp_status(CP_STEP_COUNT)) return CP_RANGE;
+        /* The 727 format remains a historic 16/32-step grid.  Compound
+         * studies edit their six role lanes through CP_STEP instead. */
+        unsigned steps=cp_status(CP_STEP_COUNT);
+        if((steps!=16u && steps!=32u) || cmd.b>=steps) return CP_RANGE;
         if(paired_rhythm(queued_rhythm)) queued_clave=2;
         active_rhythm=queued_rhythm=BOARD_CUSTOM_RHYTHM;
         uint32_t bit=1u<<cmd.b;
@@ -1011,6 +1113,7 @@ static void service_commands(void)
 {
     if (stop) {
         speed_phase=speed_primed=0;
+        if(brake_q8) { speed=brake_return; brake_q8=0; }
         unsigned section=cp_status(CP_ACTIVE);
         cp_command(CP_STOP,0,0);
         if(active_song<SET_SLOTS) cp_command(CP_SECTION,section,0);
@@ -1035,6 +1138,15 @@ static void service_commands(void)
     for (unsigned i=0; queued && i<8; ++i) {
         unsigned reply=apply(mailbox[read_pos]);
         if (reply) result=(uint8_t)reply;
+        else switch(mailbox[read_pos].command) {
+        /* What SAVE keeps and a recall would replace. Cues, mutes and
+         * layer toggles are playing, not editing. */
+        case CP_BPM: case CP_FEEL: case CP_LEVEL: case CP_STEP: case CP_ROOT: case CP_CLAVE:
+        case BOARD_ASSIGN: case BOARD_REPEAT: case BOARD_COUNT_IN: case BOARD_BASS_STYLE:
+        case BOARD_BASS_SHAPE: case BOARD_OVERLAY_LEVEL: case BOARD_RACK_CONTROL:
+        case BOARD_SEQ_STEP: case BOARD_RHYTHM_CUE:
+            edited=1;
+        }
         read_pos=(read_pos+1u)&7u;
         --queued;
     }
@@ -1048,7 +1160,9 @@ static void publish_view(unsigned refresh)
     view.section=cp_status(CP_ACTIVE);
     view.pending=queued_energy<3 ? queued_energy : cp_status(CP_PENDING);
     view.fill=cp_status(CP_FILL_STATE);
-    view.audible=cp_status(CP_AUDIBLE) || (!board_piano_selected && (overlays || rack_sequence));
+    /* Bit 0: something sounds. Bits 1-6: which lanes do (for the mixer lamps). */
+    view.audible=(uint8_t)((cp_status(CP_AUDIBLE) || (!board_piano_selected && (overlays || rack_sequence)))|
+        ((cp_status(CP_SOUNDING)&63u)<<1));
     view.fault=fault;
     view.next_song=queued_song;
     view.next_groove=queued_groove;
@@ -1069,6 +1183,7 @@ static void publish_view(unsigned refresh)
     view.overlays=overlays;
     view.next_bar=next_bar;
     view.speed=speed;
+    view.kit=(uint8_t)(kit|(edited<<1));
     for(unsigned i=0;i<4;++i) view.overlay_levels[i]=overlay_levels[i];
     view.rack_strength=rack_controls[RACK_HIT_STRENGTH];
     view.rack_accent=rack_controls[RACK_ACCENT_STRENGTH];
@@ -1083,10 +1198,11 @@ static void publish_view(unsigned refresh)
         SCORE_PERC_AVAILABLE|(piano_perc_muted?SCORE_PERC_MUTED:0) : 0;
     view.bass_hit=bass_hit;
 #ifdef COMPAS_HANAN
-    view.hanan_pattern=hanan_pattern;
+    view.hanan_pattern=(uint8_t)(hanan_pattern|(hanan_active<<4)); /* high bits: sounding voices */
     view.hanan_next=hanan_next;
     view.hanan_mode=board_hanan_mode;
     board_kumbia_export(view.kumbia);
+    view.kumbia_level=(uint8_t)board_kumbia_level();
 #endif
     if(board_piano_selected) {
         view.score_ending=queued_part==PART_END;
@@ -1097,7 +1213,7 @@ static void publish_view(unsigned refresh)
         view.score_hold=piano_hold;
         view.score_guide=piano_guide;
         view.position=piano_running ? piano_position() : 0;
-        view.audible=1;
+        view.audible|=1;
     } else {
         view.overlay_hits=view.playing ? overlay_hits : 0;
         view.rack_live=(uint8_t)(board_roll_mode|(record_armed?8u:0u));
@@ -1112,7 +1228,6 @@ static void publish_view(unsigned refresh)
         view.feel=cp_status(CP_FEEL_VALUE);
         view.muted=cp_status(CP_MUTES);
         view.solo=cp_status(CP_SOLO_ROLE);
-        view.kit=kit;
         view.master=master;
         view.accent=accent;
         for (unsigned i=0;i<CP_ROLES;++i) {
@@ -1120,9 +1235,13 @@ static void publish_view(unsigned refresh)
             view.assigned[i]=assigned[i];
         }
         view.steps=0;
+        view.steps_high=0;
         if(shown_role<CP_ROLES)
-            for(unsigned i=0;i<32;++i)
-                if(cp_step(shown_role,i)) view.steps|=1u<<i;
+            for(unsigned i=0;i<cp_status(CP_STEP_COUNT);++i)
+                if(cp_step(shown_role,i)) {
+                    if(i<32u) view.steps|=1u<<i;
+                    else view.steps_high|=1u<<(i-32u);
+                }
     }
     if(shown_role==BOARD_BASS_LINE_ROLE && !view.piano) {
         unsigned bar=cp_status(CP_STEP_COUNT)/2u;
@@ -1134,6 +1253,7 @@ static void publish_view(unsigned refresh)
                 if(note) notes|=(note==16u?1u:note==23u?3u:2u)<<(2u*i);
             }
             view.steps=notes;
+            view.steps_high=0;
         }
     }
 }
@@ -1232,8 +1352,8 @@ static void recall_rhythm(unsigned slot)
     for(unsigned i=0;i<RACK_SOUNDS;++i) {
         rack_pattern[i]=rhythm_word(b+16+8*i);
         rack_pattern_accents[i]=rhythm_word(b+20+8*i);
-        if(exact && (rack_pattern[i]!=rhythm_bank[saved->origin].hits[i] ||
-                     rack_pattern_accents[i]!=rhythm_bank[saved->origin].accents[i])) exact=0;
+        if(exact && (rack_pattern[i]!=rhythm_masks[rhythm_bank[saved->origin].hits[i]] ||
+                     rack_pattern_accents[i]!=rhythm_masks[rhythm_bank[saved->origin].accents[i]])) exact=0;
     }
     /* Origin records lineage even after edits. Only an exact saved grid may
      * regain the preset name and its adjacent PRESETS browsing position. */
@@ -1267,7 +1387,7 @@ unsigned board_rhythm_slots_load(const uint8_t *bytes,unsigned size)
             if(b[140]!=BOARD_CUSTOM_RHYTHM) return CP_BAD_PROJECT;
             for(unsigned i=141;i<BOARD_RHYTHM_SLOT_BYTES;++i) if(b[i]) return CP_BAD_PROJECT;
         } else {
-            if(!song || song->piano || rhythm_validate(b,140) ||
+            if(!song || song_piano(song) || rhythm_validate(b,140) ||
                song->project[6]>=sizeof groove_steps || b[4]!=groove_steps[song->project[6]] ||
                b[5]!=song->project[7] || b[6]!=song->project[8] ||
                (b[140]>=BOARD_RHYTHM_PATTERNS && b[140]!=BOARD_CUSTOM_RHYTHM) ||
@@ -1323,6 +1443,10 @@ static void render_half(int32_t *out,uint32_t started)
         master_gain=target;
     }
     service_commands();
+    if(brake_q8 && !stop) {         /* FRENO: about 1 s from REBAJADA 60, 1.7 s from 100 */
+        if(brake_q8<=BRAKE_FLOOR+BRAKE_STEP) stop=1;   /* the stop restores REBAJADA */
+        else { brake_q8=(uint16_t)(brake_q8-BRAKE_STEP); speed=(uint8_t)(brake_q8>>8); }
+    }
     if(board_piano_selected) piano_tempo=cp_status(CP_TEMPO);
     unsigned resample=speed!=100 || speed_primed;
     unsigned source_frames=resample?(speed_phase+BOARD_FRAMES*speed)/100u+(speed_primed?0u:2u):BOARD_FRAMES;
@@ -1365,7 +1489,7 @@ static void render_half(int32_t *out,uint32_t started)
         for(unsigned i=0;i<BOARD_FRAMES;++i) dry[i]=out[2*i];
         fx_shed=(uint8_t)fx_guard(board_ticks()-started,BOARD_TICKS_PER_FRAME*BOARD_FRAMES);
         board_stats.fx_shed_blocks+=fx_shed!=0;
-        fx_process(dry,out,BOARD_FRAMES,(view.bpm*speed+50u)/100u);
+        fx_process(dry,out,BOARD_FRAMES,cp_quarter_bpm((view.bpm*speed+50u)/100u));
     }
     for(unsigned i=0;i<2*BOARD_FRAMES;i+=2) {
         unsigned railed=0;
@@ -1373,7 +1497,7 @@ static void render_half(int32_t *out,uint32_t started)
             int32_t sum=out[i+c];
             if (sum>32767) { sum=32767; railed=1; }
             if (sum<-32768) { sum=-32768; railed=1; }
-            out[i+c]=sum*128;  /* retained Felucca Q15 to codec scaling */
+            out[i+c]=board_dac_word(sum); /* full Q15 to signed 24-bit transfer */
         }
         board_stats.rail_samples+=railed;
     }

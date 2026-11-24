@@ -20,6 +20,7 @@
           5
         ]
       },
+      "next": "Choose printed piano for both hands, or the habanera slot for left hand alone. Both offer an optional canto guide. The right-hand and canto ledgers record the editorial ornaments and triplets.",
       "transcription": "la-paloma-canto.json",
       "backing": "la-paloma-left-hand.json",
       "rightHand": "la-paloma-right-hand.json",
@@ -39,6 +40,7 @@
       "edition": "Thos. Goggan & Bro., Galveston, plate 29512. 1883 copyright and March 1889 cover date.",
       "source": "https://levysheetmusic.mse.jhu.edu/collection/058/032",
       "performanceNote": "Choose the printed piano alone, printed piano with Compás’s conga and maraca bolero, or the sparse left-hand bolero. All three offer the optional canto guide. The MIDI downloads contain the printed score parts.",
+      "next": "All three board arrangements follow the alternate endings. The Compás bolero accompaniment is an original performance layer.",
       "rights": {
         "status": "us-public-domain-edition",
         "scope": "The dated Galveston print’s musical notation and newly transcribed MIDI.",
@@ -75,6 +77,7 @@
       "status": "published-score",
       "edition": "Musicnotes MN0074974, piano/voice/guitar, EMI Music Publishing",
       "source": "https://www.musicnotes.com/sheetmusic/selena/como-la-flor/MN0074974_U4",
+      "next": "Target Selena's recording separately. A transposable piano reduction gives melody and chords; it cannot verify percussion or arrangement details.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -102,7 +105,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Publisher index and recording references. The folio pages and permission for playable distribution remain to be checked."
-      }
+      },
+      "next": "Compare the exact folio arrangement with both releases before making a form map. The 1995 programming credits are a separate lead for that mix."
     },
     {
       "id": "baila-esta-cumbia",
@@ -120,6 +124,7 @@
         "source": "https://music.apple.com/us/song/1633344247"
       },
       "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 9. The linked Ven Conmigo cut is the studio reference. The piano edition marks half note = 90.",
+      "next": "Inspect the full edition for form, compare it against the broadcast and studio audio separately, and clear any playable export.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -145,6 +150,7 @@
         "source": "https://music.apple.com/us/song/1489663147"
       },
       "performanceNote": "A dance-band listening reference. The piano arrangement supplies melody and harmony. Use the recording separately to map the rhythm section.",
+      "next": "Inspect the exact chart and compare its form against the album recording.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -166,6 +172,7 @@
         "source": "https://music.apple.com/us/song/1703308142"
       },
       "performanceNote": "Selena’s 1994 Tejano crossover cut. The posthumous Ragga Latin remix and the Peruvian tecnocumbia scene have separate references.",
+      "next": "Locate the printed pages and map the album arrangement, including the delivery and breakdown, before comparing mixes.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -187,6 +194,7 @@
         "source": "https://music.apple.com/us/song/721269517"
       },
       "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 13. The linked audio is the separately cataloged commercial issue.",
+      "next": "Verify the broadcast date and map the score and broadcast separately.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -212,6 +220,7 @@
         "source": "https://music.apple.com/us/song/714064735"
       },
       "performanceNote": "The QV-8050 Canales compilation lists the performance in chapter 15. Credits on the linked commercial issue distinguish drums, percussion and keyboard programming.",
+      "next": "Inspect the exact printed pages. Compare the broadcast and commercial issue before assigning rhythm parts.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -236,6 +245,7 @@
         "source": "https://frontera.library.ucla.edu/recordings/juana-la-cubana-0"
       },
       "performanceNote": "The Gil disc is the dance-band reference. The available string setting is a separate arrangement.",
+      "next": "Find a period band chart or a permitted edition before preparing playable parts.",
       "rights": {
         "status": "reference-only",
         "scope": "Published catalog metadata and source links. Full score and firmware/MIDI distribution permissions remain unverified."
@@ -250,6 +260,7 @@
       "status": "published-score",
       "edition": "Fundación Nacional Batuta choral score",
       "source": "https://fundacionbatuta.org/wp-content/uploads/2024/10/La-pollera-colora-Score.pdf",
+      "next": "Use the [1962 manuscript evidence](https://fundacolora.org/fundacolora-org-documentos-historicos-la-pollera-colora/) for early notation. Confirm which edition to license.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -322,6 +333,7 @@
           "status": "Teaching excerpt only. Its 2–3 analysis applies to the printed phrase."
         }
       ],
+      "next": "Compare the Victor recording and Sher lead sheet separately before assigning live cues.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -354,6 +366,7 @@
           "status": "A mirrored 2014 index gives the title, Matamoros credit and shelfmark. Confirm the holding institution and edition independently."
         }
       ],
+      "next": "Locate the original score or manuscript. Compare Victor 81378-B with the distinct 1923 Cuarteto Cruz recording, FIU FI14103855_00001 / Victor 73883, before selecting a form.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -368,6 +381,7 @@
       "status": "published-score",
       "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
       "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "next": "Read the 1929 Havana form map, confirm the later return route, and transcribe the independent piano voices. The 1930 Kempton score offers a separate voice-and-piano route with a printed segno and coda.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -452,7 +466,8 @@
         "status": "us-public-domain-edition",
         "scope": "Fresh piano, vocal-guide and whistle notation transcription from the 1930 U.S. edition. The source scan and other recordings or editions are separate. Other territories remain open.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Set Builder offers a sparse bass-and-guide version and a printed-piano version with both hands and the switchable guide. The edition card also offers the printed whistle imitation separately and with the full piano and guide in MIDI."
     },
     {
       "id": "lagrimas-negras",
@@ -463,6 +478,7 @@
       "status": "published-score",
       "edition": "Sher Music Latin Real Book, C Edition, HL 00240138",
       "source": "https://www.halleonard.com/product/240138/the-latin-real-book",
+      "next": "Compare the Sher lead sheet with the early piano editions and the Freddie Fender recording. Verify the section order before assigning any live cues.",
       "historicScoreLeads": [
         {
           "edition": "Alfredo Brito setting, Southern Music Publishing Co., 1932",
@@ -554,6 +570,7 @@
         }
       ],
       "formMap": "lamento-borincano-brito-form.md",
+      "next": "Locate the notation deposited as EU25702 and compare it with the later Brito setting. The form map records Brito's repeat endings, F-major section and D.S. to coda.",
       "rights": {
         "status": "reference-only",
         "scope": "The ERIC scan reproduces the separately registered 1932 Brito arrangement under an educational reproduction permission. The 1930 composition deposit, 1932 arrangement and 1930 recording have distinct rights records.",
@@ -569,6 +586,7 @@
       "status": "published-score",
       "edition": "Musicnotes C-instrument lead sheet MN0173776",
       "source": "https://www.musicnotes.com/sheetmusic/consuelo-vel%C3%A1zquez/b%C3%A9same-mucho/MN0173776",
+      "next": "Melody and harmony are charted. Choose a recorded arrangement only if reproducing its form or accompaniment.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -659,7 +677,8 @@
         "status": "us-public-domain-edition",
         "scope": "Transcription of the notes in the 1918 published print for U.S. use. The archive scan, the 1977 arrangement, its recording and later editions are separate source objects.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Transcribe the earlier instrumental strains and complete the right-hand chord voicing of the sung passage. Resolve the separate alternate ending on page 3 before joining the whole print."
     },
     {
       "id": "pablo-pueblo",
@@ -677,6 +696,7 @@
         "source": "https://fania.com/es/record/metiendo-mano/"
       },
       "performanceNote": "Fania’s notes identify Tom Malone’s tuba in an instrumental interlude. Use that interlude as a separate form checkpoint when comparing the Sher score with this recording.",
+      "next": "Compare the Sher edition with the 1977 Fania album by bar. Map the narrative section, coro and interlude before preparing a solo-player cue map.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -741,7 +761,8 @@
         "status": "us-public-domain-edition",
         "scope": "1927 New York print and MIDI encoding of the published vocal line and both piano staves. Recording references are catalog links.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Rehearse the complete three-beat arrangement with a singer. Compare the Okeh performance by ear and map its own form separately."
     },
     {
       "id": "la-cucaracha",
@@ -796,7 +817,8 @@
         "status": "us-public-domain-edition",
         "scope": "1927 New York print and transcription of its vocal line and piano staves. The 1982 waltz recording is a separate reference.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Rehearse the printed arrangement with a singer and check the 112 BPM editorial starting tempo."
     },
     {
       "id": "juana-quilina",
@@ -843,7 +865,8 @@
       "rights": {
         "status": "cc-by-sa-3.0",
         "scope": "The MIDI and Compás score data adapt Cheposo’s engraving under CC BY-SA 3.0. The earlier prints remain research references."
-      }
+      },
+      "next": "Check Nolasco’s original p. 60 for both its melody and rhythmic staff. The playable slot uses the nine-bar melody fragment as printed in the licensed engraving."
     },
     {
       "id": "ecos-del-cibao",
@@ -854,6 +877,7 @@
       "status": "edition-lead",
       "edition": "Santiago de los Caballeros · La Cuna de América, Roques Román hermanos",
       "source": "https://archive.org/download/musicmusiciansof00coop/musicmusiciansof00coop.pdf#page=69",
+      "next": "Locate the 1918 imprint cited by Coopersmith (printed p. 57, note 301). Hernández recalled García using their shared collected theme in a 1919 rondó. Compare the actual source objects before connecting the versions.",
       "rights": {
         "status": "reference-only",
         "scope": "Printed bibliography verified. Notation and edition identity await the score."
@@ -885,7 +909,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The Academy catalogs a 16-page suite. Compás has a bibliographic record and an excerpt citation. Complete movement pages and a reuse basis for the composition and selected edition are pending."
-      }
+      },
+      "next": "Obtain and inspect the full movement from M-3054. Compare the written section changes with Thrall’s performance. Keep the master on a separate rights record."
     },
     {
       "id": "yo-me-encelere-garcia",
@@ -913,7 +938,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The thesis documents an excerpt and a performance. Compás still needs the full piano score, its exact edition and a reuse basis. The two comparative tambora cells are separate from the composition."
-      }
+      },
+      "next": "Identify the title-page and score source for Thrall’s performance. Trace the actual paseo, cuerpo and jaleo before proposing a stage arrangement."
     },
     {
       "id": "santiago-hernandez",
@@ -944,6 +970,7 @@
           "status": "Inspected one-page typescript attributed to Hernández. It describes the last of two merengues in the album without naming it. No notation or title-level form established."
         }
       ],
+      "next": "Locate the original title page, contents and music in Hernández’s 1927 Álbum Musical. Compare the piano setting with the separate Columbia performance. The p. 6 prose extract leaves the example unnamed.",
       "rights": {
         "status": "reference-only",
         "scope": "Archival disc and matrix confirmed. The complete piano edition and the recording date await verification."
@@ -1005,7 +1032,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The first-page photo identifies a score lead. The ensemble arrangement, early transcription and two recordings each need their own rights and edition check."
-      }
+      },
+      "next": "Get Arzeno’s original pp. 49–51 through BNPHU/723, AGN 00085523PI or the indexed facsimile, and get the museum score’s title, credit and remaining pages. Compare melody and bass phrasing before linking either setting to an AGN recording or a Compás rhythm."
     },
     {
       "id": "angelita-de-mi-vida",
@@ -1026,7 +1054,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Archive commentary and recording link. Composition, field recording and any item-level transcription require separate rights evidence."
-      }
+      },
+      "next": "Locate any item-level notation under the archive’s transcription credits. Inspect the written form and verify it against the recording before transcribing notes, percussion or cues."
     },
     {
       "id": "compadre-pedro-juan",
@@ -1054,6 +1083,7 @@
           "status": "Caption identifies an Alberti melody fragment reproduced from Por amor al arte. The extracted image description dates the manuscript 1936. The figure image has not been audited."
         }
       ],
+      "next": "Locate the piano, double bass and drums for each set using FIU control FISI000854_00001, Box 6 C2. Verify the administration and intended device rights for the chosen edition before using its music.",
       "recording": {
         "artist": "Grupo Victoria · Pedro Ortiz-Dávila",
         "label": "Victor 32965-1",
@@ -1091,7 +1121,8 @@
         "status": "reference-only",
         "scope": "The underlying Black Box composition, Proyecto Uno arrangement and each master require separate permission for score or audio redistribution.",
         "evidence": "https://www.qobuz.com/es-es/album/todo-el-mundo-proyecto-uno/nf094pi57stea"
-      }
+      },
+      "next": "Identify the exact issue and acquire an authorized score or MIDI before preparing a named song."
     },
     {
       "id": "el-tiburon-proyecto-uno",
@@ -1113,7 +1144,8 @@
         "status": "reference-only",
         "scope": "Recording, arrangement and any incorporated material require separate verification and permission for a playable transcription.",
         "evidence": "https://www.elespectador.com/cromos/famosos-y-vida-social/proyecto-uno-y-el-inesperado-suceso-que-cambio-la-historia-de-el-tiburon/"
-      }
+      },
+      "next": "Locate a publisher-authorized score or MIDI and bind it to the 1993 album performance."
     },
     {
       "id": "la-morena-ilegales",
@@ -1134,7 +1166,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Album metadata identifies this track separately from the remix on the same release. Composition, arrangement and recording permissions remain open."
-      }
+      },
+      "next": "Bind a listening analysis to track 1. Obtain an authorized score or MIDI before adding a named stage preset."
     },
     {
       "id": "fiesta-caliente-ilegales",
@@ -1162,7 +1195,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The label metadata separates the original and the Party Mix. Both are listening references. A playable song would require a verified arrangement and reuse basis."
-      }
+      },
+      "next": "Compare the two cuts separately. The producer and remix credits leave drum-machine models, samples and sequencing gear unidentified."
     },
     {
       "id": "el-diente-de-oro",
@@ -1188,6 +1222,7 @@
         "status": "reference-only",
         "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
       },
+      "next": "Match the exact performance to the chart and resolve playable arrangement rights before preparing a MIDI or score slot.",
       "recording": {
         "artist": "El Ciego de Nagua",
         "label": "Producciones Jose Luis JL-063",
@@ -1219,6 +1254,7 @@
         "status": "reference-only",
         "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
       },
+      "next": "Match the exact performance to the chart and resolve playable arrangement rights before preparing a MIDI or score slot.",
       "recording": {
         "artist": "Toño Abreu y su cuarteto",
         "label": "Alberti LA-1026",
@@ -1249,7 +1285,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Score reference and recording metadata. Arrangement and composition rights for playable export are open."
-      }
+      },
+      "next": "Match the exact performance to the chart and resolve playable arrangement rights before preparing a MIDI or score slot."
     },
     {
       "id": "merengue-del-soldado",
@@ -1264,7 +1301,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Archive catalog. The date, music and rights of this exact printed arrangement remain open."
-      }
+      },
+      "next": "Inspect the cover, piano, voice, bass and drums for signatura 516132. Compare the set with the later anthology transcription before treating any date or notation as shared."
     },
     {
       "id": "ojala-que-llueva-cafe",
@@ -1275,6 +1313,7 @@
       "status": "edition-lead",
       "edition": "Creciendo Cantando educational score",
       "source": "https://crecercantando.com/materiales/wp-content/uploads/2017/10/1718Ojala%CC%81-que-llueva-cafe%CC%81_G.pdf",
+      "next": "Edition lead only. Trace authorization and compare the chart with the 4.40 record before using it.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -1329,7 +1368,8 @@
         "status": "cc-by-4.0",
         "scope": "Applies to the Kemp quartet arrangement and its attributed Compás playback and MIDI transcriptions. Does not cover the archival recordings or different arrangements.",
         "evidence": "https://imslp.org/wiki/La_Adelita_(Folk_Songs,_Mexican)"
-      }
+      },
+      "next": "Review Compás playback with a performer. Inspect the Chávez piano edition and map the San Antonio polka separately."
     },
     {
       "id": "mi-cafetal",
@@ -1351,10 +1391,11 @@
         "status": "reference-only",
         "scope": "The library links to the pedagogical score and recorded versions. Composition and edition permission for a MIDI or board arrangement is open.",
         "evidence": "https://www.senalmemoria.co/articulos/crescencio-salcedo-y-el-ano-viejo"
-      }
+      },
+      "next": "Obtain a locally inspectable copy of the EAFIT score. Check the written repeats and compare the tune and arrangement of the Bego porro and Folkways cumbia."
     },
     {
-      "id": "la-bamba",
+        "id": "la-bamba",
       "title": "La Bamba",
       "credit": "Traditional; arrangement depends on version",
       "tradition": "Veracruz son jarocho / rock and Tejano crossover",
@@ -1362,6 +1403,7 @@
       "status": "published-score",
       "edition": "Veracruz son jarocho · listening and accompaniment sources",
       "source": "https://content.ucpress.edu/title/9780520285583/hess_ch6oag.pdf#page=22",
+      "next": "Inspect Luis Berber’s UNT piano score and the Currás manuscript. Treat commercial and broadcast arrangements as independent witnesses.",
       "rights": {
         "status": "reference-only",
         "scope": "The traditional title’s listening and score links are reference-only. The playable Compás accompaniment uses a harmonic cycle and original cue parts. Edition, arrangement and recording permissions remain separate."
@@ -1424,6 +1466,7 @@
       "status": "recording-lead",
       "edition": "RCA A Todo Rock album",
       "source": "https://music.apple.com/us/album/a-todo-rock-remasterizado/1650850353",
+      "next": "First locate publisher or band chart. RCA announced simultaneous U.S., Puerto Rico and Mexico release.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -1438,6 +1481,7 @@
       "status": "recording-lead",
       "edition": "Flans debut album",
       "source": "https://music.apple.com/us/album/flans/1443501998",
+      "next": "Use the Flans recording for the Mexican TV-era reference. Locate a chart for this version before transcribing.",
       "rights": {
         "status": "reference-only",
         "scope": "catalog metadata and source link; score and device distribution eligibility pending"
@@ -1481,7 +1525,8 @@
         "status": "us-public-domain-edition",
         "scope": "Notes of the 1895 U.S. published piano print. Later arrangements, sound recordings and scan use are separate.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Transcribe the following strains and Trio, then resolve the printed D.C. route through Fine. Compare Ayala’s distinct arrangement by ear."
     },
     {
       "id": "sobre-las-olas",
@@ -1535,7 +1580,8 @@
       "rights": {
         "status": "us-public-domain-edition",
         "scope": "The 1895 U.S. print and its new MIDI transcription. Ball State marks the archival item No Copyright – United States. The scan and recordings are not bundled. Other territories remain separate."
-      }
+      },
+      "next": "Continue through the following strain, the printed D.C. route and Waltz No. 2. Keep the string-band performance and Galveston print as separate versions."
     },
     {
       "id": "jesusita-en-chihuahua",
@@ -1590,6 +1636,7 @@
         "status": "reference-only",
         "scope": "Bennett’s transcription is available to inspect. No reuse grant for that arrangement or verified early print has been established."
       },
+      "next": "Inspect the Oaxaca parts or locate an early printed edition. Keep Bennett’s mariachi, the 1928 orquesta and Pedro Ayala’s conjunto arrangement separate.",
       "scan": {
         "sha256": "6e3760dd8cc654f8be75263a54437503ab07731647bf5cc4159daf2dfc96aff6",
         "location": "UNT Digital Library, 1002783563-Bennett",
@@ -1603,7 +1650,7 @@
       }
     },
     {
-      "id": "alla-en-el-rancho-grande",
+        "id": "alla-en-el-rancho-grande",
       "title": "Allá en el Rancho Grande",
       "credit": "Silvano R. Ramos; Emilio D. Uranga and J. D. del Moral in separate witnesses",
       "tradition": "Mexican canción ranchera · Texas-Mexican border repertoire",
@@ -1669,6 +1716,7 @@
         "scope": "The 1931 Moro melody and later Lomax and Marks witnesses are reference-only. The 1927 deposit and early prints remain uninspected, and the negative book-renewal searches do not establish rights in the exact notation.",
         "evidence": "https://archive.org/download/catalogofcopyrig223libr/page/828"
       },
+      "next": "Obtain Morgan 159383 or E 663020 and the Wagner pages. Check early notes and meter against Moro’s short measures and Lomax’s regularized ones. Treat the Jiménez Imperial side as a separate conjunto arrangement.",
       "performanceNote": "Moro’s voice line has an eighth-note pickup and a verse after the double bar. Two short measures carry a full 2/4 in the Lomax print. The Marks piano setting uses a separate introduction and D.S. to Fine route.",
       "relatedRecordings": [
         {
@@ -1750,7 +1798,8 @@
         "status": "cc-by-sa-4.0",
         "scope": "Applies to the Apke guitar edition and Compás score-data and MIDI adaptations. Other editions and recordings retain separate status.",
         "evidence": "https://creativecommons.org/licenses/by-sa/4.0/"
-      }
+      },
+      "next": "Compare the early Ponce and Martínez witnesses with this guitar edition and the distinct Texas recordings."
     },
     {
       "id": "me-estoy-enamorando",
@@ -1770,7 +1819,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Published retail score route. A print purchase gives a playing copy. Compás MIDI and firmware inclusion need separate permission."
-      }
+      },
+      "next": "Compare the retail piano reduction with the album arrangement and verify a digital reuse grant before exporting notes."
     },
     {
       "id": "nuestra-cancion-la-mafia",
@@ -1800,7 +1850,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "Separate recordings and arrangements. A verified La Mafia score and permission for a playable edition remain open."
-      }
+      },
+      "next": "Resolve the conflicting digital songwriter credits against liner notes and publisher records. Identify the chart for the Tejano arrangement separately from the merengue."
     },
     {
       "id": "jurame",
@@ -1852,7 +1903,8 @@
         "status": "us-public-domain-edition",
         "scope": "Music from the identified 1926 U.S. print. Lyrics, later arrangements and recordings are separate.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Transcribe the full piano staves and document the dynamic and rubato markings. Keep the Mojica recording separate from the printed route. Keep the Mojica performance separate from the score."
     },
     {
       "id": "madrigal-galaz",
@@ -1866,7 +1918,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The anthology credits Pedro Carlos Herrera López for score preparation and adaptation. The underlying witness and its date remain unverified."
-      }
+      },
+      "next": "Locate the source used by the Baqueiro Fóster center and inspect a dated early print or manuscript."
     },
     {
       "id": "morena-mia-villarreal",
@@ -1897,7 +1950,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The original imprint and complete score await inspection. The Victor side is a separate witness."
-      }
+      },
+      "next": "Inspect the underlying print and compare the 1926 side with the separately reported 1924 take."
     },
     {
       "id": "nunca-guty",
@@ -1911,7 +1965,8 @@
       "rights": {
         "status": "reference-only",
         "scope": "The dated catalogue record identifies the print. The score pages are unavailable in that record."
-      }
+      },
+      "next": "Inspect the three-page copy. Ernesto Paredes’s bolero to the same words is a separate setting."
     },
     {
       "id": "tristeza-pepe-sanchez",
@@ -1958,6 +2013,7 @@
         "date": "ca. 1907 per FIU; 1908–09 in the Columbia matrix discography",
         "source": "https://frontera.library.ucla.edu/recordings/un-beso"
       },
+      "next": "Find a complete identified print or a dated manuscript and compare its form with the early record.",
       "status": "score-located",
       "rights": {
         "status": "reference-only",
@@ -1973,6 +2029,7 @@
       "edition": "INBAL Archivo Lavalle–Kuri, Josefina Lavalle Collection",
       "source": "https://dblavallekuri.inba.gob.mx/xmlui/handle/123456789/8/browse?etal=-1&offset=69&order=ASC&rpp=20&sort_by=1&type=title",
       "performanceNote": "The Bolero Trova rehearsal uses two documented rhythm cells in an original accompaniment.",
+      "next": "Compare the INBAL score with the edition attributed by Linares to Anselmo López.",
       "status": "score-located",
       "rights": {
         "status": "reference-only",
@@ -1994,6 +2051,7 @@
           "status": "Separately catalogued English edition. Mississippi State supplies its own use terms."
         }
       ],
+      "next": "Find the title and copyright pages of the Spanish-language witness and compare the two editions.",
       "status": "score-located",
       "rights": {
         "status": "reference-only",
@@ -2014,6 +2072,7 @@
         "date": "1921-11-22",
         "source": "https://frontera.library.ucla.edu/recordings/si-llego-besarte-dame-un-beso-0"
       },
+      "next": "Inspect the edition and compare its rhythm and form with the separately catalogued instrumental side.",
       "status": "score-located",
       "rights": {
         "status": "reference-only",
@@ -2034,6 +2093,7 @@
         "date": "1930",
         "source": "https://dpanther.fiu.edu/record/8971"
       },
+      "next": "Locate an identifiable early Spanish-language print and compare it with the 1930 recorded witness.",
       "status": "score-located",
       "rights": {
         "status": "reference-only",
@@ -2097,7 +2157,8 @@
         "status": "us-public-domain-edition",
         "scope": "Notes of the 1929 U.S. published Feist print. The library scan and later recordings remain separate. No lyrics are embedded.",
         "evidence": "https://www.copyright.gov/circs/circ15a.pdf"
-      }
+      },
+      "next": "Compare the separate Havana edition and Mexican bolero recording. The Feist guide follows the lower printed line at the optional ad lib."
     },
     {
       "id": "cumbia-de-barranquilla-murillo",
@@ -2108,6 +2169,7 @@
       "status": "score-located",
       "edition": "Biblioteca Nacional de Colombia 165058 · two pages for voice and piano",
       "source": "https://www.iberoamericadigital.net/BDPI/Search.do?numfields=1&field1=control&field1val=005-165058&field1Op=AND&text=&advanced=true",
+      "next": "Obtain and inspect the exact scan. The same city name appears on a traditional percussion chart, which is a separate source.",
       "rights": {
         "status": "reference-only",
         "scope": "The education catalog labels the resource CC BY-NC-SA. The scan was inaccessible and the exact licence and publication history remain unverified.",
@@ -2130,6 +2192,7 @@
           36
         ]
       },
+      "next": "The exact early melody chart was inspected. Establish the scope for playable use. The 1951 vocal and accordion account and Guillot’s later arrangement on p. 38 remain separate.",
       "rights": {
         "status": "reference-only",
         "scope": "No named-song chart, modern arrangement or recording is included. Composition and edition permissions remain open."

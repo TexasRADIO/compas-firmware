@@ -28,7 +28,7 @@ test('regional project and routing preserve pitched bass, scraper and saved edit
     }});
     const payload=preparedPayload({format:1,songs:[{title:s.short,study:id,feel:0,root:7,kit:true,section:'break',levels:[89,72,68,61,55,80]}]},studies);
     assert.equal(payload[19+6],i);
-    assert.equal(payload[19+45],7);
-    assert.equal(payload[81],2);
+    assert.equal(payload[19+57],7);
+    assert.equal(payload[84],5); // kit bit plus the packed BREAK section
   }
 });

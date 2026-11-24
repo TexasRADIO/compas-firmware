@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"CUMBIA ELÉCTRICA","study":"mx","feel":0,"kit":true},
+    {"title":"CARIMBO MARAPANIM","study":"carimbo-marapanim","feel":0,"kit":false,"section":"base"},
+    {"title":"BELEM TECNOBREGA","study":"tecnobrega-belem","feel":0,"kit":false,"section":"base"},
+    {"title":"PARA LAMBADA","study":"lambada-para","feel":0,"kit":false,"section":"base"},
+    {"title":"PARA GUITARRADA","study":"guitarrada-para","feel":0,"kit":false,"section":"base"},
+    {"title":"NORTE CELL 98","study":"peru-norte-motor-study","feel":0,"kit":true,"section":"base","levels":[78,60,68,76,62,76]},
+    {"title":"NORTE CUMBION","study":"peru-norte-cumbion-study","feel":0,"kit":true,"section":"base","levels":[78,62,67,76,65,76]},
+    {"title":"CHILENA 6/8","study":"chilena-costa-chica-study","feel":0,"kit":false,"section":"base","levels":[0,68,24,30,0,76]}
+  ]
+}

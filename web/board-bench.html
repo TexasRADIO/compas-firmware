@@ -72,7 +72,7 @@ details{border-top:1px solid #6b5c7a;margin-top:16px;padding-top:12px}summary{cu
 <div class="board-controls">
 <p>Current set · <strong id="set-name">Factory set</strong></p>
 <label class="set-picker">Rehearsal sets <select id="rehearsal-set"><option value="">Choose a set…</option></select></label>
-<label id="open-set-control">Open set or show <input id="open-set" type="file" accept=".json,.cpshow,application/json"></label>
+<label id="open-set-control">Open set or show <input id="open-set" type="file" accept=".json,.cpshow,.txt,application/json,text/plain"></label>
 <details id="running-order"><summary>Cue songs · Running order</summary>
 <p>Tap a song to cue it at the phrase boundary. Tap NOW to clear a cue.</p>
 <ol id="song-cues" aria-label="Songs in this show"></ol>
@@ -82,7 +82,8 @@ details{border-top:1px solid #6b5c7a;margin-top:16px;padding-top:12px}summary{cu
 </div>
 </main>
 
-<details><summary>Sets, saved shows and playing notes</summary><p><button id="save-show">Save show</button></p>
+<details><summary>Sets, saved shows and playing notes</summary><p><button id="save-show">Save show</button> <button id="save-show-text" type="button">Save show as text</button></p>
+<p>Save show as text writes the same show as readable compas-song/1 text (every groove as rows of x and dots) that you or a coding agent can edit. Open it with Open set or show.</p>
 <p>GLO → SAVE keeps a rhythm with a slot. Save show preserves your slots and current edits. Reopening starts at the first slot.</p>
 <fieldset><legend>Reorder a saved show</legend>
 <label>Choose a show <input id="order-show" type="file" accept=".cpshow,application/json"></label>

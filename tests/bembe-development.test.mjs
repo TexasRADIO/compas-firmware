@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {preparedPayload} from '../web/set-payload.mjs';
+const read=p=>JSON.parse(readFileSync(new URL(p,import.meta.url)));
+const studies=read('../src/score.json').studies,ledger=read('../repertoire/bembe-source-ledger.json');
+const s=studies.find(s=>s.id===ledger.study),r=ledger.sourceRhythm;
+const events=t=>t.split(/\s+/).filter(Boolean).map(x=>Number(x.match(/^\d+/)[0]));
+const twoBars=values=>[...values.map(n=>n*2),...values.map(n=>n*2+24)];
+test('12/8 artist study retains the visually read bell and both block cells through step 46',()=>{
+  assert.deepEqual(s.meter,[12,8]);assert.equal(s.feel,0);assert.equal(s.bpm,96);
+  assert.deepEqual(twoBars(r.bellEighths),r.bellSteps);
+  assert.deepEqual(events(s.parts[1][2]),r.bellSteps);
+  assert.deepEqual(r.bellEighths.map((n,i,a)=>(a[(i+1)%a.length]+12-n)%12),r.bellCyclicIntervals);
+  assert.deepEqual(events(s.parts[2][2]),twoBars(r.baseBlockEighths));
+  assert.deepEqual([...events(s.parts[2][2]),...events(s.parts[2][3])].sort((a,b)=>a-b),twoBars(r.liftBlockEighths));
+  assert.equal(Math.max(...events(s.parts[1][2])),46);
+  assert.equal(8*60/s.bpm,ledger.authored.phraseSeconds);
+  assert.equal(s.bpm*1.5,ledger.authored.midiQuarterBpm);
+  for(const role of [0,3,4,5])assert.ok(s.parts[role].slice(2).every(x=>x===''),'no invented backing added to a two-hand source');
+  assert.deepEqual(s.break,['Bell']);assert.equal(s.board.assignMask,0);
+});
+test('12/8 addition keeps the frozen 37-study data unchanged and uses an ordinary portable set',()=>{
+  const rows=studies.filter(x=>!x.testOnly);assert.equal(rows.length,38);assert.equal(rows[37].id,s.id);
+  assert.equal(createHash('sha256').update(JSON.stringify(rows.slice(0,37))).digest('hex'),'4bfdcaffbbb4f4bd60c529aad58462f66b6f6961585f82dc33efeef8f6d7af17');
+  const song=read('../repertoire/bembe-development-set.json').songs[0],payload=preparedPayload({format:1,songs:[song]},studies);
+  assert.equal(payload[25],37);assert.deepEqual([...payload.slice(34,40)],ledger.authored.levels);
+  assert.equal(song.kit,false);assert.ok(studies.slice(38).every(x=>x.testOnly));
+});

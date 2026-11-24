@@ -54,7 +54,7 @@ int provision_check(const uint8_t original[PROVISION_BYTES],const uint8_t payloa
         crc^=i<4?(i==0?1:0):payload[i-4];
         for(unsigned b=0;b<8;++b)crc=(crc>>1)^((crc&1)?0xedb88320u:0);
     }
-    word(header,0x32535043);word(header+4,1);word(header+8,~crc);
+    word(header,0x34535043);word(header+4,1);word(header+8,~crc);
     if(provision_read(PROVISION_BASE,observed,sizeof observed))return -3;
     return classify(original,payload);
 }

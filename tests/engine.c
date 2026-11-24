@@ -1,10 +1,21 @@
 #include "engine.h"
+#include "score-test.inc"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 
 #define CMD(cmd,a,b) assert(cp_command(CP_##cmd,a,b)==CP_OK)
 #define S(k) cp_status(CP_##k)
+static void put32(uint8_t *bytes,unsigned at,uint32_t value)
+{ for(unsigned i=0;i<4;i++) bytes[at+i]=(uint8_t)(value>>(8u*i)); }
+static uint32_t crc32(const uint8_t *bytes,unsigned count)
+{
+    uint32_t crc=~0u;
+    for(unsigned i=0;i<count;i++) {
+        crc^=bytes[i]; for(unsigned bit=0;bit<8;bit++) crc=(crc>>1)^((crc&1u)?0xedb88320u:0u);
+    }
+    return ~crc;
+}
 static void until(unsigned phrase,unsigned step) {
     for(unsigned i=0;i<4800 && (S(PHRASE)!=phrase || S(POSITION)!=step);i++) assert(cp_render(128)==CP_OK);
     assert(S(PHRASE)==phrase && S(POSITION)==step);
@@ -19,6 +30,27 @@ static void timing(void) {
         assert(S(POSITION)==sixteenth%16 && S(PHRASE)==sixteenth/16);
     }
     assert(cp_render(257)==CP_RANGE);
+}
+static void compound_timing(unsigned id,unsigned steps) {
+    assert(cp_init(48000)==CP_OK);
+    CMD(STUDY,id,0); CMD(BPM,72,0); CMD(START,0,0);
+    for(unsigned n=0;n<720000;n++) {
+        assert(cp_render(1)==CP_OK);
+        unsigned sixteenth=(unsigned)((uint64_t)n*72*6/(48000*60));
+        assert(S(POSITION)==sixteenth%steps && S(PHRASE)==sixteenth/steps);
+    }
+    CMD(STOP,0,0); CMD(STUDY,id,0); CMD(START,0,0);
+    until(0,steps-5); CMD(FILL,0,0);
+    until(0,steps-4); assert(S(FILL_STATE)==2);
+    until(1,0); assert(S(FILL_STATE)==0);
+}
+static void compound(void) {
+    compound_timing(CP_TEST_STUDY_COMPOUND_6_8_ENGINE_FIXTURE,24);
+    compound_timing(CP_TEST_STUDY_COMPOUND_6_8_HEMIOLA_ENGINE_FIXTURE,24);
+    assert(cp_init(44100)==CP_OK); CMD(STUDY,CP_TEST_STUDY_COMPOUND_12_8_ENGINE_FIXTURE,0);
+    assert(S(STEP_COUNT)==48 && cp_step(0,47)==0);
+    CMD(STEP,0,47); assert(cp_step(0,47)==1);
+    compound_timing(CP_TEST_STUDY_COMPOUND_12_8_ENGINE_FIXTURE,48);
 }
 static void performance(void) {
     assert(cp_init(44100)==CP_OK);
@@ -74,10 +106,19 @@ static void project(void) {
     memcpy(cp_blob(),bytes,sizeof bytes);
     assert(cp_restore(sizeof bytes)==CP_OK && S(STUDY_ID)==3 && cp_step(5,7)==16 && cp_level(3)==43 && S(ROOT_NOTE)==11);
     cp_snapshot(); assert(memcmp(cp_blob(),bytes,sizeof bytes)==0);
+    uint8_t legacy[CP_PROJECT_V1_BYTES]={0};
+    memcpy(legacy,bytes,21); legacy[4]=1;
+    for(unsigned role=0;role<CP_ROLES;role++)
+        memcpy(legacy+21+4*role,bytes+21+6*role,4);
+    legacy[45]=bytes[57];
+    put32(legacy,CP_PROJECT_V1_BYTES-4,crc32(legacy,CP_PROJECT_V1_BYTES-4));
+    CMD(STUDY,1,0); memcpy(cp_blob(),legacy,sizeof legacy);
+    assert(cp_restore(sizeof legacy)==CP_OK && S(STUDY_ID)==3 && cp_step(5,7)==16 && S(ROOT_NOTE)==11);
+    assert(cp_snapshot()==CP_PROJECT_BYTES && cp_blob()[4]==2);
     CMD(START,0,0); assert(cp_command(CP_ROOT,0,0)==CP_STOP_FIRST); assert(cp_restore(sizeof bytes)==CP_STOP_FIRST);
     int16_t audio[1024];
     for(unsigned i=0;i<4;i++){cp_render(256);memcpy(audio+256*i,cp_pcm(),512);}
     CMD(STOP,0,0); CMD(START,0,0);
     for(unsigned i=0;i<1024;i+=128){cp_render(128);assert(!memcmp(audio+i,cp_pcm(),256));}
 }
-int main(void){timing();performance();project();puts("native: rational clock, phase and backpressure, mute/solo, project and deterministic PCM pass");}
+int main(void){timing();compound();performance();project();puts("native: straight and compound clocks, phase and backpressure, mute/solo, project and deterministic PCM pass");}

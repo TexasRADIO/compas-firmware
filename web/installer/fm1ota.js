@@ -94,12 +94,7 @@ class Link {
     }
     return this.q.shift() || null;
   }
-  close() {
-    this.input.onmidimessage = null;
-    for (const port of [this.input, this.output]) {
-      try { Promise.resolve(port.close?.()).catch(() => {}); } catch (_) {}
-    }
-  }
+  close() { this.input.onmidimessage = null; }
 }
 
 async function ask(link, query, ms) {
@@ -180,27 +175,6 @@ export class Updater {
     return null;
   }
 
-  // Read-only retry after a completed write. A startup timeout is not a
-  // failed transfer and must never cause an automatic second flash.
-  async verifyRestart(product, step = () => {}, waitMs = 60000) {
-    const model = product.split("_")[0];
-    const back = await this.waitFor((id) => !IS_OTA(id) && id.model === model, waitMs);
-    if (!back) {
-      const error = fail("written-unverified", "Firmware transfer completed. The FM-1 has not answered the startup check yet. Keep USB connected and check the connection again; do not reinstall automatically.");
-      error.transferComplete = true;
-      error.expectedIdentity = product;
-      throw error;
-    }
-    back.link.close();
-    if (back.id.text !== product) {
-      const error = fail("mismatch", `Written, but the FM-1 reports ${back.id.text} (expected ${product}).`, back.id.text);
-      error.transferComplete = true;
-      throw error;
-    }
-    step("done", back.id.text);
-    return back.id.text;
-  }
-
   // serve read requests until the device asks for one of the finish addresses; stops early
   // when the port disappears (lost: true) instead of waiting out idleMs
   async serve(link, image, finishAddr, idleMs, onProgress) {
@@ -265,7 +239,12 @@ export class Updater {
     if (!s2.finished) throw fail(s2.lost ? "lost" : "stopped", `the loader ${s2.lost ? "was disconnected" : "stopped"} after ${s2.served} requests. Replug and press Install again to resume.`);
     step("reboot");
     await sleep(3000);
-    return this.verifyRestart(product, step);
+    const back = await this.waitFor((id) => id.model === model, 40000);
+    if (!back) throw fail("noreturn", "the device did not come back: power-cycle it");
+    back.link.close();
+    if (back.id.text !== product) throw fail("mismatch", `installed, but the device reports ${back.id.text}`, back.id.text);
+    step("done", back.id.text);
+    return back.id.text;
   }
 
   // step 2 with the loader found by find()/waitFor()
@@ -289,7 +268,11 @@ export class Updater {
     if (product) {
       step("reboot");
       await sleep(3000);
-      await this.verifyRestart(product, step);
+      const back = await this.waitFor((id) => id.model === model, 40000);
+      if (!back) throw fail("noreturn", "The FM-1 did not return after resuming the write.");
+      back.link.close();
+      if (back.id.text !== product) throw fail("mismatch", "The FM-1 reports a different firmware after resuming.", back.id.text);
+      step("done", back.id.text);
     }
     return true;
   }

@@ -1,8 +1,14 @@
 #include "store.h"
 
-enum { SONG_MAGIC=0x31535043, SHOW_MAGIC=0x32535043, NO_COPY=2 };
+/* CPS1–CPS3 are import-only layouts: CPS1 was a set without attachments,
+ * CPS2 a v1 show and CPS3 its Kumbia variant.  A 48-step project makes the
+ * song record one byte larger, so new commits use a distinct envelope. */
+enum { SONG_V1_MAGIC=0x31535043, SHOW_V1_MAGIC=0x32535043,
+       KIT_V1_MAGIC=0x33535043, SHOW_MAGIC=0x34535043, NO_COPY=2,
+       STORE_SHOW_V1_BYTES=BOARD_SET_V1_BYTES+BOARD_RHYTHM_SLOTS_BYTES };
 #ifdef COMPAS_HANAN
-enum { KIT_MAGIC=0x33535043, RECORD_MAGIC=KIT_MAGIC, RECORD_BYTES=STORE_SHOW_BYTES+KUMBIA_SETTINGS };
+enum { KIT_V2_MAGIC=0x35535043, KIT_MAGIC=0x36535043, RECORD_MAGIC=KIT_MAGIC,
+       RECORD_BYTES=STORE_SHOW_BYTES+KUMBIA_SETTINGS+1 };
 #else
 enum { RECORD_MAGIC=SHOW_MAGIC, RECORD_BYTES=STORE_SHOW_BYTES };
 #endif
@@ -29,9 +35,16 @@ static unsigned record_size(const Record *record)
 {
 #ifdef COMPAS_HANAN
     if(record->magic==KIT_MAGIC) return RECORD_BYTES;
+    if(record->magic==KIT_V2_MAGIC) return STORE_SHOW_BYTES+KUMBIA_SETTINGS;
+    if(record->magic==KIT_V1_MAGIC) return STORE_SHOW_V1_BYTES+KUMBIA_SETTINGS;
 #endif
-    return record->magic==SHOW_MAGIC ? STORE_SHOW_BYTES : record->magic==SONG_MAGIC ? BOARD_SET_BYTES : 0;
+    return record->magic==SHOW_MAGIC ? STORE_SHOW_BYTES :
+           record->magic==SHOW_V1_MAGIC ? STORE_SHOW_V1_BYTES :
+           record->magic==SONG_V1_MAGIC ? BOARD_SET_V1_BYTES : 0;
 }
+
+static unsigned legacy_record(const Record *record)
+{ return record->magic==SONG_V1_MAGIC || record->magic==SHOW_V1_MAGIC || record->magic==KIT_V1_MAGIC; }
 
 void store_boot(void)
 {
@@ -52,11 +65,16 @@ void store_boot(void)
         const Record *record=&records[copy];
         if(!size || store_read(address(copy)+STORE_PAGE,payload,size) ||
            checksum(record->generation,size)!=record->crc) continue;
+        unsigned legacy=legacy_record(record),set_bytes=legacy?BOARD_SET_V1_BYTES:BOARD_SET_BYTES;
         board_init();
-        if(!board_store_load(payload)) continue;
-        if(size>=STORE_SHOW_BYTES && board_rhythm_slots_load(payload+BOARD_SET_BYTES,BOARD_RHYTHM_SLOTS_BYTES)) continue;
+        if(legacy ? !board_store_load_v1(payload) : !board_store_load(payload)) continue;
+        if(size>=set_bytes+BOARD_RHYTHM_SLOTS_BYTES &&
+           board_rhythm_slots_load(payload+set_bytes,BOARD_RHYTHM_SLOTS_BYTES)) continue;
 #ifdef COMPAS_HANAN
-        if(record->magic==KIT_MAGIC && !board_kumbia_restore(payload+STORE_SHOW_BYTES)) continue;
+        if((record->magic==KIT_MAGIC || record->magic==KIT_V2_MAGIC) &&
+           !board_kumbia_restore(payload+STORE_SHOW_BYTES)) continue;
+        if(record->magic==KIT_MAGIC && !board_kumbia_level_set(payload[STORE_SHOW_BYTES+KUMBIA_SETTINGS])) continue;
+        if(record->magic==KIT_V1_MAGIC && !board_kumbia_restore(payload+STORE_SHOW_V1_BYTES)) continue;
 #endif
         current=copy;generation=record->generation;
         return;
@@ -73,6 +91,7 @@ unsigned store_commit(void)
        board_rhythm_slots_export(payload+BOARD_SET_BYTES,BOARD_RHYTHM_SLOTS_BYTES)) return BOARD_SESSION;
 #ifdef COMPAS_HANAN
     board_kumbia_export(payload+STORE_SHOW_BYTES);
+    payload[STORE_SHOW_BYTES+KUMBIA_SETTINGS]=(uint8_t)board_kumbia_level();
 #endif
     unsigned copy=current==0 ? 1u : 0u;
     unsigned base=address(copy);

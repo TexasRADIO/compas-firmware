@@ -233,9 +233,9 @@ def boot_installed(work, name, emulator, installed, pack, fixture_key, xip, boar
                  (board_build/'compas-store.sections').read_text().splitlines()
                  if row.split() and re.fullmatch(r'[0-9a-f]{8}',row.split()[0])}
         memory=ram.read_bytes()
-        require(memory[symbols['captures']:symbols['captures']+1360]==payload[:1360],
+        require(memory[symbols['captures']:symbols['captures']+1376]==payload[:1376],
                 "Installed storage app did not recover saved song rows")
-        require(memory[symbols['rhythm_slots']:symbols['rhythm_slots']+2416]==payload[1360:],
+        require(memory[symbols['rhythm_slots']:symbols['rhythm_slots']+2416]==payload[1376:],
                 "Installed storage app did not recover rhythm/performance rows")
         metrics['recoveredShowGeneration']=generation
         metrics['recoveredShowPayloadSHA256']=digest(payload)

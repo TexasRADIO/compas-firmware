@@ -1,4 +1,5 @@
-// Exact exported lane masks and listening reel from the board WASM.
+import {dacScale} from '../web/dac-format.mjs';
+// Exact exported lane masks and private listening reel from the board WASM.
 import {readFile,writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
@@ -41,7 +42,7 @@ for(const [n,masks] of expected.entries()) {
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
     for(let i=0;i<Math.min(128,frames-offset);i++) {
       assert.equal(pcm[2*i],pcm[2*i+1]);
-      const value=pcm[2*i]/128;assert(value>-32768&&value<32767);
+      const value=pcm[2*i]/dacScale(b);assert(value>-32768&&value<32767);
       peak=Math.max(peak,Math.abs(value));sum+=value*value;samples.push(value);
     }
   }

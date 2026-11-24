@@ -28,13 +28,16 @@ void cp_bass_set(unsigned style, unsigned cut, unsigned bite)
 }
 #endif
 enum { NO_SECTION=3, NO_SOLO=6, NO_HIT=0xffff };
-typedef struct { uint8_t sound, base[32], lift[32], fill[32]; } Part;
-typedef struct { uint8_t steps, bpm, break_mask; Part part[CP_ROLES]; } Study;
+typedef struct {
+    uint8_t steps, bpm, break_mask, phrase_pulses, steps_per_pulse;
+    uint8_t sound[CP_ROLES];
+    uint8_t rows[CP_ROLES*3]; /* pooled pattern rows; 0 is silence */
+} Study;
 #include "score.inc"
 enum { STUDIES=sizeof library / sizeof *library };
 
 typedef struct {
-    uint32_t toggle[CP_ROLES], seed;
+    uint64_t toggle[CP_ROLES]; uint32_t seed;
     uint8_t study, bpm, feel, muted, reverse, root, level[CP_ROLES];
 } Project;
 
@@ -65,6 +68,16 @@ void cp_board_section(unsigned section) { s.section=(uint8_t)section; s.pending=
 #endif
 
 static const Study *study(void) { return &library[s.p.study]; }
+uint32_t cp_quarter_bpm(uint32_t bpm) { return (bpm*study()->steps_per_pulse+2u)/4u; }
+static uint8_t study_event(const Study *st,unsigned role,unsigned variant,unsigned step)
+{
+    unsigned id=st->rows[role*3u+variant], count=0;
+    if(!id) return 0;
+    const uint8_t *row=study_rows+study_row_at[id-1u];
+    if(!((row[step>>3]>>(step&7u))&1u)) return 0;
+    for(unsigned i=0;i<step;++i) count+=(row[i>>3]>>(i&7u))&1u;
+    return row[((st->steps+7u)>>3)+count];
+}
 #ifdef COMPAS_BOARD
 void cp_board_start_count(void) { s.lead_steps=study()->steps/2u; }
 unsigned cp_board_counting(void) { return s.lead_steps!=0; }
@@ -83,13 +96,13 @@ static uint8_t available(void) {
     if(board_drums_only()) return 0;
 #endif
     uint8_t mask=0;
-    for (uint32_t i=0;i<CP_ROLES;i++) if (study()->part[i].sound && s.p.level[i]) mask |= 1u<<i;
+    for (uint32_t i=0;i<CP_ROLES;i++) if (study()->sound[i] && s.p.level[i]) mask |= 1u<<i;
     return mask & (uint8_t)~s.p.muted & (s.solo==NO_SOLO ? 63u : (1u<<s.solo));
 }
 static void clear_voice(uint32_t i) {
 #ifdef COMPAS_BOARD
     board_clear727(i);
-    if(study()->part[i].sound==BASS) {
+    if(study()->sound[i]==BASS) {
         bass.target=0;
         bass.low=bass.band=0;
         bass.last_step=0;
@@ -119,14 +132,14 @@ uint32_t cp_init(uint32_t rate) {
     defaults(0); return CP_OK;
 }
 static uint8_t base_event(uint32_t r, uint32_t step, uint32_t section) {
-    const Part *p=&study()->part[r];
-    if(!p->sound || (section==BREAK && !(study()->break_mask&(1u<<r)))) return 0;
-    uint8_t value=p->base[step];
-    if (s.p.toggle[r] & (1u<<step)) value=value ? 0 : (p->sound==BASS ? 16 : 1);
-    if(section==LIFT && p->lift[step]) return p->lift[step];
+    const Study *st=study();
+    if(!st->sound[r] || (section==BREAK && !(st->break_mask&(1u<<r)))) return 0;
+    uint8_t value=study_event(st,r,BASE,step);
+    if (s.p.toggle[r] & (UINT64_C(1)<<step)) value=value ? 0 : (st->sound[r]==BASS ? 16 : 1);
+    if(section==LIFT && study_event(st,r,LIFT,step)) return study_event(st,r,LIFT,step);
     return value;
 }
-static uint32_t source_step(uint32_t step) { return s.p.reverse ? (step+16u)%32u : step; }
+static uint32_t source_step(uint32_t step) { return s.p.reverse ? (step+study()->steps/2u)%study()->steps : step; }
 uint32_t cp_step(uint32_t role, uint32_t step) {
     if(role>=CP_ROLES || step>=study()->steps) return 0;
     return base_event(role,source_step(step),BASE);
@@ -151,7 +164,7 @@ static uint32_t inc(uint32_t hz10) {
 }
 static void strike(uint32_t r, uint32_t event, uint32_t variation, uint32_t velocity) {
     Voice *v=&s.voice[r];
-    uint32_t type=study()->part[r].sound;
+    uint32_t type=study()->sound[r];
     const Tone *t=&tones[type];
     uint32_t vel=event==2 ? 115u : 83u;
     if(type==BASS) vel=100u;
@@ -221,17 +234,16 @@ static void on_step(void) {
 #endif
     for(uint32_t r=0;r<CP_ROLES;r++) {
         if (!(mask&(1u<<r))) continue;
-        const Part *p=&st->part[r];
         uint8_t hit=base_event(r,source_step(s.pos),section);
         /* In salsa the bell takes over from the shell at Lift. */
         if(s.p.study==2 && r==2 && section==LIFT) hit=0;
-        if(s.fill==2 && p->fill[s.pos]) hit=p->fill[s.pos];
+        if(s.fill==2 && study_event(st,r,BREAK,s.pos)) hit=study_event(st,r,BREAK,s.pos);
         if(!hit) continue;
 #ifdef COMPAS_HANAN
         kumbia_accent|=hit==2;
 #endif
         uint32_t variation=hash(s.p.seed ^ (s.phrase*0x9e3779b9u) ^ (r<<8) ^ s.pos);
-        uint32_t dt=tones[p->sound].human_delay;
+        uint32_t dt=tones[st->sound[r]].human_delay;
         if(dt) dt=dt*(variation%4u)*s.p.feel/300u;
         s.voice[r].next=hit;
         s.voice[r].delay=(uint16_t)(dt*s.sr*60u/(s.p.bpm*96u));
@@ -276,20 +288,20 @@ uint32_t cp_command(uint32_t cmd, uint32_t a, uint32_t b) {
         s.fill=1; s.fill_phrase=s.phrase+(s.pos>=study()->steps-4u); return CP_OK;
     case CP_MUTE: case CP_SOLO: case CP_LEVEL: case CP_HIT: case CP_STEP:
         if(a>=CP_ROLES) return CP_RANGE;
-        if(!study()->part[a].sound) return CP_NO_ROLE;
+        if(!study()->sound[a]) return CP_NO_ROLE;
         if(cmd==CP_MUTE) s.p.muted ^= 1u<<a;
         if(cmd==CP_SOLO) s.solo=s.solo==a ? NO_SOLO : (uint8_t)a;
         if(cmd==CP_LEVEL) { if(b>100) return CP_RANGE; s.p.level[a]=(uint8_t)b; }
         if(cmd==CP_STEP) {
             if(b>=study()->steps) return CP_RANGE;
             if((s.p.study==2 || s.p.study==6) && a==0) return CP_RANGE; /* timeline is part of this study */
-            s.p.toggle[a]^=1u<<source_step(b);
+            s.p.toggle[a]^=UINT64_C(1)<<source_step(b);
         }
         if(cmd==CP_HIT) {
             if(!s.playing) return CP_STOPPED;
             if(!(available()&(1u<<a))) return CP_NO_ROLE;
             if(b>127) return CP_RANGE;
-            strike(a,study()->part[a].sound==BASS ? 16u : 1u,
+            strike(a,study()->sound[a]==BASS ? 16u : 1u,
                    hash(s.p.seed^s.phrase^s.phase^(a<<8)), b ? b : 100);
         }
         for(uint32_t i=0;i<CP_ROLES;i++) if(!(available()&(1u<<i))) clear_voice(i);
@@ -394,6 +406,11 @@ static int32_t sample(Voice *v) {
     v->env-=v->decay + (v->env>>10);
     return (signal*envelope)/32768;
 }
+#ifdef COMPAS_COMPOUND_TEST
+static uint32_t compound_rendered_frames;
+volatile uint32_t compas_compound_phrase_frame;
+volatile uint32_t compas_compound_click_mask;
+#endif
 uint32_t cp_render(uint32_t count) {
     if(count>CP_MAX_BLOCK || !s.sr) return CP_RANGE;
     uint32_t f=0;
@@ -413,7 +430,12 @@ uint32_t cp_render(uint32_t count) {
                     break;
                 }
             }
-            if(!(s.pos&3u)) s.lead_click=96;
+            if(s.pos%study()->steps_per_pulse==0) {
+                s.lead_click=96;
+#ifdef COMPAS_COMPOUND_TEST
+                compas_compound_click_mask|=1u<<s.pos;
+#endif
+            }
         }
         int32_t mix=board_rack_sample();
         if(s.lead_click) {
@@ -424,7 +446,7 @@ uint32_t cp_render(uint32_t count) {
         }
         if(mix>32767 || mix<-32768) board_mix_clip();
         s.pcm[f]=(int16_t)(mix>32767 ? 32767 : mix<-32768 ? -32768 : mix);
-        s.phase+=s.p.bpm*4u;
+        s.phase+=s.p.bpm*study()->steps_per_pulse;
     }
 #endif
     uint8_t mask=available();
@@ -449,6 +471,9 @@ uint32_t cp_render(uint32_t count) {
                 s.phase-=s.threshold;
                 if(++s.pos==study()->steps) {
                     s.pos=0; s.phrase++;
+#ifdef COMPAS_COMPOUND_TEST
+                    compas_compound_phrase_frame=compound_rendered_frames+f;
+#endif
                     if(s.fill==2) s.fill=0;
                     if(s.pending!=NO_SECTION) { s.section=s.pending; s.pending=NO_SECTION; }
 #ifdef COMPAS_BOARD
@@ -484,7 +509,7 @@ uint32_t cp_render(uint32_t count) {
             unsigned split=board_roll_mode==ROLL_THIRTYSECOND?s.threshold/2u:
                 board_roll_mode==ROLL_TRIPLET && substep==1u?s.threshold/3u:
                 board_roll_mode==ROLL_TRIPLET && substep==2u?2u*(s.threshold/3u):0u;
-            if(split && s.phase>=split && s.phase<split+s.p.bpm*4u) board_roll_trigger();
+            if(split && s.phase>=split && s.phase<split+s.p.bpm*study()->steps_per_pulse) board_roll_trigger();
         }
 #endif
         int32_t mix=0;
@@ -513,9 +538,12 @@ uint32_t cp_render(uint32_t count) {
         mix=(mix>32767 ? 32767 : mix < -32768 ? -32768 : mix)/2 + board_rack_sample();
         if(mix>32767 || mix<-32768) board_mix_clip();
 #endif
-        s.phase+=s.p.bpm*4u;
+        s.phase+=s.p.bpm*study()->steps_per_pulse;
         s.pcm[f]=(int16_t)(mix>32767 ? 32767 : mix < -32768 ? -32768 : mix);
     }
+#ifdef COMPAS_COMPOUND_TEST
+    compound_rendered_frames+=count;
+#endif
     return CP_OK;
 }
 int16_t *cp_pcm(void) { return s.pcm; }
@@ -539,6 +567,16 @@ uint32_t cp_status(uint32_t key) {
             ) mask|=1u<<r;
         return available() & mask;
     }
+    case CP_SOUNDING: {   /* lanes with a voice ringing now */
+        uint32_t mask=0;
+        for(uint32_t r=0;r<CP_ROLES;r++)
+            if(s.voice[r].env>0
+#ifdef COMPAS_BOARD
+               || board_playing727(r)
+#endif
+            ) mask|=1u<<r;
+        return available() & mask;
+    }
     case CP_SAMPLE_RATE:return s.sr; case CP_PHRASE:return s.phrase; case CP_ROOT_NOTE:return s.p.root; default:return 0;
     }
 }
@@ -549,42 +587,54 @@ static uint32_t get32(uint32_t i) {
 static void put32(uint32_t i,uint32_t n) {
     for(uint32_t j=0;j<4;j++) s.blob[i+j]=(uint8_t)(n>>(j*8));
 }
-static uint32_t crc(void) {
+static uint32_t crc(unsigned bytes) {
     uint32_t n=~0u;
-    for(uint32_t i=0;i<CP_PROJECT_BYTES-4;i++){
+    for(uint32_t i=0;i<bytes-4u;i++){
         n^=s.blob[i]; for(uint32_t bit=0;bit<8;bit++) n=(n>>1)^((n&1u)?0xedb88320u:0u);
     }
     return ~n;
 }
+static uint64_t get48(uint32_t i)
+{
+    uint64_t n=0; for(uint32_t j=0;j<6;j++) n|=(uint64_t)s.blob[i+j]<<(j*8u); return n;
+}
+static void put48(uint32_t i,uint64_t n)
+{ for(uint32_t j=0;j<6;j++) s.blob[i+j]=(uint8_t)(n>>(j*8u)); }
 uint32_t cp_snapshot(void) {
     for(uint32_t i=0;i<CP_PROJECT_BYTES;i++) s.blob[i]=0;
-    put32(0,0x31535043u); s.blob[4]=1; s.blob[5]=1; /* version and library revision */
+    put32(0,0x31535043u); s.blob[4]=2; s.blob[5]=1; /* version and library revision */
     s.blob[6]=s.p.study; s.blob[7]=s.p.bpm; s.blob[8]=s.p.feel; s.blob[9]=s.p.muted;
     s.blob[10]=s.p.reverse;
     put32(11,s.p.seed);
     for(uint32_t r=0;r<CP_ROLES;r++){
-        s.blob[15+r]=s.p.level[r]; put32(21+r*4,s.p.toggle[r]);
+        s.blob[15+r]=s.p.level[r]; put48(21+r*6,s.p.toggle[r]);
     }
-    s.blob[45]=s.p.root;
-    put32(CP_PROJECT_BYTES-4,crc()); return CP_PROJECT_BYTES;
+    s.blob[57]=s.p.root;
+    put32(CP_PROJECT_BYTES-4,crc(CP_PROJECT_BYTES)); return CP_PROJECT_BYTES;
 }
 uint32_t cp_restore(uint32_t bytes) {
     if(s.playing) return CP_STOP_FIRST;
-    if(bytes!=CP_PROJECT_BYTES || get32(0)!=0x31535043u || s.blob[4]!=1 || s.blob[5]!=1 ||
+    unsigned v1=bytes==CP_PROJECT_V1_BYTES;
+    if((!v1 && bytes!=CP_PROJECT_BYTES) || get32(0)!=0x31535043u ||
+       s.blob[4]!=(v1?1u:2u) || s.blob[5]!=1 ||
        s.blob[6]>=STUDIES || s.blob[7]<60 || s.blob[7]>180 || s.blob[8]>100 ||
        s.blob[9]>63 || s.blob[10]>((s.blob[6]==2 || s.blob[6]==6) ? 1 : 0) ||
-       get32(CP_PROJECT_BYTES-4)!=crc()) return CP_BAD_PROJECT;
-    if(s.blob[45]>(s.blob[6] ? 11 : 0)) return CP_BAD_PROJECT;
-    for(uint32_t i=46;i<51;i++) if(s.blob[i]) return CP_BAD_PROJECT;
+       get32(bytes-4u)!=crc(bytes)) return CP_BAD_PROJECT;
+    unsigned root=v1?s.blob[45]:s.blob[57];
+    if(root>(s.blob[6] ? 11 : 0)) return CP_BAD_PROJECT;
+    for(uint32_t i=v1?46u:58u;i<bytes-4u;i++) if(s.blob[i]) return CP_BAD_PROJECT;
     const Study *st=&library[s.blob[6]];
+    if(v1 && st->steps>32u) return CP_BAD_PROJECT;
     for(uint32_t r=0;r<CP_ROLES;r++) {
-        uint32_t bits=get32(21+r*4);
-        if(s.blob[15+r]>100 || (st->steps<32 && bits>>st->steps) ||
-           (bits && (!st->part[r].sound || ((s.blob[6]==2 || s.blob[6]==6) && r==0))) ||
-           (!st->part[r].sound && (s.blob[9]&(1u<<r)))) return CP_BAD_PROJECT;
+        uint64_t bits=v1?get32(21+r*4):get48(21+r*6);
+        if(s.blob[15+r]>100 || (bits>>st->steps) ||
+           (bits && (!st->sound[r] || ((s.blob[6]==2 || s.blob[6]==6) && r==0))) ||
+           (!st->sound[r] && (s.blob[9]&(1u<<r)))) return CP_BAD_PROJECT;
     }
     s.p.study=s.blob[6]; s.p.bpm=s.blob[7]; s.p.feel=s.blob[8]; s.p.muted=s.blob[9];
-    s.p.reverse=s.blob[10]; s.p.root=s.blob[45]; s.p.seed=get32(11);
-    for(uint32_t r=0;r<CP_ROLES;r++) { s.p.level[r]=s.blob[15+r]; s.p.toggle[r]=get32(21+r*4); }
+    s.p.reverse=s.blob[10]; s.p.root=(uint8_t)root; s.p.seed=get32(11);
+    for(uint32_t r=0;r<CP_ROLES;r++) {
+        s.p.level[r]=s.blob[15+r]; s.p.toggle[r]=v1?get32(21+r*4):get48(21+r*6);
+    }
     reset(); return CP_OK;
 }

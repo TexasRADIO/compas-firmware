@@ -38,10 +38,10 @@ int main(void)
     assert(provision_check(original,payload)==1 && ops==0 && reads==1);
     nor[4200]^=1;assert(provision_check(original,payload)==0 && ops==0);
     memcpy(nor,original,sizeof nor);reset();assert(!provision_run(original,payload));
-    assert(ops==20 && writes==16084);unsigned full_reads=reads;memcpy(target,nor,sizeof target);
+    assert(ops==20 && writes==16100);unsigned full_reads=reads;memcpy(target,nor,sizeof target);
     reset();assert(provision_check(original,payload)==2 && ops==0);
     assert(!provision_run(original,payload) && ops==0);
-    for(unsigned cut=0;cut<16084;++cut) {
+    for(unsigned cut=0;cut<16100;++cut) {
         memcpy(nor,original,sizeof nor);reset();budget=cut;
         assert(provision_run(original,payload)<0);safe();
         assert(memcmp(nor+8192,"CMPASIM1",8));
@@ -59,5 +59,5 @@ int main(void)
     }
     memcpy(nor,original,sizeof nor);reset();ready=0;assert(provision_run(original,payload)==-1 && ops==0);
     reset();nor[4200]^=1;assert(provision_run(original,payload)==-4 && ops==0);
-    printf("{\"byteCuts\":16084,\"readFailuresAndCorruptions\":%u,\"writeFailures\":20,\"idempotent\":true}\n",full_reads*2);
+    printf("{\"byteCuts\":16100,\"readFailuresAndCorruptions\":%u,\"writeFailures\":20,\"idempotent\":true}\n",full_reads*2);
 }

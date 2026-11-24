@@ -1,4 +1,4 @@
-"""Verify retained Studio WAVs and generate a lossless flash bank."""
+"""Verify retained Studio WAVs and generate a private, lossless flash bank."""
 import hashlib
 import io
 import json

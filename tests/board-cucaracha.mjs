@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {preparedPayload} from '../web/set-payload.mjs';
@@ -28,7 +29,7 @@ function until(condition) {
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
     for(let frame=0;frame<256;frame+=2) {
       assert.equal(pcm[frame],pcm[frame+1]);
-      peak=Math.max(peak,Math.abs(pcm[frame]/128));
+      peak=Math.max(peak,Math.abs(pcm[frame]/dacScale(b)));
     }
   }
   assert(condition(view()),JSON.stringify([...view()]));

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "private source-labelled rhythmic reduction and authored accompaniment; not a release or regional approval",
+  "study": "chilena-costa-chica-study",
+  "source": {
+    "id": "MXC-03-F8-102-103",
+    "author": "Diana Laura Galeana Leyva",
+    "title": "Resonancias guerrerenses",
+    "institution": "Facultad de Música, Universidad Nacional Autónoma de México",
+    "year": 2025,
+    "work": "Alingo Lingo",
+    "composer": "Álvaro Carrillo",
+    "arranger": "María Carpio",
+    "url": "https://tesiunamdocumentos.dgb.unam.mx/ptd2025/jul_sep/0876617/0876617_A1.pdf",
+    "sha256": "f1efdb27c430f1a8a691a71b56f68cb7c10f1f4308b3f1259b2b93d58cbe4396",
+    "location": "Figure 8, printed p. 19 / PDF p. 23; first two bars of system 19, numbered 102–103; piano secondo, both hands",
+    "reading": "Full page rendered at 3x; two-bar secondo crop at 8x visually read. One reader only; independent notation and Costa Chica player comparison pending.",
+    "context": "A named four-hand-piano chamber arrangement. The writer describes the accompaniment as a 6/8 reduction of guitar/harp functions. This is not field notation of every coastal chilena or of Mixteca yaa sii."
+  },
+  "sourceRhythm": {
+    "meter": [6,8],
+    "stepsPerEighth": 2,
+    "stepsPerBar": 12,
+    "bars": [102,103],
+    "rightHandDurationsInEighths": [[2,1,1,2],[2,1,1,2]],
+    "leftHandDurationsInEighths": [[2,2,2],[3,1,2]],
+    "rightHandOnsets": [0,4,6,8,12,16,18,20],
+    "leftHandOnsets": [0,4,8,12,18,20],
+    "pulseGroups": [[3,3],[3,3]],
+    "groupingBoundary": "The left hand crosses the 6/8 pulse. It does not turn the second bar into a new meter; visible beats remain two dotted quarters per bar. No source dynamics, pitches, note sustain, voicings or microtiming are claimed."
+  },
+  "authored": {
+    "pulseBpm": 96,
+    "midiQuarterBpm": 144,
+    "phraseSeconds": 2.5,
+    "tempoEvidence": "No metronome mark is present in the adopted excerpt; 96 is an authored rehearsal setting, not a measured recording tempo.",
+    "relativeBassPitches": [0,7,0,5,7,0],
+    "support": "Low cue doubles the adopted left-hand onsets but starts at level zero. Quiet eighths and hand replies are optional authored percussion; Rim starts at zero. No traditional drum part is inferred from a piano score.",
+    "palette": "Original Compás procedural pluck/bass/percussion. A single pluck is an onset cue, not the score's piano chord or a harp/guitar emulation. No 727 assignments or source recording.",
+    "liveForm": "Default Intro, Verse A, Verse B, Chorus, Break, Ending. Intro starts with Strum/Bass and opens the ensemble in bar two; Verse B lifts in bar two; Chorus accents the source onset pattern; Break/Ending expose Strum/Bass. ARP adds an authored last-beat reply. This is a live rehearsal form, not the source song's full form."
+  },
+  "releaseGate": "Independent notation reading, regional player review, real-bank audio/display/target resource checks and a separate promotion decision. Existing RC3 installation inputs remain unchanged."
+}

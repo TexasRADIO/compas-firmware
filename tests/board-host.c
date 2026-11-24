@@ -7,9 +7,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifdef COMPAS_COMPOUND_TEST
+#include "score-test.inc"
+#endif
 
 static unsigned pending, half, aux, ack, disabled, inject_late, inject_deadline, tick_calls;
-static uint64_t elapsed[35000];
+#define STRESS_PHASE_BLOCKS 7000u
+#define STRESS_STUDIES BOARD_GROOVE_PRESETS
+#define STRESS_BLOCKS (STRESS_PHASE_BLOCKS * STRESS_STUDIES)
+_Static_assert(STRESS_STUDIES < 64, "host stress mask needs one bit per study");
+static uint64_t elapsed[STRESS_BLOCKS];
 static uintptr_t stack_ceiling, stack_floor=UINTPTR_MAX;
 static unsigned stack_active;
 
@@ -95,11 +102,15 @@ static void verify_panel(void)
 
     put(BOARD_CUE,0,0);callback();
     panel_input(&panel,1u<<7,0,neutral);callback();
-    panel_input(&panel,0,0,(const int32_t[7]){[4]=15});callback();
+    panel_input(&panel,0,0,(const int32_t[7]){[4]=1});callback();
+    assert(panel_lang==1 && panel.slot==0 && board_view(0).song==0);
+    panel_input(&panel,0,0,(const int32_t[7]){[4]=-1});callback();
+    assert(panel_lang==0);
+    panel_input(&panel,0,0,(const int32_t[7]){[0]=15});callback();
     assert(panel.page==PANEL_SET && panel.slot==15 && board_view(0).song==0);
     panel_input(&panel,0,1u<<15,neutral);callback();
     assert(board_view(0).song==15);
-    panel_input(&panel,0,0,(const int32_t[7]){[4]=-15});callback();
+    panel_input(&panel,0,0,(const int32_t[7]){[0]=-15});callback();
     assert(panel.slot==0 && board_view(0).song==15);
     panel_input(&panel,1u<<12,0,neutral);callback();
     panel_input(&panel,0,1u,neutral);callback();
@@ -145,7 +156,7 @@ static void verify_master(void)
     const int16_t *clip=compas_pcm727+clips[14].offset;
     for(unsigned i=0;i<BOARD_FRAMES;++i) {
         int32_t full=clip[BOARD_FRAMES+i]*127/512;
-        int32_t expected=full*(int32_t)(i+1)/BOARD_FRAMES*128;
+        int32_t expected=full*(int32_t)(i+1)/BOARD_FRAMES*BOARD_DAC_SCALE;
         assert(board_dma[completed][2*i]==expected && board_dma[completed][2*i+1]==expected);
     }
     panel_master(&panel,0);
@@ -153,7 +164,7 @@ static void verify_master(void)
     callback();
     for(unsigned i=0;i<BOARD_FRAMES;++i) {
         int32_t full=clip[2*BOARD_FRAMES+i]*127/512;
-        int32_t expected=full*(int32_t)(BOARD_FRAMES-i-1)/BOARD_FRAMES*128;
+        int32_t expected=full*(int32_t)(BOARD_FRAMES-i-1)/BOARD_FRAMES*BOARD_DAC_SCALE;
         assert(board_dma[completed][2*i]==expected && board_dma[completed][2*i+1]==expected);
     }
     completed=half;
@@ -176,7 +187,7 @@ static void verify_bank(void)
             callback();
             for(unsigned i=0;i<BOARD_FRAMES;++i) {
                 const unsigned n=offset+i;
-                int32_t expected=n<clip->frames ? compas_pcm727[clip->offset+n]*127/512*128 : 0;
+                int32_t expected=n<clip->frames ? compas_pcm727[clip->offset+n]*127/512*BOARD_DAC_SCALE : 0;
                 assert(board_dma[completed][2*i]==expected && board_dma[completed][2*i+1]==expected);
             }
         }
@@ -193,7 +204,7 @@ static void write_block(FILE *file)
     unsigned completed=half;
     callback();
     for(unsigned j=0;j<BOARD_FRAMES;++j) {
-        uint16_t sample=(uint16_t)(board_dma[completed][2*j]/128);
+        uint16_t sample=(uint16_t)(board_dma[completed][2*j]/BOARD_DAC_SCALE);
         fputc(sample&255u,file);
         fputc(sample>>8,file);
     }
@@ -254,7 +265,7 @@ static void verify_speed(void)
         speed_source(kind,100);
         for(unsigned b=0;b<=BLOCKS;++b) {
             unsigned done=half;callback();
-            for(unsigned f=0;f<BOARD_FRAMES;++f)reference[b*BOARD_FRAMES+f]=board_dma[done][f*2]/128;
+            for(unsigned f=0;f<BOARD_FRAMES;++f)reference[b*BOARD_FRAMES+f]=board_dma[done][f*2]/BOARD_DAC_SCALE;
         }
         for(unsigned r=0;r<sizeof rates/sizeof *rates;++r) {
             speed_source(kind,rates[r]);
@@ -264,7 +275,7 @@ static void verify_speed(void)
                 for(unsigned f=0;f<BOARD_FRAMES;++f) {
                     unsigned t=(b*BOARD_FRAMES+f)*rates[r],i=t/100,frac=t%100;
                     int expected=reference[i]+((int)reference[i+1]-reference[i])*(int)frac/100;
-                    assert(board_dma[done][f*2]==expected*128);
+                    assert(board_dma[done][f*2]==expected*BOARD_DAC_SCALE);
                 }
             }
             assert(!board_stats.rail_samples);
@@ -280,7 +291,7 @@ static void verify_speed(void)
             for(unsigned f=0;f<BOARD_FRAMES;++f,time+=rate) {
                 unsigned i=time/100,frac=time%100;
                 int expected=reference[i]+((int)reference[i+1]-reference[i])*(int)frac/100;
-                assert(board_dma[done][f*2]==expected*128);
+                assert(board_dma[done][f*2]==expected*BOARD_DAC_SCALE);
             }
         }
         put(BOARD_CUE,11,0);callback();assert(board_view(0).speed==rate);
@@ -430,7 +441,7 @@ static void verify_bass_and_overlays(void)
             unsigned completed=half;
             callback();
             for(unsigned i=0;i<BOARD_WORDS;i+=2) {
-                int sample=board_dma[completed][i]/128;
+                int sample=board_dma[completed][i]/BOARD_DAC_SCALE;
                 unsigned level=(unsigned)(sample<0 ? -sample : sample);
                 if(level>peak) peak=level;
                 hashes[mode]=hashes[mode]*16777619u ^ (unsigned)sample;
@@ -703,7 +714,7 @@ static void verify_piano(void)
         assert(v.score_bar>=last_bar);
         last_bar=v.score_bar;
         for(unsigned i=0;i<BOARD_FRAMES;++i) {
-            int32_t sample=board_dma[completed][2*i]/128;
+            int32_t sample=board_dma[completed][2*i]/BOARD_DAC_SCALE;
             unsigned magnitude=(unsigned)(sample<0 ? -sample : sample);
             if(magnitude>peak) peak=magnitude;
         }
@@ -799,7 +810,7 @@ static void verify_score_transpose(void)
 
 static void verify_score_controls(void)
 {
-    _Static_assert(sizeof(BoardView)==76 && __builtin_offsetof(BoardView,piano)==31 &&
+    _Static_assert(sizeof(BoardView)==80 && __builtin_offsetof(BoardView,piano)==31 &&
         __builtin_offsetof(BoardView,score_hold)==34 && __builtin_offsetof(BoardView,score_ending)==35 &&
         __builtin_offsetof(BoardView,score_guide)==36 && __builtin_offsetof(BoardView,score_percussion)==73,
         "strict stage probe view layout");
@@ -959,7 +970,7 @@ static void verify_choke(void)
             unsigned completed=half;
             callback();
             for(unsigned i=0;i<BOARD_FRAMES;++i) {
-                int32_t expected=compas_pcm727[clips[second].offset+i]*127/512*128;
+                int32_t expected=compas_pcm727[clips[second].offset+i]*127/512*BOARD_DAC_SCALE;
                 assert(board_dma[completed][2*i]==expected);
             }
         }
@@ -976,7 +987,7 @@ static void verify_choke(void)
     for(unsigned i=0;i<BOARD_FRAMES;++i) {
         int32_t expected=compas_pcm727[clips[13].offset+i]*127/512;
         expected+=compas_pcm727[clips[14].offset+i]*127/512;
-        assert(board_dma[completed][2*i]==expected*128);
+        assert(board_dma[completed][2*i]==expected*BOARD_DAC_SCALE);
     }
 }
 
@@ -1002,7 +1013,7 @@ static void verify_rack_accents(void)
         callback();
         unsigned expected_gain=route==2 ? control*level/100u : gain;
         for(unsigned i=0;i<BOARD_FRAMES;++i) {
-            int32_t expected=compas_pcm727[clips[sound].offset+i]*(int32_t)expected_gain/512*128;
+            int32_t expected=compas_pcm727[clips[sound].offset+i]*(int32_t)expected_gain/512*BOARD_DAC_SCALE;
             assert(board_dma[completed][2*i]==expected);
         }
     }
@@ -1031,7 +1042,7 @@ static void verify_regional(void)
             for(unsigned block=0;block<2400;++block) {
                 unsigned done=half; callback();
                 for(unsigned frame=0;frame<BOARD_FRAMES;++frame) {
-                    int32_t n=board_dma[done][2*frame]/128;
+                    int32_t n=board_dma[done][2*frame]/BOARD_DAC_SCALE;
                     unsigned mag=(unsigned)(n<0?-n:n);
                     if(mag>peak) peak=mag;
                 }
@@ -1059,7 +1070,7 @@ static void verify_rack_editor(void)
         put(BOARD_SEQ_ENABLE,2,0); put(CP_START,0,0);
         unsigned done=half; callback();
         for(unsigned frame=0;frame<BOARD_FRAMES;++frame) {
-            int32_t expected=compas_pcm727[clips[sound].offset+frame]*92/512*128;
+            int32_t expected=compas_pcm727[clips[sound].offset+frame]*92/512*BOARD_DAC_SCALE;
             assert(board_dma[done][2*frame]==expected); /* truly percussion only */
         }
         put(CP_STOP,0,0); callback();
@@ -1262,7 +1273,7 @@ static void verify_drum_loop_transport(void)
 
 static void verify_live_clave(void)
 {
-    _Static_assert(sizeof(BoardView)==76,"Clave uses existing view padding");
+    _Static_assert(sizeof(BoardView)==80,"Compound extension is appended to the view");
     _Static_assert(__builtin_offsetof(BoardView,clave)==39,"Existing view offsets stay fixed");
     _Static_assert(__builtin_offsetof(BoardView,steps)==40,"Step view ABI");
     const int32_t neutral[7]={0};Panel p={.page=PANEL_PERC};
@@ -1364,7 +1375,7 @@ static void verify_live_key(void)
 
 static void verify_groove_bank(void)
 {
-    _Static_assert(sizeof(BoardView)==76,"Bank cue uses existing view padding");
+    _Static_assert(sizeof(BoardView)==80,"Compound extension is appended to the view");
     char titles[SET_SLOTS][19];unsigned scores[SET_SLOTS];
     board_init();put(BOARD_CUE,9,0);callback();
     for(unsigned i=0;i<SET_SLOTS;++i) {strcpy(titles[i],board_song_title(i));scores[i]=board_song_is_score(i);}
@@ -1376,7 +1387,29 @@ static void verify_groove_bank(void)
         for(unsigned i=0;i<SET_SLOTS;++i) {assert(!strcmp(titles[i],board_song_title(i)));assert(scores[i]==board_song_is_score(i));}
         assert(!strcmp(panel_title(v),board_groove_title(groove)));
         Panel panel={0};
-        unsigned bass=(groove>0 && groove<23) || groove==26 || groove==27 || groove==28;
+        /* The score's sixth role is not invariably bass (the Colombian
+         * source studies use maraca there), so retain this explicit panel
+         * contract as the append-only groove bank grows. */
+        unsigned bass=(groove>0 && groove<23) || groove==26 || groove==27 ||
+            groove==28 || groove==33 || groove==34 || groove==35 || groove==36;
+        if(groove==36) {
+            const uint32_t strum=(1u<<0)|(1u<<4)|(1u<<6)|(1u<<8)|(1u<<12)|(1u<<16)|(1u<<18)|(1u<<20);
+            const uint32_t bass_onsets=(1u<<0)|(1u<<4)|(1u<<8)|(1u<<12)|(1u<<18)|(1u<<20);
+            assert(cp_status(CP_STEP_COUNT)==24 && v.bpm==96);
+            assert(panel_beats(groove)==4);
+            for(unsigned step=0;step<24;++step) {
+                assert(!!cp_step(1,step)==((strum>>step)&1u));
+                assert(!!cp_step(5,step)==((bass_onsets>>step)&1u));
+            }
+        }
+        if(groove==34 || groove==35) {
+            assert(v.bpm==(groove==34?98u:140u) && cp_status(CP_STEP_COUNT)==16);
+            const uint32_t upper=0xddddu,shell=groove==34?0xddddu:0x9999u;
+            for(unsigned step=0;step<16;++step) {
+                assert(!!cp_step(1,step)==((upper>>step)&1u));
+                assert(!!cp_step(4,step)==((shell>>step)&1u));
+            }
+        }
         if(groove==26) {
             const uint32_t guitar=(1u<<0)|(1u<<1)|(1u<<3)|(1u<<4)|(1u<<6)|
                 (1u<<8)|(1u<<10)|(1u<<11)|(1u<<13)|(1u<<14);
@@ -1909,6 +1942,87 @@ static void verify_conga_bank(void)
     assert(board_view(0).result==CP_NO_ROLE && board_view(0).rhythm==255);
 }
 
+#ifdef COMPAS_COMPOUND_TEST
+/* Fixtures are deliberately absent from the public catalogue.  This host
+ * integration probe proves the physical control surface can still edit every
+ * valid role step when a sourced 6/8 or 12/8 study is approved later. */
+static void verify_compound_panel(void)
+{
+    static const int32_t neutral[7]={0};
+    char face[FACE_LINES][FACE_COLS+1];
+    const struct { unsigned study, steps, last, pages, pulses; const char *meter; } cases[]={
+        {CP_TEST_STUDY_COMPOUND_6_8_ENGINE_FIXTURE,24,23,2,4,"6/8 PAGE 2/2"},
+        {CP_TEST_STUDY_COMPOUND_6_8_HEMIOLA_ENGINE_FIXTURE,24,23,2,5,"6/8 PAGE 2/2"},
+        {CP_TEST_STUDY_COMPOUND_12_8_ENGINE_FIXTURE,48,47,3,8,"12/8 PAGE 3/3"}
+    };
+    panel_lang=0;
+    for(unsigned c=0;c<sizeof cases/sizeof *cases;++c) {
+        const unsigned study=cases[c].study;
+        board_init();
+        put(CP_STUDY,study,0); callback();
+        BoardView v=board_view(0);
+        assert(v.study==study && cp_status(CP_STEP_COUNT)==cases[c].steps);
+        assert(panel_beats(study)==cases[c].pulses);
+        assert(cp_quarter_bpm(60)==90 && cp_quarter_bpm(180)==270);
+        if(study==CP_TEST_STUDY_COMPOUND_6_8_HEMIOLA_ENGINE_FIXTURE) {
+            assert(panel_beat_position(study,0)==0 && panel_beat_position(study,5)==0 &&
+                   panel_beat_position(study,6)==1 && panel_beat_position(study,11)==1 &&
+                   panel_beat_position(study,12)==2 && panel_beat_position(study,15)==2 &&
+                   panel_beat_position(study,16)==3 && panel_beat_position(study,19)==3 &&
+                   panel_beat_position(study,20)==4 && panel_beat_position(study,23)==4);
+        } else {
+            assert(panel_beat_position(study,0)==0 && panel_beat_position(study,5)==0 &&
+                   panel_beat_position(study,6)==1 && panel_beat_position(study,cases[c].last)==panel_beats(study)-1u);
+        }
+        assert(!panel_rack_edit_supported(study));
+        Panel p={.page=PANEL_EDIT};
+        for(unsigned page=1;page<cases[c].pages;++page) {
+            panel_input(&p,1u<<1,0,neutral); callback();
+            assert(p.bar==page*16u);
+        }
+        panel_input(&p,0,1u<<(cases[c].last-p.bar),neutral); callback();
+        assert(cp_step(0,cases[c].last));
+        v=board_view(0);
+        assert(cases[c].last<32u ? (v.steps&(1u<<cases[c].last)) :
+               (v.steps_high&(1u<<(cases[c].last-32u))));
+        panel_face(&p,v,face);
+        assert(strstr(face[5],cases[c].meter));
+        /* The legacy 727 grid refuses compound steps instead of inventing a
+         * conflicting pattern length.  ROLE STEP remains available. */
+        put(BOARD_SEQ_STEP,0,0); callback();
+        assert(board_view(0).result==CP_RANGE);
+        p.page=PANEL_RACK; p.rack_edit=0;
+        panel_input(&p,1u<<11,0,neutral); callback();
+        assert(!p.rack_edit);
+        p.rack_edit=1;
+        panel_face(&p,board_view(0),face);
+        assert(strstr(face[4],"727 4/4 ONLY"));
+    }
+}
+
+static void verify_compound_layers(void)
+{
+    const unsigned ids[]={36,CP_TEST_STUDY_COMPOUND_12_8_ENGINE_FIXTURE};
+    for(unsigned test=0;test<2;++test) {
+        board_init();put(CP_STUDY,ids[test],0);put(CP_BPM,180,0);callback();
+        unsigned steps=cp_status(CP_STEP_COUNT);assert(steps==(test?48u:24u));
+        for(unsigned lane=0;lane<4;++lane)put(BOARD_OVERLAY,lane,0);
+        put(CP_START,0,0);callback();
+        uint64_t seen=0;
+        for(unsigned guard=0;guard<3000 && seen!=((UINT64_C(1)<<steps)-1u);++guard) {
+            callback();BoardView v=board_view(0);unsigned step=v.position%12u;
+            unsigned conga=step==4 || step==10,maraca=!(step&1u);
+            unsigned timbal=step==10,bell=step==0 || step==6;
+            assert(v.overlay_hits==(conga|(maraca<<1)|(timbal<<2)|(bell<<3)));
+            seen|=UINT64_C(1)<<v.position;
+        }
+        assert(seen==((UINT64_C(1)<<steps)-1u));
+        assert(board_stats.rack_peak && !board_stats.rail_samples);
+        put(CP_STOP,0,0);callback();
+    }
+}
+#endif
+
 int main(int argc,char **argv)
 {
     if(argc==3 && !strcmp(argv[1],"--audition")) {
@@ -1923,6 +2037,7 @@ int main(int argc,char **argv)
         return 0;
     }
     const unsigned blocks=sizeof elapsed/sizeof *elapsed;
+    uint64_t stress_studies=0;
     FILE *output=argc>1?fopen(argv[1],"wb"):0;
     if(argc>1) assert(output);
     verify_panel();
@@ -1961,16 +2076,23 @@ int main(int argc,char **argv)
     verify_roland_step_write();
     verify_colombian_727();
     verify_rhythm_slots();
+#ifdef COMPAS_COMPOUND_TEST
+    verify_compound_panel();
+    verify_compound_layers();
+#endif
     board_init();
     unsigned peak=0, nonzero=0;
     uint32_t random=77;
     const unsigned rack_order[]={14,13,6,5,12,4,1,0,2,3,7,8,9,10,11};
     for(unsigned i=0;i<blocks;++i) {
-        unsigned phase=i%7000u;
+        unsigned phase=i%STRESS_PHASE_BLOCKS;
         if(!phase) put(CP_STOP,0,0);
         else if(phase==1) {
-            put(CP_STUDY,i/7000u,0); put(BOARD_KIT,1,0); put(BOARD_MASTER,100,0);
-            if(i>=7000u) {
+            unsigned study=i/STRESS_PHASE_BLOCKS;
+            assert(study<STRESS_STUDIES);
+            stress_studies|=UINT64_C(1)<<study;
+            put(CP_STUDY,study,0); put(BOARD_KIT,1,0); put(BOARD_MASTER,100,0);
+            if(i>=STRESS_PHASE_BLOCKS) {
                 put(BOARD_ACCENT,1,0);
                 put(BOARD_RACK_CONTROL,RACK_ACCENT_STRENGTH,127);
             }
@@ -2002,17 +2124,18 @@ int main(int argc,char **argv)
         for(unsigned j=0;j<BOARD_FRAMES;++j) {
             int32_t left=board_dma[completed][2*j],right=board_dma[completed][2*j+1];
             assert(left==right && left%128==0);
-            unsigned magnitude=(unsigned)(left<0 ? -left : left)/128u;
+            unsigned magnitude=(unsigned)(left<0 ? -left : left)/BOARD_DAC_SCALE;
             if(magnitude) ++nonzero;
             if(magnitude>peak) peak=magnitude;
             if(output) {
-                uint16_t v=(uint16_t)(left/128);
+                uint16_t v=(uint16_t)(left/BOARD_DAC_SCALE);
                 fputc(v&255u,output);
                 fputc(v>>8,output);
             }
         }
     }
     if(output) assert(!fclose(output));
+    assert(stress_studies==(UINT64_C(1)<<STRESS_STUDIES)-1);
     assert(board_stats.callbacks==blocks && board_stats.rack_peak==10 && board_stats.sequence_peak>=2);
     assert(board_stats.total_peak==10 && !board_stats.rail_samples && peak>2000 && nonzero>100000);
     assert(!board_stats.deadline_misses && !board_stats.late_halves && !disabled);
@@ -2020,11 +2143,11 @@ int main(int argc,char **argv)
     printf("{\"blocks\":%u,\"frames\":%u,\"p50_ns\":%" PRIu64 ",\"p99_ns\":%" PRIu64
            ",\"p999_ns\":%" PRIu64 ",\"max_ns\":%" PRIu64 ",\"rack_peak\":%u,\"sequence_pcm_peak\":%u"
            ",\"total_pcm_voices_peak\":%u,\"choke_cuts\":%u,\"peak_pcm\":%u,\"rails\":%u"
-           ",\"host_stack_probe_bytes\":%" PRIuPTR,
+           ",\"host_stack_probe_bytes\":%" PRIuPTR ",\"studies_exercised\":%" PRIu64,
            blocks,blocks*BOARD_FRAMES,elapsed[blocks/2],elapsed[blocks*99/100],
            elapsed[blocks*999/1000],elapsed[blocks-1],board_stats.rack_peak,board_stats.sequence_peak,
            board_stats.total_peak,board_stats.choke_cuts,peak,board_stats.rail_samples,
-           stack_floor!=UINTPTR_MAX ? stack_ceiling-stack_floor : 0);
+           stack_floor!=UINTPTR_MAX ? stack_ceiling-stack_floor : 0,stress_studies);
     inject_late=1; callback();
     assert(disabled==1 && board_stats.late_halves==1 && board_view(0).fault);
     assert(board_submit((BoardCommand){CP_START,0,0})==BOARD_FAULT);

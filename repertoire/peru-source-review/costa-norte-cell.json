@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "id": "peru-north-figure-2",
+  "status": "private source-cell audition; not a full arrangement or factory preset",
+  "source": {
+    "id": "PER-01",
+    "figure": 2,
+    "pdfPage": 13,
+    "printedPage": 154,
+    "sha256": "d76287573e894edacb4c9aa48f5f27f93481e0bb0ed53aaf9073c1a973bc04cd",
+    "url": "https://repositorio.unm.edu.pe/server/api/core/bitstreams/1d131676-94ec-4669-8820-acfc1948a4f5/content",
+    "verification": "Visually inspected PDF notation on 21 November 2026. One reader; independent comparison still required."
+  },
+  "sourceGrid": {
+    "meter": "2/2",
+    "bars": 2,
+    "ticksPerQuarter": 4,
+    "ticks": 32,
+    "tempoBpm": 98,
+    "tempoUnit": "half note",
+    "sourceQuarterBpm": 196,
+    "tempoStatus": "Motor y motivo reference pulse from PER-01; not a regional tempo prescription",
+    "roles": [
+      {"name": "upper percussion cell", "onsets": [0,4,6,8,12,14,16,20,22,24,28,30]}
+    ]
+  },
+  "adaptation": {
+    "format": "C7R1; two cut-time source bars rebeamed into two 2/4 machine bars (16 steps) at the same audible half-note pulse",
+    "c7r": {"steps":16,"feel":0,"hit":92,"accent":124,"level":100,"mode":2,"selectedVoice":9},
+    "roles": [
+      {"source":"upper percussion cell","compas727":"Cabasa (voice 9)","onsets":[0,2,3,4,6,7,8,10,11,12,14,15],"accented":[],"honesty":"Cabasa supplies a dry register proxy only; no source recording, microtiming or dynamic profile is reproduced."}
+    ],
+    "notAdded": ["bass","guitar","keyboard","kick","fill","source dynamics","a chicha or tecnocumbia label"],
+    "metricBoundary": "Source quarter notes become machine eighth notes. Every source tick is divided by two; duration, bar boundaries and inter-onset timing are preserved. Source half-note beats become machine quarter-note beats explicitly."
+  },
+  "review": {"next":["Verify the one-reader notation reading against the printed figure.","Compare with a north-coast percussionist before any release decision.","Develop a separately credited full arrangement; this is only an upper-percussion cell."]}
+}

@@ -33,7 +33,7 @@ recall = "850:7,950:7^,1060:29,1160:29^"
 
 def record(data, offset):
     magic, generation, crc = struct.unpack_from("<4sII", data, offset)
-    length=size if magic==b"CPS1" else show_size if magic==b"CPS2" else 0
+    length=size if magic==b"CPS1" else show_size if magic==b"CPS4" else 0
     payload = data[offset + 256:offset + 256 + length]
     if length and zlib.crc32(struct.pack("<I", generation) + payload) == crc:
         return generation, payload

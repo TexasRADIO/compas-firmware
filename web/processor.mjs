@@ -16,8 +16,11 @@ class Compas extends AudioWorkletProcessor {
         e.cp_snapshot();
         snapshot = this.blob.slice();
       } else if (cmd !== 'ready') result = e.cp_command(cmd,a,b);
-      const study = e.cp_status(5);
-      const steps = study === 3 || study === 7 ? 16 : 32;
+      // CP_STEP_COUNT is deliberately queried from the engine rather than
+      // inferred from legacy study IDs.  That keeps the worklet's score
+      // snapshot correct for a reviewed 6/8 (24-step) or 12/8 (48-step)
+      // study as well as the established 16- and 32-step arrangements.
+      const steps = e.cp_status(15); // CP_STEP_COUNT in src/engine.h
       this.port.postMessage({id,result,snapshot,state:this.state(),
         score:Array.from({length:6},(_,r)=>Array.from({length:steps},(_,j)=>e.cp_step(r,j))),
         levels:Array.from({length:6},(_,r)=>e.cp_level(r))});

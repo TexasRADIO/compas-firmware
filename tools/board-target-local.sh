@@ -41,7 +41,7 @@ for file,digest in json.loads(Path('board/BSP.json').read_text())['files'].items
 PY
 cflags="-target pi32v2 -mcpu=r3 -mfprev1 -Oz -g -std=c11 -Wall -Wextra -Werror -Wno-unused-function -ffreestanding -fno-builtin -ffunction-sections -fdata-sections -DCOMPAS_BOARD -DCOMPAS_LANG_DEFAULT=$language -DCOMPAS_HANAN"
 inc="-I$sdk/pi32v2/include -Ibuild -Ibuild/board -Iboard -Isrc -I$bsp/firmware/hal -I$bsp/firmware/src"
-store="-DCOMPAS_EMU_STORE -DCOMPAS_USB -DCOMPAS_NO_SHOW_STORE"
+store="${COMP_STORE_FLAGS:--DCOMPAS_EMU_STORE -DCOMPAS_USB -DCOMPAS_UNIT_STORE}"
 "$bin/clang" $cflags $inc -c src/engine.c -o "$out/engine.o"
 "$bin/clang" $cflags $inc -c board/panel.c -o "$out/panel.o"
 for name in board fm1 store; do
@@ -57,3 +57,13 @@ done
     "$out/piano-store.o" "$out/store-store.o" "$out/engine.o" "$out/bank.o"
 "$sdk/common/bin/objdump" -h -t "$out/compas-store.elf" > "$out/compas-store.sections"
 echo "linked $out/compas-store.elf"
+# 1.3 size gate: with the show kept on the unit, the app must end before 0x91000.
+if grep -q compas_unit_store_end "$out/compas-store.sections"; then
+    python3 - "$out/compas-store.sections" <<'PY'
+import sys
+size=sum(int(f[2],16) for f in (l.split() for l in open(sys.argv[1])) if len(f)>3 and f[1] in ('.text','.ram_text','.data'))
+limit=0x91000-0x4120
+print(f"app {size} B of {limit} (show kept at 0x91000): {limit-size} B free")
+if size>limit: raise SystemExit("app overlaps the saved show at 0x91000")
+PY
+fi

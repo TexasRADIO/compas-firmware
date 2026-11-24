@@ -23,9 +23,13 @@ void panel_scan(Panel *panel, uint32_t buttons, uint32_t keys, const int32_t enc
 void panel_remote(Panel *panel, unsigned start);
 void panel_master(Panel *panel, int32_t raw);
 unsigned panel_beats(unsigned study);
+unsigned panel_beat_position(unsigned study,unsigned step);
+/* The 727 keeps its historic 16/32-step grid; compound role editing is separate. */
+unsigned panel_rack_edit_supported(unsigned study);
 unsigned panel_has_bass(BoardView view);
 const char *panel_title(BoardView view);
 const char *panel_root_name(unsigned root);
+const char *panel_role_name(unsigned study,unsigned role);
 const char *panel_groove_part_name(unsigned study,unsigned part,unsigned abbreviated);
 const char *panel_score_part_name(unsigned score, unsigned part);
 /* GLO metadata from the study registry. Flags: 1 = source-backed body,
@@ -34,7 +38,7 @@ enum { STUDY_SOURCED=1u, STUDY_CUT_TIME=2u };
 const char *panel_study_family(unsigned study);
 unsigned panel_study_flags(unsigned study);
 void panel_face(const Panel *panel, BoardView view, char lines[FACE_LINES][FACE_COLS+1]);
-/* Screen language: 0 English, 1 Spanish (ALGORITHM on GLO). panel_word() returns the
+/* Screen language: 0 English, 1 Spanish (KNOB3 on GLO). panel_word() returns the
  * word in the current language, or its argument when the table has no entry. */
 extern uint8_t panel_lang;
 const char *panel_word(const char *english);

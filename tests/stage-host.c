@@ -79,6 +79,19 @@ static void save(const char *dir,const char *name)
 int main(int argc,char **argv)
 {
     assert(argc==2);
+    /* Incremental ringing-lamp strips must equal the same rows of a full
+     * mixer render, including selected-card edges and inter-card gaps. */
+    for(unsigned role=0;role<6;++role) for(unsigned mask=0;mask<64;++mask) {
+        Panel mix={.page=PANEL_MIX,.role=(uint8_t)role};
+        BoardView sounding={.audible=(uint8_t)(mask<<1),.solo=6};
+        uint16_t expected[3][234];
+        tile=(Rect){3,132,234,14};mix_face(&mix,sounding);
+        for(unsigned y=0;y<3;++y) for(unsigned x=0;x<234;++x)
+            expected[y][x]=stripe[(y+1)*234+x];
+        tile=(Rect){3,133,234,3};mix_face(&mix,sounding);
+        for(unsigned y=0;y<3;++y) for(unsigned x=0;x<234;++x)
+            assert(stripe[y*234+x]==expected[y][x]);
+    }
     Panel p={0};
     BoardView v={.clave=4,.key=12u<<4,.next_groove=BOARD_GROOVE_PRESETS,.speed=100,.rhythm=255,.next_rhythm=255,.playing=1,.study=1,.pending=3,.position=20,.bpm=101,.feel=33,
         .master=74,.song=1,.next_song=SET_SLOTS,.part=PART_VERSE_A,.next_part=PART_CHORUS,
@@ -327,6 +340,18 @@ int main(int argc,char **argv)
     assert(pixels==60480);
     for(unsigned y=184;y<196;++y) for(unsigned x=0;x<240;++x)
         assert(queued_key_pixels[y][x]==screen_pixels[y][x]);
+    /* A late SAVE-flash expiry must not send SIGN twice within R3. The
+     * deferred pass still removes the flash once the page is complete. */
+    touching=0;v.result=0;
+    saving=save_flash=1;saved_at=1230000000;
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},1,0,1230000000);
+    while(jobs&(1u<<SIGN)) assert(stage_work());
+    assert(jobs && measurement==3);
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,1237300000);
+    assert(!save_flash && !(jobs&(1u<<SIGN)) && (deferred_beat_jobs&(1u<<SIGN)));
+    compas_display_stats[2][3]=0;
+    while(stage_work()) {}
+    assert(compas_display_stats[2][3]==57600 && measurement==0);
     v.result=0;
     v.song=8;v.piano=1;v.score_percussion=0;
     screen(&p,v,panel_keys(&p,v),1,0,1000000005); save(argv[1],"Score-No-Percussion");
@@ -366,8 +391,116 @@ int main(int argc,char **argv)
     v.key=0x10;
     screen(&p,v,panel_keys(&p,v),0,0,1402400000);
     assert(motion.kind==MOTION_NONE);
+    /* 1.3: LIFT energy is still on, so the head lamp (4) keeps its tail
+     * of two (2 and 3); every other bulb is back to the steady marquee. */
     for(unsigned y=0;y<7;++y) for(unsigned x=0;x<240;++x)
-        assert(steady_marquee[y][x]==screen_pixels[y][x]);
+        if(x<18 || x>=34) assert(steady_marquee[y][x]==screen_pixels[y][x]);
+    assert(screen_pixels[3][20]==screen_pixels[3][36] && screen_pixels[3][28]==screen_pixels[3][36]);
     save(argv[1],"Lift-Canceled-by-Key-Cue");
 
+    /* The small highlight transfer must leave the complete badge identical
+     * to repainting it, including the bar wrap and an overtaken job. */
+    p.page=PANEL_MIX;
+    v.key=0xc0;v.section=0;v.position=0;
+    screen(&p,v,panel_keys(&p,v),1,0,1500000000);
+    for(unsigned beat=1;beat<=9;++beat) {
+        v.position=(uint8_t)((beat%8u)*4u);
+        stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){.hits=0},0,0,1500000000u+beat*12000000u);
+        if(beat==4) continue; /* let the next beat overtake its pending jobs */
+        while(stage_work()) {}
+        uint16_t before[29][27];
+        for(unsigned y=0;y<29;++y) for(unsigned x=0;x<27;++x)
+            before[y][x]=screen_pixels[y+65][x+200];
+        tile=(Rect){200,65,27,29};
+        stage_paint(&model);
+        lcd_blit(tile.x,tile.y,tile.w,tile.h,stripe);
+        for(unsigned y=0;y<29;++y) for(unsigned x=0;x<27;++x)
+            assert(before[y][x]==screen_pixels[y+65][x+200]);
+        for(unsigned y=104;y<132;++y) for(unsigned x=0;x<240;++x)
+            queued_key_pixels[y][x]=screen_pixels[y][x];
+        for(unsigned half=0;half<2;++half) {
+            tile=(Rect){0,(uint8_t)(104+half*14),240,14};
+            stage_paint(&model);
+            lcd_blit(tile.x,tile.y,tile.w,tile.h,stripe);
+        }
+        for(unsigned y=104;y<132;++y) for(unsigned x=0;x<240;++x)
+            assert(queued_key_pixels[y][x]==screen_pixels[y][x]);
+    }
+
+    /* Bass playhead/pump updates and an overlapped pattern replacement must
+     * match a full body repaint, not leave an old lit note behind. */
+    p.page=PANEL_BASS;
+    v.position=0;v.steps=0x12345678u;v.bass_cut=62;v.bass_bite=40;v.levels[5]=78;
+    screen(&p,v,panel_keys(&p,v),1,0,1700000000);
+    for(unsigned step=1;step<=18;++step) {
+        v.position=(uint8_t)(step%16u);
+        v.bass_hit=(uint8_t)step;
+        if(step==10) v.steps^=0x1357u;
+        stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){.hits=0},0,0,1700000000u+step*1200000u);
+        if(step==9) continue;
+        while(stage_work()) {}
+        for(unsigned y=66;y<188;++y) for(unsigned x=0;x<240;++x)
+            queued_key_pixels[y][x]=screen_pixels[y][x];
+        for(unsigned y=66;y<188;y+=14) {
+            tile=(Rect){0,(uint8_t)y,240,(uint8_t)min(14u,188u-y)};
+            stage_paint(&model);
+            lcd_blit(tile.x,tile.y,tile.w,tile.h,stripe);
+        }
+        for(unsigned y=66;y<188;++y) for(unsigned x=0;x<240;++x)
+            assert(queued_key_pixels[y][x]==screen_pixels[y][x]);
+    }
+
+    /* Ten idle minutes cross TIMER4's 32-bit wrap three times. */
+    p.page=PANEL_HOME;v.playing=0;v.piano=0;v.result=0;
+    uint32_t idle_start=UINT32_MAX-108000000u;
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},1,0,idle_start);
+    while(stage_work()) {}
+    for(unsigned i=1;i<=1200;++i) {
+        stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,idle_start+i*12000000u);
+        while(stage_work()) {}
+        assert(idle_phase==(i<8u?0u:1u+i%3u));
+    }
+    v.playing=1;
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,(uint32_t)(idle_start+14400120000ull));
+    assert(!idle_phase);
+    while(stage_work()) {}
+    /* An input during the first image supersedes that snapshot. Keep its
+     * traffic, measure the latest state separately, and finish with every
+     * pixel equal to a fresh repaint of that state. */
+    v.playing=0;v.feel=24;
+    stage_touch(1230000000); /* first activity also starts the boot frame */
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},1,0,1230000000);
+    assert(fresh_touch);
+    assert(stage_work() && jobs);
+    uint32_t prior_full=compas_display_stats[2][3], prior_superseded=compas_display_superseded[0];
+    stage_touch(1230120000);
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,1230120000);
+    assert(fresh_touch && !full_superseded);
+    v.feel=25; /* the audio-owned command appears one offer later */
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,1230240000);
+    assert(full_superseded && measurement==3 && compas_display_superseded[0]==prior_superseded+1u);
+    while(stage_work()) {}
+    assert(compas_display_stats[2][3]==prior_full && compas_display_superseded[1]);
+    for(unsigned y=0;y<240;++y) for(unsigned x=0;x<240;++x)
+        queued_key_pixels[y][x]=screen_pixels[y][x];
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},1,0,1230240000);
+    while(stage_work()) {}
+    for(unsigned y=0;y<240;++y) for(unsigned x=0;x<240;++x)
+        assert(queued_key_pixels[y][x]==screen_pixels[y][x]);
+    /* Two sixteenths arrive after LIGHTS, before the final banner. The
+     * first queues bulbs; the next escalates them to LIGHTS. Decoration
+     * follows the frame instead of adding another seven-row transfer. */
+    v.playing=1;v.position=0;
+    for(unsigned i=0;i<4;++i) compas_display_stats[2][i]=0;
+    stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},1,0,1300000000);
+    unsigned light_guard=100;
+    while(jobs!=(1u<<NOTICE) && light_guard--) assert(stage_work());
+    assert(light_guard && measurement==3);
+    for(unsigned step=1;step<=2;++step) {
+        v.position=(uint8_t)step;
+        stage_offer(&p,v,panel_keys(&p,v),(RackFeedback){0},0,0,1300000000+step*1200000u);
+        assert(jobs==(1u<<NOTICE));
+    }
+    while(stage_work()) {}
+    assert(compas_display_stats[2][3]==57600u);
 }

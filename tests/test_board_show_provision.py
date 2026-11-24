@@ -15,10 +15,10 @@ class ProvisionTest(unittest.TestCase):
         self.compact=b'C'*0x90000
         self.updated=self.before[:0x4000]+self.compact[0x4000:]+self.before[0x90000:]
         self.show=bytearray(b'\xff'*0x100000)
-        self.payload=bytes((i*7+2)&255 for i in range(3776))
+        self.payload=bytes((i*7+2)&255 for i in range(3792))
         self.show[0x92000:0x92008]=b'CMPASIM1'
-        self.show[0x90100:0x90100+3776]=self.payload
-        struct.pack_into('<III',self.show,0x90000,0x32535043,4,zlib.crc32(struct.pack('<I',4)+self.payload))
+        self.show[0x90100:0x90100+3792]=self.payload
+        struct.pack_into('<III',self.show,0x90000,0x34535043,4,zlib.crc32(struct.pack('<I',4)+self.payload))
 
     def plan(self, **change):
         args=dict(before=self.before,repeated=self.before,updated=self.updated,
@@ -28,7 +28,7 @@ class ProvisionTest(unittest.TestCase):
 
     def test_all_byte_prefix_cuts_and_resume(self):
         plan=self.plan();final=plan.run();total=plan.receipt()['bytePrefixCuts']
-        self.assertEqual(total,16084)
+        self.assertEqual(total,16100)
         self.assertEqual(p['layout']['newest_show'](final),(1,self.payload))
         self.assertEqual(final[0x91000:0x92000],b'\xff'*4096)
         for cut in range(total):

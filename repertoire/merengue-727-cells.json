@@ -13,7 +13,7 @@
     "scope": "Author's retrospective observation from Santo Domingo, published with a 2003 time reference. Describes conga accompaniment when tambora is present, expressly uncertain whether it is traditional. No named performance, player or merengue subtype is identified.",
     "verification": "Complete two-row notation and linked stroke key visually inspected. One reader; independent player audit pending."
   },
-  "rights": "Basic rhythmic cells studied from the publicly supplied author's lesson. No notation image, prose, recording or sample is embedded in the machine. 727 rhythmic adaptation; no endorsement or distribution licence asserted.",
+  "rights": "Basic rhythmic cells studied from the publicly supplied author's lesson. No notation image, prose, recording or sample is embedded in the machine. Private 727 adaptation; no endorsement or distribution licence asserted.",
   "grid": {"meter": "4/4", "bars": 2, "steps": 32, "index": "zero-based sixteenths"},
   "adaptation": {
     "high:S": [2, true],

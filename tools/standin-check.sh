@@ -15,7 +15,7 @@
 set -eu
 cd "$(dirname "$0")/.."
 cc="${CC:-cc}"
-wasm_cc="${WASM_CC:-clang}"
+wasm_cc="${WASM_CC:-tools/wasm-clang.py}"
 out=build/standin
 python3 tools/score.py
 python3 tools/board-piano.py
@@ -24,7 +24,7 @@ python3 tools/standin-bank.py "$out"
 
 exports="encoders boot song_title cue input master audio snapshot snapshot_size read_view splash draw
  set_buffer set_size playing pull_saved_set update_set_display rhythm_buffer rhythm_size rhythm_export
- rhythm_import rhythm_slots_buffer rhythm_slots_size show_export lang rails fx_shed"
+ rhythm_import rhythm_slots_buffer rhythm_slots_size show_export lang rails fx_shed speed dac_scale"
 flags=""
 for name in $exports; do flags="$flags -Wl,--export=bench_$name"; done
 # Same flags as tools/board-browser.py; build/standin comes first so its 727.inc wins.
@@ -39,7 +39,7 @@ for name in $exports; do flags="$flags -Wl,--export=bench_$name"; done
 COMPAS_BOARD_WASM="$out/browser-board.wasm"
 export COMPAS_BOARD_WASM
 # board-regional.mjs also checks the startup sets inside the generated HTML
-# pages, so it runs after tools/board-browser.py with the real bank.
+# pages, so it runs after tools/board-browser.py with the real bank (Codex).
 for test in tests/board-*.mjs; do
     [ "$test" = tests/board-regional.mjs ] && continue
     node "$test" >/dev/null

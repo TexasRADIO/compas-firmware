@@ -21,7 +21,7 @@ if(!board.bench_boot(3)) throw Error('Native validation rejected this show.');
 
 const flash=new Uint8Array(0x100000).fill(255),base=0x90000;
 flash.set(payload,base+256);flash.set(rhythms,base+256+payload.length);
-flash.set(new TextEncoder().encode('CPS2'),base);
+flash.set(new TextEncoder().encode('CPS4'),base);
 const view=new DataView(flash.buffer);view.setUint32(base+4,1,true);
 let crc=0xffffffff;
 for(const byte of [...flash.subarray(base+4,base+8),...payload,...rhythms]) {

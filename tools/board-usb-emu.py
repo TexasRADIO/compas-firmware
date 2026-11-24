@@ -98,9 +98,7 @@ def stage_rehearsal(emulator, image, home, path, stock):
     sends.extend((1850+120*i,wire["reply"](off,logical[off:off+n])) for i,(off,n) in enumerate(requests))
     sends.append((1850+120*len(requests),wire["reply"](0xE0000000,b"success\0")))
     seed = bytearray([255]) * (1 << 20)
-    # The standard release app now extends past 0x90000. Put the
-    # unchanged-region sentinel outside the entire application envelope.
-    seed[0x93000:0x96000] = bytes([0xA5])*0x3000
+    seed[0x90000:0x93000] = bytes([0xA5])*0x3000
     seed[:0x4000] = logical[boot:boot+0x4000]
     seed[ota_at:ota_end] = bytes([255])*(ota_end-ota_at)
     if stock:

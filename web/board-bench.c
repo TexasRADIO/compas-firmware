@@ -6,6 +6,7 @@ typedef struct { Panel panel; BoardView view; PanelKeys keys; RackFeedback rack;
 static BenchView snapshot;
 static Panel panel;
 static uint32_t ticks;
+unsigned bench_dac_scale(void) { return BOARD_DAC_SCALE; }
 static uint16_t glass[240*240];
 static unsigned left, top, width, offset;
 
@@ -97,6 +98,7 @@ int bench_kit_restore(unsigned drive,unsigned decay,unsigned pitch,unsigned cloc
     const uint8_t settings[KUMBIA_SETTINGS]={drive,decay,pitch,clock};
     return board_kumbia_restore(settings);
 }
+int bench_kit_level(unsigned level) { return board_kumbia_level_set(level); }
 #endif
 const char *bench_song_title(unsigned slot)
 {
@@ -120,6 +122,12 @@ void bench_input(uint32_t buttons,uint32_t keys,uint32_t time)
 uint32_t bench_rails(void)
 {
     return board_stats.rail_samples;
+}
+/* Compás 1.3 FRENO test hook: REBAJADA speed in bits 0-7, playing in bit 8 */
+uint32_t bench_speed(void)
+{
+    BoardView v=board_view(0);
+    return v.speed|(v.playing?0x100u:0u);
 }
 /* Compás 1.2: blocks where the CPU guard skipped ROOM or ECHO */
 uint32_t bench_fx_shed(void)

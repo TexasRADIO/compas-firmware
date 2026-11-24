@@ -75,10 +75,22 @@ static void ota_show(uint32_t step, int32_t code)
         "CONNECT USB   ", "READ PACKAGE  ", "CHECK HEAD    ",
         "STAGE LOADER  ", "CONFIRM       ", "RESTART       "
     };
+    enum { STEPS = sizeof labels / sizeof labels[0] };
     band(0, 240, INK);
     text_line(54, 90, " UPDATE MODE", 12, GOLD, INK);
-    text_line(43, 122, step < sizeof labels / sizeof labels[0] ? labels[step] :
+    text_line(43, 122, step < STEPS ? labels[step] :
               code == 1 ? "REHEARSAL OK  " : "UPDATE FAILED ", 14, CREAM, INK);
+    /* 1.3 (after MONO2K): a step bar and a warning while the host is writing.
+     * The long install after RESTART belongs to the official update loader,
+     * which draws its own screen; this covers everything Compás itself does. */
+    if (step < STEPS) {
+        for (uint32_t i = 0; i < STEPS; ++i)
+            lcd_fill(30 + i * 30, 152, 26, 8, i <= step ? GOLD : DIM);
+        if (step)
+            text_line(36, 176, "KEEP USB CONNECTED", 18, PINK, INK);
+    } else if (code != 1) {
+        lcd_fill(30, 152, 176, 8, RED);
+    }
     lcd_sync();
 }
 

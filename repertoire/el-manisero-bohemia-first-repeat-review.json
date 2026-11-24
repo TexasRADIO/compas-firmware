@@ -1,0 +1,155 @@
+{
+  "edition": "Bohemia, Havana, 26 May 1929, printed p. 66",
+  "source": "https://ufdcimages.uflib.ufl.edu/UF/00/02/90/10/01764/26_mayo_1929_21.pdf",
+  "source_sha256": "95f5173d25df6abf0cba3b1badcbb7487c82334e2e93d15cacfecd9268bbacc3",
+  "credits_as_printed": [
+    "E. Lecuona",
+    "M. Simons",
+    "Antonio Mª Romeu"
+  ],
+  "ppq": 24,
+  "meter": [
+    2,
+    4
+  ],
+  "preview_bpm": 100,
+  "title": "El Manisero - Havana danzon first repeat (reading draft)",
+  "source_location": "PDF p. 34, printed p. 66, systems 1–2. Lead-in, A1–A7 and both numbered endings. Stops before B.",
+  "scope": "Private reading draft, 17 performed bars and 804 ticks. Not registered in the board or the approved Set Builder library.",
+  "play_order": [
+    "LEAD-IN",
+    "A",
+    "FIRST ENDING",
+    "A",
+    "SECOND ENDING"
+  ],
+  "form": [
+    {
+      "name": "LEAD-IN",
+      "bar": 1
+    },
+    {
+      "name": "A FIRST PASS",
+      "bar": 2
+    },
+    {
+      "name": "FIRST ENDING",
+      "bar": 9
+    },
+    {
+      "name": "A SECOND PASS",
+      "bar": 10
+    },
+    {
+      "name": "SECOND ENDING",
+      "bar": 17
+    }
+  ],
+  "editorial": [
+    "The lead-in and A1–A3 reuse the existing opening transcription without pitch or timing changes.",
+    "The second reading corrects the lower-staff chord voicings in A4–A6 and the second ending against the printed ledger lines. The enlarged scan places the first and last high heads of A7 at B5 and its second lower-staff attack at A2. The upper staff rhythm in A7 is editorial because the beam is obscured.",
+    "The first ending reads the small crossed F-sharp as a one-tick grace note borrowed from the first eighth. The bass follows the full written eighth.",
+    "Rolls are simultaneous and unlabelled tempo, velocity and grace duration are editorial. No notes from the B repeat are included."
+  ],
+  "parts": [
+    {
+      "title": "Piano lower staff",
+      "program": 0,
+      "patterns": {
+        "pickup": "G2+G3:6 G2+G3:12 G2+G3:6 G2+G3:12",
+        "a1": "C2+C3:12 G3+C4+E4:12 F2+F3:12 A2+A3:12",
+        "a2": "C2+C3:12 G3+C4+E4:12 D2+D3:12 G2+G3:12",
+        "a3": "C2+C3:12 E2:6 E3:6 F2:6 F3:6 F#2:6 F#3:6",
+        "a4": "G2:12 G3+B3+F4:12 G3+B3+F4:12 R:12",
+        "a5": "G2:6 D3:6 G3:12 B3+D4+F4:12 G2:6 G3:6",
+        "a6": "C2:6 G2:6 C3:12 G3+C4+E4:12 A1:6 A2:6",
+        "a7": "D2:6 A2:6 D3:12 F#3+C4+D4:12 D2:6 D3:6",
+        "e1": "G2+G3:12 G2+G3:6 G2+G3:12 G2+G3:6 G2+G3:12",
+        "e2": "G2:12 G3+B3+F4:12 R:12 G2:6 G3:6"
+      },
+      "partial_ticks": {
+        "pickup": 36
+      },
+      "sections": {
+        "LEAD-IN": {
+          "bars": "pickup"
+        },
+        "A": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST ENDING": {
+          "bars": "e1"
+        },
+        "SECOND ENDING": {
+          "bars": "e2"
+        }
+      }
+    },
+    {
+      "title": "Piano upper staff",
+      "program": 0,
+      "patterns": {
+        "pickup": "G4+G5:6 G4+G5:12 G4+G5:6 G4+G5:12",
+        "a1": "C6:6 G5:6 E5:6 C5:6 F5:6 A5:6 C6:6 A5:6",
+        "a2": "C6:6 G5:6 E5:6 C5:6 A5:6 F5:6 D5:6 B4:6",
+        "a3": "C4+E4+C5:12 E4+G4+E5:12 D4+F4+D5:12 C4+G4+B4:12",
+        "a4": "B3+G4+B4:12 G4+B4+D5:12 G4+B4+G5:12 F5+A5:6 E5+G5:6",
+        "a5": "E5+G5:6 D5+F5:6 C#5+E5:6 D5+F5:6 B4+D5:12 G5+B5:6 F5+A5:6",
+        "a6": "F5+A5:6 E5+G5:6 D#5+F#5:6 E5+G5:6 C5+E5:12 E5+C6:6 D5+B5:6",
+        "a7": "D5+B5:12 C5+A5:12 C5+E5:6 D5+F#5:6 C5+B5:12",
+        "e1": "G4+G5:11 F#5:1 G4+G5:6 G4+G5:12 G4+G5:6 G4+G5:12",
+        "e2": "B4+G5:12 B4+G5:12 R:6 E5+G5:6 F5+A5:6 E5+G5:6"
+      },
+      "partial_ticks": {
+        "pickup": 36
+      },
+      "sections": {
+        "LEAD-IN": {
+          "bars": "pickup"
+        },
+        "A": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST ENDING": {
+          "bars": "e1"
+        },
+        "SECOND ENDING": {
+          "bars": "e2"
+        }
+      }
+    },
+    {
+      "title": "Piano upper staff held voice",
+      "program": 0,
+      "patterns": {
+        "pickup": "R:36",
+        "a1": "C5+E5+G5:18 R:6 C5:12 C5:12",
+        "a2": "C5+E5+G5:18 R:6 B4+D5+G5:18 R:6",
+        "a3": "R:48",
+        "a4": "R:48",
+        "a5": "R:48",
+        "a6": "R:48",
+        "a7": "R:48",
+        "e1": "R:48",
+        "e2": "R:48"
+      },
+      "partial_ticks": {
+        "pickup": 36
+      },
+      "sections": {
+        "LEAD-IN": {
+          "bars": "pickup"
+        },
+        "A": {
+          "bars": "a1 a2 a3 a4 a5 a6 a7"
+        },
+        "FIRST ENDING": {
+          "bars": "e1"
+        },
+        "SECOND ENDING": {
+          "bars": "e2"
+        }
+      }
+    }
+  ]
+}

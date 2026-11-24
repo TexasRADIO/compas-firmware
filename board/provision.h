@@ -2,7 +2,7 @@
 #define COMPAS_PROVISION_H
 #include <stdint.h>
 /* Installer-side core, not linked into the instrument app. */
-enum { PROVISION_BASE=0x90000, PROVISION_BYTES=12288, PROVISION_PAYLOAD=3776 };
+enum { PROVISION_BASE=0x90000, PROVISION_BYTES=12288, PROVISION_PAYLOAD=3792 };
 int provision_ready(void);
 int provision_read(uint32_t offset,void *dest,unsigned size);
 int provision_erase(uint32_t offset);

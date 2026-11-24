@@ -274,7 +274,7 @@ static int fx_set(unsigned param, unsigned value)
     /* ECHO is a return level: at 0 nothing of the echo is heard, so its
      * feedback ends there too. Without this, with ROOM and GLUE also at 0
      * the block stops running and the echo's state froze, to be replayed
-     * stale when ECHO came back. O(1): the ring is not
+     * stale when ECHO came back (Codex round 2). O(1): the ring is not
      * touched; the next arming only reads what it records from then on. */
     if (param == FX_ECO && !value)
         fx.echo.lp = 0.0f;

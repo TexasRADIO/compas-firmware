@@ -1,9 +1,10 @@
 import {save,recall} from './store.mjs';
+import {stepEditorPage} from './step-pages.mjs';
 const $ = id=>document.getElementById(id);
 const message=text=>$('notice').textContent=text;
 const names=['Base','Lift','Break'];
 const results=['','Busy · an action is queued.','Stop first.','Part is silent or unavailable.','Action unavailable.','Invalid project · previous state kept.','Press Play first.'];
-let ctx,node,booting=false,inflight,serial=0,selected=0,studyID=-1,stepButtons=[],parts=[],scores=[],levels=[];
+let ctx,node,booting=false,inflight,serial=0,selected=0,studyID=-1,stepPage=0,stepButtons=[],parts=[],scores=[],levels=[];
 let state=[0,0,3,0,0,0,94,30,0,6,0,31,44100,0,0];
 let cameoTimer;
 const cameo=document.querySelector('.channel');
@@ -15,7 +16,9 @@ function showJohnny() {
 showJohnny();
 const score=await fetch('../src/score.json').then(r=>r.json()).catch(()=>null);
 if(!score) { $('play').disabled=true; message('Score unavailable.'); }
+if(score) score.studies=score.studies.filter(s=>!s.testOnly);
 for (const [i,s] of (score?.studies ?? []).entries()) $('study').add(new Option(s.title,i));
+const meterSpec=s=>Array.isArray(s.meter)?{top:s.meter[0],bottom:s.meter[1],steps:s.meter[0]*32/s.meter[1],pulses:s.meter[1]===8?s.meter[0]/3:s.meter[0]}:{top:s.meter,bottom:4,steps:s.meter*8,pulses:s.meter*2};
 const roots=['C','C♯ / D♭','D','E♭','E','F','F♯ / G♭','G','A♭','A','B♭','B'];
 for (const [i,n] of roots.entries()) $('root').add(new Option(n,i));
 const wasm=fetch('../build/engine.wasm').then(r=>{if(!r.ok)throw Error('Engine not built.');return r.arrayBuffer();}).then(WebAssembly.compile).catch(e=>e);
@@ -74,7 +77,11 @@ function button(label, action, className) {
   if(className) b.className=className;
   b.addEventListener('click',action);return b;
 }
-function buildParts(s) {
+function buildParts(s, keepStepPage=false) {
+  const meter=meterSpec(s);
+  if(!keepStepPage) stepPage=0;
+  const page=stepEditorPage(meter.steps,stepPage);
+  stepPage=page.page;
   $('parts').replaceChildren();$('edit-part').replaceChildren();
   parts=s.parts.map(([role,voice],i)=>{
     const box=document.createElement('div');box.className='part';box.hidden=voice==='none';
@@ -92,14 +99,20 @@ function buildParts(s) {
   });
   if(parts[selected]?.none) selected=0;
   $('edit-part').value=selected;
+  $('step-pages').hidden=page.pages===1;
+  $('step-pages').replaceChildren(...Array.from({length:page.pages},(_,i)=>{
+    const first=i*16+1, last=Math.min(meter.steps,(i+1)*16);
+    const b=button('Steps '+first+'–'+last,()=>{stepPage=i;buildParts(s,true);render();});
+    b.setAttribute('aria-pressed',i===page.page);return b;
+  }));
   $('steps').replaceChildren();
   stepButtons=[];
-  for(let bar=0;bar<2;bar++){
-    const row=document.createElement('div');row.className='bar'+(s.meter===2?' short':'');
-    for(let j=0;j<s.meter*4;j++){
-      const index=bar*s.meter*4+j;
+  for(let bar=0;bar<(page.count>16?2:1);bar++){
+    const row=document.createElement('div');row.className='bar'+(meter.steps<=16?' short':'');
+    for(let j=0;j<Math.min(16,page.count-bar*16);j++){
+      const index=page.first+bar*16+j;
       const b=button(String(j+1),()=>act(11,selected,index),'step'+(j%4===0?' beat':''));
-      row.append(b);stepButtons.push(b);
+      row.append(b);stepButtons.push({index,b});
     }
     $('steps').append(row);
   }
@@ -108,17 +121,18 @@ function render() {
   if(!score) return;
   const [playing,section,pending,fill,pos,id,bpm,feel,muted,solo,reverse,available,,,root]=state;
   const s=score.studies[id];
+  const meter=meterSpec(s);
   if(studyID!==id){
     if(studyID>=0) showJohnny();
     studyID=id;buildParts(s);$('description').textContent=s.note;
-    $('beat-lamps').replaceChildren(...Array.from({length:s.meter*2},()=>document.createElement('i')));
+    $('beat-lamps').replaceChildren(...Array.from({length:meter.pulses},()=>document.createElement('i')));
   }
   for(const [i,lamp] of [...$('beat-lamps').children].entries())
-    lamp.classList.toggle('lit',!!playing && i===Math.floor(pos/4));
+    lamp.classList.toggle('lit',!!playing && i===Math.floor(pos/(meter.steps/meter.pulses)));
   $('study-title').textContent=s.short;
   $('transport').textContent=playing ? (available ? 'PLAYING' : 'PLAYING · MIX SILENT') : 'STOPPED';
   $('arrangement').textContent=names[section].toUpperCase()+(pending!==3?' → '+names[pending].toUpperCase():'')+(fill===1?' · FILL QUEUED':fill===2?' · FILL':'');
-  $('readout').textContent=bpm+' BPM · '+s.meter+'/4'+((id===2||id===6)?(reverse?' · 2–3':' · 3–2'):'')+(playing?' · BAR '+(1+Math.floor(pos/(s.meter*4))):'');
+  $('readout').textContent=bpm+' BPM · '+meter.top+'/'+meter.bottom+((id===2||id===6)?(reverse?' · 2–3':' · 3–2'):'')+(playing?' · BAR '+(1+Math.floor(pos/meter.steps)):'');
   $('study').value=id;$('study').disabled=!node||!!playing;
   $('clave-row').hidden=id!==2&&id!==6;$('clave').value=reverse;$('clave').disabled=!node||!!playing;
   $('root-row').hidden=id===0;$('root').value=root;$('root').disabled=!node||!!playing;
@@ -139,12 +153,12 @@ function render() {
     p.mute.setAttribute('aria-pressed',!!(muted&(1<<i)));p.solo.setAttribute('aria-pressed',solo===i);
     if(document.activeElement!==p.range) p.range.value=levels[i]??100;
   }
-  for(const [i,b] of stepButtons.entries()){
-    const value=scores[selected]?.[i]??0;
+  for(const {index,b} of stepButtons){
+    const value=scores[selected]?.[index]??0;
     b.disabled=!node||((id===2||id===6)&&selected===0);
-    b.classList.toggle('now',!!playing&&pos===i);
+    b.classList.toggle('now',!!playing&&pos===index);
     b.setAttribute('aria-pressed',!!value);
-    b.setAttribute('aria-label','Step '+(i+1)+(value===2?' · accented':value>=16?' · bass +'+(value-16)+' semitones':''));
+    b.setAttribute('aria-label','Step '+(index+1)+(value===2?' · accented':value>=16?' · bass +'+(value-16)+' semitones':''));
   }
   $('save').disabled=$('export').disabled=!node;
   $('load').disabled=$('import').disabled=!node||!!playing;
@@ -182,7 +196,7 @@ $('export').onclick=async()=>{
 $('import').onchange=async()=>{
   const file=$('import').files[0];$('import').value='';
   if(!file)return;
-  if(file.size!==55){message('Invalid project size · previous state kept.');return;}
+  if(file.size!==62){message('Invalid project size · previous state kept.');return;}
   try {await act('open',0,0,new Uint8Array(await file.arrayBuffer()),'Project opened.');}
   catch(error){message(error.message);}
 };

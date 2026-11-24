@@ -48,10 +48,10 @@ class ShowLayoutTest(unittest.TestCase):
     def test_complete_show_crc_wrap_and_torn_record(self):
         flash=bytearray(b'\xff'*0x100000);flash[0x92000:0x92008]=b'CMPASIM1'
         def seal(offset,gen,value):
-            payload=bytes([value])*3776
-            flash[offset+256:offset+256+3776]=payload
+            payload=bytes([value])*3792
+            flash[offset+256:offset+256+3792]=payload
             crc=zlib.crc32(struct.pack('<I',gen)+payload)
-            struct.pack_into('<III',flash,offset,0x32535043,gen,crc)
+            struct.pack_into('<III',flash,offset,0x34535043,gen,crc)
             return payload
         old=seal(0x90000,0xffffffff,1);new=seal(0x91000,0,2)
         self.assertEqual(layout['newest_show'](flash),(0,new))

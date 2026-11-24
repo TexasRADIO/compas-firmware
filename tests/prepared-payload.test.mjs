@@ -16,7 +16,7 @@ import json, runpy, sys
 board_set = runpy.run_path("tools/board-set.py")
 records = board_set["compile_set"](json.load(sys.stdin))
 flash = board_set["virtual_flash"](records)
-sys.stdout.buffer.write(flash[0x90100:0x90100 + 1360])
+sys.stdout.buffer.write(flash[0x90100:0x90100 + 1376])
 `], {input:JSON.stringify(set)});
   assert.equal(result.status, 0, result.stderr.toString());
   return result.stdout;
@@ -61,7 +61,7 @@ test('all twelve score transpositions compile identically; groove offsets are re
   for(let transpose=-6;transpose<=5;++transpose) {
     const set={format:1,songs:[{title:'SINGER KEY',study:'la-paloma',guide:true,transpose}]};
     const bytes=preparedPayload(set,catalog);
-    assert.equal(bytes[19+45],(transpose+12)%12);
+    assert.equal(bytes[19+57],(transpose+12)%12);
     assert.deepEqual(Buffer.from(bytes),nativePayload(set));
   }
   for(const transpose of [-7,6,0.5,true]) {
@@ -76,7 +76,7 @@ test('groove count-in shares the score guide byte without changing old set recor
     {title:'OLD SET',study:'mx'},{title:'WRITTEN SCORE',study:'la-paloma-piano'}]};
   const packed=preparedPayload(set,catalog);
   assert.deepEqual(Buffer.from(packed),nativePayload(set));
-  assert.deepEqual([packed[84],packed[169],packed[254]],[1,0,0]);
+  assert.deepEqual([packed[85]>>7,packed[171]>>7,packed[257]>>7],[1,0,0]);
   set.songs[2].countIn=true;
   assert.throws(()=>preparedPayload(set,catalog),/count-in/);
 });

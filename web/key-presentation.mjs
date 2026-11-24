@@ -7,9 +7,13 @@ const drumNames=['High bongo','Low bongo','Muted high conga','Open high conga','
 const drumLabels=['H B','L B','M C','O C','L C','H T','L T','H A','L A','CAB','MAR','S W','L W','QUI','CHM','ACC'];
 const drumColors=['#ff8914','#ff8914','#ff2e88','#ff2e88','#ff2e88','#ffe600','#ffe600','#17d4ee','#17d4ee','#43ff91','#43ff91','#8cbbff','#8cbbff','#ef7373','#b46bff','#fff8ec'];
 function keyPresentation(bytes,catalog) {
-  if(bytes.length!==128 && bytes.length!==136) throw Error('Unsupported board display snapshot');
+  if(![128,132,136,140].includes(bytes.length)) throw Error('Unsupported board display snapshot');
   const d=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
   const page=bytes[0], bar=bytes[2], edit=bytes[18], v=bytes.subarray(20,96);
+  // BoardView's compound extension is appended ahead of PanelKeys/RackFeedback,
+  // preserving every old field offset and allowing old 1.2 snapshots to render.
+  const hasCompoundSteps=bytes.length===132 || bytes.length===140;
+  const stepsHigh=hasCompoundSteps?d.getUint32(bytes.length-36,true):0;
   const [parts,upper,pads,active,queued,enabled]=Array.from({length:6},(_,i)=>d.getUint32(bytes.length-32+i*4,true));
   const study=catalog[v[1]], score=catalog.find(s=>s.piano===v[31]);
   const band=[0,5,6].includes(page), rack=page===3, steps=rack&&edit;
@@ -58,9 +62,10 @@ function keyPresentation(bytes,catalog) {
       kind=pads&bit?'slot':'unused';
       name=`${kind==='slot'?'Song':'Empty song'} slot ${i+1}`;
       current=!!(active&bit);next=!!(queued&bit);
-    } else if(page===2 && i<(study?.meter===2?8:16)) {
+    } else if(page===2 && i<((study?.meter===2)?8:16) && bar+i<(study?meterSpec(study).steps:0)) {
       kind='step';label=String(bar+i+1);name=`Step ${bar+i+1}`;
-      on=!!(d.getUint32(60,true)&(1<<(bar+i)));
+      const step=bar+i;
+      on=step<32?!!(d.getUint32(60,true)&(1<<step)):!!(stepsHigh&(1<<(step-32)));
       current=!!v[0]&&v[5]===bar+i;
     } else if(page===1 && !v[31] && i<12) {
       const role=i%6, roleName=study?.parts?.[role]?.[0]||`Voice ${role+1}`;
@@ -76,9 +81,9 @@ function keyPresentation(bytes,catalog) {
     steps?'First 16 keys: steps. KNOB1 chooses the sound. OCT− / OCT+ changes bar.':
     rack?(v[31]?'First 15 keys: live 727 sounds. Key 16: accent.':
       'First 15 keys: 727 sounds. ARP rolls, REC records the selected lane and SEQ edits steps. Key 16: accent.'):
-    page===7?'Keys 1–4 play the kit. Keys 5–8 or PRESETS cue patterns. FX switches Off, Layer or Drums Only.':
+    page===7?'KNOB4 is Kumbia LEVEL. OCT− / OCT+ changes the sample CLOCK in Hz. Keys 1–4 play sounds; 5–8 or PRESETS cue patterns. FX selects Off, Layer or Drums Only.':
     page===4?'First 16 keys: song slots. Yellow is current; pink is queued.':
-    page===2?'First keys: steps for the selected instrument. OCT− / OCT+ changes bar.':
+    page===2?'First keys: steps for the selected instrument. OCT− / OCT+ changes page.':
     'First six keys: instrument mutes. Next six: solos.';
   return {keys:list,hint,song:v[28],nextSong:v[29]};
 }

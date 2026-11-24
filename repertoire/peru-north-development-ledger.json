@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "status": "private authored arrangements from source cells; no public release or regional approval",
+  "source": {
+    "id": "PER-01",
+    "authors": "Oscar Jeanluck Burgos Segura and Víctor Hugo Ñopo Olazábal",
+    "title": "Transformaciones de la cumbia en la costa norte del Perú en las dos primeras décadas del siglo XXI",
+    "publication": "ANTEC 7(1), June 2023, pp. 142–174",
+    "url": "https://repositorio.unm.edu.pe/server/api/core/bitstreams/1d131676-94ec-4669-8820-acfc1948a4f5/content",
+    "sha256": "d76287573e894edacb4c9aa48f5f27f93481e0bb0ed53aaf9073c1a973bc04cd",
+    "notation": "Figure 14, printed p. 161 / PDF p. 20; left and right panels rendered at 4x and visually read. Figures 2–3 were inspected in the preceding source-cell pass.",
+    "readerStatus": "one-reader interpretation; independent notation and local musician comparison pending"
+  },
+  "timing": {
+    "sourceMeter": "2/2",
+    "machineMeter": "2/4",
+    "bars": 2,
+    "sourceTicksPerQuarter": 4,
+    "sourceTicksPerBar": 16,
+    "machineStepsPerBar": 8,
+    "mapping": "divide every adopted source tick by two; source half-note pulse becomes machine quarter-note pulse",
+    "notClaimed": "unmodified note-value notation, source microtiming or a universal regional tempo"
+  },
+  "commonSourceBar": {
+    "kick": [0,8],
+    "upperPercussion": [0,4,6,8,12,14],
+    "bongo": [0,4,6,8,12,14],
+    "bongoArticulation": {"closed":[0,8],"openHigh":[4],"openLow":[12],"palm":[6,14]},
+    "conga": [0,4,8,12],
+    "congaArticulation": {"palm":[0,8],"slap":[4],"open":[12]},
+    "excludedJamBlock": [0,8]
+  },
+  "palette": {
+    "kick": "Compás procedural kick; not a sample of the source kit",
+    "upperPercussion": "Compás shake voice for the hi-hat role; not a faithful hi-hat emulation",
+    "bongo": "727 high bongó in the review set; low/open/closed/palm source strokes collapse to one sample. Accent gains are authored.",
+    "conga": "727 muted/open high conga in the review set. Source open-stroke positions use event 2, which couples open timbre and stronger velocity; palm and slap collapse. No independent source dynamic is inferred.",
+    "timbal": "Compás procedural shell voice. The source jam-block line is deliberately omitted, not relabelled as shell.",
+    "bass": "Compás ensemble bass; all relative pitches are authored and the live lead is left unprogrammed"
+  },
+  "entries": [
+    {
+      "study": "peru-norte-motor-study",
+      "reference": "Motor y motivo / Grupo 5, Figure 14 left; Figure 2 upper cell",
+      "pulse": 98,
+      "sourceQuarterBpm": 196,
+      "sourceShellBar": [0,4,6,8,12,14],
+      "authoredBass": {"relativeBarRoots":[0,8],"relativePitches":[0,7,0,8,3,8],"machineOnsets":[0,4,6,8,12,14]},
+      "authored": "Root/bVI bass reduction, all velocities and fader levels, Energy accents, last-beat fills and six conductor gestures. Source bass pitches and piano voicings are not adopted.",
+      "notClaimed": ["the complete Motor y motivo arrangement", "a chicha or tecnocumbia rhythm", "the recorded bass line", "source guitar/keyboard/brass melody", "a 727 on the recording"]
+    },
+    {
+      "study": "peru-norte-cumbion-study",
+      "reference": "Dios mío, haz que me enamore / Armonía 10, Figure 14 right; Figure 3 fragmented shell",
+      "pulse": 140,
+      "sourceQuarterBpm": 280,
+      "sourceShellBar": [0,6,8,14],
+      "authoredBass": {"relativeBarRoots":[0,10],"relativePitches":[0,7,0,10,5,10],"machineOnsets":[0,4,6,8,12,14]},
+      "authored": "Root/bVII bass reduction, all velocities and fader levels, Energy accents, last-beat fills and six conductor gestures. Source bass pitches are not adopted. The continuing upper cell is retained independently from the sparse shell.",
+      "notClaimed": ["the complete Armonía 10 arrangement", "every cumbión or a canonical quebradita", "the recorded bass line", "source guitar/keyboard/brass melody", "a 727 on the recording"]
+    }
+  ],
+  "liveForm": {
+    "screenLabels": ["Intro","Verso","Coro","Puente","Break","Final"],
+    "labelBoundary": "The following keys identify engine slots. The screen retains Cumbia-family labels; none claims the source recording's actual section order.",
+    "intro": "First bar isolates Hat/Bass, second bar opens the body; the next phrase enters Verse A.",
+    "verseA": "Source-cell body with authored bass and levels.",
+    "verseB": "Base first bar, Lift accents in the second.",
+    "chorus": "Lift accents, preserving the distinct shell/upper roles.",
+    "break": "Hat/Bass only; room for a live singer or instrumental call.",
+    "ending": "One Hat/Bass phrase, then the existing stop/next-song behaviour.",
+    "fill": "ARP arms authored last-beat replies into the selected part. No source fill is claimed."
+  },
+  "releaseGate": "Independent notation reading and north-coast percussionist/arranger review; current real-bank resource and cue tests before any candidate promotion. These studies are a separate development branch, not an update to the qualified RC3 install package."
+}

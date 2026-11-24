@@ -55,6 +55,18 @@ int main(void)
     const uint8_t hello[] = {BB_ED_PROTOCOL_VERSION};
     request(BB_ED_MSG_HELLO, 1, hello, sizeof hello);
     assert(reply_type() == BB_ED_MSG_HELLO_REPLY && output[10] == BB_ED_PRODUCT_COMPAS);
+    assert(output[11] == 0u && output[12] == 13u);
+    assert(((unsigned)output[20]*128u+output[21]) == BOARD_GROOVE_PRESETS);
+    assert(ed_map(0x10u,0,ED_FIELD_GROOVE,BOARD_GROOVE_PRESETS-1u));
+    assert(editor.staged.command == BOARD_GROOVE_CUE && editor.staged.a == 37u);
+    assert(!ed_map(0x10u,0,ED_FIELD_GROOVE,BOARD_GROOVE_PRESETS));
+    assert(ed_map(7u,0,ED_FIELD_BPM,1800u));
+    assert(!ed_map(7u,0,ED_FIELD_BPM,1810u));
+    /* Snapshot timing must represent a full compound-meter phrase. */
+    view.position=47;
+    EditorSnapshot snap;
+    assert(ed_snapshot(&snap) && snap.length<=sizeof snap.bytes);
+    assert(snap.bytes[17]==0u && snap.bytes[18]==47u);
 
     request(BB_ED_MSG_SNAPSHOT_BEGIN, 2, 0, 0);
     /* The second immediate send is SNAPSHOT_END; both messages were formed and

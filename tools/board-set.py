@@ -1,4 +1,4 @@
-"""Compile an offline set list into version-1 Compás song snapshots."""
+"""Compile format-1 set lists into current 48-step Compás song snapshots."""
 import argparse
 from pathlib import Path
 import json
@@ -7,11 +7,14 @@ import struct
 import zlib
 
 root=Path(__file__).resolve().parents[1]
-studies=json.loads((root/"src/score.json").read_text())["studies"]
+studies=[study for study in json.loads((root/"src/score.json").read_text())["studies"]
+         if not study.get("testOnly")]
 ids={study["id"]:i for i,study in enumerate(studies)}
 scores={entry["id"]:(i,entry) for i,entry in enumerate(
     json.loads((root/"repertoire/board-scores.json").read_text()),1)}
 allowed={"title","study","bpm","feel","root","clave","kit","section","phrases","levels","mute","guide","countIn","transpose"}
+PROJECT_BYTES=62
+SONG_BYTES=86
 
 def number(song,key,default,lo,hi):
     value=song.get(key,default)
@@ -59,40 +62,48 @@ def compile_set(config):
         levels=song.get("levels",[100]*6)
         if not isinstance(levels,list) or len(levels)!=6 or any(type(x) is not int or not 0<=x<=100 for x in levels):
             raise ValueError("levels must contain six integers from 0 through 100")
-        blob=bytearray(55)
-        blob[:11]=bytes([67,80,83,49,1,1,sid,bpm,feel,mute,clave])
+        blob=bytearray(PROJECT_BYTES)
+        blob[:11]=bytes([67,80,83,49,2,1,sid,bpm,feel,mute,clave])
         struct.pack_into("<I",blob,11,0x434f4d50)
         blob[15:21]=bytes(levels)
-        blob[45]=root_note
-        struct.pack_into("<I",blob,51,zlib.crc32(blob[:51]))
+        blob[57]=root_note
+        struct.pack_into("<I",blob,58,zlib.crc32(blob[:58]))
         panel_title=title.translate(str.maketrans("ÁÉÍÓÚÑÜ","aeiounv"))
-        records.append((panel_title, bytes(blob), bytes((int(kit),section,phrases,piano,int(guide if piano else count_in)))))
+        options=int(kit)|(section<<1)|(phrases<<3)|(piano<<10)|(int(guide if piano else count_in)<<15)
+        records.append((panel_title, bytes(blob), options))
     return records
 
 
 def c_source(records):
     rows=[]
-    for title, blob, settings in records:
-        rows.append("    {"+json.dumps(title)+",{"+",".join(map(str,blob))+"},{0},"+
-                    ",".join(map(str,settings))+"},")
+    for title, blob, options in records:
+        rows.append("    {"+json.dumps(title)+",{"+",".join(map(str,blob))+"},{0,0,0},{"+
+                    str(options&255)+","+str(options>>8)+"}},")
     return "static const Song factory_set[] = {\n"+"\n".join(rows)+"\n};\n"
 
 
-def virtual_flash(records):
+def virtual_flash(records, *, unit_store=False):
     # Mirror BoardStore's packed Song records and first journal generation.
     # DEL in the first title byte hides an unused imported slot. A zero
     # title still means fall back to the factory slot for older saves.
-    rows = [title.encode("ascii").ljust(19,b"\0") + blob + bytes(6) + settings
-            for title, blob, settings in records]
-    rows.extend([b"\x7f" + bytes(84)] * (16-len(rows)))
-    payload = b"".join(rows)
-    assert len(payload) == 1360
+    rows = [title.encode("ascii").ljust(19,b"\0") + blob + bytes(3) + struct.pack("<H",options)
+            for title, blob, options in records]
+    rows.extend([b"\x7f" + bytes(SONG_BYTES-1)] * (16-len(rows)))
+    songs = b"".join(rows)
+    assert len(songs) == 16*SONG_BYTES
+    # CPS4 is a complete show: the set plus sixteen rhythm attachments.
+    # Empty attachments have origin 255, not erased NOR or an all-zero origin.
+    empty_rhythm = bytes(140) + b"\xff" + bytes(10)
+    payload = songs + empty_rhythm * 16
+    assert len(payload) == 3792
     generation = struct.pack("<I",1)
-    record = b"CPS1" + generation + struct.pack("<I",zlib.crc32(generation+payload))
+    record = b"CPS4" + generation + struct.pack("<I",zlib.crc32(generation+payload))
     image = bytearray(b"\xff" * 0x100000)
-    image[0x90000:0x90000+len(record)] = record
-    image[0x90100:0x90100+len(payload)] = payload
-    image[0x92000:0x92008] = b"CMPASIM1"
+    base = 0x91000 if unit_store else 0x90000
+    image[base:base+len(record)] = record
+    image[base+256:base+256+len(payload)] = payload
+    if not unit_store:
+        image[0x92000:0x92008] = b"CMPASIM1"
     return image
 
 
@@ -102,16 +113,20 @@ def main():
     parser.add_argument("output", type=Path, nargs="?")
     parser.add_argument("--virtual-flash", action="store_true",
                         help="create a new emulator-only flash file at output")
+    parser.add_argument("--unit-store", action="store_true",
+                        help="seed the release-layout journal at 0x91000 instead of the legacy fixture")
     args = parser.parse_args()
     if args.virtual_flash and args.output is None:
         parser.error("--virtual-flash needs an output path")
+    if args.unit_store and not args.virtual_flash:
+        parser.error("--unit-store requires --virtual-flash")
     try:
         if args.source.stat().st_size > 65536:
             raise ValueError("Set file is too large")
         records = compile_set(json.loads(args.source.read_text()))
         if args.virtual_flash:
             with args.output.open("xb") as out:
-                out.write(virtual_flash(records))
+                out.write(virtual_flash(records, unit_store=args.unit_store))
         else:
             output = args.output or root/"build/board/set.inc"
             output.parent.mkdir(parents=True,exist_ok=True)

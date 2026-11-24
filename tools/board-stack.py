@@ -56,22 +56,31 @@ def far_target(name,body,index):
     assert [text for addr,text in instructions.items() if identity<=addr<identity+symbols[identity][1]]==[
         "sp += -4","[sp] = r0","r0 = [sp]","sp += 4","rts"]
     register=re.fullmatch(r"call (r\d+)",body[index])[1]
-    window=body[max(0,index-8):index]
-    far=next(i for i,t in enumerate(window) if re.search(r"call .*<fl_far :",t))
+    window=body[max(0,index-16):index]
+    far=max(i for i,t in enumerate(window) if re.search(r"call .*<fl_far :",t))
     target=expected[name]
     assert far>0
     load=window[far-1]
+    via_pointer=False
     if name=="ota_prog" and re.fullmatch(r"r0 = r(?:[4-9]|1[0-3])",load):
         # The program loop keeps the approved callee address in one saved register.
         register_with_target=load.split()[-1]
         assignments=[t for t in body if re.match(register_with_target+r" (?:[+*/&|^-]?=)",t)]
         assert len(assignments)==1
         load=assignments[0].replace(register_with_target,"r0",1)
-    assert re.search(r"r0 = \d+ <"+target+r" :",load), (name,load)
+    # The release/store link materialises fm1_cstart's JEDEC routine through
+    # the BSP's RAM function-pointer cell.  It is still the audited routine:
+    # require both the pinned address load and the one exact dereference.
+    if not re.search(r"r0 = \d+ <"+target+r" :",load):
+        via_pointer=(name=="fm1_cstart" and target=="fl_jedec_ram" and
+                     load in ("r0 = [r0+0] ", "r0 = r4") and
+                     any(re.search(r"r4 = \d+ <fl_jedec_ram :",text) for text in window))
+        assert via_pointer, (name,load)
     assert not any(re.search(r"\bcall\b|\bgoto\b|\bif\b",t) for t in window[far+1:])
     assigned=[t for t in window[far+1:] if re.match(register+r" (?:[+*/&|^-]?=)",t)]
     if register!="r0": assert window[far+1]==register+" = r0"
-    assert assigned==([] if register=="r0" else [register+" = r0"])
+    expected=[] if register=="r0" else [register+" = r0"]
+    assert assigned==expected
     resolved_far[name]=target
     return target
 

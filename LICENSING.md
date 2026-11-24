@@ -19,17 +19,10 @@ come from BB1 BAND r85, source commit
 original copyright notices remain in the source. `docs/USB-UPDATER-REVIEW.md`
 records the exact archive and build inputs.
 
-The standard firmware package also contains the JieLi SDK boot/configuration
-components inherited byte for byte from the reference package. Those
-components retain Apache-2.0; its text is in `LICENSES/Apache-2.0.txt`.
-
-## Effects added in 1.2
-
-ROOM is adapted from BB1 2.3's `bb_fxbus.c`, which derives from the OG Synth
-X0X effects bus by Charles Vestal. The adaptation is GPL-3.0-only; the origin
-and copyright attribution remain in `board/fx.c`. ECHO and GLUE adaptations
-are documented in the same source. This does not change the licences of
-the 727 recordings or Hanan factory data below.
+The official FM-1 package also retains the JieLi SDK packaging blobs used by
+the verified seed package. Those SDK components are Apache-2.0; the required
+licence text is retained in `LICENSES/Apache-2.0.txt`. They are not presented
+as Compás source code.
 
 ## The 727 sound bank
 

@@ -69,7 +69,7 @@ assert.ok(echoDiff>0,'ECHO changes the sound');
 
 // No sample is ever outside the codec range, effects at maximum.
 const loud=run(s=>{s.input(FX);s.input(FX);for(const k of [2,3,5]){s.enc[k]=100;s.input(0);}for(let i=0;i<10;i++)s.input(OCT_UP);},900);
-for(const blk of loud.out) for(const x of blk) assert.ok(x<=32767*128 && x>=-32768*128);
+for(const blk of loud.out) for(const x of blk) assert.ok(x<=32767*loud.s.b.bench_dac_scale() && x>=-32768*loud.s.b.bench_dac_scale());
 // ...and the effect path never reaches the rail: its soft knee stops short of it.
 {
   const s=band(); s.b.bench_input(PLAY,0,0); for(let i=0;i<300;i++) s.block();

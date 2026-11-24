@@ -87,7 +87,8 @@ static void rack_header(BoardView v,unsigned sound)
     static const char *const times[]={"","x8","x8T","x16","x32"};
     /* The subtitle goes first: its blank accent rows (y 40-41) lie under the
      * name's last two rows, so the name must paint after it. */
-    if(roll) print(5,40,144,times[roll],1,CYAN,PLUM,0);
+    if(!panel_rack_edit_supported(v.study)) print(5,40,144,"COMPOUND / EDIT ROLE",1,CYAN,PLUM,0);
+    else if(roll) print(5,40,144,times[roll],1,CYAN,PLUM,0);
     else if(v.next_groove<BOARD_GROOVE_PRESETS)
         print(5,40,144,board_groove_title(v.next_groove),1,PINK,PLUM,0);
     else print(5,40,144,"PRESETS / SEQ EDIT",1,DIM2,PLUM,0);

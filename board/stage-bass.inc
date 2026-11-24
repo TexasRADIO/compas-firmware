@@ -93,7 +93,10 @@ static unsigned bass_response(BoardView v,unsigned harmonic)
     unsigned f=harmonic*8u;
     unsigned delta=max(f,cutoff)-min(f,cutoff);
     unsigned resonance=(v.bass_style?4u:2u)*v.bass_bite;
-    return stage_lowpass[v.bass_cut][harmonic-1u]+(delta<16u?resonance*(16u-delta)/16u:0u);
+    /* The table holds every fourth tone in Q7; blend the two nearest rows to Q8. */
+    unsigned row=v.bass_cut>>2, blend=v.bass_cut&3u, next=row<25u?row+1u:row;
+    unsigned low=(stage_lowpass[row][harmonic-1u]*(4u-blend)+stage_lowpass[next][harmonic-1u]*blend)>>1;
+    return low+(delta<16u?resonance*(16u-delta)/16u:0u);
 }
 
 static void bass_spectrum(BoardView v)

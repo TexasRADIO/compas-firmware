@@ -58,8 +58,7 @@ static StageMotion motion_offer(BoardView v,BoardView old,const Panel *p,unsigne
     if(next.kind==MOTION_CLOSE && (v.playing || elapsed>=48000000u)) next.kind=MOTION_NONE;
     if(next.kind==MOTION_LIFT && next.frame>=6 && now-next.beat_at>=720000000u/tempo)
         ++next.phase;
-    if(v.playing && !v.piano && v.fill==2 && v.next_part<PART_NONE &&
-       beat+1u==panel_beats(v.study)) {
+    if(v.playing && !v.piano && v.fill==2 && beat+1u==panel_beats(v.study)) {
         unsigned eighth=180000000u/tempo;
         next.roll=(uint8_t)min(8u,1u+(now-next.beat_at)/eighth);
     }

@@ -1,5 +1,5 @@
-// The optional Kumbia snapshot adds the four kit controls after its mode.
-const kitFromSnapshot=bytes=>bytes.length===136 ? Array.from(bytes.subarray(99,103)) : undefined;
+// Kumbia level occupies the former snapshot padding after its four controls.
+const kitFromSnapshot=bytes=>bytes.length===140 ? Array.from(bytes.subarray(99,104)) : undefined;
 
 class BoardAudio {
   constructor({module, preparedSet, preparedRhythms, standbySong, startupHanan, kitSettings}, rate, publish) {
@@ -43,11 +43,19 @@ class BoardAudio {
       new Uint8Array(board.memory.buffer,board.bench_rhythm_slots_buffer(),rhythms.length).set(rhythms);
     }
     if (!board.bench_boot(Number(Boolean(payload))|(rhythms?2:0)|(hanan?4:0))) throw Error('Invalid prepared set.');
-    if(this.kitSettings) board.bench_kit_restore?.(...this.kitSettings);
+    if(this.kitSettings) {
+      board.bench_kit_restore?.(...this.kitSettings.slice(0,4));
+      board.bench_kit_level?.(this.kitSettings[4]??100);
+    }
     return board;
   }
   use(board) {
     this.board=board;
+    // Older pinned WASMs use half-scale words. Never infer the format from
+    // peaks, which depend on the song and master setting.
+    const dacScale=board.bench_dac_scale?.()??128;
+    if(dacScale!==128 && dacScale!==256) throw Error('Unsupported DAC word format.');
+    this.dacFullScale=32768*dacScale;
     this.enc=new Int32Array(board.memory.buffer,board.bench_encoders(),7);
     this.sourceIndex=256;
     this.phase=0;
@@ -87,8 +95,8 @@ class BoardAudio {
     }
     for(let i=0;i<out[0].length;++i) {
       const fraction=this.phase/this.rate;
-      out[0][i]=(this.left+(this.nextLeft-this.left)*fraction)/4194304;
-      out[1][i]=(this.right+(this.nextRight-this.right)*fraction)/4194304;
+      out[0][i]=(this.left+(this.nextLeft-this.left)*fraction)/this.dacFullScale;
+      out[1][i]=(this.right+(this.nextRight-this.right)*fraction)/this.dacFullScale;
       this.phase+=44100;
       while(this.phase>=this.rate) {
         this.phase-=this.rate;
@@ -101,8 +109,8 @@ class BoardAudio {
     else for(let offset=0;offset<out[0].length;offset+=128) {
       const pcm=new Int32Array(this.board.memory.buffer,this.board.bench_audio(),256);
       for(let i=0;i<Math.min(128,out[0].length-offset);i++) {
-        out[0][offset+i]=pcm[2*i]/4194304;
-        out[1][offset+i]=pcm[2*i+1]/4194304;
+        out[0][offset+i]=pcm[2*i]/this.dacFullScale;
+        out[1][offset+i]=pcm[2*i+1]/this.dacFullScale;
       }
     }
     if (this.pendingSet) {

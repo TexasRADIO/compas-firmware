@@ -1,5 +1,5 @@
 CC ?= cc
-WASM_CC ?= clang
+WASM_CC ?= tools/wasm-clang.py
 CFLAGS = -std=c11 -O2 -Wall -Wextra -Werror -pedantic
 EXPORTS = init command status step level snapshot restore render pcm blob state_bytes
 WASM_FLAGS = $(foreach f,$(EXPORTS),-Wl,--export=cp_$(f))
@@ -13,7 +13,7 @@ build/engine.wasm: src/engine.c src/engine.h build/score.inc
 build/compas: src/host.c src/engine.c src/engine.h build/score.inc
 	$(CC) $(CFLAGS) -Ibuild -Isrc src/host.c src/engine.c -o $@
 build/test: tests/engine.c src/engine.c src/engine.h build/score.inc
-	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Ibuild -Isrc tests/engine.c src/engine.c -o $@
+	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -DCOMPAS_COMPOUND_TEST -Ibuild -Isrc tests/engine.c src/engine.c -o $@
 build/test-provision: tests/board-provision.c board/provision.c board/provision.h
 	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Iboard tests/board-provision.c board/provision.c -o $@
 build/test-provision-transfer: tests/board-provision-transfer.c board/provision-transfer.c board/provision-transfer.h board/provision.h
@@ -21,10 +21,15 @@ build/test-provision-transfer: tests/board-provision-transfer.c board/provision-
 build/test-recovery-guard: tests/board-recovery-guard.c board/recovery.h
 	@mkdir -p build
 	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Iboard tests/board-recovery-guard.c -o $@
+build/test-board-dac: tests/board-dac.c board/board.h src/engine.h
+	@mkdir -p build
+	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Iboard -Isrc tests/board-dac.c -o $@
 build/test-board-editor: tests/board-editor.c board/editor.inc board/editor_gen.h board/board.h src/engine.h
-	$(CC) $(CFLAGS) -Iboard -Isrc tests/board-editor.c -o $@
-test: all build/test build/test-provision build/test-provision-transfer build/test-recovery-guard build/test-board-editor
-	./build/test-board-editor
+	@mkdir -p build
+	$(CC) $(CFLAGS) -g -fsanitize=address,undefined -Iboard -Isrc tests/board-editor.c -o $@
+test: all build/test build/test-provision build/test-provision-transfer build/test-recovery-guard build/test-board-dac build/test-board-editor
+	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-board-editor
+	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-board-dac
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-recovery-guard
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-provision-transfer
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-provision
@@ -34,11 +39,14 @@ test: all build/test build/test-provision build/test-provision-transfer build/te
 	python3 -B tests/test_board_piano.py
 	python3 -B tests/test_board_restore_plan.py
 	python3 -B tests/test_board_show_layout.py
+	python3 -B tests/test_board_set_flash.py
 	python3 -B tests/test_board_show_provision.py
 	python3 -B tests/test_board_provision_wire.py
 	python3 -B tests/test_board_install_plan.py
 	python3 -B tests/test_board_candidate_inventory.py
 	python3 -B tests/test_board_loader_package.py
+	python3 -B tests/test_board_browser_pages.py
+	python3 -B tests/test_board_native_inputs.py
 	CC="$(CC)" WASM_CC="$(WASM_CC)" sh tools/standin-check.sh
 # Compiled-board tests, golden frames and the native replay on the STAND-IN bank
 # (build/standin). Needs no COMP_STUDIO and never touches the real build/board.
@@ -48,7 +56,7 @@ board-check:
 	$(CC) -std=c11 -Wall -Wextra -Werror -Iboard tests/board-sideman.c -o build/test-sideman && build/test-sideman
 	$(CC) -std=c11 -O1 -Wall -Wextra -Werror -Iboard -Isrc -Ibuild tests/board-fx-unit.c -lm -o build/test-fx-unit && build/test-fx-unit
 	CC="$(CC)" WASM_CC="$(WASM_CC)" sh tools/standin-check.sh
-	for flag in "" -DCOMPAS_NO_SHOW_STORE; do \
+	for flag in "" -DCOMPAS_NO_SHOW_STORE -DCOMPAS_UNIT_STORE; do \
 	  $(CC) -std=c11 -w -D_POSIX_C_SOURCE=200809L -DCOMPAS_BOARD -DCOMPAS_EMU_STORE -DCOMPAS_USB $$flag \
 	    -Iboard -Isrc -Ibuild/standin -Ibuild -Ibuild/board tests/board-release-save.c src/engine.c \
 	    board/board.c board/panel.c board/piano.c build/standin/browser-bank.c -o build/standin/release-save && \
@@ -74,8 +82,8 @@ board-recovery-review: build/test-recovery-guard
 	UBSAN_OPTIONS=halt_on_error=1 ASAN_OPTIONS=halt_on_error=1 ./build/test-recovery-guard
 	python3 tools/board-startup-recovery.py "$(COMP_EMU)"
 
-# Firmware packaging uses the explicit recipe in BUILDING.md.
+# Hardware package export is closed. Board emulator builds have separate tools.
 firmware-release:
-	@echo "Use the explicit public packaging recipe in BUILDING.md." >&2
-	@echo "This target does not create a firmware package." >&2
+	@echo "REFUSED: hardware export is closed. The exact unit must pass the FM-1 write gate." >&2
+	@echo "See docs/BIG-BEAT-RECOVERY-READBACK.md for the ROM, full-flash capture and restore requirements." >&2
 	@exit 1

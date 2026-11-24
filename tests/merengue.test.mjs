@@ -41,7 +41,7 @@ test('derecho and maco preserve the repeated body, hand and stick strokes',()=>{
     const study=studies[20+index];
     assert.equal(study.id,pattern.study);
     assert.equal(set.songs[3+index].study,study.id);
-    assert.equal(packed[(3+index)*85+25],20+index);
+    assert.equal(packed[(3+index)*86+25],20+index);
     assert.deepEqual(study.parts.slice(0,4),Object.entries(strokes).map(([stroke,[name,voice]])=>
       [name,voice,paired(pattern.tambora[stroke]),'','']));
     assert.deepEqual(study.parts[4],['Güira','scrape',paired(pattern.guira,pattern.guiraAccents),'','']);
@@ -61,7 +61,7 @@ test('merenhouse keeps the maco bodies and adds a separate quarter-note kick',()
   assert.deepEqual(set.songs.map(song=>song.mute??0),[34,32,0]);
   const payload=preparedPayload(set,studies);
   for(const [slot,mask] of [34,32,0].entries()) {
-    const offset=slot*85;
+    const offset=slot*86;
     assert.equal(payload[offset+25],27);
     assert.equal(payload[offset+28],mask);
   }

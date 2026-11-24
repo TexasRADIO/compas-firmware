@@ -1,0 +1,31 @@
+{
+  "schema":1,
+  "id":"peru-north-figure-4",
+  "status":"private articulation/register comparison; not a full arrangement or factory preset",
+  "source":{
+    "id":"PER-01","figure":4,"pdfPage":14,"printedPage":155,
+    "sha256":"d76287573e894edacb4c9aa48f5f27f93481e0bb0ed53aaf9073c1a973bc04cd",
+    "url":"https://repositorio.unm.edu.pe/server/api/core/bitstreams/1d131676-94ec-4669-8820-acfc1948a4f5/content",
+    "verification":"Closed/open note heads and caption visually inspected on 21 November 2026. One reader; independent comparison remains."
+  },
+  "sourceGrid":{
+    "meter":"2/2","bars":2,"ticksPerQuarter":4,"ticks":32,
+    "tempoBpm":98,"tempoUnit":"half note","sourceQuarterBpm":196,
+    "tempoStatus":"Authored audition tempo for comparison with Figure 2; NOT the named recording's measured tempo",
+    "roles":[
+      {"name":"closed hi-hat","onsets":[0,8,16,24]},
+      {"name":"open hi-hat","onsets":[4,12,20,28]}
+    ]
+  },
+  "adaptation":{
+    "format":"C7R1; closed/open source events placed on two mutually choking 727 surrogate voices",
+    "c7r":{"steps":16,"feel":0,"hit":92,"accent":124,"level":100,"mode":2,"selectedVoice":9},
+    "roles":[
+      {"source":"closed hi-hat","compas727":"Cabasa (voice 9)","onsets":[0,4,8,12],"accented":[],"honesty":"A cabasa is not a closed hi-hat."},
+      {"source":"open hi-hat","compas727":"Maracas (voice 10)","onsets":[2,6,10,14],"accented":[],"honesty":"Maracas mark a second register only. Their envelope does not recreate an open hi-hat; the engine's existing choke pair makes the substitution especially audible."}
+    ],
+    "notAdded":["underlying percussion ensemble","bass","lead","fill","source dynamics","a new national style"],
+    "metricBoundary":"Source event times divided by two, with an explicitly authored common comparison tempo. This does not preserve the unmeasured recording tempo."
+  },
+  "review":{"next":["Compare the closed/open placement with Figure 4 before judging the surrogate sound.","Use a real hat-capable palette for a closer articulation study; do not rename 727 maracas as a hi-hat.","Keep this El ritmo de mi corazón figure separate from the article's three main case studies."]}
+}

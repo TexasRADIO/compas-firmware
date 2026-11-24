@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Audition the panel's complete bank and compare every saved row with Set Builder.
 import {readFile,writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
@@ -15,8 +16,8 @@ for(const [index,entry] of entries.entries()) {
  input(1<<13);enc[6]=index||-1;input(0);
  input((1<<7)|(1<<9)); // Explicitly capture the unslotted rhythm into slot 1.
  assert.equal(b.bench_show_export(),0);
- const row=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),85);
- assert.deepEqual(Buffer.from(row),seed.subarray(0x90100+index*85,0x90100+(index+1)*85));
+ const row=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),86);
+ assert.deepEqual(Buffer.from(row),seed.subarray(0x90100+index*86,0x90100+(index+1)*86));
  assert.equal(b.bench_rhythm_export(),0);
  const rhythm=new Uint8Array(b.memory.buffer,b.bench_rhythm_buffer(),140);
  const bpm=rhythm[5],frames=Math.ceil(8*60*44100/bpm),start=samples.length;
@@ -25,7 +26,7 @@ for(const [index,entry] of entries.entries()) {
  for(let offset=0;offset<frames;offset+=128) {
   const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
   for(let i=0;i<Math.min(128,frames-offset);i++) {
-   assert.equal(pcm[2*i],pcm[2*i+1]);const value=pcm[2*i]/128;
+   assert.equal(pcm[2*i],pcm[2*i+1]);const value=pcm[2*i]/dacScale(b);
    assert(value>-32768&&value<32767);peak=Math.max(peak,Math.abs(value));sum+=value*value;samples.push(value);
   }
  }

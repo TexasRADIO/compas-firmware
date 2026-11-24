@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Make the installable Compás .fwsc with BB1's own loader and SDK files.
 
-  python3 tools/board-release-package.py BSP BB1-r85.fwsc APP.xip VERSION LANG OUT_DIR
+  python3 tools/board-release-package.py BSP BB1-r85.fwsc APP.xip VERSION LANG OUT_DIR [--unit-store]
 
 Compás 1.0 is packaged exactly as BB1 2.1 is, by the same pinned packager
 (BSP tools/fm1pkg_make.py). Every part except the app comes from BB1 BAND r85's
@@ -17,9 +17,9 @@ r85's flash image and package from the parts it took out of them, and both must
 match the published bytes exactly. Only then does it put the Compás app in the
 same standard layout (app slot 0x4000-0x93000) under the Compás identity.
 
-The standard layout is why 1.0 keeps no saved show on the device: BB1's loader
-rewrites 0x4000-0x93000, which holds the area 0x90000-0x93000 the emulator
-store used. Build the app with COMP_RELEASE=1 (-DCOMPAS_NO_SHOW_STORE).
+For 1.3, --unit-store requires the app to end before the A/B show at 0x91000.
+The unchanged r85 loader still rewrites 0x4000-0x93000: saved shows survive
+power-off, but are cleared by an install/update. Export the show beforehand.
 """
 import hashlib, importlib.util, json, re, struct, sys
 from pathlib import Path
@@ -90,6 +90,8 @@ def sdk_parts(pack, flash):
 
 
 def main(argv):
+    unit_store=bool(argv and argv[-1]=='--unit-store')
+    if unit_store: argv=argv[:-1]
     if len(argv) != 6:
         raise SystemExit(__doc__)
     bsp, bb1_path, xip_path, version, lang, out = Path(argv[0]), Path(argv[1]), Path(argv[2]), argv[3], argv[4], Path(argv[5])
@@ -114,11 +116,12 @@ def main(argv):
     if xip[:XIP_PREFIX] != b"\xFF" * XIP_PREFIX:
         raise SystemExit("Expected the linked XIP image (0x120 bytes of 0xFF, then the app).")
     app = xip[XIP_PREFIX:]
+    app_limit=0x91000-0x4120 if unit_store else pack.APP_SLOT
     identity = re.search(r'#define FELUCCA_ID "([^"]+)"', (ROOT / "board/usb/identity.h").read_text())[1]
     if identity.encode() + b"\0" not in app:
         raise SystemExit("The app does not carry the Compás updater identity; build with COMP_USB=1.")
-    if len(app) > pack.APP_SLOT:
-        raise SystemExit(f"app {len(app)} B exceeds the slot {pack.APP_SLOT} B")
+    if len(app) > app_limit:
+        raise SystemExit(f"app {len(app)} B exceeds its declared limit {app_limit} B")
     compas_flash = pack.flash_image(app, pack.KEY)
     raw = pack.ufw(compas_flash, loader, identity)
     check = sdk_parts(pack, compas_flash)
@@ -135,12 +138,15 @@ def main(argv):
     name = f"compas-{version}-{lang}.fwsc"
     (out / name).write_bytes(raw)
     manifest = {"file": name, "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest(), "product": identity,
-                "language": lang, "app": {"bytes": len(app), "slot": pack.APP_SLOT, "free": pack.APP_SLOT - len(app),
+                "language": lang, "app": {"bytes": len(app), "slot": app_limit, "free": app_limit - len(app),
                 "sha256": hashlib.sha256(app).hexdigest()},
                 "loader": {"from": "BB1 BAND r85", "sha256": BB1_LOADER_SHA256},
                 "bb1RoundTrip": "flash image and package rebuilt byte-identical",
                 "protectedRegions": "head identical to BB1 r85; nothing at or above 0x93000 (BTIF, key_mac)",
-                "layout": "standard BB1 (app 0x4000-0x93000); no saved show on the device"}
+                "layout": ("standard BB1 envelope; app ends before 0x91000; A/B show at 0x91000-0x92FFF" if unit_store else
+                           "standard BB1 (app 0x4000-0x93000); no saved show on the device"),
+                "savedShowSurvivesPowerOff": unit_store,
+                "savedShowSurvivesFirmwareUpdate": False}
     (out / f"compas-{version}-{lang}.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(json.dumps(manifest, indent=2))
 

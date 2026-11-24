@@ -51,13 +51,13 @@ def main():
 
         record = (work / 'review/provision-record.bin').read_bytes()
         payload = record[64+12288:]
-        probe.require(len(payload) == 3776 and probe.digest(payload) == report['showPayloadSHA256'],
+        probe.require(len(payload) == 3792 and probe.digest(payload) == report['showPayloadSHA256'],
                       'Unexpected provisioned show')
         show = bytearray(b'\xff' * 0x100000)
         show[0x90100:0x90100+len(payload)] = payload
         show[0x92000:0x92008] = b'CMPASIM1'
         crc = zlib.crc32(struct.pack('<I', 1) + payload)
-        struct.pack_into('<III', show, 0x90000, 0x32535043, 1, crc)
+        struct.pack_into('<III', show, 0x90000, 0x34535043, 1, crc)
         updated = baseline[:0x4000] + compact[0x4000:] + baseline[0x90000:]
         installed = provision['prepare'](baseline, data['repeat'], updated, data['legacy'], compact, show).run()
         probe.require(probe.digest(installed) == report['expectedAfterShowBeforeCleanupSHA256'],

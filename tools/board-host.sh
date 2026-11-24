@@ -39,7 +39,7 @@ for mode in timing stack sanitize; do
         stack) flags="-finstrument-functions -fno-omit-frame-pointer" ;;
         sanitize) flags="-fsanitize=address,undefined -g" ;;
     esac
-    "$cc" -std=c11 -O2 -Wall -Wextra -Werror -DCOMPAS_BOARD $flags \
+    "$cc" -std=c11 -O2 -Wall -Wextra -Werror -DCOMPAS_BOARD -DCOMPAS_COMPOUND_TEST $flags \
         -I.. -I. -I"$root/src" -I"$root/board" "$root/tests/board-host.c" \
         "$root/src/engine.c" "$root/board/board.c" "$root/board/panel.c" "$root/board/piano.c" host-bank.o -o "host-$mode"
     "./host-$mode" >"host-$mode.json"

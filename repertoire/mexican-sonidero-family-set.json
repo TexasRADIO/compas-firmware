@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "songs": [
+    {
+      "title": "CDMX SONIDERA",
+      "study": "cdmx",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "PUEBLA SINTES",
+      "study": "puebla",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "MTY CUMBIA DUB",
+      "study": "mty-dub",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "SALSA SON",
+      "study": "salsa",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "SON MONTUNO",
+      "study": "son",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "POTOSÍ WEPA",
+      "study": "wepa",
+      "feel": 0,
+      "kit": false
+    },
+    {
+      "title": "SURESTE CUMBIA",
+      "study": "cumbia-sureste",
+      "feel": 0,
+      "kit": true
+    },
+    {
+      "title": "TRIBAL 132",
+      "study": "tribal",
+      "feel": 0,
+      "kit": false
+    }
+  ]
+}

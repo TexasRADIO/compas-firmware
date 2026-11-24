@@ -1,4 +1,4 @@
-"""Build the standalone Sonidero browser instrument using the real local bank."""
+"""Build the private standalone Sonidero browser instrument using the real local bank."""
 import base64
 import json
 import os
@@ -10,7 +10,7 @@ from set_catalog import panel_catalog
 
 root = Path(__file__).resolve().parents[1]
 os.chdir(root)
-clang = sys.argv[1]
+clang = sys.argv[1] if len(sys.argv) > 1 else str(root / "tools" / "wasm-clang.py")
 folder = root/"build/board"
 for script, args in (("score.py",[]),("board-bank.py",[os.environ["COMP_STUDIO"]]),
                      ("board-piano.py",[]),("board-set.py",[])):
@@ -23,9 +23,9 @@ bank = (folder/"727.pack").read_bytes()
     "\n".join(",".join(map(str,bank[i:i+32]))+"," for i in range(0,len(bank),32))+"\n};\n")
 wasm = folder/"browser-board.wasm"
 exports = ("encoders boot song_title cue input master audio snapshot snapshot_size read_view splash draw "
-           "set_buffer set_size playing pull_saved_set update_set_display rhythm_buffer rhythm_size rhythm_export rhythm_import rhythm_slots_buffer rhythm_slots_size show_export lang rails fx_shed").split()
+           "set_buffer set_size playing pull_saved_set update_set_display rhythm_buffer rhythm_size rhythm_export rhythm_import rhythm_slots_buffer rhythm_slots_size show_export lang rails fx_shed speed dac_scale").split()
 if hanan:
-    exports.append("kit_restore")
+    exports.extend(("kit_restore", "kit_level"))
 subprocess.run([clang,"--target=wasm32","-fuse-ld=lld","-Oz","-std=c11","-Wall","-Wextra","-Werror",
                 "-Wno-unused-function","-ffreestanding","-fno-builtin","-nostdlib","-DCOMPAS_BOARD","-DCOMPAS_EMU_STORE",
                 *(["-DCOMPAS_HANAN"] if hanan else []),
@@ -43,8 +43,16 @@ script = ("const module=await WebAssembly.compile(Uint8Array.from(atob('"+encode
           audio_renderer + (root/"web/board-bench.mjs").read_text())
 validator = (root/"web/set-format.mjs").read_text().replace("export {normalizeSet};", "")
 packer = (root/"web/set-payload.mjs").read_text().split("\n", 1)[1].replace("export {preparedPayload};", "")
+# The show importer has its own crc32. Module scripts reject duplicate helper
+# declarations before startup, even when the compiled WASM itself is valid.
+packer = "const preparedPayload=(()=>{\n" + packer + "\nreturn preparedPayload;})();\n"
 catalog = json.dumps(panel_catalog(root), ensure_ascii=False).replace("<", "\\u003c")
 show = (root/"web/show-format.mjs").read_text().replace("export {showPayload, serializeShow, showSongSlots, showSongTitle, reorderShow};", "")
+show_text = (root/"web/show-text.mjs").read_text()
+show_text = "\n".join(l for l in show_text.split("\n") if not l.startswith("import ") and not l.startswith("export {"))
+show_text = show_text.replace("export function ", "function ")
+# Own scope: its helper names (crc32, grid…) must not collide with the page's.
+show = show + "\nconst {showToText,textToShow}=(()=>{\n" + show_text + "\nreturn {showToText,textToShow};})();"
 key_ui = (root/"web/key-presentation.mjs").read_text().replace("export {keyPresentation,computerKeys,whiteKeys};", "")
 script = key_ui + "\n" + show + "\n" + "const setCatalog=" + catalog + ";\n" + validator + "\n" + packer + "\n" + script
 # All entry points share one compiled engine and the same panel controls.
@@ -56,6 +64,12 @@ profiles = [
     ("tejano-rhythm", "Tejano rhythm section · kit, hand percussion and bass", "repertoire/tejano-rhythm-section-rehearsal.json", None),
     ("san-antonio", "San Antonio · rhythm comparison", "repertoire/san-antonio-rhythm-rehearsal.json", None),
     ("regional", "Regional cumbia · ten original studies", "repertoire/regional-audition-set.json", "Compas-Regional-Cumbia.html"),
+    ("para-review", "Pará · source-labelled arrangement studies", "repertoire/para-development-set.json", "Compas-Para-Review.html"),
+    ("peru-north-review", "North-coast Peru · two source-cell arrangements", "repertoire/peru-north-development-set.json", "Compas-Peru-North-Review.html"),
+    ("chilena-review", "Costa Chica · source-based 6/8 accompaniment", "repertoire/chilena-development-set.json", "Compas-Chilena-Review.html"),
+    ("bembe-review", "Bembé · Pusztai bell/block 12/8 study", "repertoire/bembe-development-set.json", "Compas-Bembe-Review.html"),
+    ("monkey-review", "Will's pattern review · eight focused arrangements", "repertoire/monkey-test-pattern-review-set.json", "Compas-Monkey-Test.html"),
+    ("sonidero-families", "Mexican sonidero · authored family studies", "repertoire/mexican-sonidero-family-set.json", "Compas-Sonidero-Families.html"),
     ("colombian", "Colombian cumbia · traditional percussion", "repertoire/colombian-cumbia-audition-set.json", None),
     ("merenhouse", "Merenhouse · New York rhythm study", "repertoire/merenhouse-rehearsal-set.json", None),
     ("jarocho-bamba", "La Bamba · Veracruz accompaniment", "repertoire/jarocho-bamba-rehearsal-set.json", None),
@@ -117,3 +131,7 @@ for key, name, _, filename in profiles:
         (root/"build"/"Compas-Kumbia.html").write_text(standalone.replace("startupHanan=false", "startupHanan=true"))
 
 (root/"build"/"Start Compas.html").write_text((root/"web/rehearsal-hub.html").read_text())
+pages = [root/"build"/filename for _,_,_,filename in profiles if filename]
+if hanan:
+    pages.append(root/"build"/"Compas-Kumbia.html")
+subprocess.run([sys.executable,"tools/check-browser-pages.py",*map(str,pages)],check=True)

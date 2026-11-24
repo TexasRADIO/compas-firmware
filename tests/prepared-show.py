@@ -91,8 +91,8 @@ with tempfile.TemporaryDirectory(prefix='compas-prepared-show-') as temporary:
     saved = flash.read_bytes()
     generation, payload = LAYOUT['newest_show'](saved)
     assert generation == 2 and save_view[6] == payload[26] == 114, (generation, list(save_view))
-    assert payload[1365] == 114 and payload[1370] == 2
-    assert struct.unpack_from('<2I', payload, 1360+16+3*8) == (0x11111111, 0x01000100)
+    assert payload[1381] == 114 and payload[1386] == 2
+    assert struct.unpack_from('<2I', payload, 1376+16+3*8) == (0x11111111, 0x01000100)
     assert prepare(source, work/'state', wasm_sha=sha) == flash
     assert flash.read_bytes() == saved and source.read_bytes() == original
     view, samples, play_metrics = replay(flash, work/'cold',
@@ -108,7 +108,7 @@ with tempfile.TemporaryDirectory(prefix='compas-prepared-show-') as temporary:
         _, payload = LAYOUT['newest_show'](flash.read_bytes())
         show = json.loads(exported)
         assert payload == bytes(show['set']+show['rhythms'])
-        origins = [payload[1360+151*i+140] for i in range(2)]
+        origins = [payload[1376+151*i+140] for i in range(2)]
         assert origins == [1,2]
         first, second = (replay(flash, work/f'browser-{index}', actions, time)
             for index, actions, time in (

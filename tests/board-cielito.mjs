@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Production score ID 7: performer controls on the three-beat printed score.
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -10,7 +11,7 @@ const catalog=studies.concat(scores.map((s,i)=>({...s,piano:i+1,guide:!!s.guide}
 const module=await WebAssembly.compile(await readFile(boardWasm));
 const b=new WebAssembly.Instance(module).exports;
 const payload=preparedPayload(await json('../repertoire/cielito-rehearsal-set.json'),catalog);
-new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).set(payload);
+new Uint8Array(b.memory.buffer,b.bench_set_buffer(),payload.length).set(payload);
 assert.equal(b.bench_boot(1),1);b.bench_audio();b.bench_master(80);b.bench_audio();
 const view=()=>{b.bench_read_view();return new Uint8Array(b.memory.buffer,b.bench_snapshot()+20,76).slice();};
 const input=(buttons=0,keys=0)=>{b.bench_input(buttons,keys,0);b.bench_audio();};
@@ -20,7 +21,7 @@ let peak=0;
 function blocks(n) {
   for(let i=0;i<n;i++) {
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
-    for(let f=0;f<256;f+=2) {assert.equal(pcm[f],pcm[f+1]);peak=Math.max(peak,Math.abs(pcm[f]/128));}
+    for(let f=0;f<256;f+=2) {assert.equal(pcm[f],pcm[f+1]);peak=Math.max(peak,Math.abs(pcm[f]/dacScale(b)));}
   }
   assert.equal(view()[14],0);assert(peak<32767);
 }

@@ -6,7 +6,6 @@
 #include "subtitle.inc"
 #include "stage-burst.inc"
 
-static char face[FACE_LINES][FACE_COLS+1];
 static uint16_t stripe[14*240];
 static uint32_t cameo_started;
 static unsigned cameo_active;
@@ -326,11 +325,11 @@ static void marquee(const uint16_t lamps[30])
 
 /* The sticker is fixed. Its highlight chases the tips on each beat,
  * avoiding a complete badge transfer on the critical clock update. */
+static const uint8_t sticker_x[]={223,220,212,204,201,204,212,220};
+static const uint8_t sticker_y[]={78,69,66,69,78,87,90,87};
 static void sticker_step(unsigned beat)
 {
-    static const uint8_t x[]={223,220,212,204,201,204,212,220};
-    static const uint8_t y[]={78,69,66,69,78,87,90,87};
-    if(beat<8) paint(x[beat],y[beat],3,3,ORANGE);
+    if(beat<8) paint(sticker_x[beat],sticker_y[beat],3,3,ORANGE);
 }
 static void tabs(unsigned page)
 {
@@ -344,6 +343,14 @@ static void tabs(unsigned page)
         ,"KUMBIA"
 #endif
     };
+    if(page==PANEL_MIX || page==PANEL_EDIT || page==PANEL_FX) {
+        /* 1.3: these pages sit off the tab row, so name them and the way back. */
+        paint(4,9,66,14,GOLD);
+        print(8,12,60,page==PANEL_MIX?"MIXER":page==PANEL_FX?"EFFECTS":"STEP EDIT",1,INK,GOLD,0);
+        paint(74,9,162,14,PLUM);
+        print(78,12,156,page==PANEL_MIX?"FX EFFECTS / HOME BAND":page==PANEL_FX?"FX MIXER / HOME BAND":"HOME BAND",1,DIM2,PLUM,0);
+        return;
+    }
     unsigned width=240u/sizeof ids;
     for(unsigned i=0;i<sizeof ids;++i) {
         uint16_t bg=page==ids[i]?GOLD:PLUM;
@@ -410,6 +417,16 @@ static void ink_band(unsigned y)
     for(unsigned row=max(y,tile.y);row<min(y+3u,tile.y+tile.h);++row)
         for(unsigned x=tile.x;x<tile.x+tile.w;++x) point(x,row,display_word(mixed_ink(x)));
 }
+/* 1.3: the count-in written large across the sign, one numeral per beat. */
+static unsigned count_x(unsigned beats,unsigned i) { return 138u-beats*25u+i*50u; }
+static void count_sign(unsigned beats,unsigned beat)
+{
+    for(unsigned i=0;i<beats;++i) {
+        char n[]={(char)('1'+i),0};
+        print_text(count_x(beats,i),31,14,n,2,i==beat?PINK:i<beat?LILAC:INKBLUE,PAPER,i==beat?INK:0,0);
+    }
+}
+
 static void title_sign(const char *title,unsigned cameo,unsigned flash,unsigned dim)
 {
     /* Cartel card: warm paper and an ink-blue headliner with the stepped pink
@@ -475,15 +492,18 @@ static void labelled_keys(PanelKeys map,BoardView v,unsigned flash,unsigned pad_
         paint(x,144,3,upper?12:21,pad_flash==i+1u?0xffffu:pad_colors[i]);
     }
     /* Family codes: Bongo Conga Timbal | Agogo Shaker Whistle Quijada/chime. */
-    print(3,177,24,"BCT",1,DIM2,INK,0);
-    print(212,177,24,"ASWQ",1,DIM2,INK,0);
+    print(3,175,24,"BCT",1,DIM2,INK,0);
+    print(212,175,24,"ASWQ",1,DIM2,INK,0);
     for(unsigned i=0;i<6;++i) {
         unsigned x=32+i*29;
         unsigned bg=note_color(map,panel_part_keys[i]);
         char n[]={(char)('1'+i),0};
         paint(x,143,28,31,(uint16_t)bg);
+        /* 1.3: a queued part is an outline, the playing one is solid. */
+        unsigned frame=bg;
+        if(bg==PINK) { paint(x+2,145,24,27,INK); bg=DIM; frame=INK; }
         if(flash && (map.active&(1u<<panel_part_keys[i]))) paint(x,143,28,2,0xffffu);
-        print(x+11,155,6,n,1,bg==DIM?CREAM:INK,(uint16_t)bg,0);
+        print(x+11,155,6,n,1,bg==DIM?CREAM:INK,(uint16_t)frame,0);
         const char *label=v.piano && i==5?"COD":v.piano && i==1?"VRS":panel_groove_part_name(v.study,i,1);
         if(v.piano==PIANO_SCORE_CIELITO && i==0) label="P/U";
         if(v.piano==PIANO_SCORE_CIELITO && i==5) label="END";
@@ -496,7 +516,7 @@ static void labelled_keys(PanelKeys map,BoardView v,unsigned flash,unsigned pad_
             static const char *const teodora[]={"P/U","CAL","","ECH","","END"};
             label=teodora[i];
         }
-        print(x+5,164,18,label,1,bg==DIM?CREAM:INK,(uint16_t)bg,0);
+        print(x+5,164,18,label,1,frame==INK?PINK:bg==DIM?CREAM:INK,(uint16_t)frame,0);
     }
     for(unsigned i=0;i<5;++i) {
         unsigned x=49+i*29, bg=note_color(map,panel_layer_keys[i]);
@@ -524,8 +544,114 @@ static unsigned overlay_average(BoardView v)
 
 static const char *const fx_division_names[FX_DIVISIONS]={"1/16","1/8","3/16","1/4","3/8","1/2"};
 
+/* Compas 1.3: the mixer, effects and step pages draw their state instead of
+ * listing it. All three live in the body band (y 132-184). */
+static void mix_face(const Panel *p,BoardView v)
+{
+    /* The ringing lamps need only this strip. Avoid formatting six faders
+     * and their text when every one is outside the changed three rows. */
+    if(tile.y>=133u && tile.y+tile.h<=136u) {
+        paint(0,133,240,3,INK);
+        for(unsigned i=0;i<6;++i) {
+            unsigned x=3u+i*39u;
+            paint(x,133,38,3,i==p->role?LINE:INK);
+            paint(x+1,133,36,3,(board_lanes_sounding(v)>>i)&1u?MINT:PLUM);
+        }
+        return;
+    }
+    paint(0,132,240,52,INK);
+    for(unsigned i=0;i<6;++i) {
+        unsigned x=3u+i*39u, solo=v.solo==i, muted=(v.muted>>i)&1u;
+        unsigned on=!v.piano && !muted && (solo || v.solo>5u);
+        uint16_t bg=i==p->role?LINE:INK;
+        paint(x,133,38,39,bg);
+        paint(x+1,133,36,3,(board_lanes_sounding(v)>>i)&1u?MINT:PLUM);  /* lit while the lane sounds */
+        print_text(x+2,137,30,panel_role_name(v.study,i),1,i==p->role?GOLD:on?CREAM:DIM2,bg,0,1);
+        unsigned level=v.levels[i]*22u/100u;
+        paint(x+2,147,8,22,PLUM);
+        paint(x+2,169u-level,8,level,!on?DIM:solo?GOLD:MINT);
+        char n[4]; decimal(n,v.levels[i]);
+        print_text(x+14,148,18,n,1,on?CREAM:DIM2,bg,0,0);
+        char key[]={(char)('1'+i),0};
+        uint16_t badge=solo?GOLD:muted?PINK:bg;
+        paint(x+13,159,20,11,badge);
+        print_text(x+20,160,6,solo?"S":muted?"M":key,1,badge==bg?DIM2:INK,badge,0,0);
+    }
+#ifdef COMPAS_HANAN
+    if(v.hanan_mode || v.kumbia_level!=100u) {
+        char n[4];decimal(n,v.kumbia_level);
+        print(4,174,42,"KUMBIA",1,MINT,INK,0);
+        print(48,174,18,n,1,CREAM,INK,0);
+        print(72,174,114,"OCT-/+ LEVEL",1,DIM2,INK,0);
+    } else
+#endif
+    print(4,174,150,v.piano?"SCORE: TEMPO AND SPEED":"1-6 MUTE 7-12 SOLO",1,DIM2,INK,0);
+    if(v.speed>=60u && v.speed<100u) {
+        /* Rounded tenths of a semitone, -120*log2(percent/100). */
+        static const uint8_t pitch[]={88,86,83,80,77,75,72,69,67,64,62,59,57,54,52,50,48,45,43,41,39,36,34,32,30,28,26,24,22,20,18,16,14,13,11,9,7,5,3,2};
+        unsigned drop=pitch[v.speed-60u];
+        char st[]={'-',(char)('0'+drop/10u),'.',(char)('0'+drop%10u),' ','S','T',0};
+        print_text(194,174,42,st,1,GOLD,INK,0,0);
+    }
+}
+
+/* The echo light walks the train once a bar, in echo time: sixteenths per tap. */
+static const uint8_t fx_gap[FX_DIVISIONS]={1,2,3,4,6,8};
+static unsigned fx_tap(const uint8_t fx[FX_PARAMS],BoardView v)
+{
+    unsigned gap=fx_gap[fx[FX_TIEMPO]<FX_DIVISIONS?fx[FX_TIEMPO]:0], at=v.position&15u;
+    return v.playing && !(at%gap)?at/gap:255u;
+}
+
+static void fx_face(const uint8_t fx[FX_PARAMS],BoardView v)
+{
+    /* One hit and its echoes: spacing is TIME, the first echo is ECHO, the
+     * fall-off is REPEAT, and ROOM is the floor they stand on. */
+    paint(0,132,240,52,INK);
+    paint(4,134,232,29,PLUM);
+    unsigned room=fx[FX_SALA]*8u/100u, height=fx[FX_ECO]*24u/100u;
+    unsigned step=7u*fx_gap[fx[FX_TIEMPO]<FX_DIVISIONS?fx[FX_TIEMPO]:0], lit=fx_tap(fx,v), tap=1;
+    paint(6,161u-room,228,room,knob_ink[0]);
+    paint(8,136,5,25,lit?CREAM:GOLD);
+    for(unsigned x=8u+step;x<228u && height;x+=step,++tap) {
+        paint(x,161u-height,5,height,tap==lit?CREAM:knob_ink[1]);
+        height=height*fx[FX_REPITE]/100u;
+    }
+    char n[4]; decimal(n,fx[FX_PEGA]);
+    print(4,167,24,"GLUE",1,CREAM,INK,0);
+    paint(32,168,102,7,PLUM);
+    paint(33,169,fx[FX_PEGA],5,ORANGE);
+    print_text(140,167,18,n,1,CREAM,INK,0,0);
+    print(170,167,66,"OCT- / OCT+",1,DIM2,INK,0);
+}
+
+static uint8_t fx_walk[2];   /* the echo tap that went dark, and the one that lit */
+static Rect step_cell(unsigned i,unsigned count)
+{
+    unsigned width=count==8u?28u:14u;
+    return (Rect){(uint8_t)(8u+(i&15u)*width),147,(uint8_t)(width-1u),33};
+}
+
+static void step_face(const Panel *p,BoardView v)
+{
+    unsigned count=panel_beats(v.study)==4?8u:16u;
+    paint(0,132,240,52,INK);
+    print_text(4,135,96,panel_role_name(v.study,p->role),1,GOLD,INK,0,1);
+    print(142,135,96,p->bar?"BAR 2 / OCT-":"BAR 1 / OCT+",1,DIM2,INK,0);
+    for(unsigned i=0;i<count;++i) {
+        Rect cell=step_cell(i,count);
+        unsigned step=p->bar+i;
+        uint16_t bg=v.playing && v.position==step?GOLD:(v.steps>>step)&1u?MINT:LINE;
+        paint(cell.x,cell.y,cell.w,cell.h,bg);
+        if(count==16u && (i&3u)) continue;                   /* number the beats */
+        char n[4]; decimal(n,i+1u);
+        print_text(cell.x+(cell.w-12u)/2u,cell.y+13u,12,n+1,1,bg==LINE?CREAM:INK,bg,0,0);
+    }
+}
+
 static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,BoardView old,unsigned old_slot,unsigned old_sound,unsigned hot,const uint8_t fx[FX_PARAMS])
 {
+    (void)old_slot;
     const char *labels[4]={"TEMPO","FEEL","BASS","PERC"};
     unsigned val[4]={v.bpm,v.feel,v.levels[5],overlay_average(v)};
     unsigned before[4]={old.bpm,old.feel,old.levels[5],overlay_average(old)};
@@ -567,22 +693,23 @@ static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,Boa
         }
 #ifdef COMPAS_HANAN
     } else if(page==PANEL_HANAN) {
-        const char *const names[]={"DRIVE","DECAY","PITCH","CLOCK"};
-        static const uint8_t range[]={100,100,24,KUMBIA_CLOCK_MAX};
+        const char *const names[]={"DRIVE","DECAY","PITCH","LEVEL"};
+        static const uint8_t range[]={100,100,24,100};
         for(unsigned i=0;i<4;++i) {
             labels[i]=names[i];
             val[i]=v.kumbia[i]; before[i]=old.kumbia[i]; max[i]=range[i];
         }
+        val[3]=v.kumbia_level;before[3]=old.kumbia_level;
 #endif
     } else if(page==PANEL_FX) {
         static const uint8_t param[4]={FX_SALA,FX_ECO,FX_TIEMPO,FX_REPITE}, range[4]={100,100,FX_DIVISIONS-1,90};
         labels[0]="ROOM"; labels[1]="ECHO"; labels[2]="TIME"; labels[3]="REPEAT";
         for(unsigned i=0;i<4;++i) { val[i]=before[i]=fx[param[i]]; max[i]=range[i]; }
     } else if(page==PANEL_SET) {
-        labels[0]="TEMPO"; labels[1]="RPT"; labels[2]="SLOT"; labels[3]=v.piano?"":"COUNT";
-        val[0]=v.bpm; val[1]=v.phrases; val[2]=p->slot+1u; val[3]=board_count_enabled(v);
-        before[0]=old.bpm; before[1]=old.phrases; before[2]=old_slot+1u; before[3]=board_count_enabled(old);
-        max[0]=180; max[1]=64; max[2]=16; max[3]=1;
+        labels[0]="TEMPO"; labels[1]="RPT"; labels[2]="LANG"; labels[3]=v.piano?"":"COUNT";
+        val[0]=v.bpm; val[1]=v.phrases; val[2]=panel_lang; val[3]=board_count_enabled(v);
+        before[0]=old.bpm; before[1]=old.phrases; before[2]=panel_lang; before[3]=board_count_enabled(old);
+        max[0]=180; max[1]=64; max[2]=LANG_COUNT-1; max[3]=1;
     }
     if(page==PANEL_HOME && !v.piano && !panel_has_bass(v)) labels[2]="";
     unsigned no_knobs=(page==PANEL_BASS && !panel_has_bass(v)) || (page==PANEL_PERC && v.piano);
@@ -603,6 +730,7 @@ static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,Boa
             (page==PANEL_BASS && i==3) ? (val[i]?"ACD":"ENS") :
             (page==PANEL_SET && i==1 && !val[i]) ? lang_repeat_hold[panel_lang] :
             (page==PANEL_SET && i==3) ? (val[i]?"ON":"OFF") :
+            (page==PANEL_SET && i==2) ? lang_name[val[i]] :
             (page==PANEL_FX && i==2) ? fx_division_names[val[i]<FX_DIVISIONS?val[i]:0] : s;
         unsigned unavailable=page==PANEL_HOME && v.piano && i==2 &&
            (!v.playing || v.score_ending || v.score_form==PIANO_FORM_CODA);
@@ -616,12 +744,7 @@ static void footer(const Panel *p, unsigned page,BoardView v,unsigned redraw,Boa
         print(x+21,198,36,labels[i],1,knob_ink[i],paper,0);
 #ifdef COMPAS_HANAN
         if(page==PANEL_HANAN) {
-            if(i==KUMBIA_CLOCK) {
-                unsigned hz=board_kumbia_hz(val[i]);
-                char rate[5];rate[0]=(char)('0'+hz/1000u);decimal(rate+1,hz%1000u);
-                print(x+7,210,49,rate,2,CREAM,paper,knob_ink[i]);
-                print(x+7,230,24,"HZ",1,knob_ink[i],paper,0);
-            } else if(i==KUMBIA_PITCH) {
+            if(i==KUMBIA_PITCH) {
                 int shift=(int)val[i]-12;
                 char signed_value[4];signed_value[0]=shift<0?'-':shift>0?'+':' ';
                 unsigned magnitude=(unsigned)(shift<0?-shift:shift);
@@ -720,11 +843,19 @@ static void percussion_face(BoardView v,unsigned phases,unsigned entering,unsign
 
 static unsigned rack_bar(const Panel *p,BoardView v)
 {
+    if(!panel_rack_edit_supported(v.study)) return 0;
     return panel_beats(v.study)==4?0:p->bar;
 }
 
 static void rack_editor(const Panel *p,BoardView v)
 {
+    if(!panel_rack_edit_supported(v.study)) {
+        print(12,77,216,"727 4/4 STEP GRID",2,GOLD,INK,PINK);
+        print(12,108,216,"COMPOUND: ROLE STEP",1,CREAM,INK,0);
+        print(12,126,216,"USE EDIT FOR 6/8",1,CYAN,INK,0);
+        print(12,144,216,"OR 12/8 PATTERNS",1,CYAN,INK,0);
+        return;
+    }
     if(v.rhythm<BOARD_RHYTHM_PATTERNS || v.next_rhythm<BOARD_RHYTHM_PATTERNS) {
         print(5,27,24,"NOW",1,GOLD,INK,0);
         print(32,27,200,board_rhythm_title(v.rhythm),1,GOLD,INK,0);
@@ -734,8 +865,7 @@ static void rack_editor(const Panel *p,BoardView v)
         print(5,40,228,v.next_rhythm<BOARD_RHYTHM_PATTERNS?"NEXT":source,1,PINK,INK,0);
         if(v.next_rhythm<BOARD_RHYTHM_PATTERNS) print(38,40,195,board_rhythm_title(v.next_rhythm),1,PINK,INK,0);
     } else print(5,29,230,"727 SEQUENCER",2,GOLD,INK,PINK);
-    panel_face(p,v,face);
-    print(5,54,216,face[3],1,pad_colors[p->rack_sound],INK,0);
+    print(5,54,216,rack_names[p->rack_sound],1,pad_colors[p->rack_sound],INK,0);
     if(v.piano) {
         print(12,90,216,"CHOOSE A GROOVE",1,GOLD,INK,0);
         print(12,110,216,"PRESETS / THEN SEQ",1,CREAM,INK,0);
@@ -803,7 +933,6 @@ static void order_face(const Panel *p,BoardView v)
     print(5,30,60,"KEYS 1-16",1,CREAM,INK,0);
     print(71,30,48,"SOURCED",1,CYAN,INK,0);
     print(119,30,36,"STUDY",1,LILAC,INK,0);
-    print(167,30,12,lang_name[panel_lang],1,MINT,INK,0); /* ALGORITHM: EN / ES */
     burst_size(194,7,33,0,board_effective_bpm(v),CYAN,"BPM");
     for(unsigned slot=0;slot<SET_SLOTS;++slot) {
         unsigned y=ORDER_TOP+slot*ORDER_HEIGHT;
@@ -827,7 +956,9 @@ static void order_face(const Panel *p,BoardView v)
                 (study==2 || study==6)?(reverse?"2-3":"3-2"):"";
             print(189,y,24,note,1,now||next?INK:CYAN,bg,0);
         }
-        print(216,y,24,now?"NOW":next?"NEXT":cursor?"SAVE":"",1,now||next?INK:CREAM,bg,0);
+        print(216,y,24,now?(board_edited(v)?"NOW+":"NOW"):next?"NEXT":cursor?"SAVE":"",1,now||next?INK:CREAM,bg,0);
+        /* 1.3: the cursor keeps its own mark on the playing and queued rows. */
+        if(slot==p->slot) paint(14,y,2,ORDER_HEIGHT,now||next?INK:CREAM);
     }
 }
 
@@ -851,6 +982,11 @@ typedef struct {
 static StageModel model;
 #include "stage-motion.inc"
 static uint32_t jobs, landed_at, master_at, bass_pump_at, bass_flip_at, hot_at;
+/* 1.3 marquee: the lamp under the playing sixteenth, the one it left, how
+ * many lamps trail it (LIFT), and the idle chase step (0 while playing). */
+static uint8_t lamp_head=30, lamp_old=30, lamp_trail, idle_phase, save_flash, stopped, saving;
+static uint32_t stopped_at, saved_at;
+static uint8_t bass_line_first, bass_line_last;
 static uint32_t perc_hit_at[4], perc_in_at;
 static uint32_t rack_hit_at[RACK_SOUNDS], rack_cut_at[RACK_SOUNDS];
 static uint16_t order_rows, rack_dirty, rack_batch;
@@ -864,9 +1000,21 @@ static uint8_t stripe_row, working_job, measurement, notice_priority;
 static uint32_t redraw_started, compute, transfer, pixels, touch_at;
 static uint32_t region_compute, region_transfer, region_pixels;
 static uint8_t touching, touch_queued;
+static uint8_t fresh_touch, full_superseded;
+static uint32_t fresh_at,superseded_at;
 /* Per gate, retain the maxima for compute ticks, transfer ticks, elapsed
  * ticks and transferred pixels. R2 elapsed starts at the input scan. */
 volatile uint32_t compas_display_stats[3][4];
+/* Interrupted full render: count, total pixels, total ticks, latest-state
+ * completion ticks. Keep this traffic visible rather than calling an obsolete
+ * snapshot a completed page, or silently dropping its timing evidence. */
+volatile uint32_t compas_display_superseded[4];
+#ifdef COMPAS_DISPLAY_TRACE
+/* Diagnostic builds only: identify the regions in the largest R1 transfer. */
+static uint32_t trace_current[32];
+volatile uint32_t compas_display_r1_regions[32];
+volatile uint32_t compas_display_r3_regions[32],compas_display_r3_meta[4];
+#endif
 volatile uint32_t compas_animation_ticks[2][4];
 static uint32_t effect_jobs, effect_started, effect_compute, effect_transfer, effect_pixels;
 static uint8_t effect_kind, previous_phase;
@@ -875,9 +1023,28 @@ static unsigned current_notice(const StageModel *m,unsigned master_moved)
 {
     const BoardView *v=&m->view;
     return v->fault?1u:m->panel.locked || v->result==CP_BUSY?2u:v->result==CP_STOP_FIRST?3u:
-        v->result==BOARD_EMPTY?4u:v->result==BOARD_SESSION || v->result==BOARD_SAVED?5u:
+        v->result==BOARD_EMPTY?4u:v->result==BOARD_SAVED?5u:v->result==BOARD_SESSION?10u:
         v->result?6u:(v->rack_sequence==2 && !m->panel.rack_edit)?8u:master_moved || (m->panel.page==PANEL_HOME && !v->master)?7u:
-        v->speed && v->speed<100?9u:0u;
+        v->speed && v->speed<60?11u:v->speed && v->speed<100?9u:0u;
+}
+
+/* Fixed 21-pixel clock speakers: keep the general knob/woofer renderer out
+ * of this frequently redrawn path. Constants match circle(style=1) exactly. */
+static void clock_cone(unsigned x,uint16_t color,unsigned filled)
+{
+    if(!visible(x,107,21,21)) return;
+    uint16_t on=display_word(color), ink=display_word(INK), paper=display_word(GRILL);
+    for(unsigned y=max(107u,tile.y);y<min(128u,tile.y+tile.h);++y) {
+        int b=(int)y-117;
+        unsigned b2=(unsigned)(b*b);
+        for(unsigned px=max(x,tile.x);px<min(x+21u,tile.x+tile.w);++px) {
+            int a=(int)(px-x)-10;
+            unsigned d=(unsigned)(a*a)+b2;
+            unsigned bright=filled?(d>=75u || (d<33u && d>5u)):
+                (d>=81u || (d>=20u && d<=33u) || d<=4u);
+            point(px,y,d>100u?paper:bright?on:ink);
+        }
+    }
 }
 
 static void clock_face(const StageModel *m)
@@ -901,22 +1068,35 @@ static void clock_face(const StageModel *m)
         unsigned filled=(i==beat && v.playing && !motion.break_mode) || motion.kind==MOTION_BACK ||
             motion.kind==MOTION_FILL || motion.roll>i ||
             (motion.kind==MOTION_LIFT && motion.frame<6 && color==GOLD);
-        circle(5+22*i+(i>=4?6:0),107,21,(uint16_t)color,GRILL,1,filled);
+        clock_cone(5+22*i+(i>=4?6:0),(uint16_t)color,filled);
     }
+    if(board_has_clave(v) && !count_in) {
+        /* 1.3: the clave written under the bar. The stroke being played lights. */
+        uint32_t strokes=board_clave(v)?0x10410110u:0x01101041u;
+        for(unsigned step=0;step<32;++step) if((strokes>>step)&1u) {
+            unsigned i=step>>2;
+            paint(5+22*i+(i>=4?6:0)+(step&3u)*5u+1u,128,4,2,v.playing && v.position==step?CREAM:PINK);
+        }
+    }
+    /* A cone-only stripe never touches the horn. In Spanish, formatting
+     * its three possible captions for every cone consumed the R1 budget. */
+    if(!visible(189,104,50,25)) return;
     unsigned limit=v.next_bar && !v.fill && beat<beats/2u ? beats/2u : beats;
     unsigned remain=limit>beat ? limit-beat : 1u;
-    if(v.fill==1 && beat+1u>=beats && !v.piano) remain+=beats;
+    /* 1.3: an armed fill counts down to its own start; a late one waits a phrase. */
+    unsigned fill_wait=!count_in && !v.piano && v.fill==1;
+    if(fill_wait) remain=beat+1u<beats?beats-1u-beat:beats;
     char horn[12]={'I','N',' ',(char)('0'+remain/10u),(char)('0'+remain%10u),0};
     if(remain<10) { horn[3]=horn[4]; horn[4]=0; }
     if(panel_lang) lang_fill(horn,lang_format_in[panel_lang-1u],horn+3);
-    const char *label=v.fill && v.next_part<PART_NONE?"FILL":m->pending?(v.piano?"NEXT BAR":v.next_bar?"BAR":horn):"PHRASE";
-    uint16_t ink=m->pending?PINK:DIM2;
+    const char *label=v.fill==2?"FILL":m->pending || fill_wait?(v.piano?"NEXT BAR":v.next_bar && !v.fill?"BAR":horn):"PHRASE";
+    uint16_t ink=v.fill==2?GOLD:m->pending || fill_wait?PINK:DIM2;
     /* Auto-advance count: never pink, never "IN n" (that means a cue). */
     char more[12]="00 MORE";
     char lead[12]={'C','O','U','N','T',' ',(char)('1'+beat),0};
     if(panel_lang) lang_fill(lead,lang_format_count[panel_lang-1u],lead+6);
     if(count_in) { label=lead; ink=PINK; }
-    else if(!m->pending && v.phrases_left) {
+    else if(!m->pending && !v.fill && v.phrases_left) {
         unsigned after=v.phrases_left-1u;
         more[0]=(char)('0'+after/10u);
         more[1]=(char)('0'+after%10u);
@@ -946,16 +1126,28 @@ static void stage_paint(const StageModel *m)
     if(fx_page) page=PANEL_MIX;
     unsigned wide=page==PANEL_RACK || page==PANEL_SET || page==PANEL_HANAN;
     unsigned bandlike=page==PANEL_HOME || page==PANEL_MIX || page==PANEL_EDIT;
-    background(page!=PANEL_RACK);
+    /* The opaque speaker cabinets cover these cone-only stripes completely.
+     * Do not calculate the sunburst underneath pixels they will overwrite. */
+    unsigned cabinet=bandlike && tile.y>=107u && tile.y+tile.h<=131u &&
+        ((tile.x>=5u && tile.x+tile.w<=94u) || (tile.x>=99u && tile.x+tile.w<=188u));
+    /* Both mixer faces paint this whole band opaquely. The three-row
+     * ringing-lamp job must not calculate a sunburst that it overwrites. */
+    unsigned opaque_mix=page==PANEL_MIX && tile.y>=132u && tile.y+tile.h<=184u;
+    if(!cabinet && !opaque_mix) background(page!=PANEL_RACK);
     if(visible(0,0,240,7)) {
         static const uint16_t colors[]={PINK,GOLD,CYAN,MINT};
         uint16_t lamps[30];
-        unsigned active=m->beat<8?m->beat*4u:29u;
-        for(unsigned i=0;i<30;++i)
-            lamps[i]=(uint16_t)motion_lights(&motion,m->beat,i,i==active?CREAM:colors[i&3u]);
+        /* The head lamp follows every sixteenth, so swing and REBAJADA show
+         * in its step. LIFT gives it a tail; stopped a while, the sign idles
+         * in a slow theatre chase. */
+        for(unsigned i=0;i<30;++i) {
+            unsigned lit=lamp_head<30u && i<=lamp_head && i+lamp_trail>=lamp_head;
+            unsigned normal=lit?CREAM:idle_phase && (i+idle_phase)%3u?LINE:colors[i&3u];
+            lamps[i]=v.speed<60u && i*2u>=v.speed-8u?INK:(uint16_t)motion_lights(&motion,m->beat,i,normal);
+        }
         marquee(lamps);
     }
-    if(page!=PANEL_SET && visible(0,7,240,17)) tabs(page);
+    if(page!=PANEL_SET && visible(0,7,240,17)) tabs(p->page);
     if(page==PANEL_RACK && visible(0,24,240,164)) {
         if(p->rack_edit) rack_editor(p,v);
         else {
@@ -969,16 +1161,26 @@ static void stage_paint(const StageModel *m)
         if(visible(0,24,240,34)) title_sign("KUMBIA",0,0,0);
         if(visible(0,58,240,13)) {
             const char *const modes[]={"OFF","LAYER","DRUMS ONLY"};
-            print(6,60,120,v.piano?"SELECT A GROOVE":modes[v.hanan_mode],1,CYAN,INK,0);
+            print(6,60,100,v.piano?"SELECT A GROOVE":modes[v.hanan_mode],1,CYAN,INK,0);
             print(174,60,64,"FX MODE",1,DIM2,INK,0);
+            if(!v.piano) {
+                char bpm[4]; decimal(bpm,board_effective_bpm(v));
+                print(108,60,18,bpm,1,GOLD,INK,0);
+                print(128,60,18,"BPM",1,GOLD,INK,0);
+            }
         }
         if(visible(0,71,240,61)) {
             static const char *const patterns[]={"WHITE","YELLOW","RED","GREEN"};
             static const uint16_t colours[]={CREAM,GOLD,PINK,MINT};
             print(6,76,222,"PRESETS",1,CREAM,INK,0);
+            unsigned hz=board_kumbia_hz(v.kumbia[KUMBIA_CLOCK]);
+            char rate[5];rate[0]=(char)('0'+hz/1000u);decimal(rate+1,hz%1000u);
+            print(72,76,96,"OCT-/+ CLOCK",1,MINT,INK,0);
+            print(174,76,24,rate,1,CREAM,INK,0);
+            print(204,76,18,"HZ",1,MINT,INK,0);
             for(unsigned i=0;i<4;++i) {
                 unsigned x=i*60u+3u;
-                uint16_t bg=v.hanan_next==i?PINK:v.hanan_pattern==i?GOLD:PLUM;
+                uint16_t bg=v.hanan_next==i?PINK:board_kumbia_pattern(v)==i?GOLD:PLUM;
                 paint(x,94,54,32,bg);
                 paint(x,94,54,3,colours[i]);
                 char number[]={(char)('5'+i),0};
@@ -991,11 +1193,13 @@ static void stage_paint(const StageModel *m)
             static const uint16_t colours[]={GOLD,MINT,CREAM,PINK};
             for(unsigned i=0;i<4;++i) {
                 unsigned x=i*60u+3u;
-                paint(x,140,54,32,PLUM);
+                /* 1.3: a tile lights while its voice sounds, like a struck head. */
+                uint16_t bg=(board_kumbia_sounding(v)>>i)&1u?colours[i]:PLUM;
+                paint(x,140,54,32,bg);
                 paint(x,140,54,3,colours[i]);
                 char number[]={(char)('1'+i),0};
-                print(x+5,147,7,number,1,DIM2,PLUM,0);
-                print(x+5,159,44,pads[i],1,CREAM,PLUM,0);
+                print(x+5,147,7,number,1,bg==PLUM?DIM2:INK,bg,0);
+                print(x+5,159,44,pads[i],1,bg==PLUM?CREAM:INK,bg,0);
             }
         }
     }
@@ -1024,7 +1228,10 @@ static void stage_paint(const StageModel *m)
                 flash=frame>=12 && frame<18;
                 if(frame<6) title=board_song_title(motion.previous_song);
             }
-            title_sign(title,cameo,flash,dim);
+            if(board_count_active(v) && !v.piano) {
+                title_sign("",0,0,0);
+                count_sign(panel_beats(v.study)/2u,m->beat);
+            } else title_sign(title,cameo,flash || save_flash,dim);
             if(motion.kind==MOTION_SONG && frame<12) {
                 unsigned x=(frame%6u)*40u+40u;
                 if(frame<6) {
@@ -1041,8 +1248,8 @@ static void stage_paint(const StageModel *m)
             char n[4]; decimal(n,v.song<SET_SLOTS?v.song+1u:0u);
             unsigned count=0;
             for(unsigned i=0;i<SET_SLOTS;++i) count+=board_song_exists(i)!=0;
-            char index[]={n[1],n[2],'/',(char)('0'+count/10u),(char)('0'+count%10u),'>',0};
-            print(5,60,36,v.song==SET_SLOTS?"BANK":index,1,CYAN,INK,0);
+            char index[]={n[1],n[2],'/',(char)('0'+count/10u),(char)('0'+count%10u),board_edited(v)?'+':'>',0};
+            print(5,60,36,v.song==SET_SLOTS?(board_edited(v)?"BANK+":"BANK"):index,1,board_edited(v)?PINK:CYAN,INK,0);
             unsigned ticker=(motion.kind==MOTION_SONG && motion.frame>=12) ||
                 (motion.kind==MOTION_CLOSE && motion.frame>=8);
             const char *subtitle=ticker?"TAKE IT AWAY":
@@ -1064,7 +1271,9 @@ static void stage_paint(const StageModel *m)
                 if(page==PANEL_HOME && !v.piano) energy_gauge(v,m->beat);
                 print(5,94,132,motion.kind==MOTION_BACK?"BACK IN!":motion.kind==MOTION_LIFT && motion.frame<6?"LIFT!":m->flash?(part==PART_CHORUS || v.section==1?"LIFT!":"CHANGE!"):
                       m->pending?cue:v.playing?"":current,1,m->flash?GOLD:m->pending?PINK:LILAC,INK,0);
-                print(141,94,48,v.fill && (!(m->beat&1u) || !m->pending)?"FILL":v.accent?"ACC":"",1,v.fill?CYAN:PINK,INK,0);
+                /* 1.3: ">" and pink while a fill waits, gold while it sounds. */
+                print(141,94,12,v.fill==1?">":"",1,PINK,INK,0);
+                print(153,94,36,v.fill?"FILL":v.accent?"ACC":"",1,v.fill==2?GOLD:PINK,INK,0);
             }
             if(visible(187,53,53,53)) {
                 unsigned size=43;
@@ -1084,11 +1293,9 @@ static void stage_paint(const StageModel *m)
                     labelled_keys(m->keys,v,m->flash,m->pad_flash);
                     pad_name(m->pad_name);
                 }
-                else {
-                    panel_face(p,v,face);
-                    for(unsigned row=3;row<=6;++row)
-                        print(10,135+(row-3u)*12u,216,face[row],1,CREAM,INK,0);
-                }
+                else if(fx_page) fx_face(m->fx,v);
+                else if(page==PANEL_MIX) mix_face(p,v);
+                else step_face(p,v);
             }
         } else {
             if(visible(199,60,38,9)) {
@@ -1106,7 +1313,8 @@ static void stage_paint(const StageModel *m)
     if(visible(0,188,240,52)) footer(p,fx_page?PANEL_FX:page,v,1,v,0,0,m->hot,m->fx);
     if(m->notice && visible(0,184,240,12)) {
         static const char *const messages[]={"","OUTPUT STOPPED","BUSY / RETRY","STOP TO EDIT",
-            "EMPTY SLOT","SET SAVED","ACTION UNAVAILABLE","MASTER","727 DRUMS ONLY","REBAJADA"};
+            "EMPTY SLOT","SET SAVED","ACTION UNAVAILABLE","MASTER","727 DRUMS ONLY","REBAJADA",
+            "SAVED FOR SESSION","FRENO"};
         char volume[4]; decimal(volume,v.master);
         paint(0,184,240,12,DIM);
         print(7,184,114,messages[m->notice],1,m->notice==1?PINK:CREAM,DIM,0);
@@ -1118,20 +1326,22 @@ static void stage_paint(const StageModel *m)
     }
 }
 
-static Rect job_area(unsigned job,unsigned beat)
+static Rect job_area(unsigned job)
 {
     static const Rect main_regions[]={{0,71,240,33},{0,104,240,28},{0,24,240,34},
         {0,188,240,52},{0,132,240,56},{0,7,240,17},{0,0,240,7},{0,58,240,13}};
     if(job<8) return main_regions[job];
     if(model.panel.page==PANEL_RACK && !model.panel.rack_edit && job==RACK_LOOP)
         return (Rect){0,169,240,17};
+    if(model.panel.page==PANEL_HANAN && job>=CONE0 && job<CONE0+4u)
+        return (Rect){(uint8_t)((job-CONE0)*60u+3u),140,54,32};
     if(model.panel.page==PANEL_PERC && job>=CONE0 && job<CONE0+4u) {
         static const Rect lanes[]={{9,105,42,33},{67,105,46,37},{129,105,33,33},{186,105,49,40}};
         return lanes[job-CONE0];
     }
     if(job<HORN) {
         unsigned i=job-CONE0;
-        return (Rect){(uint8_t)(5+22*i+(i>=4?6:0)),107,21,21};
+        return (Rect){(uint8_t)(5+22*i+(i>=4?6:0)),107,21,24};
     }
     if(job==ORDER_ROW && model.panel.page==PANEL_SET) {
         unsigned slot=model.view.next_song;
@@ -1142,7 +1352,8 @@ static Rect job_area(unsigned job,unsigned beat)
     }
     if(model.panel.page==PANEL_BASS) {
         if(job==BASS_CONE) return (Rect){22,82,61,61};
-        if(job==BASS_LINE) return (Rect){105,160,129,17};
+        if(job==BASS_LINE) return (Rect){(uint8_t)(106u+bass_line_first*8u),160,
+            (uint8_t)((bass_line_last-bass_line_first)*8u+7u),17};
     }
     if(model.panel.page==PANEL_RACK && !model.panel.rack_edit) {
         if(job==RACK_HEADER) return (Rect){0,24,150,25};
@@ -1158,16 +1369,45 @@ static Rect job_area(unsigned job,unsigned beat)
             return (Rect){side?168:0,132,72,42};
         }
     }
+    if(model.panel.page==PANEL_MIX && job==RACK_OLD_STEP) return (Rect){3,133,234,3};
+    if(model.panel.page==PANEL_FX && (job==RACK_OLD_STEP || job==RACK_NEW_STEP))
+        return (Rect){(uint8_t)(8u+fx_walk[job==RACK_NEW_STEP]*7u*fx_gap[model.fx[FX_TIEMPO]<FX_DIVISIONS?model.fx[FX_TIEMPO]:0]),136,5,25};
+    if(model.panel.page==PANEL_EDIT && (job==RACK_OLD_STEP || job==RACK_NEW_STEP))
+        return step_cell((job==RACK_OLD_STEP?model.old_step:model.view.position)-model.panel.bar,
+                         panel_beats(model.view.study)==4?8u:16u);
     if(job==RACK_OLD_STEP || job==RACK_NEW_STEP) {
         unsigned step=job==RACK_OLD_STEP?model.old_step:model.view.position;
         unsigned i=(step-rack_bar(&model.panel,model.view))&15u;
         return (Rect){(uint8_t)(4+(i%8u)*29u),(uint8_t)(88+(i/8u)*36u),27,29};
     }
     if(job==HORN) return (Rect){189,104,50,25};
-    if(job==BULB0 || job==BULB1) return (Rect){(uint8_t)(2+(beat<8?beat*4u:29u)*8u),1,5,5};
-    if(job==STICKER) return (Rect){200,65,27,29};
+    if(job==BULB0 || job==BULB1) {
+        unsigned lamp=job==BULB0?lamp_old:lamp_head;
+        if(lamp>29u) lamp=29u;
+        unsigned first=lamp>lamp_trail?lamp-lamp_trail:0u;
+        return (Rect){(uint8_t)(2u+first*8u),1,(uint8_t)((lamp-first)*8u+5u),5};
+    }
+    if((job==LIFT_BULB0 || job==LIFT_BULB1) && board_count_active(model.view) && !model.view.piano) {
+        unsigned beats=panel_beats(model.view.study)/2u, at=job==LIFT_BULB0?model.old_beat:model.beat;
+        if(at>=beats) at=beats-1u;
+        return (Rect){(uint8_t)(count_x(beats,at)-1u),29,16,24};
+    }
+    if(job==STICKER) {
+        unsigned old=model.old_beat, next=model.beat;
+        if(old>=8 || next>=8) return (Rect){200,65,27,29};
+        unsigned x=min(sticker_x[old],sticker_x[next]), y=min(sticker_y[old],sticker_y[next]);
+        return (Rect){x,y,max(sticker_x[old],sticker_x[next])+3u-x,
+                           max(sticker_y[old],sticker_y[next])+3u-y};
+    }
     if(job==LARGE_STICKER) return (Rect){187,53,53,53};
-    if(job==CONES_ALL) return (Rect){5,107,181,21};
+    if(job==CONES_ALL) {
+        /* Four-pulse phrases occupy only the left cabinet. A normal beat
+         * wrap changes none of the unused right-hand cones, so leave their
+         * pixels alone instead of repainting the full eight-cone wall. */
+        unsigned left_only=!model.view.piano && panel_beats(model.view.study)<=4u &&
+            !motion.kind && !model.flash;
+        return (Rect){5,107,(uint8_t)(left_only?89u:181u),21};
+    }
     if(job==NOTICE) return (Rect){0,184,240,12};
     if(job==MOTION_STATUS) return (Rect){4,93,186,11};
     if(job==LIFT_BULB0 || job==LIFT_BULB1) {
@@ -1186,6 +1426,7 @@ static void high_water(unsigned gate,uint32_t cpu,uint32_t spi,uint32_t elapsed,
 
 static void stage_touch(uint32_t now)
 {
+    fresh_touch=1;fresh_at=now;
     if(!touching) { touching=1; touch_queued=0; touch_at=now; }
 }
 
@@ -1208,7 +1449,7 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
     const unsigned fx_page=page==PANEL_FX;
     if(fx_page) page=PANEL_MIX;
     unsigned bandlike=page==PANEL_HOME || page==PANEL_MIX || page==PANEL_EDIT;
-    unsigned beat=v.playing?v.position/4u:8u;
+    unsigned beat=v.playing?(v.piano?v.position/4u:panel_beat_position(v.study,v.position)):8u;
     if(beat>8) beat=8;
     unsigned pending=board_next_clave(v)<2 || board_next_root(v)<12 || v.next_groove<BOARD_GROOVE_PRESETS || v.next_song<SET_SLOTS || v.next_part<PART_NONE || v.pending<3;
     unsigned flash=model.flash;
@@ -1219,6 +1460,21 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
     }
     if(!v.playing || now-landed_at>=7200000u) flash=0;
     if(!opening && v.master!=old->master) master_at=now;
+    /* 1.3: SAVE answers with a short flash of the sign. */
+    if(!opening && (v.result==BOARD_SAVED || v.result==BOARD_SESSION) && v.result!=old->result) { saved_at=now; saving=1; }
+    if(saving && now-saved_at>=7200000u) saving=0;
+    if(opening || v.playing!=old->playing) { stopped_at=now; stopped=!v.playing; }
+    unsigned count=board_count_active(v) && !v.piano;
+    unsigned head=v.playing?(v.position<30u?v.position:29u):30u;
+    unsigned trail=v.playing && !count && current_part(v)==PART_CHORUS?2u:0u;
+    unsigned idle_elapsed=now-stopped_at;
+    /* TIMER4 wraps every ~179 s. Advance by whole chase cycles so the
+     * initial four-second wait cannot recur at each wrap. */
+    if(stopped && idle_elapsed>=132000000u) {
+        stopped_at+=((idle_elapsed-96000000u)/36000000u)*36000000u;
+        idle_elapsed=now-stopped_at;
+    }
+    unsigned idle=stopped && idle_elapsed>=96000000u?1u+(unsigned)(idle_elapsed/12000000u%3u):0u;
     StageModel next={*p,v,keys,(uint8_t)cameo,(uint8_t)flash,(uint8_t)beat,
         (uint8_t)next_slot(v),(uint8_t)pending,0,model.beat,model.view.position,0,0,4,0,0,
         p->rack_sound,feedback.serial,0,0,0,0,0,{0}};
@@ -1250,7 +1506,9 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
             change|=(1u<<STATUS)|(1u<<CLOCK)|(1u<<INFO);
         if(v.speed!=old->speed) {
             change|=(1u<<NOTICE)|(1u<<STATUS)|(1u<<INFO);
-            if(page==PANEL_MIX) change|=(1u<<BODY)|(1u<<(KNOB0+3));
+            if(page==PANEL_MIX) change|=1u<<(KNOB0+3);
+            if(page==PANEL_MIX && !fx_page && (v.speed>=60u || old->speed>=60u)) change|=1u<<BODY;
+            if(v.speed<60u || old->speed<60u) change|=1u<<LIGHTS;
             if(page==PANEL_SET) change|=(1u<<SIGN)|(1u<<TABS);
         }
         if(page==PANEL_HOME && (keys.active!=model.keys.active || keys.queued!=model.keys.queued ||
@@ -1280,21 +1538,53 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
                old->levels[page==PANEL_HOME?5:p->role]) change|=1u<<(KNOB0+2);
             if(page==PANEL_HOME && v.piano && v.key!=old->key) change|=1u<<(KNOB0+3);
             if(page==PANEL_HOME && overlay_average(v)!=overlay_average(*old)) change|=1u<<(KNOB0+3);
-            if(page!=PANEL_HOME && (v.steps!=old->steps || v.muted!=old->muted || v.solo!=old->solo ||
+            if(page!=PANEL_HOME && (v.steps!=old->steps || v.steps_high!=old->steps_high || v.muted!=old->muted || v.solo!=old->solo ||
                 p->bar!=model.panel.bar || p->role!=model.panel.role)) change|=1u<<BODY;
         }
         if(fx_page) {
             static const uint8_t param[4]={FX_SALA,FX_ECO,FX_TIEMPO,FX_REPITE};
-            for(unsigned i=0;i<4;++i) if(next.fx[param[i]]!=model.fx[param[i]]) change|=1u<<(KNOB0+i);
-            if(next.fx[FX_PEGA]!=model.fx[FX_PEGA] || next.fx[FX_TIEMPO]!=model.fx[FX_TIEMPO]) change|=1u<<BODY;
+            for(unsigned i=0;i<4;++i) if(next.fx[param[i]]!=model.fx[param[i]]) change|=(1u<<(KNOB0+i))|(1u<<BODY);
+            if(next.fx[FX_PEGA]!=model.fx[FX_PEGA]) change|=1u<<BODY;
+        } else if(page==PANEL_MIX && v.levels[p->role]!=old->levels[p->role]) change|=1u<<BODY;
+        if(p->page==PANEL_MIX && board_lanes_sounding(v)!=board_lanes_sounding(*old)) change|=1u<<RACK_OLD_STEP;
+        if(fx_page) {
+            unsigned was=fx_tap(model.fx,*old), now=fx_tap(next.fx,v);
+            if(was!=now) {
+                if(was<32u) { fx_walk[0]=(uint8_t)was; change|=1u<<RACK_OLD_STEP; }
+                if(now<32u) { fx_walk[1]=(uint8_t)now; change|=1u<<RACK_NEW_STEP; }
+            }
+        }
+        if((page==PANEL_HOME || page==PANEL_BASS) && board_has_clave(v) && v.position!=old->position) {
+            uint32_t strokes=board_clave(v)?0x10410110u:0x01101041u;
+            if((strokes>>(old->position&31u))&1u) change|=1u<<(CONE0+((old->position&31u)>>2));
+            if((strokes>>(v.position&31u))&1u) change|=1u<<(CONE0+((v.position&31u)>>2));
+        }
+        if(page==PANEL_EDIT && (v.position!=old->position || v.playing!=old->playing)) {
+            unsigned count=panel_beats(v.study)==4?8u:16u;
+            if(old->playing && (unsigned)(old->position-p->bar)<count) change|=1u<<RACK_OLD_STEP;
+            if(v.playing && (unsigned)(v.position-p->bar)<count) change|=1u<<RACK_NEW_STEP;
+        }
+        if(board_edited(v)!=board_edited(*old)) {
+            change|=1u<<INFO;
+            if(page==PANEL_SET && v.song<SET_SLOTS) {
+                order_rows|=(uint16_t)order_row_bit(v.song);
+                change|=1u<<ORDER_ROW;
+            }
         }
 #ifdef COMPAS_HANAN
         if(page==PANEL_HANAN) {
-            if(v.hanan_pattern!=old->hanan_pattern || v.hanan_next!=old->hanan_next)
+            if(board_kumbia_pattern(v)!=board_kumbia_pattern(*old) || v.hanan_next!=old->hanan_next)
                 change|=(1u<<STATUS)|(1u<<CLOCK);
-            if(v.hanan_mode!=old->hanan_mode || v.piano!=old->piano) change|=1u<<INFO;
             for(unsigned i=0;i<4;++i)
+                if(((board_kumbia_sounding(v)^board_kumbia_sounding(*old))>>i)&1u) change|=1u<<(CONE0+i);
+            if(v.hanan_mode!=old->hanan_mode || v.piano!=old->piano || v.bpm!=old->bpm) change|=1u<<INFO;
+            for(unsigned i=0;i<3;++i)
                 if(v.kumbia[i]!=old->kumbia[i]) change|=1u<<(KNOB0+i);
+            if(v.kumbia[KUMBIA_CLOCK]!=old->kumbia[KUMBIA_CLOCK]) change|=1u<<STATUS;
+        }
+        if(v.kumbia_level!=old->kumbia_level || v.hanan_mode!=old->hanan_mode) {
+            if(page==PANEL_HANAN) change|=1u<<(KNOB0+3);
+            if(page==PANEL_MIX && !fx_page) change|=1u<<BODY;
         }
 #endif
         if(page==PANEL_RACK && p->rack_edit) {
@@ -1332,8 +1622,7 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
             if(v.next_song!=old->next_song)
                 dirty=order_row_bit(v.next_song)|order_row_bit(old->next_song);
             if(p->slot!=model.panel.slot) {
-                dirty|=(order_row_bit(p->slot)|order_row_bit(model.panel.slot))&
-                    ~(order_row_bit(v.song)|order_row_bit(v.next_song));
+                dirty|=order_row_bit(p->slot)|order_row_bit(model.panel.slot);
                 change|=1u<<(KNOB0+2);
             }
             if(dirty) {
@@ -1373,8 +1662,15 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
             next.bass_flip=(uint8_t)(1u+(now-bass_flip_at)/960000u);
         if(next.bass_pump!=model.bass_pump || next.bass_flip!=model.bass_flip)
             change|=1u<<BASS_CONE;
-        if(v.position!=old->position || v.playing!=old->playing || v.steps!=old->steps ||
-           next.bass_pump!=model.bass_pump) change|=1u<<BASS_LINE;
+        if(v.position!=old->position || v.playing!=old->playing || v.steps!=old->steps || v.steps_high!=old->steps_high ||
+           next.bass_pump!=model.bass_pump) {
+            unsigned count=panel_beats(v.study)*2u, a=old->position&(count-1u), b=v.position&(count-1u);
+            unsigned all=v.steps!=old->steps || v.steps_high!=old->steps_high ||
+                v.playing!=old->playing || (jobs&(1u<<BASS_LINE));
+            bass_line_first=(uint8_t)(all?0u:min(a,b));
+            bass_line_last=(uint8_t)(all?count-1u:max(a,b));
+            change|=1u<<BASS_LINE;
+        }
     } else if(full || page!=PANEL_BASS) bass_pump_at=bass_flip_at=0;
     if(page==PANEL_PERC && !v.piano && !full) {
         unsigned entered=v.overlays&~old->overlays;
@@ -1479,12 +1775,11 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
                             v.next_bar!=old->next_bar || v.fill!=old->fill))
         change|=1u<<HORN;
     if(beat!=model.beat && !full) {
-        change|=(1u<<BULB0)|(1u<<BULB1);
         if(bandlike) {
             unsigned lo=min(beat,model.beat), hi=max(beat,model.beat);
             if(hi-lo>2u) change|=1u<<CONES_ALL;
             else for(unsigned i=lo;i<=hi && i<8;++i) change|=1u<<(CONE0+i);
-            if(pending || model.pending || board_count_active(v)) change|=1u<<HORN;
+            if(pending || model.pending || v.fill || old->fill || board_count_active(v)) change|=1u<<HORN;
             if(!pending || !model.pending) change|=1u<<STICKER;
         }
     }
@@ -1534,14 +1829,34 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
         }
         if(effects.break_mode && beat!=model.beat) change|=1u<<LIGHTS;
     }
+    if(!full) {
+        if(head!=lamp_head) {
+            /* Two small lamp regions, unless the last pair is still queued. */
+            if((jobs|deferred_beat_jobs)&((1u<<BULB0)|(1u<<BULB1))) change|=1u<<LIGHTS;
+            else change|=(1u<<BULB0)|(1u<<BULB1);
+            lamp_old=lamp_head;
+        }
+        if(trail!=lamp_trail || idle!=idle_phase) change|=1u<<LIGHTS;
+        if(count!=(board_count_active(*old) && !old->piano)) change|=1u<<SIGN;
+        else if(count && beat!=model.beat) change|=(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1);
+        if(saving!=save_flash) change|=1u<<SIGN;
+    }
+    lamp_head=(uint8_t)head; lamp_trail=(uint8_t)trail; idle_phase=(uint8_t)idle; save_flash=saving;
     if(change&(1u<<CONES_ALL)) change&=~(255u<<CONE0);
+    /* If another beat overtakes a queued highlight, repaint the badge so
+     * the older highlight cannot be stranded outside the new small region. */
+    if((change&jobs)&(1u<<STICKER)) change|=1u<<LARGE_STICKER;
     if(change&(1u<<LARGE_STICKER)) change&=~(1u<<STICKER);
-    if(change&(1u<<LIGHTS)) change&=~((1u<<BULB0)|(1u<<BULB1)|(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1));
+    if(change&(1u<<LIGHTS)) change&=~((1u<<BULB0)|(1u<<BULB1)|(count?0u:(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1)));
     if(measurement==1 && ((change&255u) || (change&((1u<<MOTION_STATUS)|(1u<<LARGE_STICKER))) ||
        (page==PANEL_SET && (change&(1u<<ORDER_ROW))) ||
        (page==PANEL_HOME && (change&(1u<<PAD_FLASH))))) measurement=0;
     motion=effects;
     if(!change) {
+        /* Panel commands take effect in the next audio mailbox pass. Keep
+         * the input stamp through that handoff instead of losing it on the
+         * first offer, which can still contain the old tempo/value. */
+        if(fresh_touch && now-fresh_at>384000u) fresh_touch=0;
         if(touching && !touch_queued && now-touch_at>384000u) touching=0;
         model.view=v;
         model.rack_serial=feedback.serial;
@@ -1552,7 +1867,28 @@ static void stage_offer(const Panel *p,BoardView v,PanelKeys keys,RackFeedback f
     uint32_t beat_jobs=(((1u<<(STICKER+1))-1u)&~255u)|(1u<<LIFT_BULB0)|(1u<<LIFT_BULB1)|(1u<<CONES_ALL)|(1u<<RACK_OLD_STEP)|(1u<<RACK_NEW_STEP);
     if(page==PANEL_SET) beat_jobs&=~(1u<<ORDER_ROW);
     if(page==PANEL_HOME) beat_jobs&=~(1u<<PAD_FLASH);
+    if(!full && jobs && measurement==3 && fresh_touch) {
+        if(!full_superseded) ++compas_display_superseded[0];
+        superseded_at=fresh_at;
+        full_superseded=1;
+    }
+    if(!full || (fresh_touch && now-fresh_at>384000u)) fresh_touch=0;
+    /* SAVE/cue flashes can end after SIGN has reached glass but before the
+     * rest of the page. Finish that page once, then refresh the sign. This
+     * keeps the late decoration out of R3 without dropping the new state. */
+    if(!full && jobs && measurement==3 && !(jobs&(1u<<SIGN))) {
+        deferred_beat_jobs|=change&(1u<<SIGN);
+        change&=~(1u<<SIGN);
+    }
+    /* A queued pair of marquee bulbs can escalate to LIGHTS on the next
+     * sixteenth. LIGHTS is also a full-frame region: do not resend its
+     * seven rows after they have already reached glass during this page. */
+    if(!full && jobs && measurement==3) {
+        deferred_beat_jobs|=change&(1u<<LIGHTS)&~jobs;
+        change&=~(1u<<LIGHTS);
+    }
     if(full || !jobs) {
+        full_superseded=0;
         deferred_beat_jobs=0;
         jobs=change;
         stripe_row=0;
@@ -1594,7 +1930,7 @@ static unsigned stage_work(void)
         if(model.panel.page==PANEL_SET && (ready&(1u<<ORDER_ROW))) job=ORDER_ROW;
         working_job=(uint8_t)job;
     }
-    Rect rect=job_area(job,job==BULB0?model.old_beat:model.beat);
+    Rect rect=job_area(job);
     if(live_keys && job==BODY) rect=(Rect){32,142,174,32};
     if(measurement==3) {
         /* The dedicated banner is y=184..195, crossing both bands. */
@@ -1612,6 +1948,10 @@ static unsigned stage_work(void)
 #endif
     lcd_sync();
     uint32_t done=board_ticks();
+#ifdef COMPAS_DISPLAY_TRACE
+    if(!pixels) for(unsigned i=0;i<32;++i) trace_current[i]=0;
+    trace_current[job]+=tile.w*tile.h;
+#endif
     compute+=sent-start;
     transfer+=done-sent;
     pixels+=tile.w*tile.h;
@@ -1651,13 +1991,27 @@ static unsigned stage_work(void)
             touching=0;
         }
     }
-    if(!jobs && measurement) high_water(measurement==1?0:2,compute,transfer,done-redraw_started,pixels);
+#ifdef COMPAS_DISPLAY_TRACE
+    if(!jobs && measurement==1 && pixels>compas_display_stats[0][3])
+        for(unsigned i=0;i<32;++i) compas_display_r1_regions[i]=trace_current[i];
+    if(!jobs && measurement==3 && !full_superseded && pixels>compas_display_stats[2][3]) {
+        for(unsigned i=0;i<32;++i) compas_display_r3_regions[i]=trace_current[i];
+        compas_display_r3_meta[0]=redraw_started;compas_display_r3_meta[1]=done;
+        compas_display_r3_meta[2]=model.panel.page;compas_display_r3_meta[3]=model.view.playing;
+    }
+#endif
+    if(!jobs && measurement==3) fresh_touch=0;
+    if(!jobs && measurement==3 && full_superseded) {
+        uint32_t values[]={pixels,done-redraw_started,done-superseded_at};
+        for(unsigned i=0;i<3;++i)
+            if(compas_display_superseded[i+1]<values[i]) compas_display_superseded[i+1]=values[i];
+    } else if(!jobs && measurement) high_water(measurement==1?0:2,compute,transfer,done-redraw_started,pixels);
     if(!jobs && deferred_beat_jobs) {      /* the full page is done: now the beat */
         jobs=deferred_beat_jobs;
         deferred_beat_jobs=0;
         compute=transfer=pixels=0;
         redraw_started=done;
-        measurement=1;
+        measurement=(jobs&255u)?0u:1u;
     }
     return 1;
 }

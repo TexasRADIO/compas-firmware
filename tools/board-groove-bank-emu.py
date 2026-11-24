@@ -3,6 +3,7 @@ import hashlib,json,os,struct,subprocess,sys,tempfile
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 board=Path(__file__).resolve().parents[1]/'build/board'
+grooves=sum(not row.get('testOnly',False) for row in json.loads((board.parents[1]/'src/score.json').read_text())['studies'])
 emulator=Path(sys.argv[1]).resolve()
 assert hashlib.sha256(emulator.read_bytes()).hexdigest()=='8a58e43fe66ed1194a546915782c531a3248ed96cd3a262f9097f0f84aa56d6a'
 subprocess.run([sys.executable,str(Path(__file__).with_name('board-emu.py')),str(board),'offline','prepare'],check=True,capture_output=True)
@@ -25,7 +26,7 @@ def run(name,time):
  stats=struct.unpack_from('<10I',ram,symbols['board_stats']);display=struct.unpack_from('<12I',ram,symbols['compas_display_stats'])
  assert view[0] and not any(stats[2:5]) and stats[9]+240<128*544
  assert max(abs(n[0]) for n in struct.iter_unpack('<h',(folder/'audio.raw').read_bytes()))>100
- assert view[1]==3 and not view[31] and not view[68] and view[74]==15
+ assert view[1]==3 and not view[31] and not view[68] and view[74]==grooves
  assert view[28]==(1 if name=='recall' else 16)
  gates={k:dict(zip(('computeMs','transferMs','completeMs'),[n/24000 for n in display[i*4:i*4+3]]),pixels=display[i*4+3]) for i,k in enumerate(('R1','R2','R3'))}
  assert display[0]<=96000 and display[2]<=288000 and display[3]<=6000

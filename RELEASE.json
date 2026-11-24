@@ -1,34 +1,48 @@
 {
   "schema": "compas-release/v1",
   "product": "Compás",
-  "version": "1.2-editor.1",
+  "version": "1.3",
+  "promotedCandidate": "1.3-rc.4",
   "firmwareIdentity": "FM-1_92210003",
   "sharedEditorIncluded": true,
+  "editorBuild": 13,
+  "grooveStudies": 38,
+  "compoundMeters": ["6/8", "12/8"],
   "editor": "https://thebigbeat.app/editor/",
   "packages": {
     "en": {
-      "file": "compas-1.2-editor-en.fwsc",
+      "file": "compas-1.3-en.fwsc",
       "defaultLanguage": "en",
       "bytes": 610086,
-      "sha256": "e5d4e0b22500fd67e89d9e4346880798b6b4d2d0628b18e679514f3598852d7f",
-      "applicationSHA256": "652e1993f774027a5f59691b08ba207f7f240c7b05b7809c276d4685916a84bd"
+      "sha256": "c86d24df7f3613643e70fc7aa2d9ef3d10632e5bb6132084eb9b40d9d7c6bcb5",
+      "applicationSHA256": "cc163e0f141ed55a8af0afc8355dbeb517468425839b8e124a18650bc0b933d4"
     },
     "es": {
-      "file": "compas-1.2-editor-es.fwsc",
+      "file": "compas-1.3-es.fwsc",
       "defaultLanguage": "es",
       "bytes": 610086,
-      "sha256": "5df552898db0c80af8772616704ef3500afc44ff89c1a70ea192c9b14cc22b4d",
-      "applicationSHA256": "3d3bffe1d20c124e61e87fe7c1e71fbb87401add98c79f0f6a875fc0cd29bc1c"
+      "sha256": "338f313653664c7f2ae9b8bd2e791c4c3cda7d9566eff1146aebcda3f9486e1e",
+      "applicationSHA256": "50271414a9ef2c26fb2847b5f1e2ec6cc1bac58c59693a4746c5c36db3e61c5d"
     }
   },
   "application": {
-    "bytes": 575120,
-    "slotBytes": 581564,
-    "freeBytes": 6444
+    "bytes": 565852,
+    "journalSafeLimitBytes": 577248,
+    "freeBytes": 11396,
+    "writeRange": ["0x4000", "0x93000"],
+    "stagingRange": ["0xE0000", "0xE5000"]
   },
   "updateLoader": {
     "origin": "BB1 BAND r85",
     "sha256": "a48ee499520cb16750e2504264bd8a8cd3e13ea953bbf319537cb840eb0d2115"
   },
-  "persistentShows": false
+  "persistentShows": true,
+  "updateClearsShowJournal": true,
+  "qualification": {
+    "nativeAudioAndRedraw": "pass",
+    "physicalEnglishAndSpanishUsbTransportClock": "pass",
+    "physicalV15RoundTripForExactCandidate": "pending",
+    "physicalControlsAndSavePowerCycle": "pending",
+    "analogueOutputAndPaLevel": "unmeasured"
+  }
 }

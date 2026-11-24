@@ -1,19 +1,23 @@
 const $=id=>document.getElementById(id);
-const kitKey='compas-kumbia-kit-v1';
+const kitKey='compas-kumbia-kit-v2';
 let kitSettings;
 if(WebAssembly.Module.exports(module).some(entry=>entry.name==='bench_kit_restore')) {
-  try {
-    const values=JSON.parse(localStorage.getItem(kitKey));
-    if(Array.isArray(values) && values.length===4 &&
-       values.every((v,i)=>Number.isInteger(v) && v>=[0,5,0,0][i] && v<=[100,100,24,54][i])) kitSettings=values;
-  } catch {} // Storage can be unavailable for private or local-file browsing.
+  for(const key of [kitKey,'compas-kumbia-kit-v1']) {
+    try {
+      const values=JSON.parse(localStorage.getItem(key));
+      if(Array.isArray(values) && (values.length===4 || values.length===5) &&
+         values.every((v,i)=>Number.isInteger(v) && v>=[0,5,0,0,0][i] && v<=[100,100,24,54,100][i])) {
+        kitSettings=values;break;
+      }
+    } catch {} // Storage can be unavailable for private or local-file browsing.
+  }
 }
 function copySet(board,payload) {
   if (payload.length!==board.bench_set_size()) throw Error('Invalid prepared set length.');
   new Uint8Array(board.memory.buffer,board.bench_set_buffer(),payload.length).set(payload);
 }
 function fileBusy(busy) {
-  for(const id of ['save-show','save-rhythm','open-rhythm','open-set','rehearsal-set']) $(id).disabled=busy;
+  for(const id of ['save-show','save-show-text','save-rhythm','open-rhythm','open-set','rehearsal-set']) $(id).disabled=busy;
 }
 function renderBoard(payload,rhythms) {
   const board=new WebAssembly.Instance(module).exports;
@@ -25,7 +29,10 @@ function renderBoard(payload,rhythms) {
     }
   }
   if (!board.bench_boot(Number(Boolean(payload))|(rhythms?2:0)|(startupHanan?4:0))) throw Error('The board rejected the prepared set.');
-  if(kitSettings) board.bench_kit_restore?.(...kitSettings);
+  if(kitSettings) {
+    board.bench_kit_restore?.(...kitSettings.slice(0,4));
+    board.bench_kit_level?.(kitSettings[4]??100);
+  }
   board.bench_audio();
   board.bench_read_view();
   return board;
@@ -149,9 +156,11 @@ function connectAudioNode(context, candidate) {
         $('message').textContent=data.showResult===2?'Press STOP before saving a show.':data.showResult===5?'Choose a set slot with GLO, then SAVE this rhythm before saving the show.':'Unable to save show. Let the current control change finish and try again.';
       } else {
         const dataFile=serializeShow(data.showSet,data.showRhythms);
-        const blob=new Blob([JSON.stringify(dataFile)],{type:'application/json'});
+        const asText=showAsText;showAsText=false;
+        const blob=asText?new Blob([showToText(showPayload(dataFile))],{type:'text/plain'}):
+          new Blob([JSON.stringify(dataFile)],{type:'application/json'});
         const url=URL.createObjectURL(blob),link=document.createElement('a');
-        link.href=url;link.download='Compas.cpshow';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+        link.href=url;link.download=asText?'Compas-show.txt':'Compas.cpshow';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
         $('message').textContent='Show saved: song slots, attached rhythms and current edits. Reopening starts at the first slot.';
       }
       return;
@@ -315,7 +324,8 @@ $('open-set').onchange=event=>{
   if (!file || input.disabled) return;
   requestSet(file.name,async()=>{
     if (file.size>65536) throw Error('The set file is too large.');
-    return JSON.parse(await file.text());
+    const text=await file.text();
+    return text.trimStart().startsWith('compas-song/1')?textToShow(text):JSON.parse(text);
   });
 };
 function requestRhythm(action,payload,name) {
@@ -326,6 +336,8 @@ function requestRhythm(action,payload,name) {
   fileBusy(true);
   node.port.postMessage({rhythmAction:action,rhythmPayload:payload});
 }
+let showAsText=false;
+$('save-show-text').onclick=()=>{ if(pendingShow) return; showAsText=true; $('save-show').onclick(); if(!pendingShow) showAsText=false; };
 $('save-show').onclick=()=>{
   if(!node) { $('message').textContent='Enable audio before saving a show.';return; }
   if(pendingSet || pendingRhythm || pendingShow) return;

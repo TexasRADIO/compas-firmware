@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Complete backing: literal source-stroke tests live in tests/merengue.test.mjs.
 // This renders the real board WASM, and checks show recall and audible variants.
 import {readFile,writeFile} from 'node:fs/promises';
@@ -27,14 +28,14 @@ for(const section of ['base','lift','break']){
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
     hash.update(Buffer.from(pcm.buffer,pcm.byteOffset,pcm.byteLength));
     for(let i=0;i<Math.min(128,frames-offset);i++){
-      assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/128;
+      assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/dacScale(b);
       peak=Math.max(peak,Math.abs(value));samples.push(value);
     }
   }
   assert(peak>100 && peak<32767);
   b.bench_input(1<<12,0,0);b.bench_audio();assert.equal(b.bench_playing(),0);
   assert.equal(b.bench_show_export(),0);
-  const bytes=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).slice();
+  const bytes=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1376).slice();
   const rhythms=new Uint8Array(b.memory.buffer,b.bench_rhythm_slots_buffer(),2416).slice();
   const show=serializeShow(bytes,rhythms),again=boot(showPayload(show).payload);
   again.bench_read_view();const view=new Uint8Array(again.memory.buffer,again.bench_snapshot()+20,76);

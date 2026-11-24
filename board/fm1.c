@@ -2,6 +2,7 @@
  * Offline FM-1 adapter. The original register definitions, IRQ entry and
  * ST7789 driver are consumed from the pinned Felucca BSP (see board/BSP.json).
  */
+#include "flash-chips.h"
 #include "panel.h"
 #include "recovery.h"
 #include "fm1_adc.h"
@@ -47,6 +48,7 @@ extern void isr_alnk0(void);
 static Panel panel;
 static volatile RecoveryGuard recovery_guard __attribute__((section(".noinit")));
 volatile uint32_t compas_supervisor_watermark;
+volatile uint32_t compas_foreground_paint_ticks;
 enum { STACK_PATTERN=0x5ca17 };
 static PanelKeys screen_keys;
 static uint8_t dim_keys[FM1_NCOL], bright_keys[FM1_NCOL], queued_keys[FM1_NCOL];
@@ -158,6 +160,13 @@ static void emu_load(void)
 }
 #endif
 
+#ifdef COMPAS_EMU_SWEEP
+#include "sweep.inc"
+#endif
+#ifdef COMPAS_EMU_COMPOUND
+#include "compound.inc"
+#endif
+
 #ifdef COMPAS_EMU_STORE
 int store_read(uint32_t off, void *dest, unsigned size)
 {
@@ -183,15 +192,28 @@ static void store_open(void)
      * nothing is ever written there; the set list lives until power-off. */
     return;
 #endif
+#ifdef COMPAS_UNIT_STORE
+    extern const uint32_t compas_unit_store_end;
+    (void)*(const volatile uint32_t *)&compas_unit_store_end;   /* keep the layout marker linked */
+    if(!COMPAS_JEDEC_OK(FL_FAR(fl_jedec_ram)())) return;
+    store_enabled=1;
+    store_boot();
+    return;
+#else
     const char *marker=STORE_MARKER;
     char readback[sizeof STORE_MARKER-1];
-    if(FL_FAR(fl_jedec_ram)()!=0x856014u ||
+    if(!COMPAS_JEDEC_OK(FL_FAR(fl_jedec_ram)()) ||
        store_read(STORE_FIXTURE,readback,sizeof readback)) return;
     for(unsigned i=0;i<sizeof readback;++i)
         if(readback[i]!=marker[i]) return;
     store_enabled=1;
     store_boot();
+#endif
 }
+#ifdef COMPAS_UNIT_STORE
+/* Read by board-emu.py and the size gate: the app must end before this. */
+__attribute__((used)) const uint32_t compas_unit_store_end=STORE_APP_END;
+#endif
 
 static void store_poll(void)
 {
@@ -238,14 +260,14 @@ static void compas_midi_service(uint32_t now)
     }
     const BoardView v=board_view(panel.page==PANEL_BASS?BOARD_BASS_LINE_ROLE:panel.role);
     const unsigned bpm=board_effective_bpm(v);
-    const ClockOut c=midiclock_step(&midiclock,v.playing,v.position,bpm,now);
+    const ClockOut c=midiclock_step(&midiclock,v.playing,v.position,cp_quarter_bpm(bpm),now);
     if(c.stop) usb_midi_realtime(CLOCK_STOP);
     if(c.start) usb_midi_realtime(CLOCK_START);
     for(unsigned i=0;i<c.ticks;++i) usb_midi_realtime(CLOCK_TICK);
     SidemanState st={panel.page,panel.role,panel_lang,midi_knob,(uint16_t)bpm,
                      v.study,v.playing,v.part,0,0,0};
 #ifdef COMPAS_HANAN
-    st.hanan=v.hanan_pattern;
+    st.hanan=board_kumbia_pattern(v);
     st.kumbia=v.hanan_mode;
 #endif
     uint8_t report[SIDEMAN_BYTES];
@@ -382,6 +404,12 @@ void fm1_cstart(void)
 #ifdef COMPAS_EMU_STRESS
         emu_load();
 #endif
+#ifdef COMPAS_EMU_SWEEP
+        emu_sweep();
+#endif
+#ifdef COMPAS_EMU_COMPOUND
+        emu_compound();
+#endif
         fm1_input_scan();
         int32_t enc[7];
         const uint32_t buttons=fm1_input_edges(0), keys=fm1_in.notes;
@@ -402,7 +430,7 @@ void fm1_cstart(void)
             last_master=now;
             panel_master(&panel,fm1_adc_read(FM1_ADC_MASTER));
         }
-        if(activity && !opening) stage_touch(now);
+        if(activity) stage_touch(now); /* boot-triggering commands also cross the audio mailbox */
         if((opening && activity) || now-last_frame>=120000u) {
             last_frame=now;
             const BoardView v=board_view(panel.page==PANEL_BASS?BOARD_BASS_LINE_ROLE:panel.role);
@@ -422,6 +450,22 @@ void fm1_cstart(void)
         }
         /* A beat has a bounded set of small regions. Finish that set in
          * one pass so a new decorative offer cannot restart its strips. */
-        do { stage_work(); } while(jobs && measurement==1);
+        const unsigned paint_kind=measurement;
+        uint32_t paint_started=fm1_ticks();
+        unsigned stripes=0;
+        do {
+            stage_work();++stripes;
+#ifdef COMPAS_USB
+            /* Keep clock/telemetry service at one-stripe intervals even
+             * when the input/MASTER pass batches two full-frame stripes. */
+            if(paint_kind==3 && measurement==3 && jobs && stripes<2u) {
+                compas_usb_poll();compas_midi_service(fm1_ticks());
+            }
+#endif
+        } while(jobs && ((paint_kind==1 && measurement==1) ||
+                 (paint_kind==3 && measurement==3 && stripes<2u &&
+                  fm1_ticks()-paint_started<240000u)));
+        uint32_t paint_ticks=fm1_ticks()-paint_started;
+        if(compas_foreground_paint_ticks<paint_ticks) compas_foreground_paint_ticks=paint_ticks;
     }
 }

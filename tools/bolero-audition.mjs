@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Prepared singer backings with the source conga replacing the authored conga role.
 import {readFile,writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
@@ -26,7 +27,7 @@ for(let slot=0;slot<2;slot++){
 }
 input(1<<7,1);input(0);
 assert.equal(b.bench_show_export(),0);
-const payload=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).slice();
+const payload=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1376).slice();
 const rhythms=new Uint8Array(b.memory.buffer,b.bench_rhythm_slots_buffer(),2416).slice();
 assert.equal(rhythms[140],16);assert.equal(rhythms[151+140],17);
 assert.equal(rhythms[10],1);assert.equal(rhythms[151+10],1);
@@ -42,7 +43,7 @@ for(let slot=0;slot<2;slot++){
   assert.equal(v[1],5);assert.equal(v[8],16);assert.equal(v[6],76);assert.equal(v[7],0);
   again.bench_input(1<<12,0,0);const frames=Math.ceil(8*60*44100/76),start=samples.length;let peak=0;
   for(let n=0;n<frames;n+=128){const pcm=new Int32Array(again.memory.buffer,again.bench_audio(),256);
-    for(let i=0;i<Math.min(128,frames-n);i++){assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/128;peak=Math.max(peak,Math.abs(value));samples.push(value);}}
+    for(let i=0;i<Math.min(128,frames-n);i++){assert.equal(pcm[i*2],pcm[i*2+1]);const value=pcm[i*2]/dacScale(b);peak=Math.max(peak,Math.abs(value));samples.push(value);}}
   assert(peak>100&&peak<32767);again.bench_input(1<<12,0,0);again.bench_audio();
   clips.push({name:set.songs[slot].title,sourceIndex:16+slot,startSeconds:start/44100,durationSeconds:frames/44100,peak});
   if(!slot)for(let i=0;i<22050;i++)samples.push(0);

@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Run after board-browser.py: the focused set uses the real board and 727 bank.
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -7,11 +8,20 @@ import {serializeShow,showPayload} from '../web/show-format.mjs';
 import {boardWasm} from './lib/bench.mjs';
 const json=async p=>JSON.parse(await readFile(new URL(p,import.meta.url),'utf8'));
 const studies=(await json('../src/score.json')).studies;
-const set=await json('../repertoire/regional-audition-set.json');
+const profiles={
+  regional:['regional-audition-set.json','Compas-Regional-Cumbia.html',
+    ['cdmx','mty-dub','tribal','villera','lima','chile','puebla','wepa','tecno-peru','ba-digital']],
+  para:['para-development-set.json','Compas-Para-Review.html',
+    ['carimbo-marapanim','tecnobrega-belem','lambada-para','guitarrada-para']],
+  sonidero:['mexican-sonidero-family-set.json','Compas-Sonidero-Families.html',null]
+};
+const selected=profiles[process.argv[2]??'regional'];
+assert(selected,'choose regional, para or sonidero');
+const set=await json('../repertoire/'+selected[0]);
 const module=await WebAssembly.compile(await readFile(boardWasm));
-const ids=['cdmx','mty-dub','tribal','villera','lima','chile','puebla','wepa','tecno-peru','ba-digital'];
+const ids=selected[2]??set.songs.map(song=>song.study);
 assert.deepEqual(set.songs.map(s=>s.study),ids);
-for(const [filename,expected] of [['Compas-Regional-Cumbia.html',set],['Compas-Sonidero-Board.html',null]]) {
+for(const [filename,expected] of [[selected[1],set],['Compas-Sonidero-Board.html',null]]) {
   const page=await readFile(new URL('../build/'+filename,import.meta.url),'utf8');
   assert.deepEqual(JSON.parse(page.match(/const startupSet=(.*);\n/)[1]),expected);
 }
@@ -20,13 +30,14 @@ function boot(bytes=payload) {
   const b=new WebAssembly.Instance(module).exports;
   new Uint8Array(b.memory.buffer,b.bench_set_buffer(),bytes.length).set(bytes);
   assert.equal(b.bench_boot(1),1); b.bench_audio();
-  assert.equal(b.bench_snapshot_size(),128); // Panel 20, BoardView 76, PanelKeys 24, RackFeedback 8.
+  // Kumbia appends eight bytes to BoardView; the shared offsets stay fixed.
+  assert.equal(b.bench_snapshot_size(),b.bench_kit_restore?140:132);
   b.bench_master(80); b.bench_audio();
   return b;
 }
 function view(b) {
   b.bench_read_view();
-  return new Uint8Array(b.memory.buffer,b.bench_snapshot()+20,76).slice();
+  return new Uint8Array(b.memory.buffer,b.bench_snapshot()+20,80).slice();
 }
 function input(b,buttons=0,keys=0) {b.bench_input(buttons,keys,0);b.bench_audio();}
 function turn(b,index,delta) {
@@ -37,7 +48,7 @@ function render(b,blocks) {
   for(let n=0;n<blocks;n++) {
     const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
     for(let i=0;i<256;i+=2) {
-      assert.equal(pcm[i],pcm[i+1]);peak=Math.max(peak,Math.abs(pcm[i]/128));
+      assert.equal(pcm[i],pcm[i+1]);peak=Math.max(peak,Math.abs(pcm[i]/dacScale(b)));
     }
     hash.update(Buffer.from(pcm.buffer,pcm.byteOffset,pcm.byteLength));
   }
@@ -55,7 +66,7 @@ for(const song of set.songs) {
     assert.equal(view(b)[2],['base','lift','break'].indexOf(section));
     input(b,1<<12);assert.equal(b.bench_playing(),0);
     assert.equal(b.bench_show_export(),0);
-    const bytes=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).slice();
+    const bytes=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),payload.length).slice();
     const rhythms=new Uint8Array(b.memory.buffer,b.bench_rhythm_slots_buffer(),2416);
     const reopened=boot(showPayload(serializeShow(bytes,rhythms)).payload);
     assert.equal(view(reopened)[1],studies.findIndex(s=>s.id===song.study));

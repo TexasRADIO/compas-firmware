@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: GPL-3.0-only
- * Compás 1.2 foreground adapter for the shared Big Beat Editor protocol.
+ * Compás 1.3 foreground adapter for the shared Big Beat Editor protocol.
  * Include after usb/runtime.inc so it can share the framed SysEx queue.
  */
 #include "editor_gen.h"
@@ -151,8 +151,8 @@ static int ed_map(uint8_t scope,uint8_t target,uint16_t field,uint16_t value)
 static void ed_hello(const uint8_t *payload,unsigned length,uint16_t seq)
 {
     if(!length||payload[0]!=BB_ED_PROTOCOL_VERSION) { ed_result(BB_ED_MSG_REJECT,seq,BB_ED_RESULT_NOT_SUPPORTED);return; }
-    ed_begin(BB_ED_MSG_HELLO_REPLY,seq);ed_byte(BB_ED_PROTOCOL_VERSION);ed_byte(BB_ED_PRODUCT_COMPAS);ed14(12);
-    ed32(0x434F4D50u);ed_byte(112);ed_byte(0x45);ed14(29);ed14(0);ed14(0);ed_end();editor.connected=1;
+    ed_begin(BB_ED_MSG_HELLO_REPLY,seq);ed_byte(BB_ED_PROTOCOL_VERSION);ed_byte(BB_ED_PRODUCT_COMPAS);ed14(13);
+    ed32(0x434F4D50u);ed_byte(112);ed_byte(0x45);ed14(BOARD_GROOVE_PRESETS);ed14(0);ed14(0);ed_end();editor.connected=1;
 }
 static void ed_rx(const uint8_t *data,unsigned length)
 {

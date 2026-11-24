@@ -58,10 +58,9 @@ const extra={
   'notice-saved':      {run:s=>{quiet(s); s.input(B.GLO); s.input(B.SAVE); s.wait(60);}},
   'notice-drums-only': {run:s=>{quiet(s); s.input(B.REC); s.input(B.SEQ); s.input(B.FX); s.input(B.FX); s.input(B.REC); s.input(B.HOME); s.wait(300);
                           assert.equal(s.audio()[R.rack_sequence],2,'drums only');}},
-  // KNOWN DEFECT (R7): leaving the step editor with HOME keeps rack_edit set,
-  // which hides the DRUMS ONLY notice that CONTROL-DESIGN says stays on other pages.
+  // 1.3 (R7 fixed): leaving the 727 closes its step editor, so DRUMS ONLY shows on Band.
   'drums-only-home-exit':{run:s=>{quiet(s); s.input(B.REC); s.input(B.SEQ); s.input(B.FX); s.input(B.FX); s.input(B.HOME); s.wait(300);
-                          assert.equal(s.audio()[R.rack_sequence],2,'drums only'); assert.equal(s.snapshot()[18],1,'edit flag kept');}},
+                          assert.equal(s.audio()[R.rack_sequence],2,'drums only'); assert.equal(s.snapshot()[18],0,'step editor closed');}},
   // Mix and the 727.
   'mix-speed':         {run:s=>{s.input(B.FX); s.turn(E.K4,-20); s.wait(60);}},
   '727-roll':          {run:s=>{start(s); s.input(B.REC); s.input(B.ARP); s.wait(60);}},
@@ -69,6 +68,22 @@ const extra={
   '727-steps':         {run:s=>{s.input(B.REC); s.input(B.SEQ); s.input(0,1<<0); s.input(0,1<<4); s.input(0,1<<10); s.wait(60);
                           assert.equal(s.snapshot()[18],1,'step editor open');}},
   '727-edit':          {run:s=>{s.input(B.REC); s.input(0,1<<5); s.input(B.EDIT); s.wait(60);}},
+  // Compás 1.3 pages and states.
+  'fx':                {run:s=>{s.input(B.FX); s.input(B.FX); s.turn(E.K2,40); s.turn(E.K3,2); s.turn(E.K4,30); s.input(B.OCT_UP); s.wait(60);}},
+  'mix-mute-solo':     {run:s=>{s.input(B.FX); s.input(0,1<<1); s.input(0,1<<8); s.turn(E.SELECT,2); s.wait(60);}},
+  'step':              {run:s=>{s.input(B.EDIT); s.input(0,1<<2); s.wait(60);}},
+  'step-playing':      {run:s=>{start(s); s.input(B.EDIT); s.until(v=>v[V.position]===6); s.wait(40);}},
+  'band-fill-waiting': {run:s=>{start(s); s.input(B.ARP); s.until(v=>v[V.fill]===1&&beat(v)===2); s.wait(60);}},
+  'band-fill-sounding':{run:s=>{start(s); s.input(B.ARP); s.until(v=>v[V.fill]===2); s.wait(60);}},
+  'band-edited':       {run:s=>{s.turn(E.K1,4); s.wait(60); assert.equal(s.audio()[11]>>1,1,'edited');}},
+  'glo-edited':        {run:s=>{s.turn(E.K1,4); s.input(B.GLO); s.turn(E.SELECT,1); s.wait(60);}},
+  'save-from-band':    {run:s=>{quiet(s); s.turn(E.K1,4); s.input(B.SAVE); s.wait(60);
+                          assert.equal(s.audio()[11]>>1,0,'saved where it lives');}},
+  'notice-freno':      {run:s=>{quiet(s); start(s); s.input(B.FX); s.turn(E.K4,-40); s.turn(E.K4,-1); s.until(v=>v[R.speed]<50); s.wait(20);}},
+  // 1.3 animation: lane lamps, the clave under the bar, the echo walk.
+  'mix-playing':       {run:s=>{start(s); s.input(B.FX); s.until(v=>v[V.position]===8); s.wait(30);}},
+  'band-clave':        {run:s=>{s.turn(E.PRESETS,1); start(s); s.until(v=>v[V.position]===6); s.wait(30);}},
+  'fx-walk':           {run:s=>{start(s); s.input(B.FX); s.input(B.FX); s.until(v=>v[V.position]===4); s.wait(30);}},
 };
 const extraScore={
   'score-coda-queued': {run:s=>{start(s); s.input(B.SEQ); s.wait(60);}},

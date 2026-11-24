@@ -7,7 +7,7 @@ import struct
 import zlib
 
 START, END, MARKER = 0x90000, 0x93000, b'CMPASIM1'
-FLASH_BYTES, SECTOR, PAGE, PAYLOAD = 0x100000, 4096, 256, 3776
+FLASH_BYTES, SECTOR, PAGE, PAYLOAD = 0x100000, 4096, 256, 3792
 layout = runpy.run_path(str(Path(__file__).with_name('board-show-layout.py')))
 
 
@@ -89,8 +89,8 @@ def prepare(before, repeated, updated, legacy, compact, prepared_show):
         raise ValueError('Already provisioned; use the show-preserving update path')
     _, payload = layout['newest_show'](prepared_show)
     if len(payload) != PAYLOAD:
-        raise ValueError('Expected complete CPS2 show')
-    header = struct.pack('<III', 0x32535043, 1, zlib.crc32(struct.pack('<I',1)+payload))
+        raise ValueError('Expected complete CPS4 show')
+    header = struct.pack('<III', 0x34535043, 1, zlib.crc32(struct.pack('<I',1)+payload))
     operations = [Operation('erase', off, b'\xff'*SECTOR) for off in (0x92000,0x91000,0x90000)]
     operations += [Operation('program',START+PAGE+off,payload[off:off+PAGE]) for off in range(0,PAYLOAD,PAGE)]
     operations += [Operation('program',START,header),Operation('program',0x92000,MARKER)]

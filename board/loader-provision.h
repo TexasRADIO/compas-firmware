@@ -1,5 +1,6 @@
 /* Optional synthetic first-show transaction. Never enabled in a live loader. */
 #include "provision.h"
+#include "flash-chips.h"
 #ifdef COMPAS_FIRST_SHOW_WIRE
 #include "provision-transfer.h"
 static ProvisionInputs provision_inputs;
@@ -37,7 +38,7 @@ static int provision_crc(uint32_t start,uint32_t end,uint32_t expected)
 { uint32_t crc;return provision_flash_crc(start,end,&crc) && crc==expected; }
 int provision_ready(void)
 {
-    return provision_armed && fl_jedec_ram()==0x856014u &&
+    return provision_armed && COMPAS_JEDEC_OK(fl_jedec_ram()) &&
         provision_crc(0,0x4000,FIXTURE_HEAD_CRC) &&
         provision_crc(0x4000,0x90000,FIXTURE_APP_CRC);
 }
@@ -63,7 +64,7 @@ static int ldr_prepare_provision(void)
     provision_app_crc=~provision_incoming_crc;
     if(provision_receive(provision_head_crc,provision_app_crc,&provision_inputs))return -1;
 #endif
-    if(fl_jedec_ram()!=0x856014u || !provision_crc(0,0x4000,FIXTURE_HEAD_CRC))return -1;
+    if(!COMPAS_JEDEC_OK(fl_jedec_ram()) || !provision_crc(0,0x4000,FIXTURE_HEAD_CRC))return -1;
     return provision_check(fixture_original,fixture_payload)>0?0:-1;
 }
 static int ldr_commit_provision(void)

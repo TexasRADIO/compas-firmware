@@ -54,5 +54,5 @@
     "Low Conga": 4,
     "Hi Agogo": 7
   },
-  "adaptation": "Repeat the printed bar in both Compás editor bars at the current tempo and Feel. For the straight source timing, set Feel to zero. The adaptation uses event data only."
+  "adaptation": "Repeat the printed bar in both Compás editor bars at the current tempo and Feel. For the straight source timing, set Feel to zero. Private review uses event data only."
 }

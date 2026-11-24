@@ -9,6 +9,7 @@ static uint8_t flash[2*STORE_SECTOR],previous[sizeof flash],latest[sizeof flash]
 static unsigned budget=UINT_MAX,written,operations,fail_read,corrupt_read;
 static uint8_t old_set[BOARD_SET_BYTES],old_rhythms[BOARD_RHYTHM_SLOTS_BYTES];
 static uint8_t new_set[BOARD_SET_BYTES],new_rhythms[BOARD_RHYTHM_SLOTS_BYTES];
+static uint8_t old_v1_set[BOARD_SET_V1_BYTES];
 
 uint32_t board_ticks(void) { return 0; }
 uint32_t board_pending(void) { return BOARD_HALF_IRQ; }
@@ -84,6 +85,36 @@ static uint32_t crc(const uint8_t *p,unsigned size,uint32_t gen)
     }
     return ~c;
 }
+static uint32_t project_crc(const uint8_t *p,unsigned size)
+{
+    uint32_t c=~0u;
+    for(unsigned i=0;i<size-4;++i) {
+        c^=p[i];for(unsigned bit=0;bit<8;++bit)c=(c>>1)^((c&1)?0xedb88320u:0u);
+    }
+    return ~c;
+}
+static void make_v1_set(uint8_t *out,const uint8_t *in)
+{
+    for(unsigned slot=0;slot<SET_SLOTS;++slot) {
+        const uint8_t *source=in+slot*(BOARD_SET_BYTES/SET_SLOTS);
+        uint8_t *target=out+slot*(BOARD_SET_V1_BYTES/SET_SLOTS);
+        memcpy(target,source,19);
+        if(!source[0]) continue;
+        if(source[0]==127) continue;
+        uint8_t *project=target+19;
+        memcpy(project,source+19,21);project[4]=1;
+        for(unsigned role=0;role<6;++role)
+            memcpy(project+21+4*role,source+19+21+6*role,4);
+        project[45]=source[19+57];
+        uint32_t sum=project_crc(project,55);
+        for(unsigned i=0;i<4;++i) project[51+i]=(uint8_t)(sum>>(8*i));
+        for(unsigned role=0;role<6;++role)
+            target[74+role]=(source[81+role/2]>>(4*(role&1)))&15;
+        unsigned options=source[84]|source[85]<<8;
+        target[80]=options&1;target[81]=options>>1&3;target[82]=options>>3&127;
+        target[83]=options>>10&31;target[84]=options>>15;
+    }
+}
 static void header(unsigned start,const char *magic,uint32_t gen,unsigned size)
 {
     uint32_t sum=crc(flash+start+STORE_PAGE,size,gen);
@@ -98,7 +129,7 @@ int main(void)
     put(BOARD_CUE,1,0);put(BOARD_RHYTHM_CUE,1,0);put(BOARD_SAVE,1,0);
     assert(store_commit()==BOARD_SAVED && operations==17);
     export_state(old_set,old_rhythms);memcpy(previous,flash,sizeof flash);
-    assert(!memcmp(flash,"CPS2",4));
+    assert(!memcmp(flash,"CPS4",4));
     boot();verify_state(old_set,old_rhythms);
     put(BOARD_CUE,1,0);assert(board_view(0).rack_sequence==1);
     prepare_change();export_state(new_set,new_rhythms);
@@ -121,19 +152,20 @@ int main(void)
     boot();verify_state(old_set,old_rhythms);
     /* Even a valid outer CRC must not make an invalid attachment load its songs. */
     memcpy(flash,latest,sizeof flash);flash[STORE_SECTOR+STORE_PAGE+STORE_SHOW_BYTES-1]=1;
-    header(STORE_SECTOR,"CPS2",2,STORE_SHOW_BYTES);boot();verify_state(old_set,old_rhythms);
+    header(STORE_SECTOR,"CPS4",2,STORE_SHOW_BYTES);boot();verify_state(old_set,old_rhythms);
     memset(flash,255,sizeof flash);boot();
     assert(!board_store_pending() && board_song_exists(15));
     assert(store_commit()==0);
 
     /* Legacy song-only migration keeps the older sector until the new commit. */
-    memset(flash,255,sizeof flash);memcpy(flash+STORE_PAGE,old_set,sizeof old_set);
-    header(0,"CPS1",UINT_MAX,BOARD_SET_BYTES);boot();
+    make_v1_set(old_v1_set,old_set);
+    memset(flash,255,sizeof flash);memcpy(flash+STORE_PAGE,old_v1_set,sizeof old_v1_set);
+    header(0,"CPS1",UINT_MAX,BOARD_SET_V1_BYTES);boot();
     uint8_t empty[BOARD_RHYTHM_SLOTS_BYTES];assert(board_rhythm_slots_export(empty,sizeof empty)==CP_OK);
     for(unsigned i=0;i<sizeof empty;++i)assert(empty[i]==(i%151==140?255:0));
     put(BOARD_CUE,1,0);assert(!board_view(0).rack_sequence);
     prepare_change();written=0;assert(store_commit()==BOARD_SAVED);
-    assert(!memcmp(flash,"CPS1",4) && !memcmp(flash+STORE_SECTOR,"CPS2",4));
+    assert(!memcmp(flash,"CPS1",4) && !memcmp(flash+STORE_SECTOR,"CPS4",4));
     for(unsigned i=4;i<8;++i)assert(flash[STORE_SECTOR+i]==0); /* generation wrap */
     export_state(new_set,new_rhythms);boot();verify_state(new_set,new_rhythms);
 

@@ -70,16 +70,16 @@ def inspect_flash(pack, flash, key, app, *, app_end=APP_END, app_slot=APP_SLOT):
 
 
 def newest_show(flash):
-    """Require complete CPS2 records in the retained virtual show fixture."""
+    """Require complete v2 (CPS4) records in the retained virtual show fixture."""
     if len(flash)!=0x100000 or flash[0x92000:0x92008]!=b'CMPASIM1':
         raise ValueError("Expected provisioned one-megabyte virtual show")
     records=[]
     for offset in (0x90000,0x91000):
         magic,generation,crc=struct.unpack_from('<III',flash,offset)
-        payload=flash[offset+256:offset+256+3776]
-        if magic==0x32535043 and zlib.crc32(struct.pack('<I',generation)+payload)==crc:
+        payload=flash[offset+256:offset+256+3792]
+        if magic==0x34535043 and zlib.crc32(struct.pack('<I',generation)+payload)==crc:
             records.append((generation,payload))
-    if not records: raise ValueError("No complete CPS2 show record")
+    if not records: raise ValueError("No complete CPS4 show record")
     if len(records)==2 and 0<(records[1][0]-records[0][0])%2**32<2**31:
         return records[1]
     return records[0]

@@ -4,7 +4,7 @@ import json
 
 def panel_catalog(root):
     score = json.loads((root / "src/score.json").read_text())
-    studies = score["studies"]
+    studies = [study for study in score["studies"] if not study.get("testOnly")]
     forms = score["conductorForms"]
     for study in studies:
         study["conductorParts"] = forms[study.get("conductor", "default")]

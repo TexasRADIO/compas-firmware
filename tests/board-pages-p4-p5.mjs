@@ -99,7 +99,7 @@ const tempoBefore=row(0,168,18);
 show.turn(2,5); // live tempo
 assert.notDeepEqual(row(0,168,18),tempoBefore, 'NOW follows live tempo');
 const savedTempo=row(2,168,18);
-show.turn(4,2); // KNOB3 moves the SAVE cursor
+show.turn(0,2); // SELECT moves the SAVE cursor (1.3: KNOB3 is the language)
 assert([1,2,3].some(slot=>row(slot,0,1)[0]===line), 'the cursor row is LINE');
 assert.deepEqual(row(2,168,18).filter(p=>p===gold).length>0, true, 'other rows keep saved tempo');
 show.input(HOME); show.input(PLAY); show.input(GLO); // cue slot 4 while playing

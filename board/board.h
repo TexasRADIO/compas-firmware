@@ -3,7 +3,11 @@
 #include <stdint.h>
 #include "engine.h"
 
-enum { BOARD_FRAMES=128, BOARD_WORDS=BOARD_FRAMES*2, RACK_VOICES=10, RACK_SOUNDS=15, SET_SLOTS=16, BOARD_GROOVE_PRESETS=29, BOARD_CONGA_PATTERNS=8, BOARD_ROLAND_LESSON=18, BOARD_COLOMBIAN_RHYTHMS=19, BOARD_RHYTHM_PATTERNS=22, BOARD_CUSTOM_RHYTHM=255 };
+/* Signed Q15 audio to the codec's signed 24-bit DMA word. */
+enum { BOARD_DAC_SCALE=256 };
+static inline int32_t board_dac_word(int32_t sample) { return sample*BOARD_DAC_SCALE; }
+
+enum { BOARD_FRAMES=128, BOARD_WORDS=BOARD_FRAMES*2, RACK_VOICES=10, RACK_SOUNDS=15, SET_SLOTS=16, BOARD_GROOVE_PRESETS=38, BOARD_CONGA_PATTERNS=8, BOARD_ROLAND_LESSON=18, BOARD_COLOMBIAN_RHYTHMS=19, BOARD_RHYTHM_PATTERNS=22, BOARD_CUSTOM_RHYTHM=255 };
 enum { BOARD_RACK=32, BOARD_KIT, BOARD_MASTER, BOARD_ACCENT, BOARD_ASSIGN, BOARD_CUE, BOARD_SAVE, BOARD_REPEAT, BOARD_HOLD, BOARD_ENDING, BOARD_GUIDE, BOARD_PART, BOARD_PAD_HITS, BOARD_BASS_STYLE, BOARD_BASS_SHAPE, BOARD_OVERLAY, BOARD_OVERLAY_LEVEL, BOARD_RACK_CONTROL, BOARD_SEQ_SELECT, BOARD_SEQ_STEP, BOARD_SEQ_ENABLE, BOARD_RHYTHM_CUE, BOARD_SPEED, BOARD_GROOVE_CUE, BOARD_SCORE_PERC, BOARD_COUNT_IN, BOARD_ROLL, BOARD_ROLL_KEYS, BOARD_REC };
 #ifdef COMPAS_HANAN
 enum { BOARD_HANAN_CUE=BOARD_REC+1, BOARD_HANAN_HIT, BOARD_HANAN_MODE, BOARD_HANAN_MOD, BOARD_HANAN_SAVE };
@@ -16,10 +20,16 @@ static inline unsigned board_kumbia_hz(unsigned clock)
 void board_hanan_step(unsigned step, unsigned accented);
 void board_kumbia_export(uint8_t settings[KUMBIA_SETTINGS]);
 int board_kumbia_restore(const uint8_t settings[KUMBIA_SETTINGS]);
+unsigned board_kumbia_level(void);
+int board_kumbia_level_set(unsigned level);
 #endif
 enum { RACK_HIT_STRENGTH, RACK_ACCENT_STRENGTH, RACK_LEVEL };
 /* Compás 1.2 effects (board/fx.c): BOARD_FX a=FX_*, b=value */
 enum { BOARD_FX=BOARD_REC+6 };
+/* Compás 1.3 FRENO (vinyl brake): REBAJADA turned past its slowest setting
+ * ramps the band's varispeed down to a stop; the speed returns for the next PLAY. */
+enum { BOARD_BRAKE=BOARD_REC+7 };
+enum { BOARD_HANAN_LEVEL=BOARD_REC+8 };
 enum { FX_SALA, FX_ECO, FX_TIEMPO, FX_PEGA, FX_REPITE, FX_PARAMS };
 enum { FX_DIVISIONS=6 };
 enum { BOARD_OVERLAY_ALL=4 }; /* BOARD_OVERLAY_LEVEL lane: shift all four lanes, b=delta+128 */
@@ -58,7 +68,11 @@ typedef struct {
     uint8_t speed, score_percussion, next_groove, key; /* root / pending root (12 = none); scores map 6..11 to -6..-1 */
 #ifdef COMPAS_HANAN
     uint8_t hanan_pattern, hanan_next, hanan_mode, kumbia[KUMBIA_SETTINGS];
+    uint8_t kumbia_level; /* uses old padding; existing snapshot offsets stay fixed */
 #endif
+    /* Steps 33–48 for compound-meter role editing.  Appended deliberately:
+     * every existing BoardView field keeps its browser snapshot offset. */
+    uint32_t steps_high;
 } BoardView;
 /* Compás 1.2: the effect amounts, outside BoardView so its layout (and the
  * browser bench's offsets) stay as in 1.1. */
@@ -99,6 +113,14 @@ static inline unsigned board_clave_linked(BoardView v)
 { return board_has_clave(v) && board_rhythm_direction(v.rhythm)<2; }
 static inline unsigned board_clave(BoardView v) { return v.clave&1u; }
 static inline unsigned board_next_clave(BoardView v) { return v.clave>>1; }
+/* 1.3: kit bit 1 says the song has edits SAVE has not kept. */
+static inline unsigned board_edited(BoardView v) { return v.kit>>1; }
+/* 1.3 animation: lanes and Kumbia voices that are sounding now. */
+static inline unsigned board_lanes_sounding(BoardView v) { return v.audible>>1; }
+#ifdef COMPAS_HANAN
+static inline unsigned board_kumbia_pattern(BoardView v) { return v.hanan_pattern&15u; }
+static inline unsigned board_kumbia_sounding(BoardView v) { return v.hanan_pattern>>4; }
+#endif
 static inline unsigned board_root(BoardView v) { return v.key&15u; }
 static inline unsigned board_next_root(BoardView v) { return v.key>>4; }
 static inline unsigned board_effective_bpm(BoardView v)
@@ -173,8 +195,11 @@ void cp_board_start_count(void);
 unsigned cp_board_counting(void);
 void cp_bass_set(unsigned style, unsigned cut, unsigned bite);
 #ifdef COMPAS_EMU_STORE
-enum { BOARD_SET_BYTES=SET_SLOTS*(19+CP_PROJECT_BYTES+CP_ROLES+5) };
+/* title + v2 project + three packed 4-bit assignments + two packed options */
+enum { BOARD_SET_BYTES=SET_SLOTS*(19+CP_PROJECT_BYTES+3+2),
+       BOARD_SET_V1_BYTES=SET_SLOTS*(19+CP_PROJECT_V1_BYTES+CP_ROLES+5) };
 unsigned board_store_load(const uint8_t *bytes);
+unsigned board_store_load_v1(const uint8_t *bytes);
 unsigned board_store_snapshot(uint8_t *bytes);
 unsigned board_store_pending(void);
 unsigned board_store_pull(uint8_t *bytes);

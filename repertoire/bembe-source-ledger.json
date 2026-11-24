@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "study": "bembe-pusztai-12-8-study",
+  "status": "private pedagogical source reduction; separate from Will's frozen 37-study candidate",
+  "sources": [
+    {"id":"BEM-01-B1","author":"Csabi Pusztai","title":"Bembe Version 1.0","publisher":"MEINL Percussion artist lessons","location":"single page, bar 1; cowbell and wood block staves","url":"https://meinlpercussion.com/content/percussion/topics/Csabi%20Pusztai/Bembe%20Version%201%200%20Meinl%20-%20Full%20Score.pdf","sha256":"d3479ff3e68b6bf438f39d955d0086e2650a5682521cae727183269026f9d1f3"},
+    {"id":"BEM-02-B1","author":"Csabi Pusztai","title":"Bembe Version 2.0 Meinl","publisher":"MEINL Percussion artist lessons","location":"single page, bar 1; first two eighths of each dotted-quarter group on block","url":"https://meinlpercussion.com/content/percussion/topics/Csabi%20Pusztai/Bembe%20Version%202%200%20Meinl%20-%20Full%20Score.pdf","sha256":"c9373e3aaf4a76ee9aad7280608413f368798909fdaac056b486100a2ccd1f97"}
+  ],
+  "lessonContext":"https://meinlpercussion.com/en/blog/csabi_pusztai",
+  "sourceRhythm": {
+    "meter":[12,8], "stepsPerEighth":2, "stepsPerBar":24, "barsInMachinePhrase":2,
+    "bellEighths":[0,2,4,5,7,9,11], "bellCyclicIntervals":[2,2,1,2,2,2,1],
+    "baseBlockEighths":[0,3,6,9], "liftBlockEighths":[0,1,3,4,6,7,9,10],
+    "bellSteps":[0,4,8,10,14,18,22,24,28,32,34,38,42,46],
+    "baseBlockSteps":[0,6,12,18,24,30,36,42],
+    "liftAdditionalBlockSteps":[2,8,14,20,26,32,38,44],
+    "reading":"All three one-page scores rendered at 2x and visually inspected. Adopted onsets are from the first bar of versions 1 and 2, repeated twice, not a transcription of either complete exercise. Independent reading pending."
+  },
+  "crossCheck":{"url":"https://web.uvic.ca/~aschloss/course_mat/MU320/Global%20Rhtyhm%20and%20Human%20Consciousness/quiz1.html","scope":"MUS 320 guide gives cyclic intervals 2 2 1 2 2 2 1. Used for bell arithmetic only; its Ghanaian examples are not merged into a Cuban ensemble claim."},
+  "notAdopted":{"id":"BEM-03","sha256":"b214fdfaca4e749038df3965594f335c6b774894832bb64435f68ae6903d2b42","reason":"The version-3 download shows whole-bar block rests despite the lesson description specifying different left-hand divisions. No block rhythm inferred from that missing notation."},
+  "authored":{"pulseBpm":96,"midiQuarterBpm":144,"phraseSeconds":5,"feel":0,"levels":[0,76,58,0,0,0],"palette":"Original procedural Compás bell and stick are audible role proxies, not the MEINL cowbell/block recordings. No sampled lesson audio, bass or inferred conga ensemble.","form":"Generic six-part Compás rehearsal form. Intro bell first, then adds block; Verse A uses lesson-one cell; Verse B opens lesson-two doubles in bar two; Chorus uses doubles throughout; Break/Ending expose bell alone; ARP adds an authored last-beat block reply."},
+  "boundary":"An Afro-Cuban-labelled artist teaching exercise, not a field transcription, complete Bembé, religious service or universal African timeline. It does not stand in for Mixteca yaa sii.",
+  "nextGate":"Verify actual 48-step board playback, all six conductor parts, 60/96/180 pulse BPM, bilingual screens and resource costs before any promotion; musician review remains required."
+}

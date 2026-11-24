@@ -1,8 +1,9 @@
-"""Check Compás startup ROM requests in the pinned strict emulator."""
+"""Check startup recovery routes: ROM on offline builds, USB safe mode on USB builds."""
 import argparse
 import hashlib
 import json
 import os
+import runpy
 from pathlib import Path
 import subprocess
 import sys
@@ -29,8 +30,10 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def probe(emulator, image, case, folder):
+def probe(emulator, image, case, folder, usb_profile=False):
     name, keys, duration, expected_marker, expected_audio = case
+    safe_mode=usb_profile and name=="held-at-power-on"
+    if safe_mode: expected_marker=False
     ram = folder / "ram.bin"
     bench = folder / "bench.json"
     env = {key: value for key, value in os.environ.items() if not key.startswith("FM1_")}
@@ -53,9 +56,20 @@ def probe(emulator, image, case, folder):
         raise RuntimeError(
             f"{image.name} {name}: ROM marker {marker}, audio frames {audio_frames}"
         )
-    return {"case": name, "input": keys, "benchMs": duration,
+    report={"case": name, "input": keys, "benchMs": duration,
             "observedMs": clock["emulatedMs"], "romRequestMarker": marker,
             "audioFrames": audio_frames}
+    if safe_mode:
+        # Zero audio alone does not prove a usable updater. Ask the safe-mode
+        # USB server for both identities through the existing wire verifier.
+        usb=runpy.run_path(str(Path(__file__).with_name("board-usb-emu.py")))
+        query=[(1800,usb["wire"]["frame"](0x11,b"")),
+               (2000,usb["wire"]["frame"](0x11,b"\1"))]
+        log,_,flash,replies=usb["run"](emulator,image,folder,"safe-handshake",keys,query,2400)
+        identities=[payload.rstrip(b"\0") for _,command,payload in replies if command==0x11]
+        assert identities==[usb["family"],usb["full"]] and flash==b"\xff"*(1<<20)
+        report["usbSafeIdentities"]=[identity.decode() for identity in identities]
+    return report
 
 
 def main():
@@ -77,11 +91,13 @@ def main():
             # All eight probes read the same private snapshot of this image.
             image = Path(temp) / f"emu-{variant}.xip"
             image.write_bytes((BOARD / image.name).read_bytes())
+            section=(BOARD/("compas-store.sections" if variant=="store" else "compas.sections")).read_text()
+            usb_profile=" compas_usb_safe" in section or "\tcompas_usb_safe" in section
             probes = []
             for case in CASES:
                 folder = Path(temp) / variant / case[0]
                 folder.mkdir(parents=True)
-                probes.append(probe(emulator, image, case, folder))
+                probes.append(probe(emulator, image, case, folder,usb_profile))
             variants[variant] = {"imageSHA256": digest(image), "cases": probes}
     report = {"scope": "emulated startup mailbox and audio activity",
               "emulatorSHA256": EMU_SHA256, "variants": variants,

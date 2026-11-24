@@ -10,7 +10,18 @@ static uint8_t hanan_pattern, hanan_next, hanan_active, kumbia_accent;
 static uint8_t kumbia[KUMBIA_SETTINGS];
 static uint16_t hanan_phase, kumbia_hz, kumbia_gain[2];
 static int16_t hanan_output;
+static uint8_t kumbia_level;
+static int32_t kumbia_level_q8;
 uint8_t board_hanan_mode;
+
+unsigned board_kumbia_level(void) { return kumbia_level; }
+int board_kumbia_level_set(unsigned level)
+{
+    if(level>100u) return 0;
+    kumbia_level=(uint8_t)level;
+    if(!hanan_active && !hanan_output) kumbia_level_q8=(int32_t)level*256;
+    return 1;
+}
 
 static void hanan_clear(void)
 {
@@ -109,5 +120,11 @@ static int32_t hanan_mix(void)
         hanan_output=(int16_t)kumbia_shape(sum);
     }
     hanan_phase+=kumbia_hz;
-    return hanan_output;
+    /* Independent post-drive bus fader. Keep source playback and cues running
+     * at zero; ramp gain to avoid discontinuities during a live adjustment. */
+    int32_t target=(int32_t)kumbia_level*256;
+    int32_t delta=target-kumbia_level_q8;
+    kumbia_level_q8+=delta>16?16:delta<-16?-16:delta;
+    return kumbia_level_q8==25600 ? hanan_output :
+        (int32_t)hanan_output*kumbia_level_q8/25600;
 }

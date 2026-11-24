@@ -1,6 +1,6 @@
 {
  "version": 2,
- "about": "Every Compás screen string with its box. tools/strings.py checks it against the source and the font.",
+ "about": "Every Compás screen string with its box. tools/strings.py checks it against the source and the font. Spanish: Codex es-MX catalogue and sheet return, 7 Nov.",
  "font": {
   "1": "6 px per character",
   "2": "11 px per character",
@@ -16,6 +16,51 @@
   "ZXCVBNMAWSEDFTGY"
  ],
  "strings": [
+  {
+   "id": "kumbia.clock.help", "en": "OCT-/+ CLOCK", "es": "OCT-/+ RELOJ", "max": 16, "scale": 1,
+   "where": ["board/stage.c:Kumbia sample clock"], "kind": "label"
+  },
+  {
+   "id": "kumbia.level.help", "en": "OCT-/+ LEVEL", "es": "OCT-/+ NIVEL", "max": 19, "scale": 1,
+   "where": ["board/stage.c:Kumbia and mixer bus level"], "kind": "label"
+  },
+  {
+   "id": "bembe.family", "en": "BEMBE", "es": "BEMBÉ", "max": 8, "scale": 1,
+   "where": ["tools/score.py:family"], "kind": "label"
+  },
+  {
+   "id": "bembe.block", "en": "BLOCK", "es": "BLOQUE", "max": 12, "scale": 1,
+   "where": ["src/score.json:studies.bembe-pusztai-12-8-study.parts"], "kind": "label"
+  },
+  {
+   "id": "chilena.family", "en": "CHILENA", "es": "CHILENA", "max": 8, "scale": 1,
+   "where": ["tools/score.py:family"], "kind": "keep"
+  },
+  {
+   "id": "chilena.low", "en": "LOW CUE", "es": "GUÍA GRAVE", "max": 12, "scale": 1,
+   "where": ["src/score.json:studies.chilena-costa-chica-study.parts"], "kind": "label"
+  },
+  {
+   "id": "chilena.eighths", "en": "EIGHTHS", "es": "CORCHEAS", "max": 12, "scale": 1,
+   "where": ["src/score.json:studies.chilena-costa-chica-study.parts"], "kind": "label"
+  },
+  {
+   "id": "chilena.hand", "en": "HAND REPLY", "es": "RESP. MANO", "max": 12, "scale": 1,
+   "where": ["src/score.json:studies.chilena-costa-chica-study.parts"], "kind": "label"
+  },
+  {
+   "id": "chilena.rim", "en": "RIM REPLY", "es": "RESP. ARO", "max": 12, "scale": 1,
+   "where": ["src/score.json:studies.chilena-costa-chica-study.parts"], "kind": "label"
+  },
+  {
+   "id": "peru.shell",
+   "en": "SHELL",
+   "es": "CASCO",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json:studies.peru-norte-motor-study.parts", "src/score.json:studies.peru-norte-cumbion-study.parts"],
+   "kind": "label"
+  },
   {
    "id": "hanan.kumbia",
    "en": "KUMBIA",
@@ -557,8 +602,9 @@
    "where": [
     "board/panel.c:496"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "transport.next_rhythm",
@@ -1008,18 +1054,6 @@
    ],
    "kind": "label",
    "max": 6
-  },
-  {
-   "id": "knob.slot",
-   "en": "SLOT",
-   "es": "LUGAR",
-   "scale": 1,
-   "where": [
-    "board/stage.c:523"
-   ],
-   "kind": "label",
-   "max": 6,
-   "note": "GLO knob 3: the save cursor."
   },
   {
    "id": "knob.count",
@@ -2416,7 +2450,7 @@
     "src/score.json:conductorForms.salsa"
    ],
    "kind": "keep",
-   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists.",
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (Codex audit, 7 Nov).",
    "max": 10
   },
   {
@@ -2548,7 +2582,7 @@
    ],
    "kind": "keep",
    "max": 3,
-   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists."
+   "note": "Salsa part 5 plays the reduced BREAK texture, so it is labelled Corte until a real moña arrangement exists (Codex audit, 7 Nov)."
   },
   {
    "id": "part.key.cierre",
@@ -3087,13 +3121,13 @@
    "where": [
     "board/panel.c:40"
    ],
-   "kind": "label",
+   "kind": "hidden",
    "max": 36,
    "boxes": [
     18,
     36
    ],
-   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call."
+   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call. 1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.bongo_low",
@@ -3103,8 +3137,9 @@
    "where": [
     "board/panel.c:40"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.conga_mute",
@@ -3114,8 +3149,9 @@
    "where": [
     "board/panel.c:40"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.conga_open",
@@ -3125,13 +3161,13 @@
    "where": [
     "board/panel.c:40"
    ],
-   "kind": "label",
+   "kind": "hidden",
    "max": 36,
    "boxes": [
     18,
     36
    ],
-   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call."
+   "note": "Drawn in boxes of 18, 36 characters; checked against the largest until this id is wired to its own draw call. 1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.timbal_high",
@@ -3141,8 +3177,9 @@
    "where": [
     "board/panel.c:41"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.timbal_low",
@@ -3152,8 +3189,9 @@
    "where": [
     "board/panel.c:41"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.agogo_high",
@@ -3163,8 +3201,9 @@
    "where": [
     "board/panel.c:41"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.agogo_low",
@@ -3174,8 +3213,9 @@
    "where": [
     "board/panel.c:41"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.whistle_short",
@@ -3185,8 +3225,9 @@
    "where": [
     "board/panel.c:42"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "rack.detail.whistle_long",
@@ -3196,8 +3237,9 @@
    "where": [
     "board/panel.c:42"
    ],
-   "kind": "label",
-   "max": 18
+   "kind": "hidden",
+   "max": 18,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.presets_load_song",
@@ -3207,8 +3249,9 @@
    "where": [
     "board/panel.c:499"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.save_to",
@@ -3218,8 +3261,9 @@
    "where": [
     "board/panel.c:500"
    ],
-   "kind": "label",
-   "max": 8
+   "kind": "hidden",
+   "max": 8,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.select",
@@ -3229,8 +3273,9 @@
    "where": [
     "board/panel.c:501"
    ],
-   "kind": "label",
-   "max": 8
+   "kind": "hidden",
+   "max": 8,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.score_accompaniment",
@@ -3240,8 +3285,9 @@
    "where": [
     "board/panel.c:503"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.drum_ensemble",
@@ -3251,8 +3297,9 @@
    "where": [
     "board/panel.c:503"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bass_muted",
@@ -3262,8 +3309,9 @@
    "where": [
     "board/panel.c:504"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.acid_bass",
@@ -3273,8 +3321,9 @@
    "where": [
     "board/panel.c:504"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.ensemble_bass",
@@ -3284,8 +3333,9 @@
    "where": [
     "board/panel.c:504"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.no_separate_bass",
@@ -3295,8 +3345,9 @@
    "where": [
     "board/panel.c:505"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.tone",
@@ -3306,8 +3357,9 @@
    "where": [
     "board/panel.c:507"
    ],
-   "kind": "label",
-   "max": 7
+   "kind": "hidden",
+   "max": 7,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bite",
@@ -3317,8 +3369,9 @@
    "where": [
     "board/panel.c:508"
    ],
-   "kind": "label",
-   "max": 9
+   "kind": "hidden",
+   "max": 9,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bolero_backing",
@@ -3328,8 +3381,9 @@
    "where": [
     "board/panel.c:513"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bolero_muted",
@@ -3339,8 +3393,9 @@
    "where": [
     "board/panel.c:513"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.no_auto_rhythm",
@@ -3350,8 +3405,9 @@
    "where": [
     "board/panel.c:513"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.conga_maraca",
@@ -3361,8 +3417,9 @@
    "where": [
     "board/panel.c:514"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.rack_pads",
@@ -3373,8 +3430,9 @@
     "board/panel.c:514",
     "board/panel.c:544"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.jurame_a",
@@ -3384,8 +3442,9 @@
    "where": [
     "board/panel.c:522"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.jurame_b",
@@ -3395,8 +3454,9 @@
    "where": [
     "board/panel.c:523"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.teodora_a",
@@ -3406,8 +3466,9 @@
    "where": [
     "board/panel.c:525"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.teodora_b",
@@ -3417,8 +3478,9 @@
    "where": [
     "board/panel.c:526"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.cielito_a",
@@ -3428,8 +3490,9 @@
    "where": [
     "board/panel.c:528"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.cucaracha_a",
@@ -3439,8 +3502,9 @@
    "where": [
     "board/panel.c:529"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.score_form_a",
@@ -3450,8 +3514,9 @@
    "where": [
     "board/panel.c:529"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.cielito_b",
@@ -3461,8 +3526,9 @@
    "where": [
     "board/panel.c:530"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.score_form_b",
@@ -3472,8 +3538,9 @@
    "where": [
     "board/panel.c:530"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.groove_form_a",
@@ -3483,8 +3550,9 @@
    "where": [
     "board/panel.c:532"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.groove_form_b",
@@ -3494,8 +3562,9 @@
    "where": [
     "board/panel.c:533"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.save_here",
@@ -3505,8 +3574,9 @@
    "where": [
     "board/panel.c:536"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.play_presets",
@@ -3516,8 +3586,9 @@
    "where": [
     "board/panel.c:537"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.change_after_fill",
@@ -3527,8 +3598,9 @@
    "where": [
     "board/panel.c:539"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.ending_playing",
@@ -3538,8 +3610,9 @@
    "where": [
     "board/panel.c:540"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.coda_playing",
@@ -3549,8 +3622,9 @@
    "where": [
     "board/panel.c:540"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.hold_release",
@@ -3560,8 +3634,9 @@
    "where": [
     "board/panel.c:541"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.home_parts",
@@ -3572,8 +3647,9 @@
     "board/panel.c:542",
     "board/panel.c:546"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bolero_toggle",
@@ -3583,8 +3659,9 @@
    "where": [
     "board/panel.c:544"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.layer_keys",
@@ -3594,8 +3671,9 @@
    "where": [
     "board/panel.c:544"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.octave_key",
@@ -3605,8 +3683,9 @@
    "where": [
     "board/panel.c:547"
    ],
-   "kind": "label",
-   "max": 11
+   "kind": "hidden",
+   "max": 11,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.score_hold_end",
@@ -3616,8 +3695,8 @@
    "where": [
     "board/panel.c:550"
    ],
-   "kind": "label",
-   "note": "V1 bug: 21 characters in a 20-column row, so the screen shows SEQ COD. Fix with the R7 behaviour fixes.",
+   "kind": "hidden",
+   "note": "V1 bug: 21 characters in a 20-column row, so the screen shows SEQ COD. Fix with the R7 behaviour fixes. 1.3: text face only (host tests); not on any screen.",
    "known_overflow": true,
    "max": 20
   },
@@ -3629,8 +3708,9 @@
    "where": [
     "board/panel.c:550"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.guide_on",
@@ -3640,8 +3720,9 @@
    "where": [
     "board/panel.c:551"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.guide_off",
@@ -3651,8 +3732,9 @@
    "where": [
     "board/panel.c:551"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.select_page",
@@ -3662,8 +3744,9 @@
    "where": [
     "board/panel.c:552"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.knob1_tempo",
@@ -3673,8 +3756,9 @@
    "where": [
     "board/panel.c:552"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.clave_linked",
@@ -3684,8 +3768,9 @@
    "where": [
     "board/panel.c:556"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.clave_unlinked",
@@ -3695,8 +3780,9 @@
    "where": [
     "board/panel.c:556"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.fx_drums_only",
@@ -3706,8 +3792,9 @@
    "where": [
     "board/panel.c:563"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.seq_pads_session",
@@ -3717,8 +3804,9 @@
    "where": [
     "board/panel.c:564"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.hit",
@@ -3728,8 +3816,9 @@
    "where": [
     "board/panel.c:566"
    ],
-   "kind": "label",
-   "max": 6
+   "kind": "hidden",
+   "max": 6,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.accent",
@@ -3739,8 +3828,9 @@
    "where": [
     "board/panel.c:567"
    ],
-   "kind": "label",
-   "max": 6
+   "kind": "hidden",
+   "max": 6,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.level",
@@ -3750,8 +3840,9 @@
    "where": [
     "board/panel.c:569"
    ],
-   "kind": "label",
-   "max": 8
+   "kind": "hidden",
+   "max": 8,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.accent_on",
@@ -3761,8 +3852,9 @@
    "where": [
     "board/panel.c:570"
    ],
-   "kind": "label",
-   "max": 7
+   "kind": "hidden",
+   "max": 7,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.accent_off",
@@ -3772,8 +3864,9 @@
    "where": [
     "board/panel.c:570"
    ],
-   "kind": "label",
-   "max": 7
+   "kind": "hidden",
+   "max": 7,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.seq_editor",
@@ -3783,8 +3876,9 @@
    "where": [
     "board/panel.c:571"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.fx_drum_loop",
@@ -3794,8 +3888,9 @@
    "where": [
     "board/panel.c:571"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.lvl",
@@ -3805,8 +3900,9 @@
    "where": [
     "board/panel.c:574"
    ],
-   "kind": "label",
-   "max": 8
+   "kind": "hidden",
+   "max": 8,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.bar_two",
@@ -3854,8 +3950,9 @@
    "where": [
     "board/panel.c:587"
    ],
-   "kind": "label",
-   "max": 20
+   "kind": "hidden",
+   "max": 20,
+   "note": "1.3: text face only (host tests); not on any screen."
   },
   {
    "id": "panel.rebajada_units",
@@ -3876,11 +3973,11 @@
    "es": "GUARDADO EN SESIÓN",
    "scale": 1,
    "where": [
-    "board/panel.c:606"
+    "board/stage.c"
    ],
-   "kind": "hidden",
-   "note": "panel_face row 0-2 or 7: not drawn on any screen.",
-   "max": 20
+   "kind": "label",
+   "note": "Notice: the save is in this session only.",
+   "max": 19
   },
   {
    "id": "panel.turn_master",
@@ -4554,7 +4651,7 @@
    "where": [
     "board/board.c:289"
    ],
-   "note": "Spanish interface label."
+   "note": "Not in the Codex catalogue. Spanish from the Codex sheet return (22:40)."
   },
   {
    "id": "RHYTHM",
@@ -4566,7 +4663,7 @@
    "where": [
     "board/board.c:390"
    ],
-   "note": "Spanish interface label."
+   "note": "Not in the Codex catalogue. Spanish from the Codex sheet return (22:40)."
   },
   {
    "id": "hanan.drive",
@@ -4594,17 +4691,6 @@
    "id": "hanan.pitch",
    "en": "PITCH",
    "es": "AFINA",
-   "max": 6,
-   "scale": 1,
-   "where": [
-    "board/stage.c"
-   ],
-   "kind": "label"
-  },
-  {
-   "id": "hanan.clock",
-   "en": "CLOCK",
-   "es": "RELOJ",
    "max": 6,
    "scale": 1,
    "where": [
@@ -4676,10 +4762,10 @@
    "id": "fx.title",
    "en": "EFFECTS",
    "es": "EFECTOS",
-   "max": 11,
+   "max": 10,
    "scale": 1,
    "where": [
-    "board/panel.c"
+    "board/stage.c"
    ],
    "kind": "label"
   },
@@ -4690,7 +4776,7 @@
    "max": 4,
    "scale": 1,
    "where": [
-    "board/panel.c"
+    "board/stage.c"
    ],
    "kind": "label",
    "note": "glue compressor on the whole mix"
@@ -4704,6 +4790,198 @@
    "where": [
     "board/panel.c"
    ],
+   "kind": "hidden",
+   "note": "1.3: text face only (host tests); not on any screen."
+  },
+  {
+   "id": "role.authored_tom",
+   "en": "AUTHORED TOM",
+   "es": "TOM AUTORAL",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label",
+   "note": "Pará development study role; authorial, not a sampled source transcription."
+  },
+  {
+   "id": "role.bumbo_proxy",
+   "en": "BUMBO PROXY",
+   "es": "BOMBO GUÍA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.caixa_proxy",
+   "en": "CAIXA PROXY",
+   "es": "CAJA GUÍA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.caixa_reply",
+   "en": "CAIXA REPLY",
+   "es": "CAJA RESP.",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.cabasa_floor",
+   "en": "CABASA FLOOR",
+   "es": "CABASA BASE",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.high_curimbo",
+   "en": "HIGH CURIMBÓ",
+   "es": "CURIMBÓ AG.",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.high_reply",
+   "en": "HIGH REPLY",
+   "es": "RESP. AGUDA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.key_cue",
+   "en": "KEY CUE",
+   "es": "TECLA GUÍA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.lead_shaker",
+   "en": "LEAD SHAKER",
+   "es": "SONAJA GUÍA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.lift_reply",
+   "en": "LIFT REPLY",
+   "es": "RESP. SUBE",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.low_curimbo",
+   "en": "LOW CURIMBÓ",
+   "es": "CURIMBÓ GR.",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.low_floor",
+   "en": "LOW FLOOR",
+   "es": "BASE GRAVE",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.low_pulse",
+   "en": "LOW PULSE",
+   "es": "PULSO GRAVE",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.milheiro",
+   "en": "MILHEIRO",
+   "es": "MILHEIRO",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label",
+   "note": "Portuguese instrument name retained."
+  },
+  {
+   "id": "role.rest_4",
+   "en": "REST 4",
+   "es": "SILENCIO 4",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.tumba_open",
+   "en": "TUMBA OPEN",
+   "es": "TUMBA ABTA.",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "role.tumba_slap",
+   "en": "TUMBA SLAP",
+   "es": "TUMBA SECA",
+   "max": 12,
+   "scale": 1,
+   "where": ["src/score.json (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "family.carimbo",
+   "en": "CARIMBO",
+   "es": "CARIMBÓ",
+   "max": 24,
+   "scale": 1,
+   "where": ["tools/score.py (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "family.guitarra",
+   "en": "GUITARRA",
+   "es": "GUITARRA",
+   "max": 24,
+   "scale": 1,
+   "where": ["tools/score.py (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "family.lambada",
+   "en": "LAMBADA",
+   "es": "LAMBADA",
+   "max": 24,
+   "scale": 1,
+   "where": ["tools/score.py (generated)"],
+   "kind": "label"
+  },
+  {
+   "id": "family.tecno",
+   "en": "TECNO",
+   "es": "TECNO",
+   "max": 24,
+   "scale": 1,
+   "where": ["tools/score.py (generated)"],
    "kind": "label"
   },
   {
@@ -4717,6 +4995,189 @@
    ],
    "kind": "hidden",
    "note": "panel_face row 0: not drawn on any screen."
+  },
+  {
+   "id": "page.mixer",
+   "en": "MIXER",
+   "es": "MEZCLA",
+   "max": 10,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3 page strip: the mixer"
+  },
+  {
+   "id": "page.step",
+   "en": "STEP EDIT",
+   "es": "PASOS",
+   "max": 10,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3 page strip: the step editor"
+  },
+  {
+   "id": "page.way.mix",
+   "en": "FX EFFECTS / HOME BAND",
+   "es": "FX EFECTOS / HOME GRUPO",
+   "max": 26,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3 page strip: FX and HOME are the panel buttons"
+  },
+  {
+   "id": "page.way.fx",
+   "en": "FX MIXER / HOME BAND",
+   "es": "FX MEZCLA / HOME GRUPO",
+   "max": 26,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "page.way.step",
+   "en": "HOME BAND",
+   "es": "HOME GRUPO",
+   "max": 26,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "fx.glue_octave",
+   "en": "OCT- / OCT+",
+   "es": "OCT- / OCT+",
+   "max": 11,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "keep",
+   "note": "Panel button names."
+  },
+  {
+   "id": "notice.freno",
+   "en": "FRENO",
+   "es": "FRENO",
+   "max": 19,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "keep",
+   "note": "Already Spanish. The 1.3 brake."
+  },
+  {
+   "id": "knob.lang",
+   "en": "LANG",
+   "es": "IDIOMA",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3 SONGS knob 3: screen language"
+  },
+  {
+   "id": "order.now_edited",
+   "en": "NOW+",
+   "es": "ACT+",
+   "max": 4,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3: + means changes SAVE has not kept"
+  },
+  {
+   "id": "info.bank_edited",
+   "en": "BANK+",
+   "es": "BANCO+",
+   "max": 6,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label"
+  },
+  {
+   "id": "mix.score",
+   "en": "SCORE: TEMPO AND SPEED",
+   "es": "PARTITURA: TEMPO Y VEL",
+   "max": 25,
+   "scale": 1,
+   "where": [
+    "board/stage.c"
+   ],
+   "kind": "label",
+   "note": "1.3 mixer on a score: only TEMPO and SPEED apply"
+  },
+  {
+   "id": "compound.727-only",
+   "en": "727 4/4 ONLY",
+   "es": "727 SOLO 4/4",
+   "max": 20,
+   "scale": 1,
+   "where": ["board/panel.c"],
+   "kind": "label"
+  },
+  {
+   "id": "compound.727-grid",
+   "en": "727 4/4 STEP GRID",
+   "es": "REJILLA 727 4/4",
+   "max": 19,
+   "scale": 2,
+   "where": ["board/stage.c"],
+   "kind": "label"
+  },
+  {
+   "id": "compound.role-step",
+   "en": "COMPOUND: ROLE STEP",
+   "es": "COMPÁS: PASO ROL",
+   "max": 19,
+   "scale": 1,
+   "where": ["board/stage.c"],
+   "kind": "label"
+  },
+  {
+   "id": "compound.edit-68",
+   "en": "USE EDIT FOR 6/8",
+   "es": "EDITA EN 6/8",
+   "max": 19,
+   "scale": 1,
+   "where": ["board/stage.c"],
+   "kind": "label"
+  },
+  {
+   "id": "compound.patterns-128",
+   "en": "OR 12/8 PATTERNS",
+   "es": "O PATRONES 12/8",
+   "max": 19,
+   "scale": 1,
+   "where": ["board/stage.c"],
+   "kind": "label"
+  },
+  {
+   "id": "compound.rack-hint",
+   "en": "COMPOUND / EDIT ROLE",
+   "es": "COMPÁS / EDITA ROL",
+   "max": 24,
+   "scale": 1,
+   "where": ["board/stage-rack.inc"],
+   "kind": "label"
   }
  ]
 }

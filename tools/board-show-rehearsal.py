@@ -112,13 +112,13 @@ assert slots[151+10]==1 and slots[2*151+10]==1
 if store_mode:
     stored=(out/'strict/virtual.bin').read_bytes()
     magic,generation,crc=struct.unpack_from('<4sII',stored,0x91000)
-    size=3780 if 'kumbia' in symbols else 3776
+    size=3797 if 'kumbia' in symbols else 3792
     saved=stored[0x91100:0x91100+size]
-    assert magic==(b'CPS3' if 'kumbia' in symbols else b'CPS2')
+    assert magic==(b'CPS6' if 'kumbia' in symbols else b'CPS4')
     assert generation==2 and zlib.crc32(struct.pack('<I',generation)+saved)==crc
-    assert saved[1360:3776]==ram[symbols['rhythm_slots']:symbols['rhythm_slots']+16*151]
+    assert saved[1376:3792]==ram[symbols['rhythm_slots']:symbols['rhythm_slots']+16*151]
     if 'kumbia' in symbols:
-        assert saved[3776:]==bytes((0,100,12,0))
+        assert saved[3792:]==bytes((0,100,12,0,100))
     reboot=run(1600,source_flash=out/'strict/virtual.bin')
     assert reboot[symbols['view']+28]==1 and reboot[symbols['rack_sequence']]==1
     assert list(struct.unpack_from('<15I',reboot,symbols['rack_pattern']))==[0x11111111]*15

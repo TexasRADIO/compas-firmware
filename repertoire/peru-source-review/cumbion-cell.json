@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "peru-north-figure-3",
+  "status": "private two-role source-cell audition; not a complete song or factory preset",
+  "source": {
+    "id":"PER-01","figure":3,"pdfPage":14,"printedPage":155,
+    "sha256":"d76287573e894edacb4c9aa48f5f27f93481e0bb0ed53aaf9073c1a973bc04cd",
+    "url":"https://repositorio.unm.edu.pe/server/api/core/bitstreams/1d131676-94ec-4669-8820-acfc1948a4f5/content",
+    "verification":"Figure 3 and its separate continuing hi-hat/cabasa role visually inspected on 21 November 2026. One reader; independent comparison remains."
+  },
+  "sourceGrid": {
+    "meter":"2/2","bars":2,"ticksPerQuarter":4,"ticks":32,
+    "tempoBpm":140,"tempoUnit":"half note","sourceQuarterBpm":280,
+    "tempoStatus":"Dios mío, haz que me enamore reference pulse from PER-01; not a universal cumbión tempo",
+    "roles":[
+      {"name":"fragmented timbal shell cell","onsets":[0,6,8,14,16,22,24,30]},
+      {"name":"continuing cabasa cell","onsets":[0,4,6,8,12,14,16,20,22,24,28,30]}
+    ]
+  },
+  "adaptation": {
+    "format":"C7R1; two cut-time source bars rebeamed into one machine loop",
+    "c7r":{"steps":16,"feel":0,"hit":92,"accent":124,"level":100,"mode":2,"selectedVoice":7},
+    "roles":[
+      {"source":"fragmented timbal shell cell","compas727":"Hi Agogo (voice 7)","onsets":[0,3,4,7,8,11,12,15],"accented":[],"honesty":"An agogo is not a timbal shell. This is a conspicuously metallic pitch/register proxy, not a claim of source instrumentation."},
+      {"source":"continuing cabasa cell","compas727":"Cabasa (voice 9)","onsets":[0,2,3,4,6,7,8,10,11,12,14,15],"accented":[],"honesty":"Retains the separate continuing role; relative source levels and articulations are not available from this figure."}
+    ],
+    "notAdded":["bass","guitar","keyboard","kick","fill","source dynamics","a generic quebradita claim"],
+    "metricBoundary":"Source onsets divided by two; source quarter 280 becomes machine quarter 140. No swing or time stretch."
+  },
+  "review":{"next":["Check that the timbal loses selected strokes while the dry upper role continues.","Assess the disclosed agogo surrogate and equal hit levels with a north-coast percussionist.","Do not present the two-role reduction as the complete Armonía 10 arrangement."]}
+}

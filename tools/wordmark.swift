@@ -74,7 +74,7 @@ if args[3] == "svg" {
         ctx.fillPath()
     }
     let lettering = subtitle ? "Rodeo" : "Picnic"
-    print("/* Generated from the Taylor Rushing \(lettering) lettering. */")
+    print("/* Generated from the private Taylor Rushing \(lettering) lettering. */")
     print("enum { \(prefix)_WIDTH = \(width), \(prefix)_HEIGHT = \(height) };")
     print("static const uint8_t \(name)[] = {")
     for y in 0..<height {

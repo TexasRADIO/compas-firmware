@@ -136,9 +136,9 @@ def prepare(manifest_path,bsp,output):
         text=True,capture_output=True,timeout=30)
     if validation.returncode:raise ValueError('Native show validation failed: '+validation.stderr[-500:])
     payload=bytes.fromhex(json.loads(validation.stdout)['payload'])
-    if len(payload)!=3776:raise ValueError('Unexpected native show payload size')
-    show=bytearray(b'\xff'*0x100000);show[0x90100:0x90100+3776]=payload;show[0x92000:0x92008]=b'CMPASIM1'
-    struct.pack_into('<III',show,0x90000,0x32535043,1,zlib.crc32(struct.pack('<I',1)+payload))
+    if len(payload)!=3792:raise ValueError('Unexpected native show payload size')
+    show=bytearray(b'\xff'*0x100000);show[0x90100:0x90100+3792]=payload;show[0x92000:0x92008]=b'CMPASIM1'
+    struct.pack_into('<III',show,0x90000,0x34535043,1,zlib.crc32(struct.pack('<I',1)+payload))
     updated=blobs['baseline'][:0x4000]+blobs['compact'][0x4000:]+blobs['baseline'][0x90000:]
     served,expected=WIRE['attach'](blobs['logical'],blobs['baseline'],blobs['repeat'],updated,blobs['legacy'],blobs['compact'],show)
     record=served[0x100000:]

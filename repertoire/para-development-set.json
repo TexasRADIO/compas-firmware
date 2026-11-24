@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "songs": [
+    {"title":"CARIMBO MARAPANIM","study":"carimbo-marapanim","feel":0,"kit":false,"section":"base"},
+    {"title":"BELEM TECNOBREGA","study":"tecnobrega-belem","feel":0,"kit":false,"section":"base"},
+    {"title":"PARA LAMBADA","study":"lambada-para","feel":0,"kit":false,"section":"base"},
+    {"title":"PARA GUITARRADA","study":"guitarrada-para","feel":0,"kit":false,"section":"base"}
+  ]
+}

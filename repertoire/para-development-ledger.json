@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "status": "private development evidence ledger; no public or device release decision",
+  "entries": [
+    {
+      "study": "carimbo-marapanim",
+      "status": "SOURCE CELL with disclosed Compás reduction",
+      "source": {
+        "id": "PAR-06",
+        "citation": "Ygor Saunier, Carimbo de Marapanim: Grade Rítmica do Carimbó, I Congresso Brasileiro de Percussão (Unicamp, 2017), PDF p. 393",
+        "url": "https://www.iar.unicamp.br/wp-content/uploads/2019/11/anais-congresso-percussao-1.pdf",
+        "scope": "Two-bar 2/4 curimbó and milheiro role grid, visually inspected in the research ledger."
+      },
+      "translation": "Low/higher curimbó and milheiro become low voice, hand voice and shaker roles. The new accents and Break texture are authored Compás performance behaviour.",
+      "notClaimed": ["that low/hand/shaker are curimbó or milheiro samples", "a bass line", "a universal Carimbó pattern"],
+      "reviewGate": "Marapanim/Pará percussionist comparison and attribution review"
+    },
+    {
+      "study": "tecnobrega-belem",
+      "status": "SOURCE CELL with disclosed electronic-drum proxy",
+      "source": {
+        "id": "PAR-08",
+        "citation": "Antonio Maurício Dias da Costa and Sonia Maria Chada, A figura do compositor no tecnobrega paraense, XXIV Congresso da ANPPOM (2014), Fig. 1 / PDF p. 5",
+        "url": "https://anppom.org.br/anais/anaiscongresso_anppom_2014/3148/public/3148-9938-1-PB.pdf",
+        "scope": "One 4/4 sixteen-pulse Bumbo/Caixa relationship from the printed fieldwork example."
+      },
+      "translation": "Low and high board voices preserve the read event relationship as a proxy. The final tom transition is explicitly authored.",
+      "notClaimed": ["that a timbale is the source electronic kick or snare", "a keyboard, vinheta or bass part", "a complete tecnobrega song form"],
+      "reviewGate": "Belém producer/DJ comparison and separately authored full electronic ensemble review"
+    },
+    {
+      "study": "lambada-para",
+      "status": "AUTHORED STUDY from a documented role map",
+      "source": {
+        "id": "PAR-10",
+        "citation": "Saulo Christ Caraveo and Sonia Chada, Lambadas das Quebradas Vol. 1: a origem da lambada/guitarrada de Mestre Vieira, no Pará, OPUS 30 (2024)",
+        "url": "https://www.anppom.com.br/revista/index.php/opus/article/download/opus2024.30.03/pdf",
+        "scope": "Album-level role field: constant drum-kit Bumbo, Caixa-cell field and fast Merengue tempo context; no adopted onset transcription."
+      },
+      "translation": "Every programmed onset, accent, shaker and conductor move is a Compás authorial decision made to leave room for a human lead.",
+      "notClaimed": ["a transcription of Lambada da Baleia or another recording", "an original bass ostinato", "a universal Pará Lambada pattern"],
+      "reviewGate": "Pará guitarist/drummer or producer review of lead space and local terminology"
+    },
+    {
+      "study": "guitarrada-para",
+      "status": "AUTHORED STUDY from a named-source tempo and ensemble role map",
+      "source": {
+        "id": "PAR-04",
+        "citation": "Bernardo Thiago Paiva Mesquita, A Guitarra de Mestre Vieira, UFBA dissertation (2009), pp. 153–154",
+        "url": "https://repositorio.ufba.br/bitstream/ri/29897/1/DISSERTA%C3%87%C3%83O_Bernardo%20Mesquita.pdf",
+        "scope": "Named Lambada do Rei reference at quarter-note = 126 and guitar-led drum/bass/keyboard/percussion ensemble description. The staff onset and bass information are not adopted."
+      },
+      "translation": "The low/high/shaker floor is an original Compás accompaniment designed around a human guitar lead; it is not a reading of the inaccessible notation.",
+      "notClaimed": ["source onset positions", "source bass pitches or line", "a guitar hook", "that one named record defines all Guitarrada"],
+      "reviewGate": "Durable notation access plus Pará guitarreiro, drummer or arranger review"
+    }
+  ]
+}

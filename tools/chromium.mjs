@@ -76,9 +76,9 @@ try {
       if(this instanceof AudioWorkletNode || this instanceof ScriptProcessorNode){
         window.tap=this.context.createAnalyser();connect.call(this,window.tap);
         this.port.addEventListener('message',e=>{if(e.data.savedSet) window.savedBrowserSet=e.data.savedSet;
-          if(e.data instanceof Uint8Array && e.data.length===128) {
-            if (${rackCheck} && window.boardSnapshot && e.data[127]!==boardSnapshot[127]) {
-              const rack=new DataView(e.data.buffer,e.data.byteOffset+120,8);
+          if(e.data instanceof Uint8Array && e.data.length===132) {
+            if (${rackCheck} && window.boardSnapshot && e.data.at(-1)!==boardSnapshot.at(-1)) {
+              const rack=new DataView(e.data.buffer,e.data.byteOffset+e.data.length-8,8);
               (window.rackEvents??=[]).push({hits:rack.getUint16(0,true),manual:rack.getUint16(4,true)});
             }
             window.boardSnapshot=e.data;
@@ -294,7 +294,7 @@ try {
     await until('!boardSnapshot[20] && energy()===0','STOP did not silence the new song');
 
     const {payload,rhythms}=showPayload(JSON.parse(await readFile(new URL('../build/Colombian-Cumbia-727.cpshow',import.meta.url))));
-    for(const [bytes,size] of [[payload,85],[rhythms,151]]) {
+    for(const [bytes,size] of [[payload,86],[rhythms,151]]) {
       bytes.copyWithin(9*size,2*size,3*size);
       bytes.copyWithin(2*size,15*size,16*size);
     }
@@ -709,7 +709,7 @@ try {
     await until(content('show-order-status','Exported 3 songs'),'reordered file did not export');
     const exported=await evaluate('showFile.text().then(JSON.parse)');
     const reordered=showPayload(exported);
-    for(const [source,result,size] of [[saved.payload,reordered.payload,85],[saved.rhythms,reordered.rhythms,151]]) {
+    for(const [source,result,size] of [[saved.payload,reordered.payload,86],[saved.rhythms,reordered.rhythms,151]]) {
       for(const [to,from] of [2,0,1].entries())
         assert.deepEqual(result.slice(to*size,(to+1)*size),source.slice(from*size,(from+1)*size));
       assert.deepEqual(result.slice(3*size),source.slice(3*size));
@@ -1372,7 +1372,7 @@ try {
     await evaluate('[...document.querySelectorAll("#buttons button")].find(el=>el.textContent==="GLO").click()');
     await click('[aria-label="SELECT up"]');
     await evaluate('[...document.querySelectorAll("#buttons button")].find(el=>el.textContent==="SAVE").click()');
-    await until('window.savedBrowserSet && new TextDecoder().decode(savedBrowserSet.slice(85,96))==="EL MANISERO"',
+    await until('window.savedBrowserSet && new TextDecoder().decode(savedBrowserSet.slice(86,97))==="EL MANISERO"',
                 'saving to an empty imported slot did not reach the browser display owner');
     assert.equal(await evaluate('new TextDecoder().decode(savedBrowserSet.slice(0,11))'),'EL MANISERO');
     await play();

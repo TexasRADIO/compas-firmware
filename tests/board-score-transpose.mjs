@@ -1,3 +1,4 @@
+import {dacScale} from '../web/dac-format.mjs';
 // Run after board-browser.py. Exercise the exact worklet owner without a browser.
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -16,7 +17,7 @@ for(const score of scores) {
  for(let transpose=-6;transpose<=5;++transpose) {
   const b=new WebAssembly.Instance(module).exports;
   const payload=preparedPayload({format:1,songs:[{title:'SINGER KEY',study:score.id,bpm:180,guide:!!score.guide || "guide_part" in score,transpose}]},catalog);
-  new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360).set(payload);
+  new Uint8Array(b.memory.buffer,b.bench_set_buffer(),payload.length).set(payload);
   assert.equal(b.bench_boot(1),1);b.bench_audio();b.bench_master(80);b.bench_audio();
   const input=(buttons,keys=0)=>{b.bench_input(buttons,keys,0);b.bench_audio();};
   input(1<<8);input(0,1<<9);input(0); // Band, Verse, release: no count-in.
@@ -24,23 +25,23 @@ for(const score of scores) {
   const hash=createHash('sha256');let peak=0;
   for(let block=0;block<700;++block) {
    const pcm=new Int32Array(b.memory.buffer,b.bench_audio(),256);
-   for(let i=0;i<256;i+=2){assert.equal(pcm[i],pcm[i+1]);peak=Math.max(peak,Math.abs(pcm[i]/128));}
+   for(let i=0;i<256;i+=2){assert.equal(pcm[i],pcm[i+1]);peak=Math.max(peak,Math.abs(pcm[i]/dacScale(b)));}
    hash.update(Buffer.from(pcm.buffer,pcm.byteOffset,pcm.byteLength));
   }
   assert(peak>100 && peak<32767);hashes.add(hash.digest('hex'));
   input(1<<12);assert.equal(b.bench_playing(),0);
   assert.equal(b.bench_show_export(),0);
-  const set=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),1360);
+  const set=new Uint8Array(b.memory.buffer,b.bench_set_buffer(),payload.length);
   const rhythm=new Uint8Array(b.memory.buffer,b.bench_rhythm_slots_buffer(),2416);
-  assert.equal(set[64],(transpose+12)%12);
+  assert.equal(set[76],(transpose+12)%12);
   const file=serializeShow(set,rhythm), decoded=showPayload(JSON.parse(JSON.stringify(file)));
   assert.deepEqual(decoded.payload,set);
   const reopen=new WebAssembly.Instance(module).exports;
-  new Uint8Array(reopen.memory.buffer,reopen.bench_set_buffer(),1360).set(decoded.payload);
+  new Uint8Array(reopen.memory.buffer,reopen.bench_set_buffer(),decoded.payload.length).set(decoded.payload);
   new Uint8Array(reopen.memory.buffer,reopen.bench_rhythm_slots_buffer(),2416).set(decoded.rhythms);
   assert.equal(reopen.bench_boot(3),1);reopen.bench_audio();
   assert.equal(reopen.bench_show_export(),0);
-  assert.deepEqual(new Uint8Array(reopen.memory.buffer,reopen.bench_set_buffer(),1360),set);
+  assert.deepEqual(new Uint8Array(reopen.memory.buffer,reopen.bench_set_buffer(),set.length),set);
   ++cases;
  }
  assert.equal(hashes.size,12,score.id+' must produce twelve different pitched streams');
@@ -66,7 +67,7 @@ function golondrinaStream(study, key) {
   let peak = 0;
   for (let block=0; block<700; ++block) {
     const pcm = new Int32Array(b.memory.buffer,b.bench_audio(),256);
-    for (const sample of pcm) peak = Math.max(peak,Math.abs(sample/128));
+    for (const sample of pcm) peak = Math.max(peak,Math.abs(sample/dacScale(b)));
     hash.update(Buffer.from(pcm.buffer,pcm.byteOffset,pcm.byteLength));
   }
   assert(peak>100 && peak<32767);
