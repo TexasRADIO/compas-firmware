@@ -1,11 +1,13 @@
 {
   "what": "Compás is a bilingual Latin rhythm section for the FM-1: 38 groove studies, 6/8 and 12/8 support, cued song parts, 727 percussion, bass, effects and a browser editor.",
   "author": "Big Beat Studio / TexasRADIO",
-  "kinds": ["groove"],
+  "kinds": [
+    "groove"
+  ],
   "play": "https://thebigbeat.app/compas/play/",
   "cheat": "https://thebigbeat.app/compas/",
   "editor": "https://thebigbeat.app/editor/",
   "image": "docs/media/compas-screen.png",
   "color": "#22D3EE",
-  "sounds": "licensed: author-owned TR-727 recordings, GPL-3.0-only; Hanan Cumbia by Oficina de Sonido, CC BY-SA 3.0"
+  "sounds": "own: Big Beat Studio TR-727 recordings; licensed: Hanan Cumbia by Oficina de Sonido, CC BY-SA 3.0"
 }
